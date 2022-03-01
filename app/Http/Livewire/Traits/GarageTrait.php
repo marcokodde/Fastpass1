@@ -29,7 +29,16 @@ trait GarageTrait {
 
         if($this->garage->has_space()){
             DetailGarage::create(['garage_id' => $this->garage->id,'stock' => $stock]);
+            $this->garage_detail = DetailGarage::count();
+             // Set Flash Message
+             $this->dispatchBrowserEvent('alert',[
+                'type'=>'warning',
+                'message'=>"Detail Garage Created Successfully!!'.$this->garage_detail.'",
+                'confirmButtonText' => "Yes",
+                'cancelButtonText'  => "Cancel"
+            ]);
         }
+        $this->emit('mount');
     }
 
     /** Revisa el garage para ver si los vehículos siguen estando en inventario */

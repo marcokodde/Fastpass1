@@ -4,6 +4,13 @@
             <label class="text-black font-roboto text-xs font-semibold leading-relaxed uppercase ">{{__("My Garage")}}</label>
         </a>
     </button>
+    <div>
+        @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+    </div>
     <table class="border ml-4 mt-2">
         @if ($garages)
         <tbody>
