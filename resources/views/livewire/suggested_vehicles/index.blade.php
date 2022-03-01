@@ -1,34 +1,8 @@
-<x-app-layout>
-    @livewire('navigations')
-    <div class="sidemenu mt-12 w-64 absolute">
-        @livewire('garages')
-    </div>
-    <div class="py-2">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <h1 class="font-bold text-center items-center text-3xl leading uppercase">{{__('Vehicles you are approved')}}</h1>
-                <table border="1">
-                    <thead>
-                        <th>No</th>
-                        <th>STOCK</th>
-                        <th>VIN</th>
-                        <th>GRADE</th>
-                        <th>NEXT TIER</th>
-                    </thead>
-                    <tbody>
-                        @foreach ($records as $record )
-                            <tr>
-                                <td>{{$loop->index + 1}}</td>
-                                <td>{{$record['stock']}}</td>
-                                <td>{{$record['vin']}}</td>
-                                <td>{{$record['grade']}}</td>
-                                <td align="right">{{number_format($record['additionalDownpaymentForNextTier'],2)}}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    @livewire('additionalvehicles')
-</x-app-layout>
+<div class="ml-4">
+    <img class="stnd skip-lazy dark-version" width="207" height="110" alt="CTC Auto Group" src="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/05/brand-logo.png"/>
+</div>
+<button class="bg-green-500 px-10 rounded relative mt-8 ml-4 border-2 border-gray-700">
+        <a href="{{ URL::previous(); }}" class="inline" title="Vehicles">
+            <label class="text-white font-roboto text-xs font-semibold leading-relaxed uppercase ">{{__("Vehicles")}}</label>
+        </a>
+</button>

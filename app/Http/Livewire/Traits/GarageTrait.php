@@ -30,9 +30,6 @@ trait GarageTrait {
         if($this->garage->has_space()){
             DetailGarage::create(['garage_id' => $this->garage->id,'stock' => $stock]);
         }
-
-
-
     }
 
     /** Revisa el garage para ver si los vehículos siguen estando en inventario */

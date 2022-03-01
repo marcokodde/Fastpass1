@@ -4,17 +4,18 @@
             <label class="text-black font-roboto text-xs font-semibold leading-relaxed uppercase ">{{__("My Garage")}}</label>
         </a>
     </button>
-    {{-- <table class="border ml-4 mt-2">
-        <thead>
-            <tr>
-                <th>{{__('Year')}}</th>
-                <th>{{('Model')}}</th>
-            </tr>
-        </thead>
+    <table class="border ml-4 mt-2">
+        @if ($garages)
         <tbody>
-            <td>1990</td>
-            <td>chevrolet</td>
+            @foreach ($garages as $garage)
+            <tr>
+                <td class="border px-2 py-1 text-gray-700">{{ $garage->garage_id }}</td>
+                <td class="border px-2 py-1 text-gray-700">{{ $garage->stock }}</td>
+            </tr>
+            @endforeach
         </tbody>
-    </table> --}}
-    <h1 class="font-semibold text-sm text-center mt-4">{{__('You have NN spaces in your garage')}}</h1>
+        @else
+            <h1 class="font-semibold text-sm text-center mt-4">{{__('You have NN spaces in your garage')}}</h1>
+        @endif
+    </table>
 </div>
