@@ -29,8 +29,13 @@ class SuggestedVehicles extends Component
 
     public function render()
     {
+        /** To Do
+         * (1) Validar que la sesión no haya expirado de ser así enviar una vista con el informe.
+        */
+
         $this->read_vehicles();
         return view('livewire.suggested_vehicles.vehicles');
     }
+
     public function ok() { dd("okokoko");}
 }

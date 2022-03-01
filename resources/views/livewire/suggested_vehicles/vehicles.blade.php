@@ -3,6 +3,9 @@
     <div class="sidemenu mt-12 w-64 absolute">
         @livewire('garages')
     </div>
+    <div>
+        CONTROL DE TIEMPO
+    </div>
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden sm:rounded-lg">

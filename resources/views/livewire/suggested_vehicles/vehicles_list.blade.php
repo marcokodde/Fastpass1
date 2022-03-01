@@ -34,13 +34,11 @@
                 <h2 class="font-bold">{{__('$25,200') }}</h2>
             @endif
             <div class="mb-2">
-                <button wire:click="add_vehicle_to_garage({{ $vehicle['id'] }})" type="button" class="bg-green-700 text-white px-2 m-4 rounded relative border-2 border-gray-700">
+                <!-- TO DO: Evaluar si ya existe el vehículo en el garage (Ver Historia) -->
+                <button wire:click="add_vehicle_to_garage({{ "'". $vehicle['stock']  . "'"}})" type="button" class="bg-green-700 text-white px-2 m-4 rounded relative border-2 border-gray-700">
                     {{__('Add To Garage')}}
                 </button>
 
-                <button wire:click="hola()" type="button" class="bg-blue-700 text-white px-2 m-4 rounded relative border-2 border-gray-700">
-                    {{__('Boton prueba')}}
-                </button>
             </div>
         </div>
     @endforeach
