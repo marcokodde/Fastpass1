@@ -47,6 +47,13 @@ trait SuggestedVehiclesTrait {
         }
     }
 
+    /** Lee los vehículos */
+    private function load_suggested_vehicles(){
+        $this->delete_suggested_vehicles_client($this->client->id);               // Elimina vehículos sugeridos del cliente
+        $records = $this->read_api_suggested_vehicles();                    // Lee los sugeridos desde NEO
+        $this->create_suggested_vehicles_to_client($records,$this->client->id);   // Llena sugeridos del cliente desde inventario local
+        $this->read_neo_api = false;
+    }
 
 
 }

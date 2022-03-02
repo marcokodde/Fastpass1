@@ -18,13 +18,17 @@ class SuggestedVehicles extends Component
 
 
     public $client_id;
+    public $client;
     protected $queryString = ['client_id'];
     public $suggested_vehicles, $records;
     public $allow_login;
+    public $read_neo_api = true;
+    public $downpayment = 900;
 
     public function mount(){
         $this->close_expired_sessions();
         $this->allow_login = $this->allow_login();
+        $this->client = $this->read_client_id();
         $this->get_garage();
 
     }
@@ -34,29 +38,20 @@ class SuggestedVehicles extends Component
         /** To Do
          * (1) Validar que la sesión no haya expirado de ser así enviar una vista con el informe.
         */
+        if($this->read_neo_api && $this->client){
+            $this->load_suggested_vehicles();
+        }
 
-        $this->read_vehicles();
+        $this->records = $this->read_suggested_vehicles_client_id($this->client->id,$this->downpayment); // Lee sugeridos del cliente;
+        if($this->garage){
+            $this->review_garage();
+        }
+        dd($this->records);
         return view('livewire.suggested_vehicles.vehicles');
     }
 
 
-    /** Lee los vehículos */
-    private function read_vehicles(){
-        $client = $this->read_client_id();
-        if($client){
-            $this->delete_suggested_vehicles_client($client->id);               // Elimina vehículos sugeridos del cliente
-            $records = $this->read_api_suggested_vehicles();                    // Lee los sugeridos desde NEO
-            $this->create_suggested_vehicles_to_client($records,$client->id);   // Llena sugeridos del cliente desde inventario local
-            $this->records = $this->read_suggested_vehicles_client_id($client->id,1000); // Lee sugeridos del cliente;
-        }
-        // foreach($this->records as $record){
-        //     dd($record->inventory->dealer_id);
-        // }
-        dd($this->records);
-        if($this->garage){
-            $this->review_garage();
-        }
-    }
+
 
     public function ok() { dd("okokoko");}
 }

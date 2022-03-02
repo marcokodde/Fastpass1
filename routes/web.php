@@ -39,3 +39,5 @@ Route::get('my_garage',Mygarages::class)->name('my_garage');
 Route::get('time_remainder',TimeRemainder::class)->name('time_remainder');
 //Route::middleware(['auth'])->get('update_inventory', [InventoryController::class, 'update_inventory'])->name('update_inventory');
 Route::get('update_inventory', [InventoryController::class, 'update_inventory'])->name('update_inventory');
+
+require 'pruebas.php';
