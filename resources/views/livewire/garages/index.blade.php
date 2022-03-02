@@ -25,8 +25,9 @@
             <tbody>
                 @foreach ($garages as $garage)
                 <tr>
-                    <td class="border px-2 py-1 text-gray-700">{{ $garage->garage_id }}</td>
-                    <td class="border px-2 py-1 text-gray-700">{{ $garage->stock }}</td>
+                    <td class="border px-2 py-1 text-gray-700">{{ $garage->year }}</td>
+                    <td class="border px-2 py-1 text-gray-700">{{ $garage->make }}</td>
+                    <td class="border px-2 py-1 text-gray-700">{{ $garage->model }}</td>
                 </tr>
                 @endforeach
             </tbody>

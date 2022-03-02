@@ -45,8 +45,8 @@
             icon:type,
             title:message,
             showCancelButton: true,
-            confirmButtonText: "Sí, eliminar",
-            cancelButtonText: "Cancelar",
+            confirmButtonText: "Yes, Adding",
+            cancelButtonText: "Cancel",
         })
     })
 
@@ -67,9 +67,9 @@
     }
 
     window.onload = function () {
-        var fiveMinutes = 60 * 60,
+        var Minutes = 60 * 60,
             display = document.querySelector('#time');
-        startTimer(fiveMinutes, display);
+        startTimer(Minutes, display);
     };
 </script>
     </body>
