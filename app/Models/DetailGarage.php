@@ -11,8 +11,27 @@ class DetailGarage extends Model
     protected $table = 'detail_garages';
     public $timestamps = false;
     protected $fillable = [
-        'garage_id',
-        'stock'
+        'garage_i',
+        'dealer_id',
+        'vin',
+        'stock',
+        'year',
+        'make',
+        'model',
+        'exterior_color',
+        'interior_color',
+        'mileage',
+        'transmission',
+        'engine',
+        'retail_price',
+        'sales_price',
+        'options',
+        'image',
+        'last_updated',
+        'body',
+        'trim',
+        'is_additional_next_tier',
+        'is_available_inventory',
     ];
 
     // Al garage que pertenece

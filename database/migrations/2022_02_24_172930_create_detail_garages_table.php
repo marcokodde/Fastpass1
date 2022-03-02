@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('body',100)->nullable()->default(null)->comment('Body');
             $table->string('trim',100)->nullable()->default(null)->comment('Trim');
             $table->boolean('is_additional_next_tier')->default(0)->comment('¿Es de enganche adicional');
+            $table->boolean('is_available_inventory')->default(1)->comment('¿Está en disponbile en el inventario');
         });
     }
 
