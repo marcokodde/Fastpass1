@@ -49,6 +49,13 @@ class Inventory extends Model
     }
 
 
+    // Por Distribuidor
+    public function scopeDealerId($query,$valor){
+        if (trim($valor) != "") {
+            $query->where('dealer_id',  $valor);
+        }
+    }
+
     // Por Stock
     public function scopeStock($query,$valor){
         if (trim($valor) != "") {
@@ -62,5 +69,7 @@ class Inventory extends Model
             $query->where('vin',  $valor);
         }
     }
+
+
 
 }

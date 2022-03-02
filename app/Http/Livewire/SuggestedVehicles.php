@@ -23,7 +23,7 @@ class SuggestedVehicles extends Component
     public $suggested_vehicles, $records;
     public $allow_login;
     public $read_neo_api = true;
-    public $downpayment = 900;
+    public $downpayment = 0;
 
     public function mount(){
         $this->close_expired_sessions();

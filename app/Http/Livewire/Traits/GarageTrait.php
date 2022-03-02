@@ -62,14 +62,40 @@ trait GarageTrait {
         }
     }
 
-    /** Revisa el garage para ver si los vehículos siguen estando en inventario */
+    /*+-------------------------------------------------------------+
+     *|      REVISA GARAGE SI LOS VEHÍCULOS ESTÁN EN INVENTARIO     |
+     *+-------------------------------------------------------------+
+     *| Parámetros:                                                 |
+     *| Ninguno                                                     |
+     *+-------------------------------------------------------------+
+     *| Lógica del proceso                                          |
+     *| 1.- Obtiene el garage                                       |
+     *| 2.- Recorre los vehículos del garage x cada uno             |
+     *|     (a) Busca en Inventario                                 |
+     *|     (b) ¿Existe?                                            |
+     *|         Si: $available = 1                                  |
+     *|         No: $available = 0                                  |
+     *|     (c) Actualiza is_available_inventory = $available       |
+     *+-------------------------------------------------------------+
+    */
+
     public function review_garage(){
-        foreach($this->garage->vehicles_in_garages as $vehicle_in_garage){
-            $inventory_record = $this->read_inventory_stock($vehicle_in_garage->stock);
-            if(!$inventory_record){
-                $vehicle_in_garage->delete();
+        $this->get_garage();
+        if($this->garage && $this->garage->vehicles_in_garages->count()){
+            foreach($this->garage->vehicles_in_garages as $vehicle_in_garage){
+                $inventory_record = Inventory::DealerId($vehicle_in_garage->dealer_id)
+                                            ->Vin($vehicle_in_garage->vin)
+                                            ->stock($vehicle_in_garage->stock)
+                                            ->first();
+                if($inventory_record){
+                    $vehicle_in_garage->is_available_inventory = 1;
+                }else{
+                    $vehicle_in_garage->is_available_inventory = 0;
+                }
+                $vehicle_in_garage->save();
             }
         }
+
     }
 
     // Crea registro en detalle del garaje

@@ -11,6 +11,16 @@ trait SuggestedVehiclesTrait {
 
     // Lee los registros sugeridos
     private function read_suggested_vehicles_client_id($client_id,$downPayment=0){
+        if($downPayment == 0){
+
+            $records = SuggestedVehicle::ClientId($client_id)
+                    ->where('downpayment_for_next_tier','=',0)
+                    ->get();
+            dd($records);
+            return SuggestedVehicle::ClientId($client_id)
+                    ->where('downpayment_for_next_tier',0)
+                    ->get();
+        }
         return SuggestedVehicle::ClientId($client_id)
                                 ->DownPayment($downPayment)
                                 ->get();
@@ -31,23 +41,7 @@ trait SuggestedVehiclesTrait {
         }
     }
 
-    // Pone autos sugeridos desde inventario local
-    private function create_suggested_vehicles_to_client($records,$client_id){
-        foreach($records as $record){
-            $inventory_record = Inventory::Stock($record['stock'])->first();
-            $suggested_vehicle_client = SuggestedVehicle::InventoryId($inventory_record->id)->first();
-            if($inventory_record && $client_id && !$suggested_vehicle_client){
-                SuggestedVehicle::create([
-                    'client_id'     => $client_id,
-                    'inventory_id'  => $inventory_record->id,
-                    'grade'         => $record['grade'],
-                    'downpayment_for_next_tier' => $record['additionalDownpaymentForNextTier']
-                ]);
-            }
-        }
-    }
-
-    /** Lee los vehículos */
+    /** Carga los vehículos */
     private function load_suggested_vehicles(){
         $this->delete_suggested_vehicles_client($this->client->id);               // Elimina vehículos sugeridos del cliente
         $records = $this->read_api_suggested_vehicles();                    // Lee los sugeridos desde NEO
@@ -55,5 +49,23 @@ trait SuggestedVehiclesTrait {
         $this->read_neo_api = false;
     }
 
+
+    // Pone autos sugeridos desde inventario local
+    private function create_suggested_vehicles_to_client($records,$client_id){
+        foreach($records as $record){
+            $inventory_record = Inventory::Stock($record['stock'])->first();
+            if($inventory_record){
+                $suggested_vehicle_client = SuggestedVehicle::InventoryId($inventory_record->id)->first();
+                if($inventory_record && $client_id && !$suggested_vehicle_client){
+                    SuggestedVehicle::create([
+                        'client_id'     => $client_id,
+                        'inventory_id'  => $inventory_record->id,
+                        'grade'         => $record['grade'],
+                        'downpayment_for_next_tier' => $record['additionalDownpaymentForNextTier']
+                    ]);
+                }
+            }
+        }
+    }
 
 }
