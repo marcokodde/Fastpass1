@@ -46,7 +46,6 @@ class SuggestedVehicles extends Component
         if($this->garage){
             $this->review_garage();
         }
-        dd($this->records);
         return view('livewire.suggested_vehicles.vehicles');
     }
 
