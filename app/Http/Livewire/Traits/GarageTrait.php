@@ -27,10 +27,15 @@ trait GarageTrait {
             $this->create_garage();
         }
 
+
         if($this->garage->has_space()){
-            DetailGarage::create(['garage_id' => $this->garage->id,'stock' => $stock]);
+            // Leer el INVENTARIO con stock
+            // ¿El stock ya está en este garage?
+            // No-->agregamos
+            // Si--> No hacemos NADA
             $this->garage_detail = DetailGarage::count();
              // Set Flash Message
+             DetailGarage::create(['garage_id' => $this->garage->id,'stock' => $stock]);
              $this->dispatchBrowserEvent('alert',[
                 'type'=>'warning',
                 'message'=>"Detail Garage Created Successfully!!'.$this->garage_detail.'",

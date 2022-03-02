@@ -30,6 +30,10 @@ class Garage extends Model
         return $this->vehicles_in_garages->count() < ENV('GARAGE_SPACES');
      }
 
+     public function occupied_spaces(){
+        return $this->vehicles_in_garages->count();
+     }
+
      public function available_spaces(){
          return ENV('GARAGE_SPACES') - $this->vehicles_in_garages->count();
      }
