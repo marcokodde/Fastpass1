@@ -11,7 +11,7 @@ class DetailGarage extends Model
     protected $table = 'detail_garages';
     public $timestamps = false;
     protected $fillable = [
-        'garage_i',
+        'garage_id',
         'dealer_id',
         'vin',
         'stock',
