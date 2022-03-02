@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inventory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class InventoryController extends Controller
@@ -11,9 +12,9 @@ class InventoryController extends Controller
     private $api_inventory = 'http://c2c.teamkodde.com/api/inventory/read/all_inventory';
 
     public  function update_inventory(){
-
         $inventory_records =  json_decode(Http::get($this->api_inventory),true);
         if($inventory_records){
+            DB::statement('SET FOREIGN_KEY_CHECKS = 0;'); // Desactivamos la revisión de claves foráneas
             Inventory::truncate();
             foreach($inventory_records as $inventory_record){
                Inventory::create([
@@ -37,6 +38,7 @@ class InventoryController extends Controller
                 'trim'              => $inventory_record['trim'],
                ]);
             }
+            DB::statement('SET FOREIGN_KEY_CHECKS = 1;'); // Desactivamos la revisión de claves foráneas
             return "El inventario ha sido actualizado";
         }else{
             return 'Ho se leyeron registros de inventario';

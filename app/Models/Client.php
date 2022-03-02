@@ -20,4 +20,16 @@ class Client extends Model
     public function sessions(){
         return $this->hasMany(ClientSession::class);
     }
+
+    /**+------------+
+     * | Búsquedas  |
+     * +------------+
+     */
+
+
+    public function scopeClientId($query,$valor){
+        if(trim($valor) != ""){
+            $query->where('client_id',$valor);
+        }
+     }
 }

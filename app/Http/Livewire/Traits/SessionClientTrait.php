@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Traits;
 
+use App\Models\Client;
 use App\Models\ClientSession;
 use Carbon\Carbon;
 
@@ -25,6 +26,12 @@ trait SessionClientTrait {
 
     /** Revisamos el ingreso */
     private function allow_login(){
+
+        $client_id = Client::ClientId($this->client_id)->first();
+        if(!$client_id){
+            Client::create(['client_id' => $this->client_id]);
+        }
+
         $session_record = $this->get_active_session();
         if(!$session_record){
             $start_at = Carbon::now();

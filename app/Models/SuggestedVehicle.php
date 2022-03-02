@@ -21,14 +21,25 @@ class SuggestedVehicle extends Model
         return $this->belongsTo(Client::class);
     }
 
+    public function inventory(){
+        return $this->belongsTo(Inventory::class);
+    }
 
     /** Búsquedas */
 
-    public function scopeClientId($query,$valor){
+    public function scopeClientId($query,$client_id){
 
-        if (trim($valor) != "") {
-            $query->where('client_id',  $valor);
+        if ($client_id) {
+            $query->where('client_id',  $client_id);
         }
+    }
+
+    /** Del vehículo en particular por Id Inventario */
+    public function scopeInventoryId($query,$inventory_id){
+        if($inventory_id){
+            $query->where('inventory_id',$inventory_id);
+        }
+
     }
 
     // Menor o igual a un enganche adicional
