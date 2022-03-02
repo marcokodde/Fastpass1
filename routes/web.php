@@ -6,6 +6,7 @@ use App\Http\Livewire\Additionalhitch;
 use App\Http\Livewire\SuggestedVehicles;
 use App\Http\Controllers\FastPassController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Livewire\TimeRemainder;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +34,8 @@ Route::get('suggested_vehicles',SuggestedVehicles::class)->name('suggested_vehic
 Route::get('additional_hitch',Additionalhitch::class)->name('additional_hitch');
 Route::get('my_garage',Mygarages::class)->name('my_garage');
 
+// Tiempo restante
+
+Route::get('time_remainder',TimeRemainder::class)->name('time_remainder');
 //Route::middleware(['auth'])->get('update_inventory', [InventoryController::class, 'update_inventory'])->name('update_inventory');
 Route::get('update_inventory', [InventoryController::class, 'update_inventory'])->name('update_inventory');
