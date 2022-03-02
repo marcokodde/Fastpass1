@@ -1,12 +1,12 @@
 <div>
     <div class="mb-2">
-        <button class="bg-yellow-400 px-8 rounded relative mt-1 ml-4 mx-4 border-2 border-gray-700 disabled">
+        <button class="bg-yellow-400 px-8 rounded relative mt-1 ml-4 mx-4 border-2 border-gray-700">
             @if ($garages->count())
                 <a href="{{ route('my_garage') }}" class="inline" title="Garages">
                     <label class="text-black font-roboto text-xs font-semibold leading-relaxed uppercase ">{{__("My Garage")}}</label>
                 </a>
             @else
-                <a href="#" class="disabled" title="Disabled Garages" disabled>
+                <a href="#" class="disabled" title="Disabled Garages" disabled="disabled" disabled>
                     <label class="text-black font-roboto text-xs font-semibold leading-relaxed uppercase ">{{__("My Garage")}}</label>
                 </a>
             @endif
