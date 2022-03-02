@@ -16,7 +16,14 @@ class ClientSession extends Model
         'active'
     ];
 
+    /**+------------+
+     * | Relaciones |
+     * +------------+
+     */
 
+     public function client(){
+         return $this->belongsTo(Client::class);
+     }
 
 
     /**+------------+

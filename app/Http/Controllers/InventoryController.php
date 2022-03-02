@@ -11,6 +11,7 @@ class InventoryController extends Controller
     private $api_inventory = 'http://c2c.teamkodde.com/api/inventory/read/all_inventory';
 
     public  function update_inventory(){
+
         $inventory_records =  json_decode(Http::get($this->api_inventory),true);
         if($inventory_records){
             Inventory::truncate();

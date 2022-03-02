@@ -31,6 +31,14 @@ class Inventory extends Model
         'trim'
     ];
 
+    // Relación con Autos Sugerido a un Cliente
+    public function suggested_vehicles()
+    {
+        return $this->hasMany(SuggestedVehicle::class);
+    }
+
+
+
     // Nombre Completo
     public function scopeFullsearch($query,$valor)
     {
@@ -39,6 +47,7 @@ class Inventory extends Model
             $query->where(DB::raw("CONCAT(make,model,year, stock)"), 'LIKE', "%$valor%");
         }
     }
+
 
     // Por Stock
     public function scopeStock($query,$valor){
