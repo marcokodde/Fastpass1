@@ -34,6 +34,11 @@ class Garage extends Model
          return ENV('GARAGE_SPACES') - $this->vehicles_in_garages->count();
      }
 
+
+     public function has_limit_vehicle_from_next_tier(){
+        return $this->vehicles_in_garages->count >= env('APP_MAX_VEHICLE_IN_GARAGE_NEXT_TIER',1);
+     }
+
     /**+------------+
      * | Búsquedas  |
      * +------------+

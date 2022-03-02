@@ -34,6 +34,7 @@ return new class extends Migration
             $table->dateTimeTz('last_updated', $precision = 0)->nullable()->default(now())->comment('Ultima actualizacion');
             $table->string('body',100)->nullable()->default(null)->comment('Body');
             $table->string('trim',100)->nullable()->default(null)->comment('Trim');
+            $table->boolean('is_additional_next_tier')->default(0)->comment('¿Es de enganche adicional');
         });
     }
 
