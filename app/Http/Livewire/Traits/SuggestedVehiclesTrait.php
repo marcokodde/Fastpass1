@@ -35,7 +35,8 @@ trait SuggestedVehiclesTrait {
     private function create_suggested_vehicles_to_client($records,$client_id){
         foreach($records as $record){
             $inventory_record = Inventory::Stock($record['stock'])->first();
-            if($inventory_record && $client_id){
+            $suggested_vehicle_client = SuggestedVehicle::InventoryId($inventory_record->id)->first();
+            if($inventory_record && $client_id && !$suggested_vehicle_client){
                 SuggestedVehicle::create([
                     'client_id'     => $client_id,
                     'inventory_id'  => $inventory_record->id,
