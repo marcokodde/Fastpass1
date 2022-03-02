@@ -1,10 +1,18 @@
 <div>
+    <div class="mb-2">
+        <button class="bg-yellow-400 px-8 rounded relative mt-1 ml-4 mx-4 border-2 border-gray-700 disabled">
+            @if ($garages->count())
+                <a href="{{ route('my_garage') }}" class="inline" title="Garages">
+                    <label class="text-black font-roboto text-xs font-semibold leading-relaxed uppercase ">{{__("My Garage")}}</label>
+                </a>
+            @else
+                <a href="#" class="disabled" title="Disabled Garages" disabled>
+                    <label class="text-black font-roboto text-xs font-semibold leading-relaxed uppercase ">{{__("My Garage")}}</label>
+                </a>
+            @endif
+        </button>
+    </div>
 
-    <button class="bg-yellow-400 px-8 rounded relative mt-1 ml-4 mx-4 border-2 border-gray-700">
-        <a href="{{ route('my_garage') }}" class="inline" title="Garages">
-            <label class="text-black font-roboto text-xs font-semibold leading-relaxed uppercase ">{{__("My Garage")}}</label>
-        </a>
-    </button>
     <div>
         @if (session()->has('message'))
             <div class="alert alert-success">
@@ -13,7 +21,7 @@
         @endif
     </div>
     <table class="border ml-4 mt-2">
-        @if ($garages)
+        @if ($garages->count())
             <tbody>
                 @foreach ($garages as $garage)
                 <tr>
@@ -23,7 +31,7 @@
                 @endforeach
             </tbody>
         @else
-            <h1 class="font-semibold text-sm text-center mt-4">{{__('You have NN spaces in your garage')}}</h1>
+            <h1 class="font-semibold text-lg font-serif text-center mt-4">{{__("You have")}} {{env('GARAGE_SPACES')}} {{__("spaces in your garage")}}</h1>
         @endif
     </table>
 </div>
