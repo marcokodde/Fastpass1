@@ -61,6 +61,15 @@ class Garage extends Model
         return $this->vehicles_in_garages->where('is_additional_next_tier',1)->count() < ENV('GARAGE_SPACES_TO_NEXT_TIER');
      }
 
+     // ¿Está o no un vehículo en el garage?
+     public function is_vehicle_in_garage($stock){
+        foreach($this->vehicles_in_garages() as $vehicle_in_garage){
+            if($stock == $vehicle_in_garage->stock){
+                return true;
+            }
+        }
+        return false;
+     }
 
 
     /**+------------+
