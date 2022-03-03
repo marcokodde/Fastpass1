@@ -11,7 +11,7 @@
                 <input type="number"
                         wire:model="downpayment"
                         list="downpayments"
-                        min="{{env('APP_TO_PAYMENT_MIN',250)}}"
+                        min="0"
                         max="{{env('APP_TO_PAYMENT_max',2000)}}"
                         step="{{env('APP_TO_PAYMENT_RANGE',2000)}}"
                         class="ml-10"

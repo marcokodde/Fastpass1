@@ -19,11 +19,11 @@ class Client extends Model
     // Vehículos sugeridos
 
     public function suggested_vehicles(){
-        return $this->hasMany(SuggestedVehicle::class);
+        return $this->hasMany(SuggestedVehicle::class,'client_id');
     }
 
     public function suggested_vehicles_with_downpayment(){
-        return $this->hasMany(SuggestedVehicle::class)->where('downpayment_for_next_tier');
+        return $this->hasMany(SuggestedVehicle::class,'client_id')->where('downpayment_for_next_tier','>',0);
     }
 
     // Sesiones

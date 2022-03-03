@@ -45,11 +45,11 @@ class SuggestedVehicles extends Component
             $this->load_suggested_vehicles();
         }
         $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
-        $this->client_has_vehicles_with_downpayment = true;
         $this->records = $this->read_suggested_vehicles_client_id($this->client->id,$this->downpayment); // Lee sugeridos del cliente;
         if($this->garage){
             $this->review_garage();
         }
+
         return view('livewire.suggested_vehicles.vehicles');
     }
 
