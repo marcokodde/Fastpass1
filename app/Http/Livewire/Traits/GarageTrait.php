@@ -101,29 +101,29 @@ trait GarageTrait {
     }
 
     // Crea registro en detalle del garaje
-    private function create_detail_garage($inventory_record,$is_additional_next_tier){
+    private function create_detail_garage($inventory_record,$is_additional_next_tier=0,$is_available_inventory=1){
         return DetailGarage::create([
-            'garage_id'                 => $this->garage->id,
-                'dealer_id'             =>$inventory_record->dealer_id,
-                'vin'                   =>$inventory_record->vin,
-                'stock'                 =>$inventory_record->stock,
-                'year'                  =>$inventory_record->year,
-                'make'                  =>$inventory_record->make,
-                'model'                 =>$inventory_record->model,
-                'exterior_color'        =>$inventory_record->exterior_color,
-                'interior_color'        =>$inventory_record->interior_color,
-                'mileage'               =>$inventory_record->mileage,
-                'transmission'          =>$inventory_record->transmission,
-                'engine'                =>$inventory_record->engine,
-                'retail_price'          =>$inventory_record->retail_price,
-                'sales_price'           =>$inventory_record->sales_price,
-                'options'               =>$inventory_record->options,
-                'images'                =>$inventory_record->images,
-                'last_updated'          =>$inventory_record->last_updated,
-                'body'                  =>$inventory_record->body,
-                'trim'                  =>$inventory_record->trim,
-                'is_additional_next_tier'=>$is_additional_next_tier,
-                'is_available_inventory' =>$inventory_record->is_available_inventory]);
+            'garage_id'             => $this->garage->id,
+            'dealer_id'             =>$inventory_record->dealer_id,
+            'vin'                   =>$inventory_record->vin,
+            'stock'                 =>$inventory_record->stock,
+            'year'                  =>$inventory_record->year,
+            'make'                  =>$inventory_record->make,
+            'model'                 =>$inventory_record->model,
+            'exterior_color'        =>$inventory_record->exterior_color,
+            'interior_color'        =>$inventory_record->interior_color,
+            'mileage'               =>$inventory_record->mileage,
+            'transmission'          =>$inventory_record->transmission,
+            'engine'                =>$inventory_record->engine,
+            'retail_price'          =>$inventory_record->retail_price,
+            'sales_price'           =>$inventory_record->sales_price,
+            'options'               =>$inventory_record->options,
+            'images'                =>$inventory_record->images,
+            'last_updated'          =>$inventory_record->last_updated,
+            'body'                  =>$inventory_record->body,
+            'trim'                  =>$inventory_record->trim,
+            'is_additional_next_tier'=>$is_additional_next_tier,
+            'is_available_inventory' =>$is_available_inventory]);
     }
 
     // Muestra la alerta
