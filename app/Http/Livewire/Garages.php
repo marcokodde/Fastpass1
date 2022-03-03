@@ -24,6 +24,7 @@ class Garages extends Component
          * (4) Ver cómo leer el client_id, porque dado que este componente está incrustado en otra página
          *     hay que heredarlo o recibirlo por parámetro.. etc.
         */
+
         $this->garages = DetailGarage::all();
     }
 

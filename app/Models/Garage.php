@@ -15,6 +15,10 @@ class Garage extends Model
     ];
 
 
+    public function client(){
+        return $this->belongsTo(Client::class);
+    }
+
     // Detalle de garages
     public function vehicles_in_garages(): HasMany
     {
