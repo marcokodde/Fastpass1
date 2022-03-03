@@ -16,6 +16,15 @@ class Client extends Model
         'client_id',
     ];
 
+    // Vehículos sugeridos
+
+    public function suggested_vehicles(){
+        return $this->hasMany(SuggestedVehicle::class);
+    }
+
+    public function suggested_vehicles_with_downpayment(){
+        return $this->hasMany(SuggestedVehicle::class)->where('downpayment_for_next_tier');
+    }
 
     // Sesiones
     public function sessions(){
@@ -26,6 +35,16 @@ class Client extends Model
     public function garages(): HasMany
     {
         return $this->hasMany(Garage::class);
+    }
+
+    /**+------------+
+     * | Apoyo      |
+     * +------------+
+     */
+
+     // ¿Tiene vehicles_with_downpayment?
+    public function has_vehicles_with_downpayment(){
+        return $this->suggested_vehicles_with_downpayment->count();
     }
 
     /**+------------+

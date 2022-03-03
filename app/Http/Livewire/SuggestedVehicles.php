@@ -24,12 +24,16 @@ class SuggestedVehicles extends Component
     public $allow_login;
     public $read_neo_api = true;
     public $downpayment = 0;
+    public $downpayment_ranges = [];
+    public $client_has_vehicles_with_downpayment=false;
+
 
     public function mount(){
         $this->close_expired_sessions();
         $this->allow_login = $this->allow_login();
         $this->client = $this->read_client_id();
         $this->get_garage();
+
     }
 
     public function render()
@@ -40,13 +44,15 @@ class SuggestedVehicles extends Component
         if($this->read_neo_api && $this->client){
             $this->load_suggested_vehicles();
         }
-
+        $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
+        $this->client_has_vehicles_with_downpayment = true;
         $this->records = $this->read_suggested_vehicles_client_id($this->client->id,$this->downpayment); // Lee sugeridos del cliente;
         if($this->garage){
             $this->review_garage();
         }
         return view('livewire.suggested_vehicles.vehicles');
     }
+
 
 
 
