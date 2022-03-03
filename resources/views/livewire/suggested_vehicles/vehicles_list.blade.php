@@ -1,15 +1,26 @@
 <div class="vehicle-listings">
     @foreach ($records as $record )
         <div class="vehicle">
-            @php
-                $value = explode(",", $record->inventory->images);
-            @endphp
-            @if($value[0])
-                <div class="box_to_image">
-                    <img src="{{ $value[0] }}" alt="{{ __('Not Image') }}">
-                </div>
+            @if($record->inventory->images)
+                @php
+                    $value = explode(",", $record->inventory->images);
+                @endphp
+
+                @if($value[0])
+                    <div class="box_to_image">
+                        <img src="{{ $value[0] }}" alt="{{ __('Not Image') }}">
+                    </div>
+                @else
+                    <img class="h-44 w-44 items-center align-center mx-auto" src="{{ asset('images/default.jpeg') }}" alt="">
+                @endif
             @else
-                <img class="h-44 w-44 items-center align-center mx-auto" src="{{ asset('images/default.jpeg') }}" alt="">
+                @if($record->images)
+                    <div class="box_to_image">
+                        <img src="{{ $record->images }}" alt="{{ __('Not Image') }}">
+                    </div>
+                @else
+                    <img class="h-44 w-44 items-center align-center mx-auto" src="{{ asset('images/default.jpeg') }}" alt="">
+                @endif
             @endif
 
             @if($record->inventory->vin || $record->inventory->make || $record->inventory->model )

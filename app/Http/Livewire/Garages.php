@@ -29,7 +29,6 @@ class Garages extends Component
                         ];
 
     public function mount() {
-        $value = $this->get_garage();
         /** TO DO
          * (1) Solo los vehículos del cliente en el garage
          * (2) Refactorización para usar funciones del GarageTrait como get_garage....
@@ -37,8 +36,10 @@ class Garages extends Component
          * (4) Ver cómo leer el client_id, porque dado que este componente está incrustado en otra página
          *     hay que heredarlo o recibirlo por parámetro.. etc.
         */
-
-        $this->garages = DetailGarage::all();
+        $garage = Garage::ClientId($this->client_id)->first();
+        if($garage) {
+            $this->garages = $garage->vehicles_in_garages()->get();
+        }
     }
 
     public function garage($client_id) {

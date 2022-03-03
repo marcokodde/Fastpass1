@@ -7,7 +7,7 @@
         @endif
     </div>
     <table class="border ml-4 mt-2">
-        @if ($garages->count())
+        @if ($garages)
             <tbody class="border-1 border-gray-700">
                 @foreach ($garages as $garage)
                     <tr>
