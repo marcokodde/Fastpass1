@@ -26,7 +26,7 @@ class DetailGarage extends Model
         'retail_price',
         'sales_price',
         'options',
-        'image',
+        'images',
         'last_updated',
         'body',
         'trim',
