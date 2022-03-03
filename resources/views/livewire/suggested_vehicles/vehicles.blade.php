@@ -29,7 +29,7 @@
         </div>
     </div>
     @if($client_has_vehicles_with_downpayment)
-        @livewire('additional-down-payments')
+        @include('livewire.suggested_vehicles.amount_additional_downpayment')
     @endif
 
 </div>

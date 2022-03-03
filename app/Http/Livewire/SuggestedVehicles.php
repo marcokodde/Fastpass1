@@ -32,6 +32,7 @@ class SuggestedVehicles extends Component
         $this->close_expired_sessions();
         $this->allow_login = $this->allow_login();
         $this->client = $this->read_client_id();
+        $this->read_neo_api = env('APP_READ_NEO_API',true);
         $this->get_garage();
 
     }
