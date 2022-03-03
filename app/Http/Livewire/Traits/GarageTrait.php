@@ -57,8 +57,10 @@ trait GarageTrait {
         }
 
         if($this->garage->has_space() && !$garage_detail_record && $inventory_record){
-            $this->create_detail_garage($inventory_record,$is_additional_next_tier);
-            $this->show_alert();
+            if($this->create_detail_garage($inventory_record,$is_additional_next_tier)){
+                $this->add_interval_to_client_session();
+                $this->show_alert();
+            };
         }
     }
 
@@ -100,7 +102,7 @@ trait GarageTrait {
 
     // Crea registro en detalle del garaje
     private function create_detail_garage($inventory_record,$is_additional_next_tier){
-        DetailGarage::create([
+        return DetailGarage::create([
             'garage_id'                 => $this->garage->id,
                 'dealer_id'             =>$inventory_record->dealer_id,
                 'vin'                   =>$inventory_record->vin,

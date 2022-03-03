@@ -63,4 +63,13 @@ trait SessionClientTrait {
 
     }
 
+    // Agrega intervalo permitido a la sesión
+    public function add_interval_to_client_session(){
+        $client_session = $this->get_active_session();
+        $expire_at_before = new \Carbon\Carbon($client_session->expire_at);
+        $expire_at = $expire_at_before->addMinutes(env('SESSION_INTERVAL'));
+        $client_session->expire_at = $expire_at;
+        $client_session->save();
+    }
+
 }

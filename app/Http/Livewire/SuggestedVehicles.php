@@ -30,7 +30,6 @@ class SuggestedVehicles extends Component
         $this->allow_login = $this->allow_login();
         $this->client = $this->read_client_id();
         $this->get_garage();
-
     }
 
     public function render()
