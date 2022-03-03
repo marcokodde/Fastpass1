@@ -12,12 +12,7 @@ trait SuggestedVehiclesTrait {
     // Lee los registros sugeridos
     private function read_suggested_vehicles_client_id($client_id,$downPayment=0){
         if($downPayment == 0){
-
-            $records = SuggestedVehicle::ClientId($client_id)
-                    ->where('downpayment_for_next_tier','=',0)
-                    ->get();
-            dd($records);
-            return SuggestedVehicle::ClientId($client_id)
+           return SuggestedVehicle::ClientId($client_id)
                     ->where('downpayment_for_next_tier',0)
                     ->get();
         }
