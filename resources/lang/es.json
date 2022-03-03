@@ -1,7 +1,12 @@
 {
- "Add To Garage": "Agregar al Garage",
- "Remainder Time:": "Tiempo Restante",
- "The session will expire in": "La sesión expirará en ",
- "Minutes": "Minutos",
- "Amount to Additional Payment": "Importe Enganche Adicinal"
+    "Add To Garage": "Agregar al Garage",
+    "Remainder Time:": "Tiempo Restante",
+    "The session will expire in": "La sesión expirará en ",
+    "Minutes": "Minutos",
+    "Amount to Additional Payment": "Importe Enganche Adicinal",
+    "Vehicles you are approved": "Vehículos Aprobados",
+    "Vehicles in my Garage:": "Vehículos en Mi Garaje",
+    "My Garage": "Mi Garage",
+    "Vehicles": "Vehículos"
+
 }

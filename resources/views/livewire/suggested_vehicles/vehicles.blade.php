@@ -1,6 +1,19 @@
 <div>
     @include('livewire.suggested_vehicles.index')
     <div class="sidemenu mt-12 w-64 absolute">
+        <div class="mb-2">
+            <button class="bg-yellow-400 px-8 rounded relative mt-1 ml-4 mx-4 border-2 border-gray-700"
+                    wire:click="set_show_garage"
+                    >
+                    <label class="text-black font-roboto text-xs font-semibold leading-relaxed uppercase ">
+                        @if($show_garage)
+                            {{__("Vehicles")}}
+                        @else
+                            {{__("My Garage")}}
+                        @endif
+                    </label>
+            </button>
+        </div>
         @livewire('garages')
     </div>
     <div class="py-2">
@@ -15,7 +28,9 @@
             </div>
 
             <div class="bg-white overflow-hidden sm:rounded-lg mt-2">
-                <label class="block text-center items-center font-serif text-3xl mx-4 font-semibold text-black leading uppercase">{{__('Vehicles you are approved')}}</label>
+                <label class="block text-center items-center font-serif text-3xl mx-4 font-semibold text-black leading uppercase">
+                    {{__($header_page)}}
+                </label>
                 <div class="body_container mt-2">
                     <div class="container">
                         <div class="row">
