@@ -23,7 +23,12 @@ class TimeRemainder extends Component
 
     public function render()
     {
-        $this->close_expired_sessions();
+
+
+        $this->client = Client::ClientId($this->client_id)->first();
+
+        $this->close_expired_sessions($this->client->id);
+
         $this->client_session = $this->get_active_session();
 
         if($this->client_session){

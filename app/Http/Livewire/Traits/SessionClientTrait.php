@@ -9,9 +9,12 @@ use Carbon\Carbon;
 trait SessionClientTrait {
 
     /** Cierra Sesiones que estén caducas */
-    private function close_expired_sessions(){
+    private function close_expired_sessions($client_id=null){
+        if(!$client_id && $this->client){
+            $client_id = $this->client->id;
+        }
 
-        $session_records = ClientSession::ClientId($this->client->id)->Active()->Expired()->get();
+        $session_records = ClientSession::ClientId($this->client_id)->Active()->Expired()->get();
         $session_records = ClientSession::Expired()->get();
         foreach($session_records as $session_record){
             if($session_record->is_expired()){

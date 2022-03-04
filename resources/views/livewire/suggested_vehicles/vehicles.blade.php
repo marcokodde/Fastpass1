@@ -14,7 +14,7 @@
                     </label>
             </button>
         </div>
-        @dd($records)
+
         @if ($garage == null)
                 <h1 class="font-semibold text-lg font-serif text-center mt-4">{{__("You have")}}
                 {{env('GARAGE_SPACES')}} {{__("spaces in your garage")}}
