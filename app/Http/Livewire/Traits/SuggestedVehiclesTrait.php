@@ -11,6 +11,7 @@ trait SuggestedVehiclesTrait {
 
     // Lee los registros sugeridos
     private function read_suggested_vehicles_client_id($client_id,$downPayment=0){
+
         if($downPayment == 0){
            return SuggestedVehicle::ClientId($client_id)
                     ->where('downpayment_for_next_tier',0)
@@ -22,7 +23,7 @@ trait SuggestedVehiclesTrait {
     }
 
     // Lee el registro de tabla CLIENTS
-    private function read_client_id(){
+    private function read_client(){
         $this->client = Client::ClientId($this->client_id)->first();
         if(!$this->client){
             $records = $this->read_api_suggested_vehicles();
@@ -47,8 +48,11 @@ trait SuggestedVehiclesTrait {
     /** Carga los vehículos */
     private function load_suggested_vehicles(){
         $this->delete_suggested_vehicles_client($this->client->id);               // Elimina vehículos sugeridos del cliente
-        $records = $this->read_api_suggested_vehicles();                    // Lee los sugeridos desde NEO
-        $this->create_suggested_vehicles_to_client($records,$this->client->id);   // Llena sugeridos del cliente desde inventario local
+        $records = $this->read_api_suggested_vehicles();                        // Lee los sugeridos desde NEO
+        if($records && count($records)){
+            $this->create_suggested_vehicles_to_client($records,$this->client->id);   // Llena sugeridos del cliente desde inventario local
+
+        }
         $this->read_neo_api = false;
     }
 

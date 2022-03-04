@@ -30,6 +30,7 @@ class SuggestedVehicles extends Component
     public $show_garage = false;
     public $header_page = 'Vehicles you are approved';
     public $count_garage;
+    PUBLIC $client_first_time = false;
 
 
     public function mount(){
@@ -68,19 +69,29 @@ class SuggestedVehicles extends Component
         }
 
         if($this->show_garage && $this->garage){
-            $this->records = $this->garage->vehicles_in_garages()->get();
-            $this->client_has_vehicles_with_downpayment = false;
-            $this->header_page = 'My Garage';
+            $this->read_vehicles_in_garage();
 
         }else{
-            $this->header_page = 'Vehicles you are approved';
-            $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
-            $this->records = $this->read_suggested_vehicles_client_id($this->client->id,$this->downpayment); // Lee sugeridos del cliente;
+
+            $this->read_suggested_vehicles();
         }
 
         return view('livewire.suggested_vehicles.vehicles');
     }
 
+    /** Lee vehículos en el garage */
+    private function read_suggested_vehicles(){
+        $this->header_page = 'Vehicles you are approved';
+        $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
+        $this->records = $this->read_suggested_vehicles_client_id($this->client->id,$this->downpayment); // Lee sugeridos del cliente;
+    }
+
+    /** Lee vehículos sugeridos  */
+    private function read_vehicles_in_garage(){
+        $this->records = $this->garage->vehicles_in_garages()->get();
+        $this->client_has_vehicles_with_downpayment = false;
+        $this->header_page = 'My Garage';
+    }
 
     public function set_show_garage(){
         $this->show_garage = !$this->show_garage;

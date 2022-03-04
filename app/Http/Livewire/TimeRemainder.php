@@ -17,7 +17,7 @@ class TimeRemainder extends Component
     public $client_session;
     public $time_remainder;
     public $expire_at;
-
+    public $client;
     protected $queryString = ['client_id','token'];
 
 

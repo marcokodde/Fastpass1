@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Traits;
 
-
 use App\Models\ClientSession;
 use Carbon\Carbon;
+
 
 trait SessionClientTrait {
 
@@ -12,10 +12,10 @@ trait SessionClientTrait {
     private function close_expired_sessions(){
 
         $session_records = ClientSession::ClientId($this->client->id)->Active()->Expired()->get();
-
+        $session_records = ClientSession::Expired()->get();
         foreach($session_records as $session_record){
             if($session_record->is_expired()){
-                $session_record->expire_sesion();
+                $session_record->expire_session();
             }
         }
     }
@@ -50,7 +50,7 @@ trait SessionClientTrait {
             'start_at'  =>  $start_at,
             'expire_at' =>  $expire_at,
             'generated_by_system' => $generated_by_system,
-            'active'    =>  1
+            'active'    =>  1,
             ]
         );
     }
@@ -60,12 +60,13 @@ trait SessionClientTrait {
         if(!$this->client){
             return false;
         }
-        if($this->client->loggin_times > 0 && !$this->token){
+        if($this->client->loggin_times && !$this->token){
             return false;
         }
 
-        $token = $this->client->loggin_times > 0 ? $this->token : null;
+        $token = $this->client->loggin_times ? $this->token : null;
         return ClientSession::ClientId($this->client_id)->Token($token)->Active()->first();
+
     }
 
 

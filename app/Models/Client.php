@@ -48,6 +48,12 @@ class Client extends Model
         return $this->suggested_vehicles_with_downpayment->count();
     }
 
+    // Incrementa las veces que ha entrado
+    public function update_loggin_times(){
+        $this->loggin_times++;
+        $this->save();
+    }
+
     /**+------------+
      * | Búsquedas  |
      * +------------+

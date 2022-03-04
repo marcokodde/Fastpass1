@@ -15,6 +15,7 @@ class ClientSession extends Model
         'token',
         'start_at',
         'expire_at',
+        'generated_by_system',
         'active'
     ];
 
@@ -35,7 +36,7 @@ class ClientSession extends Model
      }
 
      // Expira la sesión
-    public function expire_sesion(){
+    public function expire_session(){
             $this->active = 0;
             $this->save();
     }
@@ -47,6 +48,7 @@ class ClientSession extends Model
 
 
      public function scopeClientId($query,$valor){
+
         if($valor){
             $query->where('client_id',$valor);
         }
@@ -65,8 +67,5 @@ class ClientSession extends Model
      public function scopeExpired($query){
          $query->where('expire_at','<',now());
      }
-
-
-
 
 }
