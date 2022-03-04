@@ -34,14 +34,19 @@ class SuggestedVehicles extends Component
 
     public function mount(){
         $this->read_client_id();
-        //$this->close_expired_sessions();
-        $this->allow_login = $this->allow_login();
-        $this->read_neo_api = env('APP_READ_NEO_API',true);
-        $this->get_garage();
-
-        if($this->garage && $this->garage->occupied_spaces()){
-            $this->add_interval_to_client_session($this->garage->occupied_spaces() * env('SESSION_INTERVAL'));
+        $this->close_expired_sessions();
+        if($this->client){
+            $this->allow_login = $this->allow_login();
         }
+
+        $this->read_neo_api = env('APP_READ_NEO_API',true);
+        if($this->allow_login){
+            $this->get_garage();
+            if($this->garage && $this->garage->occupied_spaces()){
+                $this->add_interval_to_client_session($this->garage->occupied_spaces() * env('SESSION_INTERVAL'));
+            }
+        }
+
     }
 
     public function render()
@@ -49,6 +54,9 @@ class SuggestedVehicles extends Component
         /** To Do
          * (1) Validar que la sesión no haya expirado de ser así enviar una vista con el informe.
         */
+
+        dd($this->allow_login());
+
         if($this->read_neo_api && $this->client){
             $this->load_suggested_vehicles();
         }

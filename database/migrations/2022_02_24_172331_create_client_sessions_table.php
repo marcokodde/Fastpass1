@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('client_sessions', function (Blueprint $table) {
             $table->id();
-            $table->string('client_id',50);
-            $table->string('token',100);
+            $table->foreignId('client_id')->constrained('clients');
+            $table->string('token',100)->nullable();
             $table->timestamp('start_at')->nullable()->default(null);
             $table->timestamp('expire_at')->nullable()->default(null);
             $table->boolean('active')->default(0);

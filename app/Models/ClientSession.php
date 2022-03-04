@@ -47,7 +47,7 @@ class ClientSession extends Model
 
 
      public function scopeClientId($query,$valor){
-        if(trim($valor) != ""){
+        if($valor){
             $query->where('client_id',$valor);
         }
      }

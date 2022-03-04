@@ -14,6 +14,7 @@ class Client extends Model
     public $timestamps = false;
     protected $fillable = [
         'client_id',
+        'loggin_times'
     ];
 
     // Vehículos sugeridos
