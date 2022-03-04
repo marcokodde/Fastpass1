@@ -56,7 +56,7 @@ class SuggestedVehicles extends Component
          * (1) Validar que la sesión no haya expirado de ser así enviar una vista con el informe.
         */
 
-        dd($this->allow_login());
+
 
         if($this->read_neo_api && $this->client){
             $this->load_suggested_vehicles();

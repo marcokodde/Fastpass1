@@ -11,7 +11,7 @@ trait SuggestedVehiclesTrait {
 
     // Lee los registros sugeridos
     private function read_suggested_vehicles_client_id($client_id,$downPayment=0){
-
+        dd('Hasta aqui dentro de leer los vehículos sugeridos sigue chido');
         if($downPayment == 0){
            return SuggestedVehicle::ClientId($client_id)
                     ->where('downpayment_for_next_tier',0)
