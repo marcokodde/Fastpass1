@@ -13,11 +13,13 @@
                         @endif
                     </label>
             </button>
-            @if ($count_garage == 0)
-                <h1 class="font-semibold text-lg font-serif text-center mt-4">{{__("You have")}} {{env('GARAGE_SPACES')}} {{__("spaces in your garage")}}</h1>
-            @endif
         </div>
-        @livewire('garages')
+        @if ($garage == null)
+                <h1 class="font-semibold text-lg font-serif text-center mt-4">{{__("You have")}} {{env('GARAGE_SPACES')}} {{__("spaces in your garage")}}</h1>
+        @else
+            @livewire('garages')
+        @endif
+
     </div>
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -34,6 +36,11 @@
                 <label class="block text-center items-center font-serif text-3xl mx-4 font-semibold text-black leading uppercase">
                     {{__($header_page)}}
                 </label>
+                @if ($garage && $garage->not_available_spaces())
+                <label class="block text-center items-center font-serif text-2xl mx-4 font-semibold text-gray-600 leading ">
+                    {{__('Your Garage is Full')}}
+                </label>
+                @endif
                 <div class="body_container mt-2">
                     <div class="container">
                         <div class="row">

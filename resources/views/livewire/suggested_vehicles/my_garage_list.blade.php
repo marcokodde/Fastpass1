@@ -38,8 +38,6 @@
     @else
         <p>{{__('No data available') }}</p>
     @endif
-
-
     <div class="mb-2">
         <!-- TO DO: Evaluar si ya existe el vehículo en el garage (Ver Historia) -->
         <button type="button" class="bg-gray-600 font-bold text-white px-2 m-4 rounded relative border-2 border-gray-700 disabled" disabled>

@@ -19,7 +19,7 @@ class Garages extends Component
     use ApiTrait;
     use SuggestedVehiclesTrait;
 
-    public $garages;
+    public $my_garages;
     public $client_id;
     public $client;
     protected $queryString = ['client_id'];
@@ -38,7 +38,7 @@ class Garages extends Component
         */
         $garage = Garage::ClientId($this->client_id)->first();
         if($garage) {
-            $this->garages = $garage->vehicles_in_garages()->get();
+            $this->my_garages = $garage->vehicles_in_garages()->get();
         }
     }
 

@@ -6,10 +6,10 @@
             </div>
         @endif
     </div>
-    @if ($garages)
+    @if ($my_garages)
         <table class="border ml-4 mt-2">
             <tbody class="border-1 border-gray-700">
-                @foreach ($garages as $garage)
+                @foreach ($my_garages as $garage)
                     <tr>
                         <td class="border px-2 py-1 font-semibold text-gray-700">{{ $garage->year }}</td>
                         <td class="border px-2 py-1 font-semibold text-gray-700">{{ $garage->make }}</td>

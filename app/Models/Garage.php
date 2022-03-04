@@ -47,6 +47,9 @@ class Garage extends Model
          return ENV('GARAGE_SPACES') - $this->vehicles_in_garages->count();
      }
 
+    public function not_available_spaces(){
+        return ENV('GARAGE_SPACES') == $this->vehicles_in_garages->count();
+    }
      // Espacios ocupados (De Enganche Adicional)
      public function occupied_spaces_like_next_tier(){
          return $this->vehicles_in_garages->where('is_additional_next_tier',1)->count();
