@@ -23,7 +23,7 @@ trait SuggestedVehiclesTrait {
     }
 
     // Lee el registro de tabla CLIENTS
-    private function read_client_id(){
+    private function read_client(){
         $this->client = Client::ClientId($this->client_id)->first();
         if(!$this->client){
             $records = $this->read_api_suggested_vehicles();

@@ -11,7 +11,6 @@ trait SessionClientTrait {
     /** Cierra Sesiones que estén caducas */
     private function close_expired_sessions(){
         $session_records = ClientSession::Expired()->get();
-        dd($session_records);
         foreach($session_records as $session_record){
             if($session_record->is_expired()){
                 $session_record->expire_session();
@@ -57,7 +56,14 @@ trait SessionClientTrait {
 
     /** Obtiene la sesión activa */
     private function get_active_session(){
-        $token = $this->client->loggin_times > 0 ? null : $this->token;
+
+        if($this->client->loggin_times == 0){
+            dd('QUE ONDA' . $this->client->loggin_times);
+            $token = null;
+        }else{
+            $token = $this->token;
+        }
+
         return ClientSession::ClientId($this->client->id)->Token($token)->Active()->first();
     }
 

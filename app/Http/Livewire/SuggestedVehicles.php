@@ -34,7 +34,7 @@ class SuggestedVehicles extends Component
 
 
     public function mount(){
-        $this->read_client_id();
+        $this->read_client();
         $this->close_expired_sessions();
         $this->read_neo_api = env('APP_READ_NEO_API',true);
         $this->allow_login = $this->allow_login();
