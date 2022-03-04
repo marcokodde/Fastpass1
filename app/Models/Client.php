@@ -14,6 +14,7 @@ class Client extends Model
     public $timestamps = false;
     protected $fillable = [
         'client_id',
+        'loggin_times'
     ];
 
     // Vehículos sugeridos
@@ -45,6 +46,12 @@ class Client extends Model
      // ¿Tiene vehicles_with_downpayment?
     public function has_vehicles_with_downpayment(){
         return $this->suggested_vehicles_with_downpayment->count();
+    }
+
+    // Incrementa las veces que ha entrado
+    public function update_loggin_times(){
+        $this->loggin_times++;
+        $this->save();
     }
 
     /**+------------+

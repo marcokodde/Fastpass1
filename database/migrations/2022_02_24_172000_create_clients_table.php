@@ -16,6 +16,7 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->string('client_id',50)->comment('Id Cliente Neo');
+            $table->integer('loggin_times')->default(0)->comment('Vecese que ha ingresado');
         });
     }
 

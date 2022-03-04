@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Traits;
 
-use App\Models\Client;
 use App\Models\ClientSession;
 use Carbon\Carbon;
 
@@ -10,40 +9,54 @@ trait SessionClientTrait {
 
     /** Cierra Sesiones que estén caducas */
     private function close_expired_sessions(){
-        $session_records = ClientSession::ClientId($this->client_id)->Active()->Expired()->get();
+        $session_records = ClientSession::ClientId($this->client->id)->Expired()->get();
         foreach($session_records as $session_record){
             if($session_record->is_expired()){
-                $session_record->expire_sesion();
+                $session_record->expire_session();
             }
         }
     }
 
     /** Revisamos el ingreso */
     private function allow_login(){
-        $session_record = $this->get_active_session();
-        if(!$session_record){
-           return $this-> create_client_session();
+        if(!$this->client){
+            return false;
         }
-        return  $session_record;
+        $session_record = $this->get_active_session();
+
+        if(!$this->client->loggin_times){
+            if(!$session_record){
+               return $this->create_client_session();
+            }
+        }
+
+        return $session_record;
+
     }
 
     /** Crea la sesión  */
-    private function create_client_session(){
+    private function create_client_session($minutes=null,$token=null,$generated_by_system=0){
+        if(!$minutes){
+            $minutes = env('SESSION_INTERVAL');
+        }
+
         $start_at = Carbon::now();
-        $expire_at = Carbon::now()->addMinutes(env('SESSION_INTERVAL'));
+        $expire_at = Carbon::now()->addMinutes($minutes);
         return ClientSession::create([
-            'client_id' =>  $this->client_id,
-            'token'     =>  $this->token,
+            'client_id' =>  $this->client->id,
+            'token'     =>  $token,
             'start_at'  =>  $start_at,
             'expire_at' =>  $expire_at,
-            'active'    =>  1
+            'generated_by_system' => $generated_by_system,
+            'active'    =>  1,
             ]
         );
     }
 
     /** Obtiene la sesión activa */
     private function get_active_session(){
-        return ClientSession::ClientId($this->client_id)->Token($this->token)->Active()->first();
+        $token = $this->client->loggin_times > 0 ? null : $this->token;
+        return ClientSession::ClientId($this->client->id)->Token($token)->Active()->first();
     }
 
 

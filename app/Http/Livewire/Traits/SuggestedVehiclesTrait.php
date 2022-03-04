@@ -25,7 +25,11 @@ trait SuggestedVehiclesTrait {
     private function read_client_id(){
         $this->client = Client::ClientId($this->client_id)->first();
         if(!$this->client){
-            $this->client= Client::create(['client_id' => $this->client_id]);
+            $records = $this->read_api_suggested_vehicles();
+            if($records && count($records) > 0){
+                $this->client= Client::create([
+                    'client_id' => $this->client_id]);
+            }
         }
 
     }
@@ -44,6 +48,7 @@ trait SuggestedVehiclesTrait {
     private function load_suggested_vehicles(){
         $this->delete_suggested_vehicles_client($this->client->id);               // Elimina vehículos sugeridos del cliente
         $records = $this->read_api_suggested_vehicles();                    // Lee los sugeridos desde NEO
+        dd(count($records));
         $this->create_suggested_vehicles_to_client($records,$this->client->id);   // Llena sugeridos del cliente desde inventario local
         $this->read_neo_api = false;
     }
