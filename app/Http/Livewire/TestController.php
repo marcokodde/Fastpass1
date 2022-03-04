@@ -10,10 +10,10 @@ class TestController extends Component
     public $saludo;
     public function render()
     {
-        $recorods = SuggestedVehicle::ClientId(1)
-                    ->DownPayment(500)
-                    ->get();
-        dd($recorods);
+        for($i=1;$i<=100;$i++){
+            echo bin2hex(random_bytes(24)) . '<br>';
+        }
+
         return view('livewire.test-controller');
     }
 

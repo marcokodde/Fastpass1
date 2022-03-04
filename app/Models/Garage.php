@@ -25,6 +25,7 @@ class Garage extends Model
         return $this->hasMany(DetailGarage::class);
     }
 
+
     /**+------------+
      * | Apoyo      |
      * +------------+

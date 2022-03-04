@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,7 @@ class ClientSession extends Model
     protected $table = 'client_sessions';
     protected $fillable = [
         'client_id',
+        'token',
         'start_at',
         'expire_at',
         'active'
@@ -26,6 +28,18 @@ class ClientSession extends Model
      }
 
 
+
+     // ¿Está expirada?
+     public function is_expired(){
+        return  Carbon::now()->diffInMinutes($this->start_at) >= env('SESSION_INTERVAL');
+     }
+
+     // Expira la sesión
+    public function expire_sesion(){
+            $this->active = 0;
+            $this->save();
+    }
+
     /**+------------+
      * | Búsquedas  |
      * +------------+
@@ -38,9 +52,21 @@ class ClientSession extends Model
         }
      }
 
+     public function scopeToken($query,$valor){
+        if(trim($valor) != ""){
+            $query->where('token',$valor);
+        }
+     }
+
      public function scopeActive($query,$valor = true){
          $query->where('active',$valor);
      }
+
+     public function scopeExpired($query){
+         $query->where('expire_at','<',now());
+     }
+
+
 
 
 }
