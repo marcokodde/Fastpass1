@@ -63,13 +63,14 @@ class SuggestedVehicles extends Component
             $this->records = $this->garage->vehicles_in_garages()->get();
             $this->client_has_vehicles_with_downpayment = false;
             $this->header_page = 'My Garage';
-            return view('livewire.suggested_vehicles.vehicles');
+
         }else{
             $this->header_page = 'Vehicles you are approved';
             $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
             $this->records = $this->read_suggested_vehicles_client_id($this->client->id,$this->downpayment); // Lee sugeridos del cliente;
-            return view('livewire.suggested_vehicles.vehicles');
         }
+
+        return view('livewire.suggested_vehicles.vehicles');
     }
 
 
