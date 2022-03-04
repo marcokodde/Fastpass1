@@ -18,8 +18,9 @@ class SuggestedVehicles extends Component
 
 
     public $client_id;
+    public $token;
     public $client;
-    protected $queryString = ['client_id'];
+    protected $queryString = ['client_id','token'];
     public $suggested_vehicles, $records;
     public $allow_login;
     public $read_neo_api = true;
@@ -31,11 +32,16 @@ class SuggestedVehicles extends Component
 
 
     public function mount(){
-        $this->close_expired_sessions();
+        $this->read_client_id();
+        //$this->close_expired_sessions();
         $this->allow_login = $this->allow_login();
-        $this->client = $this->read_client_id();
         $this->read_neo_api = env('APP_READ_NEO_API',true);
         $this->get_garage();
+
+        if($this->garage && $this->garage->occupied_spaces()){
+            $this->add_interval_to_client_session($this->garage->occupied_spaces() * env('SESSION_INTERVAL'));
+        }
+        dd('Se debió haber incrementado la hora de expiración');
 
     }
 
@@ -55,7 +61,7 @@ class SuggestedVehicles extends Component
 
         if($this->show_garage && $this->garage){
             $this->records = $this->garage->vehicles_in_garages()->get();
-            
+
             $this->client_has_vehicles_with_downpayment = false;
             $this->header_page = 'Vehicles in my Garage';
             return view('livewire.suggested_vehicles.vehicles');

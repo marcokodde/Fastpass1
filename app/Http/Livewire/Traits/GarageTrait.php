@@ -18,7 +18,7 @@ trait GarageTrait {
 
     /** Lee Garage del cliente */
     public function get_garage(){
-        $this->garage = Garage::ClientId($this->client_id)->first();
+        $this->garage = Garage::ClientId($this->client->id)->first();
     }
 
 

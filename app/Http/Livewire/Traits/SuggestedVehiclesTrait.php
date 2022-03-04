@@ -23,7 +23,10 @@ trait SuggestedVehiclesTrait {
 
     // Lee el registro de tabla CLIENTS
     private function read_client_id(){
-        return Client::ClientId($this->client_id)->first();
+        $this->client = Client::ClientId($this->client_id)->first();
+        if(!$this->client->id){
+            $this->client= Client::create(['client_id' => $this->client_id]);
+        }
     }
 
     // Borra los vehículos sugeridos del cliente

@@ -4,4 +4,5 @@
     <button wire:click="saludo('fede")>HAZ CLIC AQUI </button>
 
     {{ $saludo}}
+
 </div>
