@@ -12,19 +12,20 @@ class TimeRemainder extends Component
 {
     use SessionClientTrait;
 
-
     public $client_id;
+    public $token;
     public $client_session;
     public $time_remainder;
     public $expire_at;
 
-    protected $queryString = ['client_id'];
+    protected $queryString = ['client_id','token'];
 
 
     public function render()
     {
         $this->close_expired_sessions();
         $this->client_session = $this->get_active_session();
+
         if($this->client_session){
             $this->expire_at = new \Carbon\Carbon( $this->client_session->expire_at);
             $this->time_remainder=$this->expire_at->diffInMinutes(now());

@@ -53,7 +53,7 @@
 
     <div class="mb-2">
         <!-- TO DO: Evaluar si ya existe el vehículo en el garage (Ver Historia) -->
-        @if ($garage->has_space()
+        @if ($garage && $garage->has_space()
         && $garage->available_spaces()
         && !$garage->is_vehicle_in_garage($record->inventory->stock))
             <button wire:click="add_vehicle_to_garage({{ "'". $record->inventory->stock  . "'"}})"
