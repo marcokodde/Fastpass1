@@ -25,7 +25,20 @@ class SuggestedVehicle extends Model
         return $this->belongsTo(Inventory::class);
     }
 
-    /** Búsquedas */
+    /**+------------+
+     * | Apoyo      |
+     * +------------+
+     */
+
+    // ¿es de enganche adicional?
+    public function is_addional_downpayment(){
+        return $this->downpayment_for_next_tier > 0 ? true : false;
+    }
+
+    /**+------------+
+     * | Búsquedas  |
+     * +------------+
+     */
 
     public function scopeClientId($query,$client_id){
 

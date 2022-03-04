@@ -52,11 +52,30 @@
     @endif
 
     <div class="mb-2">
-        <!-- TO DO: Evaluar si ya existe el vehículo en el garage (Ver Historia) -->
+        <!-- TO DO: Evaluar si ya existe el vehículo en el garage (Ver Historia)
+            Lógica para el botón:
+            ¿Hay garage?:
+                NO: Permitir agregar
+                    ¿Es de enganche adicional?
+                        Si:
+
+                SI:
+                    ¿Tiene espacios?
+                        NO:
+                            -> Deshabilitar el botón
+                        Si:
+                            ¿Ya está el vehículo en el garage?
+                                SI:
+                                    -> Indicar que ya está el vehículo en el garage
+                                No:
+                                    -> Permitir Agregar
+        -->
+
+
         @if ($garage && $garage->has_space()
-        && $garage->available_spaces()
-        && !$garage->is_vehicle_in_garage($record->inventory->stock))
-            <button wire:click="add_vehicle_to_garage({{ "'". $record->inventory->stock  . "'"}})"
+                && $garage->available_spaces()
+                && !$garage->is_vehicle_in_garage($record->inventory->stock))
+                    <button wire:click="add_vehicle_to_garage({{ "'". $record->inventory->stock  . "'"}})"
                 type="button" class="bg-green-700 text-white px-2 m-4 rounded relative border-2 border-gray-700">
                 {{__('Add To Garage')}}
             </button>
