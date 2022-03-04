@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Traits;
 
+use App\Http\Livewire\SuggestedVehicles;
 use App\Models\DetailGarage;
 use App\Models\Garage;
 use App\Models\Inventory;
@@ -35,7 +36,7 @@ trait GarageTrait {
      *| 3.- ¿En inventario y garage?: is_available_inventory = True |
      *| 4.- ¿Garage sin Inventario?: is_available_inventory = False |
      *| 5.- ¿Espacio en garage + inentario + NO en Garage           |
-     *|      (A) Agrega el vehículo al garage                       |
+     *|      (A) Agrega el vehículo al garage                       |add_vehicle_to_garage
      *|      (B) Muestra alerta                                     |
      *+-------------------------------------------------------------+
     */
@@ -47,6 +48,17 @@ trait GarageTrait {
         }
 
         $inventory_record = Inventory::Stock($stock)->first();
+        if($inventory_record){
+            $suggested_vehicle = SuggestedVehicles::ClientId($this->client->id)
+                                                    ->InventoryId($inventory_record->id)
+                                                    ->first();
+        }
+        if($suggested_vehicle){
+            $is_additional_next_tier= $suggested_vehicle->is_addional_downpayment();
+        }else{
+            $is_additional_next_tier= $suggested_vehicle  = false;
+        }
+
         $garage_detail_record = DetailGarage::GarageId($this->garage->id)->Stock($stock)->first();
 
         if($garage_detail_record && !$inventory_record){
@@ -55,6 +67,7 @@ trait GarageTrait {
         if($garage_detail_record && $inventory_record){
             $garage_detail_record->is_available_inventory = 1;
         }
+
 
         if($this->garage->has_space() && !$garage_detail_record && $inventory_record){
             if($this->create_detail_garage($inventory_record,$is_additional_next_tier)){
