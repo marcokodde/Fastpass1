@@ -62,7 +62,6 @@ class SuggestedVehicles extends Component
 
         if($this->garage){
             $this->review_garage();
-            $this->count_garage = $this->garage->vehicles_in_garages()->count();
         }
 
         if($this->show_garage && $this->garage){

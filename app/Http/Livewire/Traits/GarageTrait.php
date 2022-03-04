@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Traits;
 
-use App\Http\Livewire\SuggestedVehicles;
-use App\Models\DetailGarage;
 use App\Models\Garage;
 use App\Models\Inventory;
+use App\Models\DetailGarage;
+use App\Models\SuggestedVehicle;
 
 trait GarageTrait {
 
@@ -20,7 +20,7 @@ trait GarageTrait {
     /** Lee Garage del cliente */
     public function get_garage(){
         if($this->client){
-            $this->garage = Garage::ClientId($this->client->id)->first();
+            $this->garage = Garage::ClientId($this->client_id)->first();
         }
 
     }
@@ -52,7 +52,7 @@ trait GarageTrait {
 
         $inventory_record = Inventory::Stock($stock)->first();
         if($inventory_record){
-            $suggested_vehicle = SuggestedVehicles::ClientId($this->client->id)
+            $suggested_vehicle = SuggestedVehicle::ClientId($this->client->id)
                                                     ->InventoryId($inventory_record->id)
                                                     ->first();
         }
@@ -144,10 +144,10 @@ trait GarageTrait {
 
     // Muestra la alerta
     private function show_alert(){
-        $this->garage_detail = DetailGarage::count();
+        $value = $this->garage->vehicles_in_garages->count()+1;
         $this->dispatchBrowserEvent('alert',[
            'type'=>'warning',
-           'message'=>"Detail Garage Created Successfully!!'.$this->garage_detail.'",
+           'message'=>"Detail Garage Created Successfully!!'.$value.'",
            'confirmButtonText' => "Yes",
            'cancelButtonText'  => "Cancel"
        ]);
