@@ -5,11 +5,13 @@ namespace App\Http\Livewire\Traits;
 use App\Models\ClientSession;
 use Carbon\Carbon;
 
+
 trait SessionClientTrait {
 
     /** Cierra Sesiones que estén caducas */
     private function close_expired_sessions(){
-        $session_records = ClientSession::ClientId($this->client->id)->Expired()->get();
+        $session_records = ClientSession::Expired()->get();
+        dd($session_records);
         foreach($session_records as $session_record){
             if($session_record->is_expired()){
                 $session_record->expire_session();
