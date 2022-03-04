@@ -39,7 +39,7 @@ class SuggestedVehicles extends Component
         $this->read_neo_api = env('APP_READ_NEO_API',true);
         $this->allow_login = $this->allow_login();
         if($this->allow_login && $this->client){
-            $this->client->update_loggin_times();
+           // $this->client->update_loggin_times();
             $this->get_garage();
         }
 
@@ -72,6 +72,7 @@ class SuggestedVehicles extends Component
             $this->read_vehicles_in_garage();
 
         }else{
+
             $this->read_suggested_vehicles();
         }
 

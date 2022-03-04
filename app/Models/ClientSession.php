@@ -48,6 +48,7 @@ class ClientSession extends Model
 
 
      public function scopeClientId($query,$valor){
+
         if($valor){
             $query->where('client_id',$valor);
         }
@@ -66,8 +67,5 @@ class ClientSession extends Model
      public function scopeExpired($query){
          $query->where('expire_at','<',now());
      }
-
-
-
 
 }
