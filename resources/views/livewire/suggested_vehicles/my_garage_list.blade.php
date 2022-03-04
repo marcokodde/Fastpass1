@@ -30,7 +30,7 @@
     @if($record->mileage)
         <label class="text-sm block">{{ number_format($record->mileage, 0, '.', ',') }} {{ __('MILES') }}</label>
     @else
-        <p>{{__('No data available') }}</p>
+        <p>{{__('Mileage data available') }}</p>
     @endif
 
     @if($record->stock)
@@ -39,17 +39,11 @@
         <p>{{__('No data available') }}</p>
     @endif
 
-    <p>{{__('RETAIL PRICE')}}</p>
-    @if($record->retail_price)
-        <h3>{{ number_format($record->retail_price, 0, '.', ',') }} {{ __('Price') }}</h3>
-    @else
-        <h2 class="font-bold">{{__('$25,200') }}</h2>
-    @endif
+
     <div class="mb-2">
         <!-- TO DO: Evaluar si ya existe el vehículo en el garage (Ver Historia) -->
-        <button wire:click="add_vehicle_to_garage({{ "'". $record->stock  . "'"}})" type="button" class="bg-green-700 text-white px-2 m-4 rounded relative border-2 border-gray-700">
-            {{__('Add To Garage')}}
+        <button type="button" class="bg-gray-600 font-bold text-white px-2 m-4 rounded relative border-2 border-gray-700 disabled" disabled>
+            {{__('IN MY GARAGE')}}
         </button>
-
     </div>
 </div>

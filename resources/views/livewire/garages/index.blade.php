@@ -6,8 +6,8 @@
             </div>
         @endif
     </div>
-    <table class="border ml-4 mt-2">
-        @if ($garages)
+    @if ($garages)
+        <table class="border ml-4 mt-2">
             <tbody class="border-1 border-gray-700">
                 @foreach ($garages as $garage)
                     <tr>
@@ -17,8 +17,8 @@
                     </tr>
                 @endforeach
             </tbody>
-        @else
-            <h1 class="font-semibold text-lg font-serif text-center mt-4">{{__("You have")}} {{env('GARAGE_SPACES')}} {{__("spaces in your garage")}}</h1>
-        @endif
-    </table>
+        </table>
+    @else
+    <h1 class="font-semibold text-lg font-serif text-center mt-4">{{__("You have")}} {{env('GARAGE_SPACES')}} {{__("spaces in your garage")}}</h1>
+    @endif
 </div>

@@ -13,6 +13,9 @@
                         @endif
                     </label>
             </button>
+            @if ($count_garage == 0)
+                <h1 class="font-semibold text-lg font-serif text-center mt-4">{{__("You have")}} {{env('GARAGE_SPACES')}} {{__("spaces in your garage")}}</h1>
+            @endif
         </div>
         @livewire('garages')
     </div>

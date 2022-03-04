@@ -39,17 +39,32 @@
         <p>{{__('No data available') }}</p>
     @endif
 
-    <p>{{__('RETAIL PRICE')}}</p>
     @if($record->inventory->retail_price)
-        <h3>{{ number_format($record->inventory->retail_price, 0, '.', ',') }} {{ __('Price') }}</h3>
+        <h3 class="mt-2">{{ __('Price') }}: ${{ number_format($record->inventory->retail_price, 0, '.', ',') }}</h3>
     @else
-        <h2 class="font-bold">{{__('$25,200') }}</h2>
+        <h5 class="mt-2 font-bold">{{__('Price data not available') }}</h5>
     @endif
+
+    @if($record->downpayment_for_next_tier > 0)
+        <h5 class="mt-2 font-bold text-red-600">{{__('Additional Down Payment') }}</h5>
+
+        <h6 class=" text-2xl font-semibold mt-2">{{ __('Payment') }}: ${{ number_format($record->downpayment_for_next_tier, 0, '.', ',') }}</h6>
+    @endif
+
     <div class="mb-2">
         <!-- TO DO: Evaluar si ya existe el vehículo en el garage (Ver Historia) -->
-        <button wire:click="add_vehicle_to_garage({{ "'". $record->inventory->stock  . "'"}})" type="button" class="bg-green-700 text-white px-2 m-4 rounded relative border-2 border-gray-700">
-            {{__('Add To Garage')}}
-        </button>
-
+        @if ($garage->has_space()
+        && $garage->available_spaces()
+        && !$garage->is_vehicle_in_garage($record->inventory->stock))
+            <button wire:click="add_vehicle_to_garage({{ "'". $record->inventory->stock  . "'"}})"
+                type="button" class="bg-green-700 text-white px-2 m-4 rounded relative border-2 border-gray-700">
+                {{__('Add To Garage')}}
+            </button>
+        @else
+            <button disabled
+                type="button" class="bg-gray-600 text-white px-2 m-4 rounded relative border-2 border-gray-200">
+                {{__('Added To Garage')}}
+            </button>
+        @endif
     </div>
 </div>
