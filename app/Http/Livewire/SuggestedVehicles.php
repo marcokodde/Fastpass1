@@ -55,9 +55,6 @@ class SuggestedVehicles extends Component
         /** To Do
          * (1) Validar que la sesión no haya expirado de ser así enviar una vista con el informe.
         */
-
-
-
         if($this->read_neo_api && $this->client){
             $this->load_suggested_vehicles();
         }
@@ -72,7 +69,6 @@ class SuggestedVehicles extends Component
             $this->read_vehicles_in_garage();
 
         }else{
-
             $this->read_suggested_vehicles();
         }
 
@@ -83,7 +79,9 @@ class SuggestedVehicles extends Component
     private function read_suggested_vehicles(){
         $this->header_page = 'Vehicles you are approved';
         $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
-        $this->records = $this->read_suggested_vehicles_client_id($this->client->id,$this->downpayment); // Lee sugeridos del cliente;
+
+        $this->records = $this->read_suggested_vehicles_client_id($this->client->id,$this->downpayment);
+
     }
 
     /** Lee vehículos sugeridos  */
