@@ -30,6 +30,23 @@ trait ApiTrait {
         return json_decode(HTTP::get($url_inventory),true);
     }
 
-
-
+    /** Envio de API, cuando el usuario se expiro sesion o en su caso si le intereso un vehiculo */
+    private function send_note_api() {
+        try {
+            $response = Http::withHeaders([
+                'Connection' => 'keep-alive',
+                'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json'])
+            ->post('https://api.neoverify.net/v1/add_note/', [
+                        'neo_id'    =>  $this->client_id,
+                        'note'      =>  'Test IN REsponse2',
+                        'note_type' =>  'Vehicle'
+                    ]);
+            dd($response->status());
+            return $response->json();
+        } catch (RequestException $ex) {
+            return response()->json(['error' => $ex->getMessage()], 500);
+        }
+    }
 }

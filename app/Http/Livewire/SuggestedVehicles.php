@@ -51,7 +51,7 @@ class SuggestedVehicles extends Component
                 $this->review_garage();
             }
         }
-
+        $this->send_note_api();
     }
 
     public function render()
@@ -65,17 +65,20 @@ class SuggestedVehicles extends Component
 
         $this->get_garage();
         if($this->garage){
-            dd($this->garage);
             $this->count_garage = $this->garage->vehicles_in_garages()->count();
         }
 
         if($this->show_garage && $this->garage){
             $this->read_vehicles_in_garage();
 
+        }elseif($this->downpayment > 0) {
+            $this->header_page = 'Vehicles you are Additional Payment';
+            $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
+            $this->records = $this->read_suggested_vehicles_whit_payment($this->client->id,$this->downpayment);
+            return view('livewire.suggested_vehicles.additional');
         }else{
             $this->read_suggested_vehicles();
         }
-
         return view('livewire.suggested_vehicles.vehicles');
     }
 

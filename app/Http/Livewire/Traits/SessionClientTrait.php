@@ -66,10 +66,10 @@ trait SessionClientTrait {
         if($this->client->loggin_times && !$this->token){
             return false;
         }
-
         $token = $this->client->loggin_times ? $this->token : null;
-        return ClientSession::ClientId($this->client_id)->Token($token)->Active()->first();
-
+        $value = ClientSession::ClientId($this->client->id)->Token($token)->Active()->first();
+        
+        return $value;
     }
 
 
@@ -89,6 +89,7 @@ trait SessionClientTrait {
         }
 
         $client_session = $this->get_active_session();
+        
         $expire_at_before = new \Carbon\Carbon($client_session->expire_at);
         $expire_at = $expire_at_before->addMinutes($minutes);
         $client_session->expire_at = $expire_at;

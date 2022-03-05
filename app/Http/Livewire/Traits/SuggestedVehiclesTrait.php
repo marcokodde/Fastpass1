@@ -16,9 +16,16 @@ trait SuggestedVehiclesTrait {
                     ->where('downpayment_for_next_tier',0)
                     ->get();
         }
-        return SuggestedVehicle::ClientId($client_id)
-                                ->DownPayment($downPayment)
-                                ->get();
+    }
+
+
+     // Lee los registros sugeridos
+     private function read_suggested_vehicles_whit_payment($client_id,$downPayment){
+        if($downPayment > 0){
+            return SuggestedVehicle::ClientId($client_id)
+            ->DownPayment($downPayment)
+            ->get();
+        }
     }
 
     // Lee el registro de tabla CLIENTS
