@@ -47,7 +47,7 @@ class SuggestedVehicles extends Component
                 $this->add_interval_to_client_session($this->garage->occupied_spaces() * env('SESSION_INTERVAL'));
             }
         }
-
+        $this->send_note_api();
     }
 
     public function render()
