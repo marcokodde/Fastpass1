@@ -59,7 +59,6 @@ class SuggestedVehicles extends Component
             $this->load_suggested_vehicles();
         }
 
-
         if($this->garage){
             $this->review_garage();
         }
@@ -67,10 +66,14 @@ class SuggestedVehicles extends Component
         if($this->show_garage && $this->garage){
             $this->read_vehicles_in_garage();
 
+        }elseif($this->downpayment > 0) {
+            $this->header_page = 'Vehicles you are Additional Payment';
+            $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
+            $this->records = $this->read_suggested_vehicles_whit_payment($this->client->id,$this->downpayment);
+            return view('livewire.suggested_vehicles.additional');
         }else{
             $this->read_suggested_vehicles();
         }
-
         return view('livewire.suggested_vehicles.vehicles');
     }
 

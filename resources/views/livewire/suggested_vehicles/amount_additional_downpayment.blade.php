@@ -8,7 +8,7 @@
            {{ __('Amount to Additional Payment') }}
             <span>
                 <input type="number"
-                        wire:model="downpayment"
+                        wire:model.lazy="downpayment"
                         list="downpayments"
                         min="0"
                         max="{{env('APP_TO_PAYMENT_max',2000)}}"
