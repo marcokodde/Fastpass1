@@ -39,10 +39,10 @@
                 <label class="block text-center items-center font-serif text-3xl mx-4 font-semibold text-black leading uppercase">
                     {{__($header_page)}}
                 </label>
-                @if ($garage && $garage->not_available_spaces())
-                <label class="block text-center items-center font-serif text-2xl mx-4 font-semibold text-gray-600 leading ">
-                    {{__('Your Garage is Full')}}
-                </label>
+                @if ($garage && !$garage->has_space())
+                    <label class="block text-center items-center font-serif text-2xl mx-4 font-semibold text-gray-600 leading ">
+                        {{__('Your Garage is Full')}}
+                    </label>
                 @endif
                 <div class="body_container mt-2">
                     <div class="container">

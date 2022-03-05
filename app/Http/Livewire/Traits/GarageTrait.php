@@ -75,8 +75,7 @@ trait GarageTrait {
             if($this->create_detail_garage($inventory_record,$is_additional_next_tier)){
                 // TODO: Agregar minutos a la sesión
                 //$this->add_interval_to_client_session();
-                $this->show_alert();
-            };
+                };
         }
     }
 
