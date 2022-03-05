@@ -41,13 +41,24 @@
     });
 
     window.addEventListener('alert',({detail:{type,message}})=>{
-        Swal.fire({
-            icon:type,
-            title:message,
-            showCancelButton: true,
-            confirmButtonText: "Yes, Adding",
-            cancelButtonText: "Cancel",
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
         })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Vehicle has been added success'
+        })
+
+
     })
 
     function startTimer(duration, display) {
@@ -71,6 +82,8 @@
             display = document.querySelector('#time');
         startTimer(Minutes, display);
     };
+
+
 </script>
     </body>
 </html>

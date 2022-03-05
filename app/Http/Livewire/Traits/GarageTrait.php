@@ -75,7 +75,8 @@ trait GarageTrait {
             if($this->create_detail_garage($inventory_record,$is_additional_next_tier)){
                 // TODO: Agregar minutos a la sesión
                 //$this->add_interval_to_client_session();
-                };
+                $this->show_alert();
+            };
         }
     }
 
@@ -145,10 +146,13 @@ trait GarageTrait {
     private function show_alert(){
         $value = $this->garage->vehicles_in_garages->count()+1;
         $this->dispatchBrowserEvent('alert',[
-           'type'=>'warning',
-           'message'=>"Detail Garage Created Successfully!!'.$value.'",
-           'confirmButtonText' => "Yes",
+            'icon' => 'success',
+            'title' => 'Vehicle has been added Successfully!!',
+            'type'=>'warning',
+            'message'=>"Vehicle has been added Successfully!!'.$value.'",
+            'position' => "top-end",
        ]);
+
        $this->emit('mount');
     }
 }
