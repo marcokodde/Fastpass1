@@ -14,11 +14,11 @@ trait SessionClientTrait {
             $client_id = $this->client->id;
         }
 
-        $session_records = ClientSession::ClientId($this->client_id)->Active()->Expired()->get();
+        $session_records = ClientSession::ClientId($this->client_id)->Expired()->get();
         $session_records = ClientSession::Expired()->get();
         foreach($session_records as $session_record){
             if($session_record->is_expired()){
-                $session_record->expire_session();
+                $session_record->delete();
             }
         }
     }

@@ -43,8 +43,12 @@ class SuggestedVehicles extends Component
         $this->read_neo_api = env('APP_READ_NEO_API',true);
         if($this->allow_login){
             $this->get_garage();
-            if($this->garage && $this->garage->occupied_spaces()){
-                $this->add_interval_to_client_session($this->garage->occupied_spaces() * env('SESSION_INTERVAL'));
+
+            if($this->garage ){
+                if($this->garage->occupied_spaces()){
+                    $this->add_interval_to_client_session($this->garage->occupied_spaces() * env('SESSION_INTERVAL'));
+                }
+                $this->review_garage();
             }
         }
 
@@ -59,9 +63,9 @@ class SuggestedVehicles extends Component
             $this->load_suggested_vehicles();
         }
 
-
+        $this->get_garage();
         if($this->garage){
-            $this->review_garage();
+            dd($this->garage);
             $this->count_garage = $this->garage->vehicles_in_garages()->count();
         }
 

@@ -68,10 +68,12 @@
                 {{__('Added To Garage')}}
             </button>
         @else
-            <button wire:click="add_vehicle_to_garage({{ "'". $record->inventory->stock  . "'"}})"
-                type="button" class="bg-green-700 text-white px-2 m-4 rounded relative border-2 border-gray-700">
+            <button type="button"
+                    wire:click.prevent="$emit('add_to_garage', '{{$record->inventory->stock}}' )"
+                    class="bg-green-700 text-white px-2 m-4 rounded relative border-2 border-gray-700">
                 {{__('Add To Garage')}}
             </button>
         @endif
     </div>
+    @include('common.faspass')
 </div>

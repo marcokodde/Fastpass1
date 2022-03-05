@@ -7,6 +7,8 @@
     "Vehicles you are approved": "Vehículos Aprobados",
     "My Garage": "Mi Garage",
     "Vehicles": "Vehículos",
-    "The link to the system is incorrect": "Enlace al sistema es incorrecto"
-
+    "The link to the system is incorrect": "Enlace al sistema es incorrecto",
+    "ALERT": "ALERTA",
+    "YES, ADD VEHICLE": "SI, AGREGARLO",
+    "By adding this car to your garage, you decrease an available space":"Al agregar este automóvil a su garaje, disminuye un espacio disponible"
 }
