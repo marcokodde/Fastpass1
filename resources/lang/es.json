@@ -11,6 +11,8 @@
     "ALERT": "ALERTA",
     "YES, ADD VEHICLE": "SI, AGREGARLO",
     "By adding this car to your garage, you decrease an available space":"Al agregar este automóvil a su garaje, disminuye un espacio disponible",
-    "Vehicle has been added success": "Vehículo agregado al Garaje"
+    "Vehicle has been added success": "Vehículo agregado al Garaje",
+    "Show My Garage": "Mostrar Mi Garaje",
+    "VEHICLES YOU ARE APPROVED": "VEHÍCULOS QUE USTED ESTÁ HOMOLOGADO"
 
 }
