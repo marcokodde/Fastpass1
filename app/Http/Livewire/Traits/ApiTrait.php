@@ -43,7 +43,7 @@ trait ApiTrait {
                         'note'      =>  'Test IN REsponse2',
                         'note_type' =>  'Vehicle'
                     ]);
-            dd($response->status());
+            //dd($response->status());
             return $response->json();
         } catch (RequestException $ex) {
             return response()->json(['error' => $ex->getMessage()], 500);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Traits;
 
+use App\Models\DetailGarage;
 use App\Models\Garage;
 use App\Models\Inventory;
 use App\Models\SuggestedVehicle;
