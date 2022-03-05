@@ -27,22 +27,10 @@
         @livewireScripts
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'center',
-        showConfirmButton: true,
-        showCloseButton: true,
-        timer: 3000,
-        timerProgressBar:true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    });
 
-    window.addEventListener('alert',({detail:{type,message}})=>{
+    window.addEventListener('show_toast_vehicle_added',({detail:{type,message}})=>{
         const Toast = Swal.mixin({
-            toast: true,
+            toast: false,
             position: 'top-end',
             showConfirmButton: false,
             timer: 4000,
@@ -57,7 +45,6 @@
             icon: 'success',
             title: 'Vehicle has been added success'
         })
-
 
     })
 

@@ -144,15 +144,7 @@ trait GarageTrait {
 
     // Muestra la alerta
     private function show_alert(){
-        $value = $this->garage->vehicles_in_garages->count()+1;
-        $this->dispatchBrowserEvent('alert',[
-            'icon' => 'success',
-            'title' => 'Vehicle has been added Successfully!!',
-            'type'=>'warning',
-            'message'=>"Vehicle has been added Successfully!!'.$value.'",
-            'position' => "top-end",
-       ]);
-
+       $this->dispatchBrowserEvent('show_toast_vehicle_added');
        $this->emit('mount');
     }
 }
