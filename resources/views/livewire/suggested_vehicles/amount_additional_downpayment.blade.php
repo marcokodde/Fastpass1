@@ -1,9 +1,6 @@
 <div>
     {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
     <div class="items-center">
-        <span class="block mx-2 text-center items-center text-lg text-black font-semibold">
-            {{__('We have more vehicles in our inventory that require an additional down payment. Click view vehicles to unlock the prices.')}}
-        </span>
         <div class="flex items-center justify-center mt-4">
            {{ __('Amount to Additional Payment') }}
             <span>
