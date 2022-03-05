@@ -43,7 +43,7 @@
 
         Toast.fire({
             icon: 'success',
-            title: 'Vehicle has been added success'
+            title: "{{__('Vehicle has been added success')}}"
         })
 
     })
