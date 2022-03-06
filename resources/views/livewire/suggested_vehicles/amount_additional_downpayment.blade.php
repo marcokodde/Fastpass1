@@ -7,8 +7,8 @@
                 <input type="number"
                         wire:model.lazy="downpayment"
                         list="downpayments"
-                        min="0"
-                        max="{{env('APP_TO_PAYMENT_max',2000)}}"
+                        min="{{env('APP_TO_PAYMENT_MIN',2000)}}"
+                        max="{{env('APP_TO_PAYMENT_MAZ',2000)}}"
                         step="{{env('APP_TO_PAYMENT_RANGE',2000)}}"
                         class="ml-10"
                 >

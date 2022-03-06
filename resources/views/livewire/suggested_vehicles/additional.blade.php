@@ -15,7 +15,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="custom-vehicle-details">
-                               AQUI IRAN LOS DETALLES
+                                @include('livewire.suggested_vehicles.vehicles_list')
                             </div>
                         </div>
                     </div>

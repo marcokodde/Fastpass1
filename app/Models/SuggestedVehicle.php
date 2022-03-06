@@ -57,7 +57,8 @@ class SuggestedVehicle extends Model
 
     // Menor o igual a un enganche adicional
     public function scopeDownPayment($query,$downpayment=250){
-        $query->where('downpayment_for_next_tier', '<=', $downpayment);
+        $query->where('downpayment_for_next_tier', '<=', $downpayment)
+              ->where('downpayment_for_next_tier', '>',0);
     }
 
     // De un grado

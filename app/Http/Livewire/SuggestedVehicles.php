@@ -64,15 +64,15 @@ class SuggestedVehicles extends Component
 
         if ($this->garage && $this->show_garage ) {
              $this->read_vehicles_in_garage();
-             return view('livewire.suggested_vehicles.vehicles');
+            return view('livewire.suggested_vehicles.vehicles');
         }
 
         if ($this->show_additional &&$this->client_has_vehicles_with_downpayment) {
             $this->read_vehicles_additional();
-            return view('livewire.suggested_vehicles.additional');
+        }else{
+            $this->read_suggested_vehicles();
        }
 
-       $this->read_suggested_vehicles();
        return view('livewire.suggested_vehicles.vehicles');
 
     }
@@ -112,5 +112,10 @@ class SuggestedVehicles extends Component
                 $this->review_garage();
             }
 
+    }
+
+    // Regresa a aprobados apagando indicadores
+    public function return_to_approved(){
+        $this->reset(['show_garage','show_additional']);
     }
 }

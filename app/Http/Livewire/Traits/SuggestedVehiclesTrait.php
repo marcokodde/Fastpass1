@@ -23,10 +23,12 @@ trait SuggestedVehiclesTrait {
      private function read_suggested_vehicles_whit_payment($client_id,$downPayment){
         if($downPayment > 0){
             return SuggestedVehicle::ClientId($client_id)
-            ->DownPayment($downPayment)
-            ->get();
+                        ->DownPayment($downPayment)
+                        ->get();
         }
     }
+
+
 
     // Lee el registro de tabla CLIENTS
     private function read_client(){
