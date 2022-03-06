@@ -30,14 +30,23 @@ class TimeRemainder extends Component
 
         $this->client_session = $this->get_active_session();
 
+
         if($this->client_session){
             $this->expire_at = new \Carbon\Carbon( $this->client_session->expire_at);
             $this->time_remainder=$this->expire_at->diffInMinutes(now());
+
+            if(Carbon::now() > $this->expire_at){
+                dd('YA SE PASO DE TUESTE');
+            }
+            dd('Time expire' .  $this->expire_at . 'Time Remainder=' . $this->time_remainder , ' Son las' . Carbon::now());
             return view('livewire.time_remainder.time-remainder');
         }
 
         $this->client->update_loggin_times();
-        $this->create_client_session(600,$this->create_client_token(),1);
+        $token= $this->create_client_token();
+        $this->create_client_session(210000,$token,1);
+        //TODO: Enviar nota Sesión expiró:
+        // http://fastpass.test/suggested_vehicles?client_id=IvViysJTjUGmTcP20P7GflE26&&token=<Token>
         dd('Debe haber una sesion con token');
         return view('livewire.time_remainder.time-remainder-finish');
     }

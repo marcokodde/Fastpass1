@@ -39,10 +39,11 @@ trait SessionClientTrait {
         if(!$session_record && !$this->client->loggin_times){
             return $this-> create_client_session();
         }
+
         if($session_record && $session_record->token){
-            $this->client->update_loggin_times();
             $session_record->start_at = Carbon::now();
             $session_record->expire_at = Carbon::now()->addMinutes(env('SESSION_INTERVAL'));
+            $this->client->update_loggin_times();
             $session_record->save();
         }
         return  $session_record;
