@@ -8,7 +8,7 @@
 
             <div class="bg-white overflow-hidden sm:rounded-lg mt-2">
                 @include('common.header_content')
-                @if($show_additional)
+                @if($show_additional && !$show_garage)
                     @include('livewire.suggested_vehicles.amount_additional_downpayment')
                 @endif
                 <div class="body_container mt-2">
