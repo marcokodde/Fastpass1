@@ -47,7 +47,10 @@ class SuggestedVehicles extends Component
         }
         $this->read_neo_api = env('APP_READ_NEO_API',true);
         $this->send_note_api();
-        $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
+        if($this->read_neo_api && $this->client){
+            $this->load_suggested_vehicles();
+        }
+
     }
 
     public function render()
@@ -55,9 +58,7 @@ class SuggestedVehicles extends Component
         /** To Do
          * (1) Validar que la sesión no haya expirado de ser así enviar una vista con el informe.
         */
-        if($this->read_neo_api && $this->client){
-            $this->load_suggested_vehicles();
-        }
+
 
         $this->get_garage();
         if ($this->show_garage && $this->garage) {
@@ -75,27 +76,26 @@ class SuggestedVehicles extends Component
 
     }
 
-    /** Lee vehículos en el garage */
+    /** Vehículos sugeridos*/
     private function read_suggested_vehicles(){
         $this->header_page = 'Vehicles you are approved';
+        $this->records = $this->read_suggested_vehicles_client_id($this->client->id,0);
         $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
-
-        $this->records = $this->read_suggested_vehicles_client_id($this->client->id,$this->downpayment);
-
     }
 
     /** Vehículos en el Garaje  */
     private function read_vehicles_in_garage(){
+        $this->header_page = 'My Garage';
         $this->records = $this->garage->vehicles_in_garages()->get();
         $this->client_has_vehicles_with_downpayment = false;
-        $this->header_page = 'My Garage';
+
     }
 
     /** Vehículos Adicionales  */
     private function read_vehicles_additional(){
-        $this->records = $this->garage->vehicles_in_garages()->get();
+        $this->header_page = 'Vehicles you are Additional Payment';
+        $this->records = $this->read_suggested_vehicles_whit_payment($this->client->id,$this->downpayment);
         $this->client_has_vehicles_with_downpayment = false;
-        $this->header_page = 'My Garage';
     }
 
     public function set_show_garage(){
