@@ -14,7 +14,7 @@
     <button class="bg-yellow-500
                     hover:bg-yellow-200
                     text-black font-bold py-2 px-4 border-4 hover:border-red-500 rounded"
-                wire:click="$toggle('show_garage')"
+                wire:click="$toggle('show_additional')"
                 title="{{__('Show vehicles that require an additional down payment')}}">
             {{ __('SHOW ME MORE')}}
     </button>

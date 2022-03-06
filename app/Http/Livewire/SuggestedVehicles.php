@@ -62,7 +62,7 @@ class SuggestedVehicles extends Component
 
 
         $this->get_garage();
-        if ($this->show_garage && $this->garage) {
+        if ($this->garage && $this->show_garage ) {
              $this->read_vehicles_in_garage();
              return view('livewire.suggested_vehicles.vehicles');
         }
@@ -86,6 +86,7 @@ class SuggestedVehicles extends Component
 
     /** Vehículos en el Garaje  */
     private function read_vehicles_in_garage(){
+
         $this->header_page = 'My Garage';
         $this->records = $this->garage->vehicles_in_garages()->get();
 
