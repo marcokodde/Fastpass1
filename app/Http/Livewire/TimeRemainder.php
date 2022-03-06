@@ -24,7 +24,6 @@ class TimeRemainder extends Component
     public function render()
     {
 
-
         $this->client = Client::ClientId($this->client_id)->first();
 
         $this->close_expired_sessions($this->client->id);
@@ -36,6 +35,10 @@ class TimeRemainder extends Component
             $this->time_remainder=$this->expire_at->diffInMinutes(now());
             return view('livewire.time_remainder.time-remainder');
         }
+
+        $this->client->update_loggin_times();
+        $this->create_client_session(600,$this->create_client_token(),1);
+        dd('Debe haber una sesion con token');
         return view('livewire.time_remainder.time-remainder-finish');
     }
 }

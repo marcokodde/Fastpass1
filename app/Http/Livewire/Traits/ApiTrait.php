@@ -2,9 +2,7 @@
 
 namespace App\Http\Livewire\Traits;
 
-use App\Models\Client;
-use App\Models\Inventory;
-use App\Models\SuggestedVehicle;
+
 use Illuminate\Support\Facades\Http;
 
 trait ApiTrait {
@@ -40,10 +38,10 @@ trait ApiTrait {
                 'Accept' => 'application/json'])
             ->post('https://api.neoverify.net/v1/add_note/', [
                         'neo_id'    =>  $this->client_id,
-                        'note'      =>  'Test IN REsponse2',
+                        'note'      =>  'Testing Note Ahava',
                         'note_type' =>  'Vehicle'
                     ]);
-            //dd($response->status());
+            // dd($response->status());
             return $response->json();
         } catch (RequestException $ex) {
             return response()->json(['error' => $ex->getMessage()], 500);

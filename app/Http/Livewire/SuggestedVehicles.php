@@ -46,11 +46,14 @@ class SuggestedVehicles extends Component
             $this->update_interval_session_by_detail_garage();
         }
         $this->read_neo_api = env('APP_READ_NEO_API',true);
-        $this->send_note_api();
+
         if($this->read_neo_api && $this->client){
             $this->load_suggested_vehicles();
         }
-        $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
+
+        if($this->client){
+            $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
+        }
 
     }
 
@@ -59,7 +62,9 @@ class SuggestedVehicles extends Component
         /** To Do
          * (1) Validar que la sesión no haya expirado de ser así enviar una vista con el informe.
         */
-
+        if(!$this->client || !$this->allow_login){
+            return view('livewire.suggested_vehicles.client_not_exists');
+        }
         $this->get_garage();
 
         if ($this->garage && $this->show_garage ) {
@@ -67,7 +72,7 @@ class SuggestedVehicles extends Component
             return view('livewire.suggested_vehicles.vehicles');
         }
 
-        if ($this->show_additional &&$this->client_has_vehicles_with_downpayment) {
+        if ($this->show_additional && $this->client_has_vehicles_with_downpayment) {
             $this->read_vehicles_additional();
         }else{
             $this->read_suggested_vehicles();
