@@ -50,6 +50,7 @@ class SuggestedVehicles extends Component
         if($this->read_neo_api && $this->client){
             $this->load_suggested_vehicles();
         }
+        $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
 
     }
 
@@ -80,14 +81,13 @@ class SuggestedVehicles extends Component
     private function read_suggested_vehicles(){
         $this->header_page = 'Vehicles you are approved';
         $this->records = $this->read_suggested_vehicles_client_id($this->client->id,0);
-        $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
+
     }
 
     /** Vehículos en el Garaje  */
     private function read_vehicles_in_garage(){
         $this->header_page = 'My Garage';
         $this->records = $this->garage->vehicles_in_garages()->get();
-        $this->client_has_vehicles_with_downpayment = false;
 
     }
 
@@ -95,7 +95,6 @@ class SuggestedVehicles extends Component
     private function read_vehicles_additional(){
         $this->header_page = 'Vehicles you are Additional Payment';
         $this->records = $this->read_suggested_vehicles_whit_payment($this->client->id,$this->downpayment);
-        $this->client_has_vehicles_with_downpayment = false;
     }
 
     public function set_show_garage(){
