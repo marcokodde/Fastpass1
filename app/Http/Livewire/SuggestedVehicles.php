@@ -60,20 +60,19 @@ class SuggestedVehicles extends Component
         }
 
         $this->get_garage();
-
-        if($this->show_garage && $this->garage){
-            $this->read_vehicles_in_garage();
-
-        }elseif($this->downpayment > 0) {
-            $this->header_page = 'Vehicles you are Additional Payment';
-
-            $this->records = $this->read_suggested_vehicles_whit_payment($this->client->id,$this->downpayment);
-            return view('livewire.suggested_vehicles.additional');
-        }else{
-            $this->read_suggested_vehicles();
+        if ($this->show_garage && $this->garage) {
+             $this->read_vehicles_in_garage();
+             return view('livewire.suggested_vehicles.vehicles');
         }
 
-        return view('livewire.suggested_vehicles.vehicles');
+        if ($this->show_additional &&$this->client_has_vehicles_with_downpayment) {
+            $this->read_vehicles_additional();
+            return view('livewire.suggested_vehicles.additional');
+       }
+
+       $this->read_suggested_vehicles();
+       return view('livewire.suggested_vehicles.vehicles');
+
     }
 
     /** Lee vehículos en el garage */
@@ -85,8 +84,15 @@ class SuggestedVehicles extends Component
 
     }
 
-    /** Lee vehículos sugeridos  */
+    /** Vehículos en el Garaje  */
     private function read_vehicles_in_garage(){
+        $this->records = $this->garage->vehicles_in_garages()->get();
+        $this->client_has_vehicles_with_downpayment = false;
+        $this->header_page = 'My Garage';
+    }
+
+    /** Vehículos Adicionales  */
+    private function read_vehicles_additional(){
         $this->records = $this->garage->vehicles_in_garages()->get();
         $this->client_has_vehicles_with_downpayment = false;
         $this->header_page = 'My Garage';
