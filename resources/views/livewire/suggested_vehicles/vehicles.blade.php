@@ -24,7 +24,6 @@
 
     @if($client_has_vehicles_with_downpayment && !$show_garage)
         @include('livewire.suggested_vehicles.advice_additional_vehicles')
-        @include('livewire.suggested_vehicles.amount_additional_downpayment')
     @endif
 
 </div>

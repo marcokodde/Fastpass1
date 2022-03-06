@@ -25,7 +25,7 @@ class SuggestedVehicles extends Component
     public $suggested_vehicles, $records;
     public $allow_login;
     public $read_neo_api = true;
-    public $downpayment = 0;
+    public $downpayment = 250;
     public $downpayment_ranges = [];
     public $client_has_vehicles_with_downpayment=false;
     public $show_garage = false;
@@ -60,8 +60,8 @@ class SuggestedVehicles extends Component
          * (1) Validar que la sesión no haya expirado de ser así enviar una vista con el informe.
         */
 
-
         $this->get_garage();
+
         if ($this->garage && $this->show_garage ) {
              $this->read_vehicles_in_garage();
              return view('livewire.suggested_vehicles.vehicles');
@@ -96,10 +96,6 @@ class SuggestedVehicles extends Component
     private function read_vehicles_additional(){
         $this->header_page = 'Vehicles you are Additional Payment';
         $this->records = $this->read_suggested_vehicles_whit_payment($this->client->id,$this->downpayment);
-    }
-
-    public function set_show_garage(){
-        $this->show_garage = !$this->show_garage;
     }
 
     private function update_interval_session_by_detail_garage(){
