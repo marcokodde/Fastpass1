@@ -63,9 +63,9 @@
                 {{__('Garage Full')}}
             </button>
         @else
-            <button type="button"
+            <button type="button" style="background-color:#E3C116"
                     wire:click.prevent="$emit('add_to_garage', '{{$record->inventory->stock}}' )"
-                    class="bg-yellow-500 text-black px-8 pb-4 py-4 m-4 rounded-lg relative uppercase">
+                    class="text-black px-8 pb-4 py-4 m-4 rounded-lg relative uppercase">
                 {{__('Add To Garage')}}
             </button>
         @endif

@@ -5,10 +5,8 @@
     @if($garage)
         @if($garage->has_space())
             {{__('You have') . '   ' . $garage->available_spaces()  . '   '.  __('spaces in your garage')}}
-         @else
+        @else
             {{__('Your Garage is Full')}}
         @endif
-    @else
-        {{__('You have') . '   ' . env('GARAGE_SPACES',3)  . '   '.  __('spaces in your garage')}}
     @endif
 </label>

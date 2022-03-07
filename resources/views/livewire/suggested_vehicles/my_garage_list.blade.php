@@ -1,47 +1,49 @@
-<div class="vehicle static h-56 w-24">
-    @if($record->images)
-        @php
-            $value = explode(",", $record->images);
-        @endphp
-
-        @if($value[0])
-            <div class="box_to_image">
-                <img src="{{ $value[0] }}" alt="{{ __('Not Image') }}">
-            </div>
-        @else
-            <img class="h-44 w-44 items-center align-center mx-auto" src="{{ asset('images/default.jpeg') }}" alt="">
-        @endif
-    @else
+<div class="relative mt-12">
+    <div class="vehicle">
         @if($record->images)
-            <div class="box_to_image">
-                <img src="{{ $record->images }}" alt="{{ __('Not Image') }}">
-            </div>
+            @php
+                $value = explode(",", $record->images);
+            @endphp
+
+            @if($value[0])
+                <div class="box_to_image" style="width:300px;">
+                    <img src="{{ $value[0] }}" alt="{{ __('Not Image') }}">
+                </div>
+            @else
+                <img class="h-44 w-44 items-center align-center mx-auto" src="{{ asset('images/default.jpeg') }}" alt="">
+            @endif
         @else
-            <img class="h-44 w-44 items-center align-center mx-auto" src="{{ asset('images/default.jpeg') }}" alt="">
+            @if($record->images)
+                <div class="box_to_image" style="width:300px;">
+                    <img src="{{ $record->images }}" alt="{{ __('Not Image') }}">
+                </div>
+            @else
+                <img class="h-44 w-44 items-center align-center mx-auto" src="{{ asset('images/default.jpeg') }}" alt="">
+            @endif
         @endif
-    @endif
 
-    @if($record->vin || $record->make || $record->model )
-        <label class="text-xl font-oswald text-black font-bold block">{{$record->year}} {{$record->make}} {{$record->model}}</label>
-    @else
-        <p>{{ __('No data available') }}</p>
-    @endif
+        @if($record->vin || $record->make || $record->model )
+            <label class="text-xl font-oswald text-black font-bold block">{{$record->year}} {{$record->make}} {{$record->model}}</label>
+        @else
+            <p>{{ __('No data available') }}</p>
+        @endif
 
-    @if($record->mileage)
-        <label class="font-oswald  block">{{ number_format($record->mileage, 0, '.', ',') }} {{ __('MILES') }}</label>
-    @else
-        <p>{{__('Mileage data available') }}</p>
-    @endif
+        @if($record->mileage)
+            <label class="font-oswald  block">{{ number_format($record->mileage, 0, '.', ',') }} {{ __('MILES') }}</label>
+        @else
+            <p>{{__('Mileage data available') }}</p>
+        @endif
 
-    @if($record->stock)
-        <label class="font-oswald  block">{{__('STOCK')}} {{ $record->stock }}</label>
-    @else
-        <p>{{__('No data available') }}</p>
-    @endif
-    <div class="mb-2">
-        <!-- TO DO: Evaluar si ya existe el vehículo en el garage (Ver Historia) -->
-        <button type="button" class="bg-gray-600 font-bold text-white px-8 pb-4 py-4 m-4 rounded relative border-2 border-gray-700 disabled" disabled>
-            {{__('IN MY GARAGE')}}
-        </button>
+        @if($record->stock)
+            <label class="font-oswald  block">{{__('STOCK')}} {{ $record->stock }}</label>
+        @else
+            <p>{{__('No data available') }}</p>
+        @endif
+        <div class="mb-2">
+            <!-- TO DO: Evaluar si ya existe el vehículo en el garage (Ver Historia) -->
+            <button type="button" class="bg-gray-600 font-bold text-white px-8 pb-4 py-4 m-4 rounded relative border-2 border-gray-700 disabled" disabled>
+                {{__('IN MY GARAGE')}}
+            </button>
+        </div>
     </div>
 </div>

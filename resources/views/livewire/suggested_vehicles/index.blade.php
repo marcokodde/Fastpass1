@@ -4,10 +4,9 @@
     @if($client && $allow_login)
         @if($show_garage || $show_additional)
             <span class="relative inline-block mt-5">
-                <button  wire:click="return_to_approved"
-                        class="bg-green-500
-                        hover:bg-green-600 hover:text-white
-                        text-black font-bold py-2 px-4 rounded-lg">
+                <button style="background-color: #5CB352" wire:click="return_to_approved"
+                        class=" hover:bg-green-600 hover:text-white
+                                text-black font-bold py-2 px-4 rounded-lg">
                     {{ __('Vehicles you are approved')}}
                 </button>
             </span>

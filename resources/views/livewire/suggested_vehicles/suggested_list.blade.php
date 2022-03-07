@@ -64,7 +64,7 @@
             </button>
         @elseif ($garage && $garage->is_vehicle_in_garage($record->inventory->stock))
             <button disabled title="{{__('Vehicle Added')}}"
-                type="button" class="bg-gray-600 text-white px-8 pb-4 py-4 m-4 rounded-lg relative uppercase">
+                type="button" class="bg-gray-600 text-white px-4 pb-4 py-4 m-4 rounded-lg relative uppercase">
                 {{__('Added To Garage')}}
             </button>
         @else
