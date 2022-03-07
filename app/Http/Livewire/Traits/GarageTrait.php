@@ -11,7 +11,7 @@ trait GarageTrait {
 
     public $garage;
     public $garage_detail;
-
+    public $record_detail_garage;
     /** Crea  Garage */
     public function create_garage(){
         $this->garage = Garage::create(['client_id' => $this->client_id]);
@@ -73,7 +73,7 @@ trait GarageTrait {
             if($this->create_detail_garage($inventory_record,$is_additional_next_tier)){
                 $this->add_interval_to_client_session();
                 // TODO: Enviar nota de que se agregó un vehículo al garage
-                //$this->send_note_api();
+                $this->send_note_api_vehicle($this->record_detail_garage);
                 $this->show_alert();
             };
         }
@@ -117,7 +117,7 @@ trait GarageTrait {
 
     // Crea registro en detalle del garaje
     private function create_detail_garage($inventory_record,$is_additional_next_tier=0,$is_available_inventory=1){
-        return DetailGarage::create([
+        return $this->record_detail_garage = DetailGarage::create([
             'garage_id'             => $this->garage->id,
             'dealer_id'             =>$inventory_record->dealer_id,
             'vin'                   =>$inventory_record->vin,

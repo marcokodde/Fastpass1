@@ -2,7 +2,7 @@
     @include('livewire.suggested_vehicles.index')
     <div class="sidemenu mt-12 w-64 absolute">
     </div>
-    <div class="py-2">
+    <div class="py-2 mt-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @include('common.session_warning')
 

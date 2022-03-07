@@ -29,7 +29,7 @@ trait ApiTrait {
     }
 
     /** Envio de API, cuando el usuario se expiro sesion o en su caso si le intereso un vehiculo */
-    private function send_note_api_vehicle(Request $request) {
+    private function send_note_api_vehicle($stock) {
         try {
             $response = Http::withHeaders([
                 'Connection' => 'keep-alive',
@@ -38,10 +38,9 @@ trait ApiTrait {
                 'Accept' => 'application/json'])
             ->post('https://api.neoverify.net/v1/add_note/', [
                         'neo_id'    =>  $this->client_id,
-                        'note'      =>  'Testing Note Ahava Vehicles',
+                        'note'      =>  'The customer added this vehicle to his garage:  Stock#'.$stock->stock.'',
                         'note_type' =>  'Vehicle'
                     ]);
-            // dd($response->status());
             return $response->json();
         } catch (RequestException $ex) {
             return response()->json(['error' => $ex->getMessage()], 500);
@@ -57,9 +56,8 @@ trait ApiTrait {
                 'Accept' => 'application/json'])
             ->post('https://api.neoverify.net/v1/add_note/', [
                         'neo_id'    =>  $this->client_id,
-                        'note'      =>  'Testing Note Ahava Expire'
+                        'note'      =>  'Customer requested New Price Link.'
                     ]);
-            // dd($response->status());
             return $response->json();
         } catch (RequestException $ex) {
             return response()->json(['error' => $ex->getMessage()], 500);
