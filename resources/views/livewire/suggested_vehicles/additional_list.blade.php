@@ -52,20 +52,15 @@
     @endif
 
     <div class="mb-2">
-        @if ($garage && !$garage->has_space() && !$garage->available_spaces() && $garage->is_vehicle_in_garage($record->inventory->stock))
+        @if ($garage && !$garage->available_spaces_like_next_tier() && $garage->is_vehicle_in_garage($record->inventory->stock))
                 <button disabled title="{{__('Vehicle Added')}}"
                 type="button" class="bg-gray-600 text-white px-2 m-4 rounded relative border-2 border-gray-200">
                 {{__('Added To Garage')}}
             </button>
-        @elseif($garage && $garage->not_available_spaces())
+        @elseif($garage && $garage->not_available_spaces_like_next_tier())
             <button disabled title="{{__('Garage Full')}}"
                 type="button" class="bg-gray-600 text-white px-2 m-4 rounded relative border-2 border-gray-200">
                 {{__('Garage Full')}}
-            </button>
-        @elseif ($garage && $garage->is_vehicle_in_garage($record->inventory->stock))
-            <button disabled title="{{__('Vehicle Added')}}"
-                type="button" class="bg-gray-600 text-white px-2 m-4 rounded relative border-2 border-gray-200">
-                {{__('Added To Garage')}}
             </button>
         @else
             <button type="button"

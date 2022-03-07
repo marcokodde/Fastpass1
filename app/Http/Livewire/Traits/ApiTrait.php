@@ -29,7 +29,7 @@ trait ApiTrait {
     }
 
     /** Envio de API, cuando el usuario se expiro sesion o en su caso si le intereso un vehiculo */
-    private function send_note_api() {
+    private function send_note_api_vehicle(Request $request) {
         try {
             $response = Http::withHeaders([
                 'Connection' => 'keep-alive',
@@ -38,8 +38,26 @@ trait ApiTrait {
                 'Accept' => 'application/json'])
             ->post('https://api.neoverify.net/v1/add_note/', [
                         'neo_id'    =>  $this->client_id,
-                        'note'      =>  'Testing Note Ahava',
+                        'note'      =>  'Testing Note Ahava Vehicles',
                         'note_type' =>  'Vehicle'
+                    ]);
+            // dd($response->status());
+            return $response->json();
+        } catch (RequestException $ex) {
+            return response()->json(['error' => $ex->getMessage()], 500);
+        }
+    }
+
+    private function send_note_api_expire() {
+        try {
+            $response = Http::withHeaders([
+                'Connection' => 'keep-alive',
+                'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json'])
+            ->post('https://api.neoverify.net/v1/add_note/', [
+                        'neo_id'    =>  $this->client_id,
+                        'note'      =>  'Testing Note Ahava Expire'
                     ]);
             // dd($response->status());
             return $response->json();

@@ -51,9 +51,7 @@ trait GarageTrait {
             $this->create_garage();
         }
 
-
         $inventory_record = Inventory::Stock($stock)->first();
-
         if($inventory_record){
             $suggested_vehicle = SuggestedVehicle::ClientId($this->client->id)
                                                     ->InventoryId($inventory_record->id)
