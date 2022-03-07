@@ -32,7 +32,9 @@ class TimeRemainder extends Component
 
         if($this->client_session){
             $this->expire_at = new \Carbon\Carbon( $this->client_session->expire_at);
+
             if(now() > $this->expire_at ){
+                dd('Ahora=' . now() . ' Expire=' .  $this->expire_at);
                 $this->create_new_session();
                return view('livewire.time_remainder.time-remainder-finish');
             }
