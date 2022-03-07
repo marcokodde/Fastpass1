@@ -22,19 +22,19 @@
     @endif
 
     @if($record->inventory->vin || $record->inventory->make || $record->inventory->model )
-        <label class="text-sm font-bold block">{{$record->inventory->year}} {{$record->inventory->make}} {{$record->inventory->model}}</label>
+        <label class="text-lg text-black font-oswald font-bold block">{{$record->inventory->year}} {{$record->inventory->make}} {{$record->inventory->model}}</label>
     @else
         <p>{{ __('No data available') }}</p>
     @endif
 
     @if($record->inventory->mileage)
-        <label class="text-sm block">{{ number_format($record->inventory->mileage, 0, '.', ',') }} {{ __('MILES') }}</label>
+        <label class="font-oswald block">{{ number_format($record->inventory->mileage, 0, '.', ',') }} {{ __('MILES') }}</label>
     @else
         <p>{{__('No data available') }}</p>
     @endif
 
     @if($record->inventory->stock)
-        <label class="text-sm block">{{__('STOCK')}} {{ $record->inventory->stock }}</label>
+        <label class="font-oswald block">{{__('STOCK')}} {{ $record->inventory->stock }}</label>
     @else
         <p>{{__('No data available') }}</p>
     @endif
@@ -54,23 +54,24 @@
     <div class="mb-2">
         @if ($garage && !$garage->has_space() && !$garage->available_spaces() && $garage->is_vehicle_in_garage($record->inventory->stock))
                 <button disabled title="{{__('Vehicle Added')}}"
-                type="button" class="bg-gray-600 text-white px-2 m-4 rounded relative border-2 border-gray-200">
+                type="button" class="bg-gray-600 text-white px-4 pb-4 py-4 m-4 rounded-lg relative uppercase">
                 {{__('Added To Garage')}}
             </button>
         @elseif($garage && $garage->not_available_spaces())
             <button disabled title="{{__('Garage Full')}}"
-                type="button" class="bg-gray-600 text-white px-2 m-4 rounded relative border-2 border-gray-200">
+                type="button" class="bg-gray-500 text-white px-8 pb-4 py-4 m-4 rounded-lg relative uppercase">
                 {{__('Garage Full')}}
             </button>
         @elseif ($garage && $garage->is_vehicle_in_garage($record->inventory->stock))
             <button disabled title="{{__('Vehicle Added')}}"
-                type="button" class="bg-gray-600 text-white px-2 m-4 rounded relative border-2 border-gray-200">
+                type="button" class="bg-gray-600 text-white px-8 pb-4 py-4 m-4 rounded-lg relative uppercase">
                 {{__('Added To Garage')}}
             </button>
         @else
             <button type="button"
                     wire:click.prevent="$emit('add_to_garage', '{{$record->inventory->stock}}' )"
-                    class="bg-green-700 text-white px-2 m-4 rounded relative border-2 border-gray-700">
+                    style="background-color: #E3C116"
+                    class=" text-black px-8 pb-4 py-4 m-4 rounded-lg relative uppercase">
                 {{__('Add To Garage')}}
             </button>
         @endif

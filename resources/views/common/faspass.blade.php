@@ -6,7 +6,7 @@
                 text: "{{__('By adding this car to your garage, you decrease an available space')}}",
                 showCancelButton: true,
                 cancelButtonText: 'NO',
-                cancelButtonColor: '#58D68D',
+                cancelButtonColor: '#09AD16',
                 confirmButtonColor: '#F4EC08',
                 confirmButtonText: "{{__('YES, ADD VEHICLE')}}"
             }).then((result) => {

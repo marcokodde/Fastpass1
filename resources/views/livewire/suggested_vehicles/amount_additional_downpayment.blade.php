@@ -2,7 +2,7 @@
     {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
     <div class="items-center">
         <div class="flex items-center justify-center mt-4">
-           {{ __('Amount to Additional Payment') }}
+           <label class="font-oswald text-xl font-semibold">{{ __('Amount to Additional Payment') }}</label>
             <span>
                 <input type="number"
                         wire:model.lazy="downpayment"

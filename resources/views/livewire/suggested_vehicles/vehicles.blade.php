@@ -25,7 +25,5 @@
             </div>
         </div>
     </div>
-
     @include('livewire.suggested_vehicles.advice_additional_vehicles')
-
 </div>

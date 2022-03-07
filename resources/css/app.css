@@ -1,3 +1,14 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@font-face {
+    font-family: Oswald;
+    src: url(css/fonts/Oswald/Oswald-Bold.ttf) format("​truetype​") or ttf;
+}
+
+
+@font-face {
+    font-family: Montserrat;
+    src: url(css/fonts/Montserrat/Montserrat-Regular.ttf) format("​truetype​") or ttf;
+}

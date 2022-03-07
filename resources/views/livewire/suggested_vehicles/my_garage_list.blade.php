@@ -1,4 +1,4 @@
-<div class="vehicle">
+<div class="vehicle static h-56 w-24">
     @if($record->images)
         @php
             $value = explode(",", $record->images);
@@ -22,25 +22,25 @@
     @endif
 
     @if($record->vin || $record->make || $record->model )
-        <label class="text-sm font-bold block">{{$record->year}} {{$record->make}} {{$record->model}}</label>
+        <label class="text-xl font-oswald text-black font-bold block">{{$record->year}} {{$record->make}} {{$record->model}}</label>
     @else
         <p>{{ __('No data available') }}</p>
     @endif
 
     @if($record->mileage)
-        <label class="text-sm block">{{ number_format($record->mileage, 0, '.', ',') }} {{ __('MILES') }}</label>
+        <label class="font-oswald  block">{{ number_format($record->mileage, 0, '.', ',') }} {{ __('MILES') }}</label>
     @else
         <p>{{__('Mileage data available') }}</p>
     @endif
 
     @if($record->stock)
-        <label class="text-sm block">{{__('STOCK')}} {{ $record->stock }}</label>
+        <label class="font-oswald  block">{{__('STOCK')}} {{ $record->stock }}</label>
     @else
         <p>{{__('No data available') }}</p>
     @endif
     <div class="mb-2">
         <!-- TO DO: Evaluar si ya existe el vehículo en el garage (Ver Historia) -->
-        <button type="button" class="bg-gray-600 font-bold text-white px-2 m-4 rounded relative border-2 border-gray-700 disabled" disabled>
+        <button type="button" class="bg-gray-600 font-bold text-white px-8 pb-4 py-4 m-4 rounded relative border-2 border-gray-700 disabled" disabled>
             {{__('IN MY GARAGE')}}
         </button>
     </div>
