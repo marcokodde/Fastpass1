@@ -60,6 +60,11 @@ class Garage extends Model
         return ENV('GARAGE_SPACES_TO_NEXT_TIER') - $this->vehicles_in_garages->where('is_additional_next_tier',1)->count();
      }
 
+     //Los Espacios Para Vehiculos con Enganche estan ocupados
+     public function not_available_spaces_like_next_tier(){
+        return ENV('GARAGE_SPACES_TO_NEXT_TIER') == $this->vehicles_in_garages->where('is_additional_next_tier',1)->count();
+     }
+
      // ¿Tiene espacio para vehículo con Enganche Adicional?
      public function has_space_to_next_tier(){
         return $this->vehicles_in_garages->where('is_additional_next_tier',1)->count() < ENV('GARAGE_SPACES_TO_NEXT_TIER');

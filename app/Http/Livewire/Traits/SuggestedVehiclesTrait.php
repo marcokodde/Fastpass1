@@ -59,7 +59,6 @@ trait SuggestedVehiclesTrait {
         $records = $this->read_api_suggested_vehicles();                        // Lee los sugeridos desde NEO
         if($records && count($records)){
             $this->create_suggested_vehicles_to_client($records,$this->client->id);   // Llena sugeridos del cliente desde inventario local
-
         }
         $this->read_neo_api = false;
     }
@@ -72,7 +71,7 @@ trait SuggestedVehiclesTrait {
             if($inventory_record){
                 $suggested_vehicle_client = SuggestedVehicle::InventoryId($inventory_record->id)->first();
                 if($inventory_record && $client_id && !$suggested_vehicle_client){
-                    SuggestedVehicle::create([
+                    $crear = SuggestedVehicle::create([
                         'client_id'     => $client_id,
                         'inventory_id'  => $inventory_record->id,
                         'grade'         => $record['grade'],
