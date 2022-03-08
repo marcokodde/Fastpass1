@@ -3,7 +3,7 @@
         @this.on('add_to_garage', stock_number => {
             Swal.fire({
                 title: "{{__('ALERT')}}",
-                text: "{{__('By adding this car to your garage, you decrease an available space')}}",
+                text: "{{__('The vehicle has been added to your garage')}}",
                 showCancelButton: true,
                 cancelButtonText: 'NO',
                 cancelButtonColor: '#5CB352',
