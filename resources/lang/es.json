@@ -22,5 +22,8 @@
     "Vehicles you are Additional Payment": "VEHICULOS DE PAGO INICIAL ADICIONAL",
     "Your Garage is Full": "Su garaje está lleno",
     "You have": "Tiene",
-    "spaces in your garage": "espacios en su garaje"
+    "spaces in your garage": "espacios en su garaje",
+    "There are no vehicles in your garage":"No hay vehículos en su garaje.",
+    "Browse our inventory to add your next vehicle !!":"¡Explore nuestro inventario para agregar su próximo vehículo!",
+    "SEE INVENTORY":"VER INVENTARIO"
 }
