@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class ShowVehicles extends Component
+class ShowVehiclesController extends Component
 {
 
     public function render()
