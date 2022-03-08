@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Http\Livewire\Traits\SessionClientTrait;
 use App\Models\Client;
+use Illuminate\Support\Str;
 
 use Livewire\Component;
 
@@ -36,11 +37,31 @@ class TimeRemainder extends Component
                return view('livewire.time_remainder.time-remainder-finish');
             }
 
-            $this->time_remainder=$this->expire_at->diffInMinutes(now());
+
+            $this->time_remainder=$this->expire_at->diffInSeconds(now());
+            $hours = 0;
+            $minutes  =0;
+            $seconds = 0;
+            $this->time_remainder=$this->expire_at->diffInSeconds(now());
+            if( $this->time_remainder){
+                $hours = str::padLeft(intdiv($this->time_remainder, 3600),2,"0");
+                $rested_seconds = $this->time_remainder % 3600;
+                if($rested_seconds){
+                    $minutes =  str::padLeft(intdiv($rested_seconds, 60),2,"0");
+                    $seconds =  str::padLeft($rested_seconds % 60,2,"0");
+
+                }
+            }
+            if($hours){
+                $this->time_remainder = $hours .  ':' . $minutes . ':' . $seconds;
+            }else{
+                $this->time_remainder = $minutes . ':' . $seconds;
+            }
+
+
             return view('livewire.time_remainder.time-remainder');
         }
-        return view('livewire.time_remainder.time-remainder');
-        return view('livewire.time_remainder.time-remainder-finish');
+
     }
 
     private function create_new_session(){
