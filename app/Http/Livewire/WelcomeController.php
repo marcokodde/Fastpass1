@@ -25,9 +25,9 @@ class WelcomeController extends Component
 
     public function mount(){
         $this->right_params = $this->validate_params();
-        if($this->client && $this->client->read_vehicles_from_api){
+        if($this->client){
             $this->load_suggested_vehicles();
-            $this->client->update_read_vehicles_from_api();
+            // $this->client->update_read_vehicles_from_api();
         }
     }
 
