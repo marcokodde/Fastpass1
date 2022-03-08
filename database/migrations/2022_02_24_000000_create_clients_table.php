@@ -17,6 +17,7 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->string('client_id',50)->comment('Id Cliente Neo');
             $table->integer('loggin_times')->default(0)->comment('Vecese que ha ingresado');
+            $table->boolean('read_vehicles_from_api')->default(1)->comment('Read Api');
         });
     }
 
