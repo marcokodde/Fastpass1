@@ -47,8 +47,6 @@
 
     @if($record->downpayment_for_next_tier > 0)
         <h5 class="mt-2 font-bold text-red-600">{{__('Additional Down Payment') }}</h5>
-
-        <h6 class=" text-2xl font-semibold mt-2">{{ __('Payment') }}: ${{ number_format($record->downpayment_for_next_tier, 0, '.', ',') }}</h6>
     @endif
 
     <div class="mb-2">
@@ -56,14 +54,14 @@
                 <button disabled title="{{__('Vehicle Added')}}"
                 type="button" class="bg-gray-600 text-white px-4 pb-2 py-2 m-2 rounded-lg relative uppercase">
                 {{__('Added To Garage')}}
-            </button>
-        @elseif($garage && $garage->not_available_spaces_like_next_tier())
+                </button>
+        @elseif ($garage && $garage->occupied_spaces_like_next_tier() && !$garage->available_spaces_like_next_tier() && $garage->not_available_spaces_like_next_tier())
             <button disabled title="{{__('Garage Full')}}"
                 type="button" class="bg-gray-500 text-white px-8 pb-4 py-4 m-4 rounded-lg relative uppercase">
                 {{__('Garage Full')}}
             </button>
         @else
-            <button type="button" style="background-color:#E3C116"
+            <button type="button" style="background-color:#6AB04C"
                     wire:click.prevent="$emit('add_to_garage', '{{$record->inventory->stock}}' )"
                     class="text-black px-8 pb-4 py-4 m-4 rounded-lg relative uppercase">
                 {{__('Add To Garage')}}

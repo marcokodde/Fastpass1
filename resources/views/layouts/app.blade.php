@@ -27,7 +27,6 @@
         @livewireScripts
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-
     window.addEventListener('show_toast_vehicle_added',({detail:{type,message}})=>{
         const Toast = Swal.mixin({
             toast: false,
@@ -47,30 +46,6 @@
         })
 
     })
-
-    function startTimer(duration, display) {
-        var timer = duration, minutes, seconds;
-        setInterval(function () {
-            minutes = parseInt(timer / 60, 10);
-            seconds = parseInt(timer % 60, 10);
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            display.textContent = minutes + ":" + seconds;
-
-            if (--timer < 0) {
-                timer = duration;
-            }
-        }, 1000);
-    }
-
-    window.onload = function () {
-        var Minutes = 60 * 60,
-            display = document.querySelector('#time');
-        startTimer(Minutes, display);
-    };
-
-
 </script>
     </body>
 </html>

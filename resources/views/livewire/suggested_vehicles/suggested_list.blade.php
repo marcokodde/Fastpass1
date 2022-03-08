@@ -1,4 +1,4 @@
-<div class="vehicle">
+<div class="vehicle shadow-2xl">
     @if($record->inventory->images)
         @php
             $value = explode(",", $record->inventory->images);
@@ -9,7 +9,7 @@
                 <img src="{{ $value[0] }}" alt="{{ __('Not Image') }}">
             </div>
         @else
-            <img class="h-44 w-44 items-center align-center mx-auto" src="{{ asset('images/default.jpeg') }}" alt="">
+            <img src="{{ asset('images/default_image.png') }}" alt="">
         @endif
     @else
         @if($record->images)
@@ -17,7 +17,7 @@
                 <img src="{{ $record->images }}" alt="{{ __('Not Image') }}">
             </div>
         @else
-            <img class="h-44 w-44 items-center align-center mx-auto" src="{{ asset('images/default.jpeg') }}" alt="">
+            <img src="{{ asset('images/default_image.png') }}" alt="">
         @endif
     @endif
 
@@ -70,7 +70,7 @@
         @else
             <button type="button"
                     wire:click.prevent="$emit('add_to_garage', '{{$record->inventory->stock}}' )"
-                    style="background-color: #E3C116"
+                    style="background-color: #6AB04C"
                     class=" text-black px-8 pb-4 py-4 m-4 rounded-lg relative uppercase">
                 {{__('Add To Garage')}}
             </button>
