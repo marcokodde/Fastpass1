@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Models\Client;
 use App\Http\Livewire\Traits\ApiTrait;
+use App\Http\Livewire\Traits\SuggestedVehiclesTrait as TraitsSuggestedVehiclesTrait;
+use App\Models\ClientSession;
 use Livewire\Component;
 
 
@@ -11,22 +13,36 @@ class WelcomeController extends Component
 {
 
     use ApiTrait;
-
+    use TraitsSuggestedVehiclesTrait;
     protected $queryString = ['client_id','token'];
     public $client_id;
+    public $client;
     public $token;
-    private $right_params = false;
+    public $right_params = false;
+    public $response_neo_is_null = false;
+    public $records;
 
 
     public function mount(){
         $this->right_params = $this->validate_params();
+        if($this->client && $this->client->read_vehicles_from_api){
+            $this->load_suggested_vehicles();
+            $this->client->update_read_vehicles_from_api();
+        }
     }
 
     public function render()
     {
+        if( $this->response_neo_is_null){
+            dd('Respuesta de neo es nula');
+        }
+
         if(!$this->right_params){
             return view('livewire.welcome-bad-params');
         }
+
+        $this->records = $this->read_suggested_vehicles_client_id($this->client->id,0);
+
         return view('livewire.welcome-controller');
     }
 
@@ -36,18 +52,32 @@ class WelcomeController extends Component
             return false;
         }
 
-        $client = Client::ClientId($this->client_id)->first();
-        if(!$client){
-            Client::create(['client_id' => $this->client_id]);
-            return true;
+        $this->read_client();
+        $this->client = Client::ClientId($this->client_id)->first();
+
+        if(!$this->client){
+            return false;
         }
 
-        if(!$this->client_id || ($client && (!$client->loggin_times && !$this->token || $client->loggin_times && $this->token))){
+        if(!$this->client->loggin_times && $this->token || $this->client->loggin_times && !$this->token){
             return false;
+        }
+
+        // No es la primera vez - trae token revisa que exista la sesión
+        if($this->client->loggin_times && $this->token){
+            $record_session = ClientSession::ClientId($this->client->id)
+                                        ->Token($this->token)
+                                        ->Active()
+                                        ->first();
+            if(!$record_session){
+                return false;
+            }
         }
 
         return true;
     }
+
+
 
 
 }

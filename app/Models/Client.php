@@ -14,7 +14,8 @@ class Client extends Model
     public $timestamps = false;
     protected $fillable = [
         'client_id',
-        'loggin_times'
+        'loggin_times',
+        'read_vehicles_from_api'
     ];
 
     // Vehículos sugeridos
@@ -51,6 +52,12 @@ class Client extends Model
     // Incrementa las veces que ha entrado
     public function update_loggin_times(){
         $this->loggin_times++;
+        $this->save();
+    }
+
+    // Actualiza para leer o no el API de nuevo
+    public function update_read_vehicles_from_api(){
+        $this->read_vehicles_from_api = !$this->read_vehicles_from_api;
         $this->save();
     }
 
