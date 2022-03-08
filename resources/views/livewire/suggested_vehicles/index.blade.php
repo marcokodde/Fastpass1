@@ -6,7 +6,7 @@
                 <button  wire:click="return_to_approved"
                         class=" hover:bg-gray-100 hover:text-gray-600 border border-blue-300
                                 text-black font-bold py-2 px-4 rounded-lg">
-                    {{ __('Vehicles you are approved')}}
+                    {{ __('Inventory')}}
                 </button>
             </span>
         @endif
