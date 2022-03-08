@@ -40,7 +40,7 @@
                         class="hover:bg-yellow-500 hover:text-white
                             text-black text-2xl font-bold px-20 pb-4 py-4 rounded-lg">
                         <a href="{{ route('dashboard') }}">
-                            <h1 class="uppercase">{{ __('UNLOCK PRINCES')}}</h1>
+                            <h1 class="uppercase">{{ __('UNLOCK PRICES')}}</h1>
                         </a>
                     </button>
                 </div>
