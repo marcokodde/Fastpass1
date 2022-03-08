@@ -8,7 +8,7 @@ use App\Models\ClientSession;
 use Carbon\Carbon;
 use Livewire\Component;
 
-class TimeRemainder extends Component
+class bk_TimeRemainder extends Component
 {
     use SessionClientTrait;
 
