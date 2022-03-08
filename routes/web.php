@@ -6,6 +6,7 @@ use App\Http\Livewire\Additionalhitch;
 use App\Http\Livewire\SuggestedVehicles;
 use App\Http\Controllers\FastPassController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Livewire\ShowVehicles;
 use App\Http\Livewire\TimeRemainder;
 use App\Http\Livewire\WelcomeController;
 
@@ -30,6 +31,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+
 Route::get('link_neo/{neo_id}', [FastPassController::class, 'inventory_stock'])->name('inventory_stock');
 
 // Enlace que recibe el cliente
@@ -40,4 +42,5 @@ Route::get('my_garage',Mygarages::class)->name('my_garage');
 Route::get('time_remainder',TimeRemainder::class)->name('time_remainder');
 Route::get('update_inventory', [InventoryController::class, 'update_inventory'])->name('update_inventory');
 
-
+Route::get('show_vehicles_client_token/{client_id}/{token}',ShowVehicles::class)->name('show_vehicles_client_token');
+Route::get('show_vehicles_client/{client_id}',ShowVehicles::class)->name('show_vehicles_client');
