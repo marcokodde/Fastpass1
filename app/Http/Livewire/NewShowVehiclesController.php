@@ -27,6 +27,7 @@ class NewShowVehiclesController extends Component
     // Variables para la vista
     public $records;
     public $header_page;
+    public $header_second;
     public $show_garage=false;
     public $show_additional=false;
     public $show_approved = true;
