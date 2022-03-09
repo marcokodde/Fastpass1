@@ -58,20 +58,37 @@ class NewShowVehiclesController extends Component
         $this->garage = $this->get_garage($this->client);
 
 
-        // Vehículos Aprobados
-        if($this->show_approved){
-            $this->read_approved();
-        }
-
-        // Garage
         if ($this->garage && $this->show_garage ) {
             $this->read_garage();
-        }
+           return view('livewire.suggested_vehicles.vehicles');
+       }
+
+       if ($this->show_additional && $this->client_has_vehicles_with_downpayment) {
+           $this->read_additionals();
+       }else{
+           $this->read_approved();
+      }
+
+        // // Garage
+        // if ($this->garage && $this->show_garage ) {
+        //     $this->read_garage();
+        // }else{
+        //     if ($this->show_additional && $this->client_has_vehicles_with_downpayment && !$this->show_approved && !$this->show_garage) {
+        //         $this->read_additionals();
+        //     }else{
+        //         $this->read_approved();
+        //     }
+        // }
+
+
+        // // Vehículos Aprobados
+        // if($this->show_approved && !$this->show_garage){
+
+        // }
+
 
         // Vehículos Adicionales
-        if ($this->show_additional && $this->client_has_vehicles_with_downpayment) {
-            $this->read_additionals();
-        }
+
 
         return view('livewire.new_show_vehicles.index');
     }
@@ -135,10 +152,7 @@ class NewShowVehiclesController extends Component
 
     /** Regresa para que se vean los vehículos aprobados */
     public function return_to_approved(){
-        $this->reset(['show_garage','show_additional']);
-        $this->show_garage = false;
-        $this->show_additional = false;
-        $this->show_approved = true;
+        $this->reset(['show_garage','show_additional','show_approved']);
     }
 
     /** Vehículos Aprobados */

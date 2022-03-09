@@ -58,4 +58,5 @@
             </div>
         </div>
     @endif
+    @include('common.faspass')
 </div>
