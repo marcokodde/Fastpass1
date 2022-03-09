@@ -34,6 +34,14 @@ vertical-align: -0.1em !important;
 background: none !important;
 padding: 0 !important;
 
+#body_background {
+	background: #6ab04c;
+}
+
+#line {
+	border-bottom: medium solid #D8D8D8;
+}
+
 #backcolorgreen{
 	position: absolute;
 	background: #5CB352;

@@ -1,5 +1,8 @@
-<label class="block text-center items-center font-oswald text-4xl mx-4 font-semibold text-black leading uppercase">
+<label class="block text-center items-center font-oswald text-4xl mx-4 font-semibold text-black leading uppercase mb-2">
     {{__($header_page)}}
+</label>
+<label class="block text-center items-center font-oswald text-xl mx-4 font-semibold text-gray-600 leading mb-2">
+    {{__($header_second)}}
 </label>
 <label class="block text-center items-center font-oswald text-2xl mx-4 px-4 font-semibold text-gray-600 leading">
     @if($garage && !$show_garage)
