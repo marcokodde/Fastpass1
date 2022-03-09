@@ -50,9 +50,14 @@ class NewShowVehiclesController extends Component
 
     public function render()
     {
+
         if(!$this->active_session){
             return view('livewire.new_show_vehicles.no_active_session');
         }
+
+
+        $this->garage = $this->get_garage($this->client);
+
 
         if ($this->show_garage ) {
             $this->show_additional = false;
