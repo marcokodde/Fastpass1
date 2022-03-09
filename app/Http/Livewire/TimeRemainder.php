@@ -57,7 +57,7 @@ class TimeRemainder extends Component
 
             return view('livewire.time_remainder.time-remainder');
         }
-
+        return view('livewire.time_remainder.time-remainder');
     }
 
     private function create_new_session(){
