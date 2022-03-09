@@ -48,6 +48,31 @@ padding: 0 !important;
 	left: 0px;
 	right: 0px;
 }
+#congrats{
+	border-bottom: medium #E0E0E0; 
+}
+
+#unlock{
+	align-self: center;
+	background: none;
+	border: medium solid white;
+	padding-top: 20px;
+	padding-right: 60px;
+	padding-bottom: 20px;
+	padding-left: 60px;
+	font-family: montserrat;
+	font-weight: bold;
+	font-size: 14pt;
+	color: white;
+
+	cursor: pointer;
+}
+
+#unlock:hover{
+	background:#badc58; 
+	border: none;
+	animation-delay: 5s; 
+}
 }
 </style>
 <link rel='stylesheet' id='wp-block-library-css'  href='https://149646797.v2.pressablecdn.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.2' type='text/css' media='all' />
