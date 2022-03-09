@@ -54,11 +54,7 @@ class NewShowVehiclesController extends Component
             return view('livewire.new_show_vehicles.no_active_session');
         }
 
-        // Lee el garage
-        $this->garage = $this->get_garage($this->client);
-
-
-        if ($this->garage && $this->show_garage ) {
+        if ($this->show_garage ) {
             $this->show_additional = false;
             $this->read_garage();
             $this->header_page = 'My Garage';
@@ -152,12 +148,19 @@ class NewShowVehiclesController extends Component
     private function read_garage(){
         $this->header_page = 'My Garage';
         $this->view_to_show = 'livewire.new_show_vehicles.list_garage';
-        $this->records = $this->garage->vehicles_in_garages()->get();
+        $this->garage = $this->get_garage($this->client);
+        if($this->garage){
+            $this->records = $this->garage->vehicles_in_garages()->get();
+        }else{
+            $this->records = null;
+        }
+
         $this->show_additional = false;
     }
 
     /** Vehículos Adicionales  */
     private function read_additionals(){
+
         $this->header_page = 'Vehicles you are Additional Payment';
         $this->view_to_show = 'livewire.new_show_vehicles.list_additionals';
         $this->records = $this->read_vehicles_with_payment($this->client,$this->downpayment);
