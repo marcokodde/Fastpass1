@@ -22,7 +22,7 @@ class Garage extends Model
     // Detalle de garages
     public function vehicles_in_garages(): HasMany
     {
-        return $this->hasMany(DetailGarage::class);
+        return $this->hasMany(DetailGarage::class)->orderby('retail_price');
     }
 
 
