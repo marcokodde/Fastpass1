@@ -15,9 +15,11 @@
                         <div class="row relative">
                             <div class="custom-vehicle-details relative">
                                 @if(isset($records) && $records->count())
-                                @foreach ($records as $record )
-                                    @include($view_to_show)
-                                @endforeach
+                                <div class="vehicle-listings">
+                                    @foreach ($records as $record )
+                                        @include($view_to_show)
+                                    @endforeach
+                                </div>
                                     {{-- @include('livewire.show_vehicles.vehicles_list') --}}
                                 @endif
                             </div>
