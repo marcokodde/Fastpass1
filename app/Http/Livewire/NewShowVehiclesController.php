@@ -110,7 +110,6 @@ class NewShowVehiclesController extends Component
     }
 
 
-
     /**+------------------------------------------------+
      * | Gestionar la Sesión                            |
      * +------------------------------------------------+
@@ -154,6 +153,7 @@ class NewShowVehiclesController extends Component
         $this->header_page = 'My Garage';
         $this->view_to_show = 'livewire.new_show_vehicles.list_garage';
         $this->records = $this->garage->vehicles_in_garages()->get();
+        $this->show_additional = false;
     }
 
     /** Vehículos Adicionales  */
