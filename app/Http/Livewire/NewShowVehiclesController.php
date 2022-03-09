@@ -59,6 +59,7 @@ class NewShowVehiclesController extends Component
 
 
         if ($this->garage && $this->show_garage ) {
+            $this->show_additional = false;
             $this->read_garage();
             $this->header_page = 'My Garage';
             $this->view_to_show = $this->view_to_show = 'livewire.new_show_vehicles.list_garage';
@@ -66,6 +67,7 @@ class NewShowVehiclesController extends Component
        }
 
        if ($this->show_additional && $this->client_has_vehicles_with_downpayment) {
+           $this->show_garage = false;
            $this->read_additionals();
        }else{
            $this->read_approved();
