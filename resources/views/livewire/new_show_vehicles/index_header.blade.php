@@ -9,11 +9,11 @@
                 </button>
             </span>
         @endif
-        <div class="mx-2 mt-4 border border-gray-300">
+        {{-- <div class="mx-2 mt-4 border border-gray-300">
             <div>
                 @livewire('time-remainder')
             </div>
-        </div>
+        </div> --}}
 
         <span class="relative inline-block mt-5">
             <button wire:click="$toggle('show_garage')" title="{{__('Show My Garage')}}">
