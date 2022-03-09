@@ -55,9 +55,9 @@ class ClientSession extends Model
      }
 
      public function scopeToken($query,$valor){
-        if(trim($valor) != ""){
-            $query->where('token',$valor);
-        }
+
+        $query->where('token',$valor);
+
      }
 
      public function scopeActive($query,$valor = true){

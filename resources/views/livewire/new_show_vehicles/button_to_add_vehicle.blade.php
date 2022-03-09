@@ -28,7 +28,8 @@
             @else <!-- No está en el garage -->
                 @if($record->is_addional_downpayment()) <!-- ¿Es de enganche adicional? -->
                     @if($garage->available_spaces_like_next_tier()) <!-- ¿Hay espacio para adicionales ? -->
-                        <button type="button" style="background-color:#6AB04C"
+                        <button type="button"
+                                style="background-color:#6AB04C"
                                 wire:click.prevent="$emit('add_to_garage', '{{$record->inventory->stock}}' )"
                                 class="text-black px-8 pb-4 py-4 m-4 rounded-lg relative uppercase">
                             {{__('Add To Garage')}}

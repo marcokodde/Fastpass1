@@ -51,15 +51,21 @@ class NewShowVehiclesController extends Component
 
     public function render()
     {
+        if($this->client){
+            $this->close_expired_sessions($this->client);
+        }
 
-        if(!$this->active_session){
+        $this->client_session = $this->get_active_session($this->client);
+
+
+        if(!$this->client_session){
             return view('livewire.new_show_vehicles.no_active_session');
         }
 
 
         $this->garage = $this->get_garage($this->client);
 
-
+        /** Mostrar Garage */
         if ($this->show_garage ) {
             $this->show_additional = false;
             $this->read_garage();
@@ -68,16 +74,15 @@ class NewShowVehiclesController extends Component
             return view('livewire.new_show_vehicles.index');
        }
 
-       if ($this->show_additional && $this->client_has_vehicles_with_downpayment) {
-           $this->show_garage = false;
-           $this->read_additionals();
-       }else{
-           $this->read_approved();
-      }
-
-
-        // Vehículos Adicionales
+       /** Mostrar Adicionales o Aprobados */
+        if ($this->show_additional && $this->client_has_vehicles_with_downpayment) {
+            $this->show_garage = false;
+            $this->read_additionals();
+        }else{
+            $this->read_approved();
+        }
         return view('livewire.new_show_vehicles.index');
+
     }
 
 
@@ -99,9 +104,10 @@ class NewShowVehiclesController extends Component
         $this->client_id = $client_id;
         $this->token = $token;
         $this->client = Client::ClientId($this->client_id)->first();
-        if($this->client){
 
+        if($this->client){
             $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
+
             $this->active_session = $this->manage_session($this->client,$token);
             if($this->active_session){
                 $this->garage = $this->get_garage($this->client);
@@ -129,9 +135,10 @@ class NewShowVehiclesController extends Component
            return $this->create_client_session($client->id);
         };
 
+
         // Si no es la primera vez lee la sesión activa
         if($client->loggin_times){
-            return $this->get_active_session_with_token($client->id,$token);
+             return $this->get_active_session_with_token($client->id,$token);
          }
 
     }
