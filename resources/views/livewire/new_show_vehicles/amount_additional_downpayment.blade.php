@@ -14,4 +14,9 @@
         <hr class="border-2 border-gray-300">
     </div>
     <br>
+    @if($records && $records->count())
+    <label class="block mx-auto text-red-500 text-center font-oswald text-xl font-semibold mb-4">
+        {{ $records->count() . ' ' . __('Vehicles Available') }}
+    </label>
+    @endif
 </div>
