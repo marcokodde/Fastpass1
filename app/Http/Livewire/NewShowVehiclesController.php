@@ -29,6 +29,7 @@ class NewShowVehiclesController extends Component
     public $header_page;
     public $show_garage=false;
     public $show_additional=false;
+    public $show_approved = true;
     public $downpayment = 250;
     public $downpayment_ranges = [];
     public $view_to_show = null;
@@ -58,7 +59,7 @@ class NewShowVehiclesController extends Component
 
 
         // Vehículos Aprobados
-        if(!$this->garage && !$this->show_additional){
+        if($this->show_approved){
             $this->read_approved();
         }
 
@@ -135,6 +136,9 @@ class NewShowVehiclesController extends Component
     /** Regresa para que se vean los vehículos aprobados */
     public function return_to_approved(){
         $this->reset(['show_garage','show_additional']);
+        $this->show_garage = false;
+        $this->show_additional = false;
+        $this->show_approved = true;
     }
 
     /** Vehículos Aprobados */
