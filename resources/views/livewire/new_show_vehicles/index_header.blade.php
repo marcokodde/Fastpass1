@@ -20,7 +20,9 @@
                 <img src="{{asset('images/mygarage.png')}}" height="60px" width="60px">
 
                     <span class="absolute top-16 right-0 inline-flex items-center justify-center px-2 py-1 text-xl font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
-                        {{$garage->occupied_spaces()}}
+                        @if($garage)
+                            {{$garage->occupied_spaces()}}
+                        @endif
                     </span>
 
             </button>
