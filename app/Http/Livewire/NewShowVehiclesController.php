@@ -60,7 +60,8 @@ class NewShowVehiclesController extends Component
 
         if ($this->garage && $this->show_garage ) {
             $this->read_garage();
-           return view('livewire.suggested_vehicles.vehicles');
+            $this->view_to_show = $this->view_to_show = 'livewire.new_show_vehicles.list_garage';
+            return view('livewire.new_show_vehicles.index');
        }
 
        if ($this->show_additional && $this->client_has_vehicles_with_downpayment) {
