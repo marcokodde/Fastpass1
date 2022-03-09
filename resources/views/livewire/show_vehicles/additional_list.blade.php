@@ -1,4 +1,4 @@
-<div class="vehicle">
+<div class="vehicle shadow-2xl">
     @if($record->inventory->images)
         @php
             $value = explode(",", $record->inventory->images);

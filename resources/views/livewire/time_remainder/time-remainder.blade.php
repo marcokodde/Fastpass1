@@ -1,5 +1,5 @@
-<div wire:poll.1000ms.keep-alive class="text-5xl text-bold">
-    <img class="inline" src="{{ asset('images/timer.png') }}" alt="">
-
-    <span id="time" class="inline text-black rounded-lg">{{$time_remainder}}</span>
+<div wire:poll.1000ms.keep-alive>
+    <span id="time" class="inline font-bold sm:text-base md:text-base lg:text-lg 2xl:text-4xl 2xl:mt-8 mx-auto text-black">
+        {{$time_remainder}}
+    </span>
 </div>
