@@ -94,13 +94,13 @@ class NewShowVehiclesController extends Component
         $this->token = $token;
         $this->client = Client::ClientId($this->client_id)->first();
         if($this->client){
-            $this->client->update_loggin_times();
+
             $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
             $this->active_session = $this->manage_session($this->client,$token);
             if($this->active_session){
                 $this->garage = $this->get_garage($this->client);
                 $this->update_interval_session($this->active_session,$this->garage);
-               // $this->client->update_loggin_times();
+              //  $this->client->update_loggin_times();
             }
         }
     }
