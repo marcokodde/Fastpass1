@@ -7,25 +7,17 @@ use App\Models\Inventory;
 use App\Models\SuggestedVehicle;
 
 
-trait SuggestedVehiclesTrait {
+trait NewSuggestedVehiclesTrait {
 
-    // Lee los registros sugeridos
-    private function read_suggested_vehicles_client_id($client_id,$downPayment=0){
-        if($downPayment == 0){
-           return SuggestedVehicle::ClientId($client_id)
-                    ->where('downpayment_for_next_tier',0)
-                    ->get();
-        }
+    // Lee vehículos aprobados
+    private function read_approved_vehicles(Client $client){
+        return SuggestedVehicle::ClientId($client->id)->Approved()->get();
     }
 
 
-     // Lee los registros sugeridos
-     private function read_suggested_vehicles_whit_payment($client_id,$downPayment){
-        if($downPayment > 0){
-            return SuggestedVehicle::ClientId($client_id)
-                        ->DownPayment($downPayment)
-                        ->get();
-        }
+    // Lee los registros sugeridos
+    private function read_vehicles_with_payment(Client $client,$downPayment){
+        return SuggestedVehicle::ClientId($client->id)->DownPayment($downPayment)->get();
     }
 
 

@@ -68,4 +68,9 @@ class SuggestedVehicle extends Model
             $query->where('grade',  $valor);
         }
     }
+
+    // Aprobados
+    public function scopeApproved($query){
+        $query->where('downpayment_for_next_tier', 0);
+    }
 }

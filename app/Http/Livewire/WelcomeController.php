@@ -21,18 +21,23 @@ class WelcomeController extends Component
     public $right_params = false;
     public $response_neo_is_null = false;
     public $records;
-
+    public $there_are_records_api=false;
 
     public function mount(){
+
         $this->right_params = $this->validate_params();
         if($this->client){
-            $this->load_suggested_vehicles();
+            $this->there_are_records_api = $this->load_suggested_vehicles();
             // $this->client->update_read_vehicles_from_api();
         }
     }
 
     public function render()
     {
+        if($this->there_are_records_api){
+            dd('Si hay registros en la api para el cliente ' . $this->client_id);
+        }
+
         if( $this->response_neo_is_null){
             dd('Respuesta de neo es nula');
         }

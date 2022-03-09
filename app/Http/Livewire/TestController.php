@@ -8,6 +8,11 @@ use Livewire\Component;
 class TestController extends Component
 {
     public $saludo;
+
+    public function mount($parametro){
+        dd($parametro);
+
+    }
     public function render()
     {
 

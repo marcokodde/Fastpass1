@@ -25,9 +25,7 @@ class TimeRemainder extends Component
     {
 
         $this->client = Client::ClientId($this->client_id)->first();
-
         $this->close_expired_sessions();
-
         $this->client_session = $this->get_active_session();
 
         if($this->client_session){
@@ -36,7 +34,6 @@ class TimeRemainder extends Component
                 $this->create_new_session();
                return view('livewire.time_remainder.time-remainder-finish');
             }
-
 
             $this->time_remainder=$this->expire_at->diffInSeconds(now());
             $hours = 0;
@@ -57,7 +54,6 @@ class TimeRemainder extends Component
             }else{
                 $this->time_remainder = $minutes . ':' . $seconds;
             }
-
 
             return view('livewire.time_remainder.time-remainder');
         }

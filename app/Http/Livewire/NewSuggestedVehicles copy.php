@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use Carbon\Carbon;
-use Livewire\Component;
 use App\Http\Livewire\Traits\ApiTrait;
 use App\Http\Livewire\Traits\GarageTrait;
 use App\Http\Livewire\Traits\SessionClientTrait;
 use App\Http\Livewire\Traits\SuggestedVehiclesTrait;
+use Carbon\Carbon;
+use Livewire\Component;
 
-class ShowVehiclesController extends Component
+class NewSuggestedVehicles extends Component
 {
     use SessionClientTrait;
     use GarageTrait;
@@ -31,13 +31,11 @@ class ShowVehiclesController extends Component
     public $show_additional = false;
     public $header_page = 'Vehicles you are approved';
     public $count_garage;
-    public $client_first_time = false;
+    PUBLIC $client_first_time = false;
 
 
     // Inicio del componente:
-    public function mount($client_id,$token){
-        dd('Cliente=' . $client_id . ' Token=' . $token);
-        $this->client_id = $client_id;
+    public function mount(){
         $this->read_client();
         $this->close_expired_sessions();
         if($this->client){
@@ -49,10 +47,10 @@ class ShowVehiclesController extends Component
         $this->read_neo_api = env('APP_READ_NEO_API',true);
 
         if($this->read_neo_api && $this->client){
-            $records_api = $this->load_suggested_vehicles();
+            $this->load_suggested_vehicles();
         }
 
-        if($this->client && $records_api && $records_api->count()){
+        if($this->client){
             $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
         }
 
@@ -60,11 +58,9 @@ class ShowVehiclesController extends Component
 
     public function render()
     {
-         /** To Do
+        /** To Do
          * (1) Validar que la sesión no haya expirado de ser así enviar una vista con el informe.
         */
-
-
         if(!$this->client || !$this->allow_login){
             return view('livewire.suggested_vehicles.client_not_exists');
         }
@@ -80,13 +76,16 @@ class ShowVehiclesController extends Component
         }else{
             $this->read_suggested_vehicles();
        }
-        return view('livewire.show_vehicles.show-vehicles');
+
+       return view('livewire.suggested_vehicles.vehicles');
+
     }
 
     /** Vehículos sugeridos*/
     private function read_suggested_vehicles(){
         $this->header_page = 'Vehicles you are approved';
         $this->records = $this->read_suggested_vehicles_client_id($this->client->id,0);
+
     }
 
     /** Vehículos en el Garaje  */
