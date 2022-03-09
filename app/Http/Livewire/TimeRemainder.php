@@ -65,7 +65,7 @@ class TimeRemainder extends Component
     private function create_new_session(){
             //TODO: Enviar nota Sesión expiró:
         // http://fastpass.test/suggested_vehicles?client_id=IvViysJTjUGmTcP20P7GflE26&&token=<Token>
-        $this->client->update_loggin_times();
+        //$this->client->update_loggin_times();
         $token= $this->create_client_token();
         $this->create_client_session(210000,$token,1);
         //TODO: Enviar nota Sesión expiró:

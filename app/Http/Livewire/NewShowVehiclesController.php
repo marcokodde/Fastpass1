@@ -59,7 +59,7 @@ class NewShowVehiclesController extends Component
 
 
         if ($this->garage && $this->show_garage ) {
-            $this->show_garage = false;
+            $this->show_additional = false;
             $this->read_garage();
             $this->header_page = 'My Garage';
             $this->view_to_show = $this->view_to_show = 'livewire.new_show_vehicles.list_garage';
@@ -73,27 +73,8 @@ class NewShowVehiclesController extends Component
            $this->read_approved();
       }
 
-        // // Garage
-        // if ($this->garage && $this->show_garage ) {
-        //     $this->read_garage();
-        // }else{
-        //     if ($this->show_additional && $this->client_has_vehicles_with_downpayment && !$this->show_approved && !$this->show_garage) {
-        //         $this->read_additionals();
-        //     }else{
-        //         $this->read_approved();
-        //     }
-        // }
-
-
-        // // Vehículos Aprobados
-        // if($this->show_approved && !$this->show_garage){
-
-        // }
-
 
         // Vehículos Adicionales
-
-
         return view('livewire.new_show_vehicles.index');
     }
 
@@ -117,6 +98,7 @@ class NewShowVehiclesController extends Component
         $this->token = $token;
         $this->client = Client::ClientId($this->client_id)->first();
         if($this->client){
+            $this->client->update_loggin_times();
             $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
             $this->active_session = $this->manage_session($this->client,$token);
             if($this->active_session){
