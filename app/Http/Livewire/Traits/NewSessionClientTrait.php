@@ -83,6 +83,8 @@ trait NewSessionClientTrait {
 
     // Lee sesión activa con cliente_id y Token
     public function get_active_session_with_token($client_id,$token){
+        $session_record = ClientSession::ClientId($client_id)->Token($token)->Active()->first();
+        return $session_record;
         return ClientSession::ClientId($client_id)->Token($token)->Active()->first();
     }
 

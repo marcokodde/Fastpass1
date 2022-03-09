@@ -2,16 +2,16 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Livewire\Traits\SessionClientTrait;
+use App\Http\Livewire\Traits\NewSessionClientTrait;
 use App\Models\Client;
-use App\Models\ClientSession;
+
 use Illuminate\Support\Str;
 
 use Livewire\Component;
 
 class TimeRemainder extends Component
 {
-    use SessionClientTrait;
+    use NewSessionClientTrait;
 
     public $client_id;
     public $token;
@@ -25,11 +25,12 @@ class TimeRemainder extends Component
     public function render()
     {
 
-        $this->client = Client::ClientId($this->client_id)->first();
+         $this->client = Client::ClientId($this->client_id)->first();
 
         if($this->client){
             $this->close_expired_sessions($this->client);
-            $this->client_session = $this->get_active_session($this->client);
+
+            $this->client_session = $this->get_active_session($this->client->id);
         }else{
             $this->client_session = null;
         }

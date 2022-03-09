@@ -8,6 +8,7 @@ use Livewire\Component;
 use App\Http\Livewire\Traits\NewGarageTrait;
 use App\Http\Livewire\Traits\NewSessionClientTrait;
 use App\Http\Livewire\Traits\NewSuggestedVehiclesTrait;
+use App\Models\ClientSession;
 
 class NewShowVehiclesController extends Component
 {
@@ -51,11 +52,20 @@ class NewShowVehiclesController extends Component
 
     public function render()
     {
+
+
         if($this->client){
             $this->close_expired_sessions($this->client);
         }
 
-        $this->client_session = $this->get_active_session($this->client);
+        // dd('Antes de evaluar si tiene token',$this->get_active_session_with_token($this->client_id,$this->token));
+
+        if ($this->token) {
+            $this->client_session =  $this->get_active_session_with_token($this->client->id,$this->token);
+
+        }else{
+            $this->client_session = $this->get_active_session($this->client->id);
+        }
 
 
         if(!$this->client_session){
@@ -81,6 +91,8 @@ class NewShowVehiclesController extends Component
         }else{
             $this->read_approved();
         }
+
+
         return view('livewire.new_show_vehicles.index');
 
     }
