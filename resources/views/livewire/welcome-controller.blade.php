@@ -1,32 +1,18 @@
 <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-    <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-        <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-            <div class="font-bold text-center">
-                HAGA CLIC EN LA IMAGEN PARA DESBLOQUEAR PRECIOS nueva interfaz nuevas rutas
+    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        <div class="static">
+            <img class="z-10 object-scale-down h-max w-max" src="{{asset('images/fondo.png')}}">
+            <div class="absolute 2xl:top-80 2xl:left-96 md:top-20 md:left-32 sm:top-10 sm:left-10">
+                <a class="bg-yellow-500 hover:text-white 2xl:ml-32 sm:ml-1
+                text-black 2xl:text-2xl sm:text-base md:text-base font-bold sm:px-2 sm:p-1 sm:py-1 2xl:px-20 2xl:pb-4 2xl:py-4 rounded-lg"
+                @if($token)
+                        href="{{ url('show_vehicles/'.$client_id . '/'.$token) }}">
+                    @else
+                        href="{{ url('show_vehicles/'.$client_id) }}">
+                    @endif
+                    {{ __('UNLOCK PRICES')}}
+                    </a>
             </div>
         </div>
-        <br>
-
-
-        <hr>
-
-        @if(isset($records) && $records->count())
-           Total de vehículos sugeridos {{ $records->count()}}
-        @endif
-        AHORA DEBE IR A NUEVAS RUTAS
-        <div class="flex justify-center mt-20">
-            @if($token)
-                <a href="{{ url('show_vehicles/'.$client_id . '/'.$token) }}">
-                    <img class="relative z-10 object-scale-down h-max w-max" src="{{asset('images/fondo.png')}}">
-                </a>
-            @else
-
-                <a href="{{ url('show_vehicles/'.$client_id) }}">
-                    <img class="relative z-10 object-scale-down h-max w-max" src="{{asset('images/fondo.png')}}">
-                </a>
-            @endif
-
-        </div>
-
     </div>
 </div>
