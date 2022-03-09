@@ -105,7 +105,7 @@ color: #01a03b;
 @media only screen and (min-width:1000px){body #ajax-content-wrap.no-scroll{min-height:calc(100vh - 223px);height:calc(100vh - 223px)!important;}}@media only screen and (min-width:1000px){#page-header-wrap.fullscreen-header,#page-header-wrap.fullscreen-header #page-header-bg,html:not(.nectar-box-roll-loaded) .nectar-box-roll > #page-header-bg.fullscreen-header,.nectar_fullscreen_zoom_recent_projects,#nectar_fullscreen_rows:not(.afterLoaded) > div{height:calc(100vh - 222px);}.wpb_row.vc_row-o-full-height.top-level,.wpb_row.vc_row-o-full-height.top-level > .col.span_12{min-height:calc(100vh - 222px);}html:not(.nectar-box-roll-loaded) .nectar-box-roll > #page-header-bg.fullscreen-header{top:223px;}.nectar-slider-wrap[data-fullscreen="true"]:not(.loaded),.nectar-slider-wrap[data-fullscreen="true"]:not(.loaded) .swiper-container{height:calc(100vh - 221px)!important;}.admin-bar .nectar-slider-wrap[data-fullscreen="true"]:not(.loaded),.admin-bar .nectar-slider-wrap[data-fullscreen="true"]:not(.loaded) .swiper-container{height:calc(100vh - 221px - 32px)!important;}}.screen-reader-text,.nectar-skip-to-content:not(:focus){border:0;clip:rect(1px,1px,1px,1px);clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute!important;width:1px;word-wrap:normal!important;}
 </style>
 <link rel='stylesheet' id='redux-google-fonts-salient_redux-css'  href='https://fonts.googleapis.com/css?family=Roboto+Condensed%3A700%7COswald%7CBebas+Neue%3A400%7CAnton%3A400%7CMontserrat%3A700&#038;ver=1634402610' type='text/css' media='all' />
-
+<link rel="stylesheet" href="{{ asset('css/alert_sytles.css') }}">
     @livewireStyles
 
     <!-- Scripts -->
