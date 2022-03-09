@@ -1,5 +1,5 @@
 <div class="relative mt-12">
-    @if ($record->garage)
+    @if (isset($record->garage) && $record->garage->count())
         <div class="vehicle shadow-2xl">
             @if($record->images)
                 @php
@@ -39,6 +39,9 @@
                 <label class="font-oswald  block">{{__('STOCK')}} {{ $record->stock }}</label>
             @else
                 <p>{{__('No data available') }}</p>
+            @endif
+            @if($record->is_additional_next_tier)
+                <h5 class="mt-2 font-bold text-red-600">{{__('Additional Down Payment') }}</h5>
             @endif
             <div class="mb-2">
                 <!-- TO DO: Evaluar si ya existe el vehículo en el garage (Ver Historia) -->

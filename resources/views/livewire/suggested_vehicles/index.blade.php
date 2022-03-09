@@ -17,7 +17,7 @@
         </div>
         <span class="relative inline-block mt-5">
             <button wire:click="$toggle('show_garage')" title="{{__('Show My Garage')}}">
-                <img src="{{asset('images/garage_icono.png')}}" height="60px" width="60px">
+                <img src="{{asset('images/mygarage.png')}}" class="sm:h-20 sm:w-20 2xl:h-32 2xl:w-32 md:h-24 md:w-24">
                 @if($garage)
                     <span class="absolute top-16 right-0 inline-flex items-center justify-center px-2 py-1 text-xl font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
                         {{$garage->occupied_spaces()}}

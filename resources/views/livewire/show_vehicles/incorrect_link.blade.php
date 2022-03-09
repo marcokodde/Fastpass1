@@ -1,5 +1,5 @@
 <div>
-    @include('livewire.suggested_vehicles.index')
+    @include('livewire.show_vehicles.index')
     <div class="sidemenu mt-12 w-64 absolute">
         <div class="mb-2">
         </div>
