@@ -54,5 +54,5 @@
     <div class="mb-2">
         @include('livewire.new_show_vehicles.button_to_add_vehicle')
     </div>
-    @include('common.faspass')
+    @include('common.fastpass')
 </div>

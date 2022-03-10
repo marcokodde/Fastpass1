@@ -34,5 +34,5 @@
         @include('livewire.new_show_vehicles.advice_additional_vehicles')
     @endif
 
-    @include('common.faspass')
+    @include('common.fastpass')
 </div>
