@@ -4,16 +4,14 @@ namespace App\Http\Livewire;
 
 use App\Models\Client;
 use App\Http\Livewire\Traits\ApiTrait;
-use App\Http\Livewire\Traits\SuggestedVehiclesTrait as TraitsSuggestedVehiclesTrait;
+
 use App\Models\ClientSession;
 use Livewire\Component;
-
 
 class WelcomeController extends Component
 {
 
     use ApiTrait;
-    use TraitsSuggestedVehiclesTrait;
     protected $queryString = ['client_id','token'];
     public $client_id;
     public $client;
