@@ -13,6 +13,7 @@ trait NewSuggestedVehiclesTrait {
     private function read_approved_vehicles(Client $client){
         return SuggestedVehicle::select('suggested_vehicles.*')
                     ->join('inventories', 'inventories.id', '=', 'suggested_vehicles.inventory_id')
+                    ->where('suggested_vehicles.client_id',$client->id)
                     ->where('downpayment_for_next_tier', 0)
                     ->orderBy('inventories.retail_price')
                     ->get();
@@ -20,9 +21,11 @@ trait NewSuggestedVehiclesTrait {
 
 
     // Lee los registros sugeridos
-    private function read_vehicles_with_payment(Client $client,$downPayment){
+    private function read_vehicles_with_payment(Client $client){
+
         return SuggestedVehicle::select('suggested_vehicles.*')
                     ->join('inventories', 'inventories.id', '=', 'suggested_vehicles.inventory_id')
+                    ->where('suggested_vehicles.client_id',$client->id)
                     ->where('suggested_vehicles.downpayment_for_next_tier', '<=', $this->downpayment)
                     ->where('suggested_vehicles.downpayment_for_next_tier', '>',0)
                     ->orderBy('inventories.retail_price')
@@ -78,7 +81,9 @@ trait NewSuggestedVehiclesTrait {
         foreach($records as $record){
             $inventory_record = Inventory::Stock($record['stock'])->first();
             if($inventory_record){
-                $suggested_vehicle_client = SuggestedVehicle::InventoryId($inventory_record->id)->first();
+                $suggested_vehicle_client = SuggestedVehicle::InventoryId($inventory_record->id)
+                                                            ->ClientId($this->client->id)
+                                                            ->first();
                 if($inventory_record && $client_id && !$suggested_vehicle_client){
                     SuggestedVehicle::create([
                         'client_id'     => $client_id,

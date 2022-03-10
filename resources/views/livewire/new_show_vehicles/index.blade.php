@@ -7,7 +7,7 @@
             <div class="bg-white overflow-hidden sm:rounded-lg mt-2">
                 @include('common.header_content')
 
-                @if($show_additional && !$show_garage)
+                @if($show_additional && !$show_garage && $client_has_vehicles_with_downpayment)
                     @include('livewire.new_show_vehicles.amount_additional_downpayment')
                 @endif
 
@@ -30,6 +30,9 @@
             </div>
         </div>
     </div>
-    @include('livewire.new_show_vehicles.advice_additional_vehicles')
+    @if(!$show_garage && $client_has_vehicles_with_downpayment)
+        @include('livewire.new_show_vehicles.advice_additional_vehicles')
+    @endif
+
     @include('common.faspass')
 </div>

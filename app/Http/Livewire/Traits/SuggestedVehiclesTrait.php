@@ -63,7 +63,6 @@ trait SuggestedVehiclesTrait {
             return false;
         }
 
-
         if($records && count($records)){
             $this->delete_suggested_vehicles_client($this->client->id);               // Elimina vehículos sugeridos del cliente
             $this->create_suggested_vehicles_to_client($records,$this->client->id);   // Llena sugeridos del cliente desde inventario local
@@ -75,16 +74,22 @@ trait SuggestedVehiclesTrait {
     private function create_suggested_vehicles_to_client($records,$client_id){
         foreach($records as $record){
             $inventory_record = Inventory::Stock($record['stock'])->first();
+
             if($inventory_record){
-                $suggested_vehicle_client = SuggestedVehicle::InventoryId($inventory_record->id)->first();
+                $suggested_vehicle_client = SuggestedVehicle::InventoryId($inventory_record->id)
+                                                            ->ClientId($this->client->id)
+                                                            ->first();
+
+
                 if($inventory_record && $client_id && !$suggested_vehicle_client){
-                    SuggestedVehicle::create([
+                   SuggestedVehicle::create([
                         'client_id'     => $client_id,
                         'inventory_id'  => $inventory_record->id,
                         'grade'         => $record['grade'],
                         'downpayment_for_next_tier' => $record['additionalDownpaymentForNextTier']
                     ]);
                 }
+
             }
         }
     }

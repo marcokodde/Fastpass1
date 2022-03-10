@@ -84,6 +84,7 @@ class NewShowVehiclesController extends Component
             return view('livewire.new_show_vehicles.index');
        }
 
+
        /** Mostrar Adicionales o Aprobados */
         if ($this->show_additional && $this->client_has_vehicles_with_downpayment) {
             $this->show_garage = false;
@@ -185,7 +186,7 @@ class NewShowVehiclesController extends Component
         $this->header_page = 'ADDITIONAL VEHICLES';
         $this->header_second ='These are vehicles you are eligible to purchase with additional down payment.';
         $this->view_to_show = 'livewire.new_show_vehicles.list_additionals';
-        $this->records = $this->read_vehicles_with_payment($this->client,$this->downpayment);
+        $this->records = $this->read_vehicles_with_payment($this->client);
     }
 
 

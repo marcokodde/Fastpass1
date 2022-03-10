@@ -11,39 +11,36 @@
   <script>
   $( function() {
     $( "#slider-range" ).slider({
-      range: true,
-      min: 0,
-      max: 500,
-      values: [ 75, 300 ],
+      range: false,
+      min: 500,
+      max: 4000,
+      step: 500,
+      values: [ 0, 500 ],
       slide: function( event, ui ) {
         $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
       }
     });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+
+    // $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+    //   " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+
+
   } );
   </script>
 </head>
 <body>
- 
+
 <p>
   <label for="amount">Price range:</label>
-  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+  <input  type="text"
+         id="amount"
+         readonly
+         style="border:0; color:#f6931f; font-weight:bold;">
 </p>
- 
-<div id="slider-range"></div>
- 
- 
+
+<div id="slider-range" class="bg-red"></div>
+
+
 </body>
 </html>
-<div>
-    <div class="slidecontainer">
-        <p>Default range slider:</p>
-        <input wire:model="downpayment" type="range" min="500" max="4000" value="500" step="500">
-        <span class="w-full text-center text-5xl">
-            {{ $downpayment}}
-        </span>
-    </div>
 
-
-</div>
