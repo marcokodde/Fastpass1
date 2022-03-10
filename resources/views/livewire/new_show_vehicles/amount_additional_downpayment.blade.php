@@ -1,6 +1,6 @@
 <div class="grid items-center justify-center mx-auto px-4">
-    <label class="block mx-auto text-red-500 text-center font-oswald text-xl font-semibold mb-4">
-        {{ __('Additional Down Payment') }}
+    <label class="block mx-auto text-gray-600 text-center font-oswald text-xl font-semibold mb-4">
+        {{ __('Please select the extra amount for your down payment.') }}
     </label>
     <div class="col-md-6 mx-4 px-4 mb-4">
         <input type="radio" wire:model.lazy="downpayment" id="250" value="250" >    <label class="sm:text-xs md:text-base 2xl:text-xl" >$250</label>
