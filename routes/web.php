@@ -15,7 +15,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('link_neo/{neo_id}', [FastPassController::class, 'inventory_stock'])->name('inventory_stock');
 
 Route::get('update_inventory', [InventoryController::class, 'update_inventory'])->name('update_inventory');
 Route::get('show_vehicles/{client_id}/{token?}',NewShowVehiclesController::class)->name('show_vehicles');
