@@ -9,4 +9,4 @@ Esto incluye la revisión del precio vs porcentaje que maneja el distribuidor.In
 7.- Migracion a Servidor Nuevo
 8.- (FCO) Notas de cuando termina la sesión.(Adjuntar token para que el cliente pueda acceder al sistema una vez terminada la session).
 9.- (FCO) Validar que las vistas cuando se termina session, ingresan mal los parametros.
-10.- (MANN) Cambiar nombre de FASPASS A fastpass
+
