@@ -29,7 +29,6 @@ class TimeRemainder extends Component
 
         if($this->client){
             $this->close_expired_sessions($this->client);
-
             $this->client_session = $this->get_active_session($this->client->id);
         }else{
             $this->client_session = null;
@@ -64,7 +63,6 @@ class TimeRemainder extends Component
         $minutes  =0;
         $seconds = 0;
         $this->time_remainder=$this->expire_at->diffInSeconds(now());
-        $this->time_remainder=$this->expire_at->diffInSeconds(now());
         if( $this->time_remainder){
             $hours = str::padLeft(intdiv($this->time_remainder, 3600),2,"0");
             $rested_seconds = $this->time_remainder % 3600;
@@ -85,7 +83,7 @@ class TimeRemainder extends Component
         // http://fastpass.test/suggested_vehicles?client_id=IvViysJTjUGmTcP20P7GflE26&&token=<Token>
         $this->client->update_loggin_times();
         $token= $this->create_client_token();
-        $this->create_client_session(210000,$token,1);
+        $this->create_client_session(env('SESSION_INTERVAL',60),$token,1);
         //TODO: Enviar nota Sesión expiró:
         // http://fastpass.test/suggested_vehicles?client_id=IvViysJTjUGmTcP20P7GflE26&&token=<Token>
         return view('livewire.time_remainder.time-remainder-finish');
