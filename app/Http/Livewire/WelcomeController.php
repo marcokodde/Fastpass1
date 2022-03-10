@@ -7,7 +7,7 @@ use App\Http\Livewire\Traits\ApiTrait;
 
 use App\Models\ClientSession;
 use Livewire\Component;
-
+    
 class WelcomeController extends Component
 {
 
