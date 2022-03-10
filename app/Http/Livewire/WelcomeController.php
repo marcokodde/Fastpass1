@@ -4,14 +4,19 @@ namespace App\Http\Livewire;
 
 use App\Models\Client;
 use App\Http\Livewire\Traits\ApiTrait;
+use App\Http\Livewire\Traits\NewSuggestedVehiclesTrait;
+
+
 
 use App\Models\ClientSession;
 use Livewire\Component;
-    
+
 class WelcomeController extends Component
 {
 
     use ApiTrait;
+    use NewSuggestedVehiclesTrait;
+
     protected $queryString = ['client_id','token'];
     public $client_id;
     public $client;
@@ -24,9 +29,11 @@ class WelcomeController extends Component
     public function mount(){
 
         $this->right_params = $this->validate_params();
+
         if($this->client){
+
             $this->there_are_records_api = $this->load_suggested_vehicles();
-            // $this->client->update_read_vehicles_from_api();
+
         }
     }
 
@@ -44,7 +51,6 @@ class WelcomeController extends Component
             return view('livewire.welcome-bad-params');
         }
 
-        $this->records = $this->read_suggested_vehicles_client_id($this->client->id,0);
 
         return view('livewire.welcome-controller');
     }
