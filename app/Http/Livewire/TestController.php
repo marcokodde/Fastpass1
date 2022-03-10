@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class TestController extends Component
 {
-    public $downpayment;
+    public $downpayment=500;
 
     public function mount(){
 
