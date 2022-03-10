@@ -7,10 +7,10 @@ use Livewire\Component;
 
 class TestController extends Component
 {
-    public $saludo;
+    public $downpayment;
 
-    public function mount($parametro){
-        dd($parametro);
+    public function mount(){
+
 
     }
     public function render()
@@ -19,7 +19,5 @@ class TestController extends Component
        return view('livewire.test-controller');
     }
 
-    public function destroy($stock){
-        $this->saludo = "El vehículo a agregar es el stock # " . $stock;
-    }
+
 }

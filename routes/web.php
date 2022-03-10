@@ -31,3 +31,4 @@ Route::get('update_inventory', [InventoryController::class, 'update_inventory'])
 
 Route::get('show_vehicles/{client_id}/{token?}',NewShowVehiclesController::class)->name('show_vehicles');
 
+require 'pruebas.php';
