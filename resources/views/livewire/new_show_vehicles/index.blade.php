@@ -16,23 +16,25 @@
                         <div class="row relative">
                             <div class="custom-vehicle-details relative">
                                 @if(isset($records) && $records->count())
-                                <div class="vehicle-listings">
-                                    @foreach ($records as $record )
-                                        @include($view_to_show)
-                                    @endforeach
-                                </div>
-                                    {{-- @include('livewire.show_vehicles.vehicles_list') --}}
+                                    <div class="vehicle-listings">
+                                        @foreach ($records as $record )
+                                            @include($view_to_show)
+                                        @endforeach
+                                    </div>
                                 @endif
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            @if($show_garage && !$show_additional && !$garage)
+                @include('livewire.new_show_vehicles.not_garage')
+            @endif
         </div>
     </div>
     @if(!$show_garage && $client_has_vehicles_with_downpayment)
         @include('livewire.new_show_vehicles.advice_additional_vehicles')
     @endif
-
+    
     @include('common.fastpass')
 </div>
