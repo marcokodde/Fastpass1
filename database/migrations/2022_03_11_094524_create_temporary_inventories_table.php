@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use phpDocumentor\Reflection\Types\Nullable;
 
-class CreateInventoriesTable extends Migration
+
+class CreateTemporaryInventoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateInventoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('inventories', function (Blueprint $table) {
+        Schema::create('temporary_inventories', function (Blueprint $table) {
             $table->id();
             $table->string('dealer_id',15)->comment('Id distribuidor');
             $table->string('vin',25)->nullable()->default(null)->comment('VIN');
@@ -34,8 +34,6 @@ class CreateInventoriesTable extends Migration
             $table->dateTimeTz('last_updated', $precision = 0)->nullable()->default(now())->comment('Ultima actualizacion');
             $table->string('body',100)->nullable()->default(null)->comment('Body');
             $table->string('trim',100)->nullable()->default(null)->comment('Trim');
-            $table->boolean('available')->default(1)->comment('¿Disponbile');
-            $table->boolean('sold_out')->default(0)->comment('¿Vendido');
             $table->timestamps();
         });
     }
@@ -47,6 +45,6 @@ class CreateInventoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventories');
+        Schema::dropIfExists('temporary_inventories');
     }
 }

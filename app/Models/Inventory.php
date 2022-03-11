@@ -10,6 +10,7 @@ class Inventory extends Model
 {
     use HasFactory;
 
+    protected $table = 'inventories';
     protected $fillable = [
         'dealer_id',
         'vin',
@@ -28,7 +29,9 @@ class Inventory extends Model
         'images',
         'last_updated',
         'body',
-        'trim'
+        'trim',
+        'available',
+        'sold_out'
     ];
 
     // Relación con Autos Sugerido a un Cliente
@@ -38,6 +41,11 @@ class Inventory extends Model
     }
 
 
+    // Actualiza estado de Vendido
+    public function update_sold_out($sold_out = false){
+        $this->sold_out = $sold_out;
+        $this->save();
+    }
 
     // Nombre Completo
     public function scopeFullsearch($query,$valor)
