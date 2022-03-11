@@ -6,8 +6,14 @@
         {{__('Add To Garage')}}
     </button>
 @else
-    <!-- Es adicional y ya no hay lugar para adicionales -->
-    @if($record->is_addional_downpayment() && !$garage->available_spaces_like_next_tier())
+    @if($garage && !$garage->available_spaces_like_next_tier() && $garage->is_vehicle_in_garage($record->inventory->stock))
+    <button type="button"
+        disabled
+        title="{{__('Vehicle Added')}}"
+        class="bg-gray-700 text-white px-8 pb-4 py-4 m-4 rounded-lg relative">
+        {{__('Added To Garage')}}
+    </button>
+    @elseif($record->is_addional_downpayment() && !$garage->available_spaces_like_next_tier())
         <button type="button"
             disabled
             title="{{__('Garage Full')}}"
@@ -21,7 +27,7 @@
                 <button type="button"
                     disabled
                     title="{{__('Vehicle Added')}}"
-                    class="bg-gray-600 text-white px-4 pb-2 py-2 m-2 rounded-lg relative uppercase">
+                    class="bg-gray-700 text-white px-8 pb-4 py-4 m-4 rounded-lg relative">
                     {{__('Added To Garage')}}
                 </button>
             @else <!-- No está en el garage -->
@@ -57,7 +63,5 @@
                 {{__('Garage Full')}}
             </button>
         @endif
-
     @endif
-
 @endif
