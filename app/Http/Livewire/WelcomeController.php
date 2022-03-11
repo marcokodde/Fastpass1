@@ -17,7 +17,7 @@ class WelcomeController extends Component
     use ApiTrait;
     use NewSuggestedVehiclesTrait;
 
-    protected $queryString = ['client_id','token'];
+   // protected $queryString = ['client_id','token'];
     public $client_id;
     public $client;
     public $token;
@@ -26,7 +26,9 @@ class WelcomeController extends Component
     public $records;
     public $there_are_records_api=false;
 
-    public function mount(){
+    public function mount($client_id,$token=null){
+        $this->client_id = $client_id;
+        $this->token = $token;
 
         $this->right_params = $this->validate_params();
 
@@ -50,7 +52,6 @@ class WelcomeController extends Component
         if(!$this->right_params){
             return view('livewire.welcome-bad-params');
         }
-
 
         return view('livewire.welcome-controller');
     }

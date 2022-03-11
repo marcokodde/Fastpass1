@@ -19,21 +19,65 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+        <script>
+        $( function() {
+            $( "#slider-range" ).slider({
+                range: true,
+                min: 500,
+                max: 4000,
+                step: 500,
+                values: [ 500, 4000 ],
+                slide: function( event, ui ) {
+                    $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                }
+            });
+                $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+        });
+        </script>
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <img class="stnd skip-lazy dark-version"
-                        width="207"
-                        height="110"
-                        alt="CTC Auto Group"
-                        src="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/05/brand-logo.png"  />
+                <p>
+                    <label for="amount">Price range:</label>
+                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                </p>
+                <div id="slider-range" class="w-1/4">
                 </div>
-                <h1 class="mt-20">{{__('Welcome to Fast Pass')}}</h1>
-
-
+                <div>
+                    <div class="slidecontainer">
+                        <p>Default range slider:</p>
+                        <input wire:model="downpayment" type="range" min="500" max="4000" value="500" step="500">
+                        <span class="w-full text-center text-5xl">
+                            {{ $downpayment}}
+                        </span>
+                    </div>
+                </div>
+                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
+                </div>
+                <br>
+                <div class="flex justify-center mt-20">
+                    <img class="relative z-10 object-scale-down h-max w-max" src="{{asset('images/fondo.png')}}">
+                </div>
+                <div class="relative">
+                    <button style="background-color:#E3C116;
+                        padding:2px;
+                        padding-left:10px;
+                        padding-right:10px;
+                        position: absolute;
+                        top: -520px;
+                        left: 420px;"
+                        class="hover:bg-yellow-500 hover:text-white
+                            text-black text-2xl font-bold px-20 pb-4 py-4 rounded-lg">
+                        <a href="{{ route('dashboard') }}">
+                            <h1 class="uppercase">{{ __('UNLOCK PRICES')}}</h1>
+                        </a>
+                    </button>
+                </div>
             </div>
         </div>
     </body>

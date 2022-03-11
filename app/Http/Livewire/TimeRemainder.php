@@ -19,8 +19,12 @@ class TimeRemainder extends Component
     public $time_remainder;
     public $expire_at;
     public $client;
-    protected $queryString = ['client_id','token'];
+   // protected $queryString = ['client_id','token'];
 
+    public function mount($client_id,$token=null){
+        $this->client_id = $client_id;
+        $this->token = $token;
+    }
 
     public function render()
     {
@@ -40,7 +44,6 @@ class TimeRemainder extends Component
             if(now() > $this->expire_at ){
                 $this->client_session->expire_session();
                 $this->create_new_session();
-               return view('livewire.time_remainder.time-remainder-finish');
             }
             $this->calculate_remainder_time();
             return view('livewire.time_remainder.time-remainder');
@@ -71,11 +74,16 @@ class TimeRemainder extends Component
                 $seconds =  str::padLeft($rested_seconds % 60,2,"0");
             }
         }
-        if($hours){
-            $this->time_remainder = $hours .  ':' . $minutes . ':' . $seconds;
+        if($hours || $minutes || $seconds){
+            if($hours){
+                $this->time_remainder = $hours .  ':' . $minutes . ':' . $seconds;
+            }else{
+                $this->time_remainder = $minutes . ':' . $seconds;
+            }
         }else{
-            $this->time_remainder = $minutes . ':' . $seconds;
+            $this->time_remainder = null;
         }
+
     }
     /** Crea nueva sesion con token */
     private function create_new_session(){
@@ -83,9 +91,9 @@ class TimeRemainder extends Component
         // http://fastpass.test/suggested_vehicles?client_id=IvViysJTjUGmTcP20P7GflE26&&token=<Token>
         $this->client->update_loggin_times();
         $token= $this->create_client_token();
-        $this->create_client_session(env('SESSION_INTERVAL',60),$token,1);
+        $this->create_client_session(60*24*30,$token,1);
         //TODO: Enviar nota Sesión expiró:
         // http://fastpass.test/suggested_vehicles?client_id=IvViysJTjUGmTcP20P7GflE26&&token=<Token>
-        return view('livewire.time_remainder.time-remainder-finish');
+        return redirect()->to('expire_session');
     }
 }

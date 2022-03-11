@@ -10,10 +10,15 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-// Carga los venículos sugeridos
-Route::get('/',WelcomeController::class)->name('suggested_vehicles');
-// Mostrar los venículos remoendados
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('expire_session',function(){
+    return view('livewire.session_expired');
+})->name('expire_sesion');
 Route::get('show_vehicles/{client_id}/{token?}',NewShowVehiclesController::class)->name('show_vehicles');
+Route::get('/{client_id}/{token?}',WelcomeController::class)->name('suggested_vehicles');
+
 
 // Inventario e imágenes
 Route::get('update_inventory', [InventoryController::class, 'update_inventory'])->name('update_inventory');

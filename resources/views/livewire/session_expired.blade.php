@@ -21,19 +21,11 @@
         </style>
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <img class="stnd skip-lazy dark-version"
-                        width="207"
-                        height="110"
-                        alt="CTC Auto Group"
-                        src="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/05/brand-logo.png"  />
-                </div>
-                <h1 class="mt-20">{{__('Welcome to Fast Pass')}}</h1>
-
-
+        <img class="stnd skip-lazy dark-version" width="207" height="110" alt="CTC Auto Group" src="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/05/brand-logo.png"/>
+        <div class="relative flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+            <div class="mx-auto text-center align-center items-center">
+                    <h1>{{__('YOUR SESSION HAS BEEN EXPIRED')}}</h1>
+                    <h2 class="mt-20">{{__('PLEASE CONTACT YOU SELLER TO RECEIVE A NEW LINK')}}</h2>
             </div>
         </div>
     </body>

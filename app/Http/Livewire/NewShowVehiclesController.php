@@ -52,8 +52,6 @@ class NewShowVehiclesController extends Component
 
     public function render()
     {
-
-
         if($this->client){
             $this->close_expired_sessions($this->client);
         }
@@ -64,14 +62,13 @@ class NewShowVehiclesController extends Component
             $this->client_session =  $this->get_active_session_with_token($this->client->id,$this->token);
 
         }else{
+
             $this->client_session = $this->get_active_session($this->client->id);
         }
-
 
         if(!$this->client_session){
             return view('livewire.new_show_vehicles.no_active_session');
         }
-
 
         $this->garage = $this->get_garage($this->client);
 
@@ -113,6 +110,7 @@ class NewShowVehiclesController extends Component
     private function initial_review($client_id,$token){
         $this->client_id = $client_id;
         $this->token = $token;
+
         $this->client = Client::ClientId($this->client_id)->first();
 
         if($this->client){

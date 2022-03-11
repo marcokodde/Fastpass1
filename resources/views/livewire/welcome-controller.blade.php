@@ -13,12 +13,6 @@
                 </a>
             </button>
 
-            {{--  <button class="btn first mx-auto">Button 1</button>
-            <br>
-            <p></p>
-            <button class="btn second mx-auto">Button 2</button>
-            <br>
-            <p></p>
-            <button class="btn third mx-auto">Button 3</button>  --}}
+
     </div>
 </div>

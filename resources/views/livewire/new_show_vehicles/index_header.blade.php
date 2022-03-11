@@ -21,4 +21,5 @@
     </span>
 </div>
 <hr class="border-2 border-gray-200 mx-4 mt-4">
-@livewire('time-remainder')
+
+@livewire('time-remainder', ['client_id' => $client_id,'token' => $token])
