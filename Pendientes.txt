@@ -2,7 +2,6 @@ Pendientes proyecto Fastpass.
 
 1.-Cambiar lo de botones de radio por casillas de verificación (Checkboxes) estableciendo rangos y seleccionando los vehículos que correspondan:
 Esto incluye la revisión del precio vs porcentaje que maneja el distribuidor.Investigar como implementar las barras de precios
-2.- (FCO) El historial de imágenes.
 7.- Migracion a Servidor Nuevo
 8.- (FCO) Notas de cuando termina la sesión.(Adjuntar token para que el cliente pueda acceder al sistema una vez terminada la session).
 9.- (FCO) Validar que las vistas cuando se termina session, ingresan mal los parametros.

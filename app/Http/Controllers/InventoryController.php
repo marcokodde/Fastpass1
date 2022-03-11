@@ -37,9 +37,6 @@ class InventoryController extends Controller
                                     ->first();
 
         $available = !$inventory_record['images'] || is_null($inventory_record['images']) || strlen($inventory_record['images']) < 5 ? false : true;
-        // if(!$inventory_record['images'] || is_null($inventory_record['images']) || strlen($inventory_record['images']) < 5){
-        //     $available = false;
-        // }
 
         if($local_inventory && !$available){
             $images = $local_inventory->images;
