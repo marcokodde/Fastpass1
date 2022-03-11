@@ -37,7 +37,7 @@ trait NewGarageTrait {
      *| 3.- ¿En inventario y garage?: is_available_inventory = True |
      *| 4.- ¿Garage sin Inventario?: is_available_inventory = False |
      *| 5.- ¿Espacio en garage + inentario + NO en Garage           |
-     *|      (A) Agrega el vehículo al garage                       |add_vehicle_to_garage
+     *|      (A) Agrega el vehículo al garage                       |
      *|      (B) Muestra alerta                                     |
      *+-------------------------------------------------------------+
     */
@@ -137,11 +137,11 @@ trait NewGarageTrait {
             'trim'                  =>$inventory_record->trim,
             'is_additional_next_tier'=>$is_additional_next_tier,
             'is_available_inventory' =>$is_available_inventory]);
+            
     }
 
     // Muestra la alerta
     private function show_alert(){
-       $this->dispatchBrowserEvent('show_toast_vehicle_added');
-       $this->emit('mount');
+        $this->dispatchBrowserEvent('show_toast_vehicle_added');
     }
 }
