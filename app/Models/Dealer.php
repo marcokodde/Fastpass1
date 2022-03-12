@@ -16,4 +16,20 @@ class Dealer extends Model
     ];
 
 
+    // Relación con Autos Sugerido
+    public function suggested_vehicles()
+    {
+        return $this->hasMany(SuggestedVehicle::class);
+    }
+
+    /*+-----------------------------------------+
+      | Setters y Getters de varios Campos      |
+      +-----------------------------------------+
+    */
+    // Setters
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucwords($value);
+    }
+
 }

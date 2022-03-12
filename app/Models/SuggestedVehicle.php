@@ -21,11 +21,17 @@ class SuggestedVehicle extends Model
     ];
 
 
+    // Distribuidor
+    public function dealer(){
+        return $this->belongsTo(Dealer::class);
+    }
 
+    // Cliente
     public function client(){
         return $this->belongsTo(Client::class);
     }
 
+    // Inventario
     public function inventory(){
         return $this->belongsTo(Inventory::class);
     }
@@ -40,6 +46,13 @@ class SuggestedVehicle extends Model
         return $this->downpayment_for_next_tier > 0 ? true : false;
     }
 
+    // ¿Mostrar o no según enganches y porcentaje del distribuidor)
+    public function showByTotalDownPayment($percentage,$downpayment_initial,$downpayment_additional){
+        if(!$this->sales_price || $this->sales_price < 1){
+            return false;
+        }
+        return $downpayment_initial + $downpayment_additional >= intdiv($this->sales_price * $percentage,100);
+    }
 
     /**+------------+
      * | Búsquedas  |
@@ -80,12 +93,6 @@ class SuggestedVehicle extends Model
         $query->where('downpayment_for_next_tier', 0);
     }
 
-    // ¿Mostrar o no según enganches y porcentaje del distribuidor)
-    public function scopeMinimumDownPayment($query,$percentage,$downpayment_initial,$downpayment_additional){
-        if(!$this->sales_price || $this->sales_price < 1){
-            return false;
-        }
-        return $downpayment_initial + $downpayment_additional >= intdiv($this->sales_price * $percentage,100);
-    }
+
 }
 

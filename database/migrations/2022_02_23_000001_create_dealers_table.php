@@ -16,7 +16,7 @@ class CreateDealersTable extends Migration
         Schema::create('dealers', function (Blueprint $table) {
             $table->id();
             $table->string('name',100)->comment('Dealer name');
-            $table->float('percentage', 5, 2)->comment('Percentaje to calculate mininum downpayment');
+            $table->float('percentage', 5, 2)->default(env('APP_PERCENTAGE_DEALER',7.00))->comment('Percentaje to calculate mininum downpayment');
         });
     }
 
