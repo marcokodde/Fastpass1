@@ -16,7 +16,13 @@
 
         <style>
             body {
-                font-family: 'Nunito', sans-serif;
+                font-size: 2rem;
+                font-weight: 200;
+                line-height: 1;
+                text-decoration: none;
+                text-align: center;
+                text-transform: uppercase;
+                font-family: 'Montserrat', sans-serif;
             }
         </style>
     </head>
@@ -24,9 +30,12 @@
         <img class="stnd skip-lazy dark-version" width="207" height="110" alt="CTC Auto Group" src="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/05/brand-logo.png"/>
         <div class="relative flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
             <div class="mx-auto text-center align-center items-center">
-                    <h1>{{__('YOUR SESSION HAS BEEN EXPIRED')}}</h1>
-                    <h2 class="mt-20">{{__('PLEASE CONTACT YOU SELLER TO RECEIVE A NEW LINK')}}</h2>
+                <h1 style="margin-top: -300px;">{{__('YOUR SESSION HAS BEEN EXPIRED')}}</h1>
+                <h2 class="text-gray-700">{{__('PLEASE CONTACT YOU SELLER TO RECEIVE A NEW LINK')}}</h2>
             </div>
+            <label for="client" class="mx-auto text-5xl text-black font-bold text-center">
+                {{$token}}
+            </label>
         </div>
     </body>
 </html>

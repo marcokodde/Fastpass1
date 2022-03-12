@@ -2,16 +2,17 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Livewire\Traits\NewSessionClientTrait;
 use App\Models\Client;
+use Livewire\Component;
 
 use Illuminate\Support\Str;
-
-use Livewire\Component;
+use App\Http\Livewire\Traits\ApiTrait;
+use App\Http\Livewire\Traits\NewSessionClientTrait;
 
 class TimeRemainder extends Component
 {
     use NewSessionClientTrait;
+    use ApiTrait;
 
     public $client_id;
     public $token;
@@ -28,8 +29,7 @@ class TimeRemainder extends Component
 
     public function render()
     {
-
-         $this->client = Client::ClientId($this->client_id)->first();
+        $this->client = Client::ClientId($this->client_id)->first();
 
         if($this->client){
             $this->close_expired_sessions($this->client);
@@ -37,7 +37,6 @@ class TimeRemainder extends Component
         }else{
             $this->client_session = null;
         }
-
 
         if($this->client_session){
             $this->expire_at = new \Carbon\Carbon( $this->client_session->expire_at);
@@ -58,7 +57,6 @@ class TimeRemainder extends Component
         }
         return view('livewire.time_remainder.time-remainder');
     }
-
 
     /** Calcula el tiempo restante */
     private function calculate_remainder_time(){
@@ -83,8 +81,8 @@ class TimeRemainder extends Component
         }else{
             $this->time_remainder = null;
         }
-
     }
+
     /** Crea nueva sesion con token */
     private function create_new_session(){
         //TODO: Enviar nota Sesión expiró:
@@ -94,6 +92,11 @@ class TimeRemainder extends Component
         $this->create_client_session(60*24*30,$token,1);
         //TODO: Enviar nota Sesión expiró:
         // http://fastpass.test/suggested_vehicles?client_id=IvViysJTjUGmTcP20P7GflE26&&token=<Token>
+
+
+        // Envio de Nota cuando la session expiro, de momento se comenta hasta que se de el Visto Bueno.
+        dd("Expiro la session este token sera enviado '.$token.'");
+        $this->send_note_api_expire($token);
         return redirect()->to('expire_session');
     }
 }

@@ -12,7 +12,5 @@
                 {{ __('UNLOCK PRICES')}}
                 </a>
             </button>
-
-
     </div>
 </div>

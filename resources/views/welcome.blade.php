@@ -16,7 +16,15 @@
 
         <style>
             body {
-                font-family: 'Nunito', sans-serif;
+                body {
+                    font-size: 2rem;
+                    font-weight: 200;
+                    line-height: 1;
+                    text-decoration: none;
+                    text-align: center;
+                    text-transform: uppercase;
+                    font-family: 'Montserrat', sans-serif;
+                }
             }
         </style>
     </head>
@@ -31,9 +39,7 @@
                         alt="CTC Auto Group"
                         src="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/05/brand-logo.png"  />
                 </div>
-                <h1 class="mt-20">{{__('Welcome to Fast Pass')}}</h1>
-
-
+                <h1 class="mt-20 text-4xl mx-auto text-center">{{__('Welcome to Fast Pass')}}</h1>
             </div>
         </div>
     </body>

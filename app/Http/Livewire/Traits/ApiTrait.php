@@ -47,7 +47,7 @@ trait ApiTrait {
         }
     }
 
-    private function send_note_api_expire() {
+    private function send_note_api_expire($token) {
         try {
             $response = Http::withHeaders([
                 'Connection' => 'keep-alive',
@@ -56,7 +56,7 @@ trait ApiTrait {
                 'Accept' => 'application/json'])
             ->post('https://api.neoverify.net/v1/add_note/', [
                         'neo_id'    =>  $this->client_id,
-                        'note'      =>  'Customer requested New Price Link.'
+                        'note'      =>  'Test Ahava2.. Customer requested New Price Link: Token#'.$token.''
                     ]);
             return $response->json();
         } catch (RequestException $ex) {
