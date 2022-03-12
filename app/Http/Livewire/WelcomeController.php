@@ -50,10 +50,10 @@ class WelcomeController extends Component
         }
 
         if(!$this->right_params){
-            return view('livewire.welcome-bad-params');
+            return view('livewire.welcome.welcome-bad-params');
         }
 
-        return view('livewire.welcome-controller');
+        return view('livewire.welcome.welcome-controller');
     }
 
     private function validate_params(){
