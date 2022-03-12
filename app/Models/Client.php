@@ -14,6 +14,7 @@ class Client extends Model
     public $timestamps = false;
     protected $fillable = [
         'client_id',
+       ' downpayment',
         'loggin_times',
         'read_vehicles_from_api'
     ];
