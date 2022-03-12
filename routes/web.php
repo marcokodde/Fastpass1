@@ -4,7 +4,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventoryController;
 use App\Http\Livewire\NewShowVehiclesController;
+use App\Http\Livewire\TestController;
 use App\Http\Livewire\WelcomeController;
+
+// Pruebas
+Route::get('test_controller',TestController::class)->name('test_controller');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -24,5 +28,4 @@ Route::get('/{client_id}/{token?}',WelcomeController::class)->name('suggested_ve
 Route::get('update_inventory', [InventoryController::class, 'update_inventory'])->name('update_inventory');
 Route::get('update_images_history', [InventoryController::class, 'update_images_history'])->name('update_images_history');
 
-// Pruebas
-require 'pruebas.php';
+
