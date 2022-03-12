@@ -27,5 +27,3 @@ Route::get('/{client_id}/{token?}',WelcomeController::class)->name('suggested_ve
 // Inventario e imágenes
 Route::get('update_inventory', [InventoryController::class, 'update_inventory'])->name('update_inventory');
 Route::get('update_images_history', [InventoryController::class, 'update_images_history'])->name('update_images_history');
-
-
