@@ -11,11 +11,16 @@ class SuggestedVehicle extends Model
     protected $table = 'suggested_vehicles';
     public $timestamps = false;
     protected $fillable = [
+        'dealer_id',
         'client_id',
         'inventory_id',
+        'sales_price',
+        'downpayment',
         'grade',
         'downpayment_for_next_tier'
     ];
+
+
 
     public function client(){
         return $this->belongsTo(Client::class);
@@ -34,6 +39,7 @@ class SuggestedVehicle extends Model
     public function is_addional_downpayment(){
         return $this->downpayment_for_next_tier > 0 ? true : false;
     }
+
 
     /**+------------+
      * | Búsquedas  |
@@ -73,4 +79,13 @@ class SuggestedVehicle extends Model
     public function scopeApproved($query){
         $query->where('downpayment_for_next_tier', 0);
     }
+
+    // ¿Mostrar o no según enganches y porcentaje del distribuidor)
+    public function scopeMinimumDownPayment($query,$percentage,$downpayment_initial,$downpayment_additional){
+        if(!$this->sales_price || $this->sales_price < 1){
+            return false;
+        }
+        return $downpayment_initial + $downpayment_additional >= intdiv($this->sales_price * $percentage,100);
+    }
 }
+
