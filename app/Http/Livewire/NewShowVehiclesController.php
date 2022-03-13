@@ -56,7 +56,7 @@ class NewShowVehiclesController extends Component
             $this->close_expired_sessions($this->client);
         }
 
-        // dd('Antes de evaluar si tiene token',$this->get_active_session_with_token($this->client_id,$this->token));
+
 
         if ($this->token) {
             $this->client_session =  $this->get_active_session_with_token($this->client->id,$this->token);
