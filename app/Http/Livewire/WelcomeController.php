@@ -62,8 +62,7 @@ class WelcomeController extends Component
             return false;
         }
 
-        $this->read_client();
-        $this->client = Client::ClientId($this->client_id)->first();
+        $this->client = $this->read_client();
 
         if(!$this->client){
             return false;

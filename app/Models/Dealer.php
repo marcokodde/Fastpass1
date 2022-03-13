@@ -32,4 +32,15 @@ class Dealer extends Model
         $this->attributes['name'] = ucwords($value);
     }
 
+
+    /**+------------+
+     * | Búsquedas  |
+     * +------------+
+     */
+
+    public function scopeName($query,$valor){
+        if(trim($valor) != ""){
+            $query->where('name',$valor);
+        }
+     }
 }

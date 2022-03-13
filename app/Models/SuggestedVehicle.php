@@ -15,7 +15,6 @@ class SuggestedVehicle extends Model
         'client_id',
         'inventory_id',
         'sales_price',
-        'downpayment',
         'grade',
         'downpayment_for_next_tier'
     ];
@@ -58,6 +57,13 @@ class SuggestedVehicle extends Model
      * | Búsquedas  |
      * +------------+
      */
+
+
+    public function scopeDealerId($query,$dealer_id){
+        if ($dealer_id) {
+            $query->where('dealer_id',  $dealer_id);
+        }
+    }
 
     public function scopeClientId($query,$client_id){
 

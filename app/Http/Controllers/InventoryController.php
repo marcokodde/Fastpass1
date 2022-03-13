@@ -44,10 +44,10 @@ class InventoryController extends Controller
             $images = $inventory_record['images'];
         }
 
-        $id_local_inventory = $local_inventory ? $local_inventory->id : null;
+        $record_id_to_update = $local_inventory ? $local_inventory->id : null;
 
         Inventory::updateOrCreate(
-            ['id' => $id_local_inventory],
+            ['id' => $record_id_to_update],
             [
                 'dealer_id'         => $inventory_record['dealer_id'],
                 'vin'               => $inventory_record['vin'],

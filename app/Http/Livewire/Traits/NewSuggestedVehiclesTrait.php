@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Traits;
 
 use App\Models\Client;
+use App\Models\Dealer;
 use App\Models\Inventory;
 use App\Models\SuggestedVehicle;
 
@@ -37,25 +38,52 @@ trait NewSuggestedVehiclesTrait {
 
     // Lee el registro de tabla CLIENTS
     private function read_client(){
-        $this->client = Client::ClientId($this->client_id)->first();
-        if(!$this->client){
-            $records = $this->read_api_suggested_vehicles();
-            if($records && count($records) > 0){
-                Client::create(['client_id' => $this->client_id]);
-                $this->client = Client::ClientId($this->client_id)->first();
-            }
+        $records = $this->read_api_suggested_vehicles();
+        if(!$records || is_null($records) || count($records)< 1 ){
+            return false;
+        }
+
+        foreach ($records as $record) {
+            $this->create_dealer($record);
+            $this->update_or_create_client($this->client_id,$record);
+        }
+
+        return  $this->client = Client::ClientId($this->client_id)->first();
+
+    }
+
+
+    // Crea distribuidor
+    private function create_dealer($record){
+        $dealer = Dealer::Name(ucwords($record['dealership']))->first();
+        if(!$dealer){
+            Dealer::create([
+                'name' => $record['dealership'],
+                'percentage' => env('APP_PERCENTAGE_DEALER',7.00)
+            ]);
+
+        }
+    }
+
+    // Crea o actualiza Cliente
+    private function update_or_create_client($client_id,$record){
+        $this->client = Client::ClientId($client_id)->first();
+
+        if($this->client){
+            $this->client->downpayment = $record['downpayment'];
+            $this->client->save();
+        }else{
+            Client::create([
+                'client_id'     => $client_id,
+                'downpayment'   => $record['downpayment'],
+            ]);
         }
 
     }
 
     // Borra los vehículos sugeridos del cliente
     private function delete_suggested_vehicles_client($client_id){
-        $suggested_vehicles_client = SuggestedVehicle::ClientId($client_id)->get();
-        if($suggested_vehicles_client->count()){
-            foreach($suggested_vehicles_client as $suggested_vehicle_client){
-                $suggested_vehicle_client->delete();
-            }
-        }
+        SuggestedVehicle::ClientId($client_id)->delete();
     }
 
     /** Carga los vehículos */
@@ -68,10 +96,9 @@ trait NewSuggestedVehiclesTrait {
             return false;
         }
 
-
         if($records && count($records)){
             $this->delete_suggested_vehicles_client($this->client->id);               // Elimina vehículos sugeridos del cliente
-            $this->create_suggested_vehicles_to_client($records,$this->client->id);   // Llena sugeridos del cliente desde inventario local
+            $this->create_suggested_vehicles_to_client($records,$this->client->client_id);   // Llena sugeridos del cliente desde inventario local
         }
     }
 
@@ -79,15 +106,23 @@ trait NewSuggestedVehiclesTrait {
     // Pone autos sugeridos desde inventario local
     private function create_suggested_vehicles_to_client($records,$client_id){
         foreach($records as $record){
-            $inventory_record = Inventory::Stock($record['stock'])->first();
-            if($inventory_record){
-                $suggested_vehicle_client = SuggestedVehicle::InventoryId($inventory_record->id)
-                                                            ->ClientId($this->client->id)
+
+            $dealer_record      = Dealer::Name(ucwords($record['dealership']))->first();
+            $client_record      = Client::ClientId($client_id)->first();
+            $inventory_record   = Inventory::Stock($record['stock'])->first();
+
+            if($dealer_record && $client_record && $inventory_record ){
+                $suggested_vehicle_client = SuggestedVehicle::DealerId($dealer_record->id)
+                                                            ->InventoryId($inventory_record->id)
+                                                            ->ClientId($client_record ->id)
                                                             ->first();
-                if($inventory_record && $client_id && !$suggested_vehicle_client){
+
+                if(!$suggested_vehicle_client ){
                     SuggestedVehicle::create([
-                        'client_id'     => $client_id,
+                        'delear_id'     => $dealer_record->id,
+                        'client_id'     => $client_record->id,
                         'inventory_id'  => $inventory_record->id,
+                        'sales_price'   => $record['sales_price'],
                         'grade'         => $record['grade'],
                         'downpayment_for_next_tier' => $record['additionalDownpaymentForNextTier']
                     ]);
