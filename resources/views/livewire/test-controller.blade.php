@@ -41,7 +41,7 @@
                 <div class="flex overflow-x-auto space-x-5  justify-between">
                     <label>{{ $izquierdo_valor}}</label><label class="ml-30">{{ $derecho_valor}}</label>
                 </div>
-                <div class="flex overflow-x-auto space-x-5">
+                <div class="flex">
                     <input type="range"
                             wire:model.lazy="izquierdo_valor"
                             min="{{$izquierdo_minimo}}"
@@ -70,7 +70,7 @@
                           max="{{$derecho_maximo}}"
                           step="{{$range_step}}"
                           wire:change="actualiza_maximo_izquierdo"
-                          class="ml-3 relative"
+                          class="-ml-1 relative"
                         >
 
                 </div>
