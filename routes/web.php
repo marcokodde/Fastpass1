@@ -7,8 +7,9 @@ use App\Http\Livewire\NewShowVehiclesController;
 use App\Http\Livewire\TestController;
 use App\Http\Livewire\WelcomeController;
 
-// Pruebas
-Route::get('test_controller',TestController::class)->name('test_controller');
+require 'pruebas.php';
+
+//Route::get('test_controller',TestController::class)->name('test_controller');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
