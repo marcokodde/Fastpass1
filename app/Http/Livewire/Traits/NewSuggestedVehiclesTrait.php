@@ -59,10 +59,32 @@ trait NewSuggestedVehiclesTrait {
         if(!$dealer){
             Dealer::create([
                 'name' => $record['dealership'],
-                'percentage' => env('APP_PERCENTAGE_DEALER',7.00)
+                'percentage' => $this->decide_dealer_percentage($record)
             ]);
 
         }
+    }
+
+    // Decidir el porcentaje del distribuidor
+    private function decide_dealer_percentage($record){
+            $dealer_percentages = array(
+                'North Freeway' => 10.00,
+                'Gulf Freeway'  => 10.00,
+                '1960'          => 10.00,
+                'Airline'       => 10.00,
+                'Shields'       => 7.00,
+                '240'           => 7.00,
+                'Tulsa HUB'     => 7.00,
+                'default'       => 7.00
+            );
+
+            if(array_key_exists($record['dealership'], $dealer_percentages)){
+                return $dealer_percentages[$record['dealership']];
+            }else{
+                return env('APP_PERCENTAGE_DEALER',7.00);
+            }
+
+
     }
 
     // Crea o actualiza Cliente
