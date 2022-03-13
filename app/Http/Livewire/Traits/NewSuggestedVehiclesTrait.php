@@ -119,10 +119,10 @@ trait NewSuggestedVehiclesTrait {
 
                 if(!$suggested_vehicle_client ){
                     SuggestedVehicle::create([
-                        'delear_id'     => $dealer_record->id,
+                        'dealer_id'     => $dealer_record->id,
                         'client_id'     => $client_record->id,
                         'inventory_id'  => $inventory_record->id,
-                        'sales_price'   => $record['sales_price'],
+                        'saleprice'     => $record['sale_price'],
                         'grade'         => $record['grade'],
                         'downpayment_for_next_tier' => $record['additionalDownpaymentForNextTier']
                     ]);

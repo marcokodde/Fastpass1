@@ -14,7 +14,7 @@ class SuggestedVehicle extends Model
         'dealer_id',
         'client_id',
         'inventory_id',
-        'sales_price',
+        'sale_price',
         'grade',
         'downpayment_for_next_tier'
     ];
