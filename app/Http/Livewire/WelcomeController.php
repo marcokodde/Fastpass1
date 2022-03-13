@@ -33,9 +33,7 @@ class WelcomeController extends Component
         $this->right_params = $this->validate_params();
 
         if($this->client){
-
             $this->there_are_records_api = $this->load_suggested_vehicles();
-
         }
     }
 
