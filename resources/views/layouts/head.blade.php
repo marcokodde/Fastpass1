@@ -114,7 +114,7 @@ color: #01a03b;
             font-size: 2rem;
             font-weight: 200;
             line-height: 1;
-            margin-top: -90px;
+            margin-top: -40px;
             margin-bottom: 10px;
             padding: 1em 1em;
             text-decoration: none;
