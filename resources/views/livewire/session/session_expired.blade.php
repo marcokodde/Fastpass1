@@ -24,18 +24,89 @@
                 text-transform: uppercase;
                 font-family: 'Montserrat', sans-serif;
             }
+            .body_background {
+                background-color: #6AB04C;
+            }
+
+            .btn {
+                box-sizing: border-box;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                background-color: transparent;
+                border: 2px solid #f1c40f;
+                border-radius: 0.6em;
+                color: #f1c40f;
+                cursor: pointer;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-align-self: center;
+                    -ms-flex-item-align: center;
+                        align-self: center;
+                font-size: 2rem;
+                font-weight: 200;
+                line-height: 1;
+                margin-top: -120px;
+                margin-bottom: 10px;
+                padding: 1em 1em;
+                text-decoration: none;
+                text-align: center;
+                text-transform: uppercase;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 600;
+            }
+            .btn:hover, .btn:focus {
+                color: black;
+                outline: 0;
+            }
+    
+            .first {
+                -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+                transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+                color: white;
+            }
+            .first:hover {
+                box-shadow: 0 0 40px 40px #f1c40f inset;
+            }
+    
+            .second {
+                border-radius: 3em;
+                border-color: #f1c40f;
+                color: #fff;
+                background-image: -webkit-linear-gradient(left, rgba(26, 188, 156, 0.6), rgba(26, 188, 156, 0.6) 5%, #1abc9c 5%, #1abc9c 10%, rgba(26, 188, 156, 0.6) 10%, rgba(26, 188, 156, 0.6) 15%, #1abc9c 15%, #1abc9c 20%, rgba(26, 188, 156, 0.6) 20%, rgba(26, 188, 156, 0.6) 25%, #1abc9c 25%, #1abc9c 30%, rgba(26, 188, 156, 0.6) 30%, rgba(26, 188, 156, 0.6) 35%, #1abc9c 35%, #1abc9c 40%, rgba(26, 188, 156, 0.6) 40%, rgba(26, 188, 156, 0.6) 45%, #1abc9c 45%, #1abc9c 50%, rgba(26, 188, 156, 0.6) 50%, rgba(26, 188, 156, 0.6) 55%, #1abc9c 55%, #1abc9c 60%, rgba(26, 188, 156, 0.6) 60%, rgba(26, 188, 156, 0.6) 65%, #1abc9c 65%, #1abc9c 70%, rgba(26, 188, 156, 0.6) 70%, rgba(26, 188, 156, 0.6) 75%, #1abc9c 75%, #1abc9c 80%, rgba(26, 188, 156, 0.6) 80%, rgba(26, 188, 156, 0.6) 85%, #1abc9c 85%, #1abc9c 90%, rgba(26, 188, 156, 0.6) 90%, rgba(26, 188, 156, 0.6) 95%, #1abc9c 95%, #1abc9c 100%);
+                background-image: linear-gradient(to right, rgba(26, 188, 156, 0.6), rgba(26, 188, 156, 0.6) 5%, #1abc9c 5%, #1abc9c 10%, rgba(26, 188, 156, 0.6) 10%, rgba(26, 188, 156, 0.6) 15%, #1abc9c 15%, #1abc9c 20%, rgba(26, 188, 156, 0.6) 20%, rgba(26, 188, 156, 0.6) 25%, #1abc9c 25%, #1abc9c 30%, rgba(26, 188, 156, 0.6) 30%, rgba(26, 188, 156, 0.6) 35%, #1abc9c 35%, #1abc9c 40%, rgba(26, 188, 156, 0.6) 40%, rgba(26, 188, 156, 0.6) 45%, #1abc9c 45%, #1abc9c 50%, rgba(26, 188, 156, 0.6) 50%, rgba(26, 188, 156, 0.6) 55%, #1abc9c 55%, #1abc9c 60%, rgba(26, 188, 156, 0.6) 60%, rgba(26, 188, 156, 0.6) 65%, #1abc9c 65%, #1abc9c 70%, rgba(26, 188, 156, 0.6) 70%, rgba(26, 188, 156, 0.6) 75%, #1abc9c 75%, #1abc9c 80%, rgba(26, 188, 156, 0.6) 80%, rgba(26, 188, 156, 0.6) 85%, #1abc9c 85%, #1abc9c 90%, rgba(26, 188, 156, 0.6) 90%, rgba(26, 188, 156, 0.6) 95%, #1abc9c 95%, #1abc9c 100%);
+                background-position: 0 0;
+                background-size: 100%;
+                -webkit-transition: background 300ms ease-in-out;
+                transition: background 300ms ease-in-out;
+            }
+            .second:hover {
+                background-position: 100px;
+            }
+    
+            .third {
+                border-color: #f1c40f;
+                color: #fff;
+                box-shadow: 0 0 40px 40px #f1c40f inset, 0 0 0 0 #f1c40f;
+                -webkit-transition: all 150ms ease-in-out;
+                transition: all 150ms ease-in-out;
+            }
+            .third:hover {
+                box-shadow: 0 0 10px 0 #f1c40f inset, 0 0 10px 4px #f1c40f;
+            }
         </style>
     </head>
+    
     <body class="antialiased">
-        <img class="stnd skip-lazy dark-version" width="207" height="110" alt="CTC Auto Group" src="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/05/brand-logo.png"/>
-        <div class="relative flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-            <div class="mx-auto text-center align-center items-center">
-                <h1 style="margin-top: -300px;">{{__('YOUR SESSION HAS BEEN EXPIRED')}}</h1>
-                <h2 class="text-gray-700">{{__('PLEASE CONTACT YOU SELLER TO RECEIVE A NEW LINK')}}</h2>
+        <div style="background-color: #6AB04C" class="body_background">
+            <div style="background-color: #6AB04C" class="relative flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+                <div class="block" style="margin-top: -50px;">
+                    <img style="height:80%; width:80%;" class="mx-auto"  src="{{asset('images/sorry.png')}}">
+                    <button style="margin-top:-100px;" class="btn first mx-auto">{{__('Get a New Link')}}</button>
+                </div>
             </div>
-            <label for="client" class="mx-auto text-5xl text-black font-bold text-center">
-                {{$token}}
-            </label>
         </div>
     </body>
 </html>

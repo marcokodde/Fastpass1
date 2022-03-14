@@ -114,7 +114,8 @@ color: #01a03b;
             font-size: 2rem;
             font-weight: 200;
             line-height: 1;
-            margin-top: -50px;
+            margin-top: -90px;
+            margin-bottom: 10px;
             padding: 1em 1em;
             text-decoration: none;
             text-align: center;
@@ -161,6 +162,40 @@ color: #01a03b;
             box-shadow: 0 0 10px 0 #f1c40f inset, 0 0 10px 4px #f1c40f;
         }
 
+        .btn2 {
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: transparent;
+            border: 2px solid #f1c40f;
+            border-radius: 0.6em;
+            color: #f1c40f;
+            cursor: pointer;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-self: center;
+                -ms-flex-item-align: center;
+                    align-self: center;
+            font-size: 2rem;
+            font-weight: 200;
+            line-height: 1;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 1em 1em;
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        .btn2:hover, .btn:focus {
+            color: black;
+            outline: 0;
+        }
+
         .fourth {
             border-color: #f1c40f;
             color: black;
@@ -175,6 +210,93 @@ color: #01a03b;
             background-position: 0;
             color: #fff;
         }
+        input[type=range] {
+            -webkit-appearance: none;
+            margin: 10px 0;
+            width: 100%;
+          }
+          input[type=range]:focus {
+            outline: none;
+          }
+          input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 12.8px;
+            cursor: pointer;
+            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+            background: #ac51b5;
+            border-radius: 25px;
+            border: 0px solid #000101;
+          }
+          input[type=range]::-webkit-slider-thumb {
+            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+            border: 0px solid #000000;
+            height: 20px;
+            width: 39px;
+            border-radius: 7px;
+            background: #65001c;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -3.6px;
+          }
+          input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #ac51b5;
+          }
+          input[type=range]::-moz-range-track {
+            width: 100%;
+            height: 12.8px;
+            cursor: pointer;
+            animate: 0.2s;
+            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+            background: #ac51b5;
+            border-radius: 25px;
+            border: 0px solid #000101;
+          }
+          input[type=range]::-moz-range-thumb {
+            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+            border: 0px solid #000000;
+            height: 20px;
+            width: 39px;
+            border-radius: 7px;
+            background: #65001c;
+            cursor: pointer;
+          }
+          input[type=range]::-ms-track {
+            width: 100%;
+            height: 12.8px;
+            cursor: pointer;
+            animate: 0.2s;
+            background: transparent;
+            border-color: transparent;
+            border-width: 39px 0;
+            color: transparent;
+          }
+          input[type=range]::-ms-fill-lower {
+            background: #ac51b5;
+            border: 0px solid #000101;
+            border-radius: 50px;
+            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+          }
+          input[type=range]::-ms-fill-upper {
+            background: #ac51b5;
+            border: 0px solid #000101;
+            border-radius: 50px;
+            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+          }
+          input[type=range]::-ms-thumb {
+            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+            border: 0px solid #000000;
+            height: 20px;
+            width: 39px;
+            border-radius: 7px;
+            background: #65001c;
+            cursor: pointer;
+          }
+          input[type=range]:focus::-ms-fill-lower {
+            background: #ac51b5;
+          }
+          input[type=range]:focus::-ms-fill-upper {
+            background: #ac51b5;
+          }
     </style>
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>

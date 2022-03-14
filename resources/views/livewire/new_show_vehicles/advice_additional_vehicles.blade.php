@@ -12,7 +12,7 @@
         </div>
 
         <div class="w-96 mx-auto  text-center mt-12">
-            <button class="btn fourth mx-auto text-black"
+            <button class="btn2 fourth mx-auto text-black"
                         wire:click="$toggle('show_additional')"
                         title="{{__('Show vehicles that require an additional down payment')}}">
                     {{ __('SHOW ME MORE')}}

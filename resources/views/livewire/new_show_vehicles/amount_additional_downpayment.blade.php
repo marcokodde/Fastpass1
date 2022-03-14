@@ -4,11 +4,12 @@
     </label>
     <div class="col-md-6 mx-4 px-4 mb-4">
         <div class="items-center">
-            <div class="flex overflow-x-auto space-x-5  justify-between">
-                <label>{{ $left_value}}</label><label class="ml-30">{{ $right_value}}</label>
-            </div>
             <div class="flex">
-                <input type="range"
+                <label class="font-oswald text-gray-700 font-bold">{{__('From:')}} ${{ $left_value}}</label>
+                <label class="font-oswald text-gray-700 font-bold ml-72">{{__('To:')}} ${{ $right_value}}</label>
+            </div>
+            <div class="flex mx-auto border-2 border-gray-400">
+                <input type="range" class="bg-red-500"
                         wire:model.lazy="left_value"
                         min="{{$left_mininum}}"
                         max="{{ $left_maximum}}"
@@ -16,7 +17,7 @@
                         wire:change="update_right_minimum"
                 >
 
-                <input type="range"
+                <input type="range" class="bg-green-500 -ml-1"
                         wire:model.lazy="right_value"
                         min="{{$right_minimum}}"
                         max="{{ $right_maximum}}"
