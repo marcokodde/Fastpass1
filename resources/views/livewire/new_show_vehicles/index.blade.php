@@ -35,6 +35,6 @@
     @if(!$show_garage && $client_has_vehicles_with_downpayment)
         @include('livewire.new_show_vehicles.advice_additional_vehicles')
     @endif
-    
+
     @include('common.fastpass')
 </div>

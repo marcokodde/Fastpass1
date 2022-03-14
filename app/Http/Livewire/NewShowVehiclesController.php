@@ -36,6 +36,16 @@ class NewShowVehiclesController extends Component
     public $downpayment_ranges = [];
     public $view_to_show = null;
 
+    // Control de slider para monto de enganche adicional
+    public $left_mininum;
+    public $left_maximum;
+    public $left_value;
+
+    public $right_minimum   = 1000;
+    public $right_maximum   = 4000;
+    public $right_value     =4000;
+
+    public $vehicles_in_range = 0;
 
     /**+----------------------------------------+
      * | LO QUE DEBE HACER ESTE CONTROLADOR     |
@@ -48,6 +58,7 @@ class NewShowVehiclesController extends Component
 
     public function mount($client_id,$token=null){
         $this->initial_review($client_id,$token);
+        $this->initial_values_to_sliders();
     }
 
     public function render()
@@ -55,7 +66,6 @@ class NewShowVehiclesController extends Component
         if($this->client){
             $this->close_expired_sessions($this->client);
         }
-
 
 
         if ($this->token) {
@@ -91,7 +101,6 @@ class NewShowVehiclesController extends Component
         }
         return view('livewire.new_show_vehicles.index');
     }
-
 
     /**+--------------------------------------------------------+
      * |                REVISION INICIAL                        |
@@ -182,7 +191,27 @@ class NewShowVehiclesController extends Component
         $this->header_second ='These are vehicles you are eligible to purchase with additional down payment.';
         $this->view_to_show = 'livewire.new_show_vehicles.list_additionals';
         $this->records = $this->read_vehicles_with_payment($this->client);
+        $this->vehicles_in_range  = $this->records->count() ? $this->records->count() : 0;
     }
 
-
+    /** Valores Iniciales de los sliders */
+    private function initial_values_to_sliders(){
+        $this->left_mininum    = env('APP_ADDITIONAL_DOWNPAYMENT_MIN',500);
+        $this->left_maximum    = env('APP_ADDITIONAL_DOWNPAYMENT_MAX',4000) -env('APP_ADDITIONAL_DOWNPAYMENT_STEP',500);
+        $this->left_value      = $this->left_mininum;
+        $this->right_minimum   = $this->left_mininum + env('APP_ADDITIONAL_DOWNPAYMENT_STEP',500);
+        $this->right_maximum   = env('APP_ADDITIONAL_DOWNPAYMENT_MAX',4000);
+        $this->right_value     = $this->right_maximum;
+    }
+    /** Actualiza  valor MÍNIMO slider derecho*/
+    public function update_right_minimum(){
+        $this->right_minimum = $this->left_value + env('APP_ADDITIONAL_DOWNPAYMENT_STEP',500);
+        $this->right_maximum = env('APP_ADDITIONAL_DOWNPAYMENT_MAX',4000);
+        $this->downpayment = $this->left_value;
+    }
+    /** Actualiza  valor MÁXIMO slider izquierdo*/
+    public function update_left_maximum(){
+        $this->left_maximum = $this->right_value -env('APP_ADDITIONAL_DOWNPAYMENT_STEP',500);
+        $this->downpayment = $this->left_value;
+    }
 }

@@ -75,7 +75,6 @@ trait NewSuggestedVehiclesTrait {
                 'Shields'       => 7.00,
                 '240'           => 7.00,
                 'Tulsa HUB'     => 7.00,
-                'default'       => 7.00
             );
 
             if(array_key_exists($record['dealership'], $dealer_percentages)){

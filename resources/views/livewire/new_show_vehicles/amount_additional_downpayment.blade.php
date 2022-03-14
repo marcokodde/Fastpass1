@@ -3,20 +3,39 @@
         {{ __('Please select the extra amount for your down payment.') }}
     </label>
     <div class="col-md-6 mx-4 px-4 mb-4">
-        <input type="radio" wire:model.lazy="downpayment" id="250" value="250" >    <label class="sm:text-xs md:text-base 2xl:text-xl" >$250</label>
-        <input type="radio" wire:model.lazy="downpayment" id="500" value="500" >    <label class="sm:text-xs md:text-base 2xl:text-xl ml-2 mr-4" >$500</label>
-        <input type="radio" wire:model.lazy="downpayment" id="750" value="750" >    <label class="sm:text-xs md:text-base 2xl:text-xl ml-2 mr-4" >$750</label>
-        <input type="radio" wire:model.lazy="downpayment" id="1000" value="1000" >  <label class="sm:text-xs md:text-base 2xl:text-xl ml-2 mr-4" >$1,000</label>
-        <input type="radio" wire:model.lazy="downpayment" id="1250" value="1250" >  <label class="sm:text-xs md:text-base 2xl:text-xl ml-2 mr-4" >$1,250</label>
-        <input type="radio" wire:model.lazy="downpayment" id="1500" value="1500" >  <label class="sm:text-xs md:text-base 2xl:text-xl ml-2 mr-4" >$1,500</label>
-        <input type="radio" wire:model.lazy="downpayment" id="1750" value="1750" >  <label class="sm:text-xs md:text-base 2xl:text-xl ml-2 mr-4" >$1,750</label>
-        <input type="radio" wire:model.lazy="downpayment" id="2000" value="2000" >  <label class="sm:text-xs md:text-base 2xl:text-xl ml-2 mr-4" >$2,000</label>
-        <hr class="border-2 border-gray-300">
+        <div class="items-center">
+            <div class="flex overflow-x-auto space-x-5  justify-between">
+                <label>{{ $left_value}}</label><label class="ml-30">{{ $right_value}}</label>
+            </div>
+            <div class="flex">
+                <input type="range"
+                        wire:model.lazy="left_value"
+                        min="{{$left_mininum}}"
+                        max="{{ $left_maximum}}"
+                        step="{{env('APP_ADDITIONAL_DOWNPAYMENT_STEP',500)}}"
+                        wire:change="update_right_minimum"
+                >
+
+                <input type="range"
+                        wire:model.lazy="right_value"
+                        min="{{$right_minimum}}"
+                        max="{{ $right_maximum}}"
+                        step="{{env('APP_ADDITIONAL_DOWNPAYMENT_STEP',500)}}"
+                        wire:change="update_left_maximum"
+                >
+            </div>
+        </div>
     </div>
+
     <br>
-    @if($records && $records->count())
+
+
     <label class="block mx-auto text-red-500 text-center font-oswald text-xl font-semibold mb-4">
-        {{ $records->count() . ' ' . __('Vehicles Available') }}
+        @if($vehicles_in_range)
+            {{ $vehicles_in_range . ' ' . __('Vehicles Available') }}
+        @else
+            {{  __(' No vehicles found') }}
+        @endif
     </label>
-    @endif
+
 </div>
