@@ -42,5 +42,8 @@
     "Browse our inventory to add your next vehicle !!":"¡Explore nuestro inventario para agregar su próximo vehículo!",
     "SEE INVENTORY":"VER INVENTARIO",
     "Inventory":"Inventario",
-    "The vehicle has been added to your garage.":"El vehículo ha sido agregado a su garaje."
+    "The vehicle has been added to your garage.":"El vehículo ha sido agregado a su garaje.",
+    "From:":"Desde:",
+    "To:":"Hasta:",
+    "Request a New Code":"Solicitar un Nuevo Código"
 }

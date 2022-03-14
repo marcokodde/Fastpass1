@@ -142,13 +142,17 @@ trait NewSuggestedVehiclesTrait {
                                                             ->InventoryId($inventory_record->id)
                                                             ->ClientId($client_record ->id)
                                                             ->first();
-
-                if(!$suggested_vehicle_client ){
+                if ($record['sale_price'] == 0) {
+                    $sales_price = $inventory_record->sales_price;
+                } else {
+                    $sales_price = $record['sale_price'];
+                }
+                if (!$suggested_vehicle_client) {
                     SuggestedVehicle::create([
                         'dealer_id'     => $dealer_record->id,
                         'client_id'     => $client_record->id,
                         'inventory_id'  => $inventory_record->id,
-                        'saleprice'     => $record['sale_price'],
+                        'sale_price'     => $sales_price,
                         'grade'         => $record['grade'],
                         'downpayment_for_next_tier' => $record['additionalDownpaymentForNextTier']
                     ]);
