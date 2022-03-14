@@ -46,11 +46,20 @@ class SuggestedVehicle extends Model
     }
 
     // ¿Mostrar o no según enganches y porcentaje del distribuidor)
-    public function showByTotalDownPayment($percentage,$downpayment_initial,$downpayment_additional){
-        if(!$this->sales_price || $this->sales_price < 1){
-            return false;
+    public function showByTotalDownPayment($from,$to){
+
+        $price_min_by_dealer =  intdiv($this->sale_price * $this->dealer->percentage,100);
+
+        //return'% Dealer=' . $this->dealer->percentage . ' Precio=' . $this->sale_price . ' Min Dowpayment=' . $price_min_by_dealer;
+       // dd('% Dealer=' . $this->dealer->percentage . ' Precio=' . $this->sale_price . ' Min Dowpayment=' . $price_min_by_dealer);
+        for($from;$from <= $to;$from = $from+env('APP_ADDITIONAL_DOWNPAYMENT_STEP ')){
+
+                if($from + $to >= $price_min_by_dealer){
+                    return true;
+                }
         }
-        return $downpayment_initial + $downpayment_additional >= intdiv($this->sales_price * $percentage,100);
+
+       return false;
     }
 
     /**+------------+
