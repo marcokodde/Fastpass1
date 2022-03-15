@@ -169,9 +169,9 @@ color: #01a03b;
             -moz-appearance: none;
             appearance: none;
             background-color: transparent;
-            border: 2px solid #BADC58;
+            border: 2px solid #f1c40f;
             border-radius: 0.6em;
-            color: #BADC58;
+            color: black;
             cursor: pointer;
             display: -webkit-box;
             display: -webkit-flex;
@@ -193,7 +193,7 @@ color: #01a03b;
             font-weight: 600;
         }
         .btn2:hover, .btn:focus {
-            color: black;
+            color: #f1c40f;
             outline: 0;
         }
 
