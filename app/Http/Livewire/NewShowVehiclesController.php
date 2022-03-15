@@ -125,10 +125,7 @@ class NewShowVehiclesController extends Component
                 $this->garage = $this->get_garage($this->client);
                 if($this->client->loggin_times == 1){
                     $this->update_interval_session($this->active_session,$this->garage);
-                    $this->client->update_loggin_times();
                 }
-
-              //  $this->client->update_loggin_times();
             }
         }
     }
