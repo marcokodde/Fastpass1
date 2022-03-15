@@ -123,7 +123,10 @@ class NewShowVehiclesController extends Component
             if($this->active_session){
 
                 $this->garage = $this->get_garage($this->client);
-                $this->update_interval_session($this->active_session,$this->garage);
+                if($this->client->loggin_times == 1){
+                    $this->update_interval_session($this->active_session,$this->garage);
+                }
+
               //  $this->client->update_loggin_times();
             }
         }
@@ -190,8 +193,8 @@ class NewShowVehiclesController extends Component
         $this->records = $this->read_vehicles_with_payment($this->client);
 
         // dd('Min=' . $this->left_value . 'Max=' . $this->left_maximum ,$this->records);
-        // $this->vehicles_in_range  = $this->records->count() ? $this->records->count() : 0;
-        $this->vehicles_in_range  = 0;
+         $this->vehicles_in_range  = $this->records->count() ? $this->records->count() : 0;
+        //$this->vehicles_in_range  = 0;
     }
 
     /** Valores Iniciales de los sliders */
@@ -208,10 +211,12 @@ class NewShowVehiclesController extends Component
         $this->right_minimum = $this->left_value + env('APP_ADDITIONAL_DOWNPAYMENT_STEP',500);
         $this->right_maximum = env('APP_ADDITIONAL_DOWNPAYMENT_MAX',4000);
         $this->downpayment = $this->left_value;
+        $this->read_additionals();
     }
     /** Actualiza  valor MÁXIMO slider izquierdo*/
     public function update_left_maximum(){
         $this->left_maximum = $this->right_value -env('APP_ADDITIONAL_DOWNPAYMENT_STEP',500);
         $this->downpayment = $this->left_value;
+        $this->read_additionals();
     }
 }

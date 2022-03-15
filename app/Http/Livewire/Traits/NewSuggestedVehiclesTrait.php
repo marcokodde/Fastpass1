@@ -23,6 +23,12 @@ trait NewSuggestedVehiclesTrait {
 
     // Lee los registros sugeridos
     private function read_vehicles_with_payment(Client $client){
+
+        return SuggestedVehicle::ClientId($client->id)
+        ->DownPayment($this->downpayment)
+        ->orderby('sale_price')
+        ->get();
+
         return SuggestedVehicle::select('suggested_vehicles.*')
                     ->where('suggested_vehicles.client_id',$client->id)
                     ->where('suggested_vehicles.downpayment_for_next_tier', '>',0)
