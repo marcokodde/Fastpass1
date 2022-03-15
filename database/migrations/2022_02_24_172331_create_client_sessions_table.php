@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamp('expire_at')->nullable()->default(null);
             $table->boolean('generated_by_system')->default(0);
             $table->boolean('active')->default(0);
-            $table->integer('has_been_used')->default(0)->comment('¿Ha sido usado?');
+            $table->boolean('has_been_used')->default(0)->comment('¿Ha sido usado?');
             $table->timestamps();
         });
     }
