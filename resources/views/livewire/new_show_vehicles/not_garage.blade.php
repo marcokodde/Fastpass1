@@ -14,7 +14,7 @@
                 </div>
             </div>
             <span class="mx-auto">
-                <button class="btn2 fourth mx-auto" wire:click="return_to_approved">
+                <button class="btn third mx-auto" wire:click="return_to_approved">
                             {{ __('SEE INVENTORY')}}
                 </button>
             </span>

@@ -29,18 +29,12 @@
         </style>
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <img class="stnd skip-lazy dark-version"
-                        width="207"
-                        height="110"
-                        alt="CTC Auto Group"
-                        src="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/05/brand-logo.png"  />
-                </div>
-                <h1 class="mt-20 text-4xl mx-auto text-center">{{__('Welcome to Fast Pass')}}</h1>
+        <img class="stnd skip-lazy dark-version" width="207" height="110" alt="CTC Auto Group" src="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/05/brand-logo.png"/>
+    <div style="background-color: #6AB04C">
+        <div style="background-color: #6AB04C" class="relative flex items-center justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0">
+            <div style="margin:auto; display:flex; justify-content:center;">
+                <img  style="height:75%; width:75%;" class="mx-auto" src="{{asset('images/welcome_fastpass.png')}}">
             </div>
         </div>
-    </body>
-</html>
+    </div>
+</body>

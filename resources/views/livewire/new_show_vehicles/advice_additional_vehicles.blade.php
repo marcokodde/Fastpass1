@@ -11,8 +11,8 @@
             {{__('Click SHOW ME MORE to unlock the prices.')}}
         </div>
 
-        <div class="w-96 mx-auto  text-center mt-12">
-            <button class="btn2 fourth mx-auto text-black"
+        <div class="w-96 mx-auto text-center 2xl:mt-20 mt-20">
+            <button class="btn third mx-auto text-black"
                         wire:click="$toggle('show_additional')"
                         title="{{__('Show vehicles that require an additional down payment')}}">
                     {{ __('SHOW ME MORE')}}

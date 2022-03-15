@@ -99,16 +99,17 @@
             }
         </style>
     </head>
-    
+
     <body class="antialiased">
         <div style="background-color: #6AB04C" class="body_background">
             <div style="background-color: #6AB04C" class="relative flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
                 <div class="block" style="margin-top: -50px;">
-                    <img style="height:80%; width:80%;" class="mx-auto"  src="{{asset('images/session_expired.png')}}">
-                    <button style="margin-top:-100px;" onclick="execute()" class="btn third mx-auto">{{__('Request a New Code')}}</button>
+                    <img style="height:75%; width:75%;" class="mx-auto"  src="{{asset('images/session_expired.png')}}">
+                    <button style="margin-top:-5%;" onclick="execute()" class="btn third mx-auto">{{__('Request a New Code')}}</button>
                 </div>
             </div>
         </div>
+        <input type="hidden" id="refreshed" value="no">
     </body>
     <script>
         function execute() {

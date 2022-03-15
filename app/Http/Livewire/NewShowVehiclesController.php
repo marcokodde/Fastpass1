@@ -69,7 +69,7 @@ class NewShowVehiclesController extends Component
         }
 
         if(!$this->client || !$this->active_session){
-            return view('livewire.welcome.welcome-bad-params');
+            return view('livewire.new_show_vehicles.not_active_session');
          }
 
 

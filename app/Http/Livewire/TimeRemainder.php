@@ -96,7 +96,7 @@ class TimeRemainder extends Component
 
         // Envio de Nota cuando la session expiro, de momento se comenta hasta que se de el Visto Bueno.
 
-        $this->send_note_api_expire($token);
+        //$this->send_note_api_expire($token);
         return redirect()->to('expire_session');
     }
 }

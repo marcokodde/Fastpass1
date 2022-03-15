@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::get('expire_session',function(){
     return view('livewire.session.session_expired');
 })->name('expire_sesion');
+
 Route::get('show_vehicles/{client_id}/{token?}',NewShowVehiclesController::class)->name('show_vehicles');
+
 Route::get('/{client_id}/{token?}',WelcomeController::class)->name('suggested_vehicles');
-
-

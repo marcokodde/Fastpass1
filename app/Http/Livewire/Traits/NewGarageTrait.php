@@ -71,7 +71,7 @@ trait NewGarageTrait {
             if($this->create_detail_garage($inventory_record,$is_additional_next_tier)){
                 $this->add_interval_to_client_session();
                 // TODO: Enviar nota de que se agregó un vehículo al garage
-                $this->send_note_api_vehicle($this->record_detail_garage);
+                //$this->send_note_api_vehicle($this->record_detail_garage);
                 $this->show_alert();
             };
         }
