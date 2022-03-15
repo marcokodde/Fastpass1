@@ -100,9 +100,9 @@ color: #01a03b;
             -moz-appearance: none;
             appearance: none;
             background-color: transparent;
-            border: 2px solid #f1c40f;
+            border: 2px solid #BADC58;
             border-radius: 0.6em;
-            color: #f1c40f;
+            color: #BADC58;
             cursor: pointer;
             display: -webkit-box;
             display: -webkit-flex;
@@ -129,8 +129,9 @@ color: #01a03b;
         }
 
         .first {
+            box-shadow: 0 0 40px 40px #BADC58 inset, 0 0 0 0 #BADC58;
             -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
-            transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+            transition: box-shadow 300ms ease-in-out;
         }
         .first:hover {
             box-shadow: 0 0 40px 40px #f1c40f inset;
@@ -152,9 +153,9 @@ color: #01a03b;
         }
 
         .third {
-            border-color: #f1c40f;
+            border-color: #BADC58;
             color: #fff;
-            box-shadow: 0 0 40px 40px #f1c40f inset, 0 0 0 0 #f1c40f;
+            box-shadow: 0 0 40px 40px #BADC58 inset, 0 0 0 0 #BADC58;
             -webkit-transition: all 150ms ease-in-out;
             transition: all 150ms ease-in-out;
         }
@@ -168,9 +169,9 @@ color: #01a03b;
             -moz-appearance: none;
             appearance: none;
             background-color: transparent;
-            border: 2px solid #f1c40f;
+            border: 2px solid #BADC58;
             border-radius: 0.6em;
-            color: #f1c40f;
+            color: #BADC58;
             cursor: pointer;
             display: -webkit-box;
             display: -webkit-flex;
@@ -197,10 +198,10 @@ color: #01a03b;
         }
 
         .fourth {
-            border-color: #f1c40f;
+            border-color: #BADC58;
             color: black;
-            background-image: -webkit-linear-gradient(45deg, #f1c40f 50%, transparent 50%);
-            background-image: linear-gradient(45deg, #f1c40f 50%, transparent 50%);
+            background-image: -webkit-linear-gradient(45deg, #BADC58 50%, transparent 50%);
+            background-image: linear-gradient(45deg, #BADC58 50%, transparent 50%);
             background-position: 100%;
             background-size: 400%;
             -webkit-transition: background 300ms ease-in-out;
