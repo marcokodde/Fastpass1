@@ -41,6 +41,12 @@ class ClientSession extends Model
             $this->save();
     }
 
+    // Actualizaas veces usado
+    public function update_has_been_used(){
+        $this->has_been_used=true;
+        $this->save();
+    }
+
     /**+------------+
      * | Búsquedas  |
      * +------------+

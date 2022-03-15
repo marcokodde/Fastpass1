@@ -121,11 +121,13 @@ class NewShowVehiclesController extends Component
             $this->active_session = $this->manage_session($this->client,$token);
 
             if($this->active_session){
-
-                $this->garage = $this->get_garage($this->client);
-                if($this->client->loggin_times == 1){
+                if(!$this->active_session->has_been_used){
+                    $this->garage = $this->get_garage($this->client);
                     $this->update_interval_session($this->active_session,$this->garage);
+                    $this->active_session->update_has_been_used();
                 }
+
+
             }
         }
     }
