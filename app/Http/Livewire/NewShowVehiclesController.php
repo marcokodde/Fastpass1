@@ -41,9 +41,9 @@ class NewShowVehiclesController extends Component
     public $left_maximum;
     public $left_value;
 
-    public $right_minimum   = 1000;
-    public $right_maximum   = 4000;
-    public $right_value     =4000;
+    public $right_minimum;
+    public $right_maximum;
+    public $right_value;
 
     public $vehicles_in_range = 0;
 
@@ -63,22 +63,15 @@ class NewShowVehiclesController extends Component
 
     public function render()
     {
+
         if($this->client){
             $this->close_expired_sessions($this->client);
         }
 
+        if(!$this->client || !$this->active_session){
+            return view('livewire.welcome.welcome-bad-params');
+         }
 
-        if ($this->token) {
-            $this->client_session =  $this->get_active_session_with_token($this->client->id,$this->token);
-
-        }else{
-
-            $this->client_session = $this->get_active_session($this->client->id);
-        }
-
-        if(!$this->client_session){
-            return view('livewire.new_show_vehicles.no_active_session');
-        }
 
         $this->garage = $this->get_garage($this->client);
 
@@ -126,7 +119,9 @@ class NewShowVehiclesController extends Component
             $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
 
             $this->active_session = $this->manage_session($this->client,$token);
+
             if($this->active_session){
+
                 $this->garage = $this->get_garage($this->client);
                 $this->update_interval_session($this->active_session,$this->garage);
               //  $this->client->update_loggin_times();
@@ -146,7 +141,9 @@ class NewShowVehiclesController extends Component
     */
     private function manage_session(Client $client,$token=null){
         $this->close_expired_sessions();
-
+        if($client->loggin_times && !$token){
+            return false;
+        }
         // ¿Primera vez?: Crea la sesión
         if(!$client->loggin_times){
            return $this->create_client_session($client->id);

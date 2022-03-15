@@ -21,6 +21,7 @@ class CreateSuggestedVehiclesTable extends Migration
             $table->float('sale_price', 8, 2)->default(0)->comment('Precio de venta');
             $table->string('grade',1)->nullable()->comment('Grado de calificación');
             $table->float('downpayment_for_next_tier', 8, 2)->comment('Enganche Adicional');
+            $table->boolean('show_like_additional')->default(0)->comment('¿Mostrar vehículo como adicional?');
         });
     }
 

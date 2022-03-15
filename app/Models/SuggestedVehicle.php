@@ -16,7 +16,8 @@ class SuggestedVehicle extends Model
         'inventory_id',
         'sale_price',
         'grade',
-        'downpayment_for_next_tier'
+        'downpayment_for_next_tier',
+        'show_like_additional'
     ];
 
 
@@ -45,21 +46,29 @@ class SuggestedVehicle extends Model
         return $this->downpayment_for_next_tier > 0 ? true : false;
     }
 
-    // ¿Mostrar o no según enganches y porcentaje del distribuidor)
-    public function showByTotalDownPayment($from,$to){
+    /**+--------------------------------------------+
+     * | Decidir si se muestra o no el vehículo     |
+     * +--------------------------------------------+
+     * | 1) Calcular precios del vehículo           |
+     * |    a) Mínimo                               |
+     * |    b) Máximo                               |
+     * | 2) Comparar si el precio del vehículo      |
+     * |    está en el rango de precio min y max    |
+     * +--------------------------------------------+
+     */
+    // Actualiza campo para mostrar como adicional
+    public function update_show_like_additional($downpayment_initial_client,$from,$to){
+        $downpayment_total_min  = $downpayment_initial_client + $from;
+        $downpayment_total_max  = $downpayment_initial_client + $to;
+        $downpayment_min_vehicle      = intdiv($this->sale_price * $this->dealer->percentage,100);
+        $this->show_like_additional = false;
+        $this->save();
 
-        $price_min_by_dealer =  intdiv($this->sale_price * $this->dealer->percentage,100);
-
-        //return'% Dealer=' . $this->dealer->percentage . ' Precio=' . $this->sale_price . ' Min Dowpayment=' . $price_min_by_dealer;
-       // dd('% Dealer=' . $this->dealer->percentage . ' Precio=' . $this->sale_price . ' Min Dowpayment=' . $price_min_by_dealer);
-        for($from;$from <= $to;$from = $from+env('APP_ADDITIONAL_DOWNPAYMENT_STEP ')){
-
-                if($from + $to >= $price_min_by_dealer){
-                    return true;
-                }
+        if( $downpayment_total_min >= $downpayment_min_vehicle  &&  $downpayment_total_max <= $downpayment_total_max){
+            $this->show_like_additional = true;
+            $this->save();
         }
 
-       return false;
     }
 
     /**+------------+
