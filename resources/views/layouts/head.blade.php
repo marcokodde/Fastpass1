@@ -174,7 +174,7 @@ color: #01a03b;
         }
 
         .fourth {
-            border-color: #BADC58;
+            border-color: #f1c40f;
             color: black;
             background-image: -webkit-linear-gradient(45deg, #BADC58 50%, transparent 50%);
             background-image: linear-gradient(45deg, #BADC58 50%, transparent 50%);
