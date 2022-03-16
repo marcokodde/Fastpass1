@@ -32,7 +32,7 @@ class NewShowVehiclesController extends Component
     public $show_garage=false;
     public $show_additional=false;
     public $show_approved = true;
-    public $downpayment = 250;
+    public $downpayment = 500;
     public $downpayment_ranges = [];
     public $view_to_show = null;
 
