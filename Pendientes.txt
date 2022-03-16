@@ -1,7 +1,6 @@
 Pendientes proyecto Fastpass.
 
-1.-Cambiar lo de botones de radio por casillas de verificación (Checkboxes) estableciendo rangos y seleccionando los vehículos que correspondan:
-Esto incluye la revisión del precio vs porcentaje que maneja el distribuidor.Investigar como implementar las barras de precios
-7.- Migracion a Servidor Nuevo
-8.- (MANN) Adjuntar token para que el cliente pueda acceder al sistema una vez terminada la session.
-10.- Llamar actualización de inventario desde c2c
+1.-CResolver el uso del slider y mostrar vehículos adicionales
+2.- (MANN) Adjuntar token para que el cliente pueda acceder al sistema una vez terminada la session.
+3.- Migracion a Servidor Nuevo
+3.- Llamar actualización de inventario desde c2c
