@@ -26,26 +26,26 @@
 
         @livewireScripts
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script>
-    window.addEventListener('show_toast_vehicle_added',({detail:{type,message}})=>{
-        const Toast = Swal.mixin({
-            toast: false,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 2000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
+        <script>
+            window.addEventListener('show_toast_vehicle_added',({detail:{type,message}})=>{
+                const Toast = Swal.mixin({
+                    toast: false,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
 
-        Toast.fire({
-            icon: 'success',
-            title: "{{__('The vehicle has been added to your garage.')}}"
-        })
+                Toast.fire({
+                    icon: 'success',
+                    title: "{{__('The vehicle has been added to your garage.')}}"
+                })
 
-    })
-</script>
+            })
+        </script>
     </body>
 </html>

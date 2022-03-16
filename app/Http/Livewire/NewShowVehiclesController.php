@@ -12,12 +12,10 @@ use App\Models\ClientSession;
 
 class NewShowVehiclesController extends Component
 {
-
     use NewSessionClientTrait;
     use NewGarageTrait;
     use NewSuggestedVehiclesTrait;
     use ApiTrait;
-
 
     public $client_id;
     public $token;
@@ -63,15 +61,13 @@ class NewShowVehiclesController extends Component
 
     public function render()
     {
-
-        if($this->client){
+        if ($this->client) {
             $this->close_expired_sessions($this->client);
         }
 
-        if(!$this->client || !$this->active_session){
+        if (!$this->client || !$this->active_session) {
             return view('livewire.new_show_vehicles.not_active_session');
-         }
-
+        }
 
         $this->garage = $this->get_garage($this->client);
 
@@ -84,12 +80,11 @@ class NewShowVehiclesController extends Component
             return view('livewire.new_show_vehicles.index');
         }
 
-
        /** Mostrar Adicionales o Aprobados */
         if ($this->show_additional && $this->client_has_vehicles_with_downpayment) {
             $this->show_garage = false;
             $this->read_additionals();
-        }else{
+        } else {
             $this->read_approved();
         }
         return view('livewire.new_show_vehicles.index');
@@ -112,22 +107,18 @@ class NewShowVehiclesController extends Component
     private function initial_review($client_id,$token){
         $this->client_id = $client_id;
         $this->token = $token;
-
         $this->client = Client::ClientId($this->client_id)->first();
 
-        if($this->client){
+        if ($this->client) {
             $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
-
             $this->active_session = $this->manage_session($this->client,$token);
 
-            if($this->active_session){
-                if(!$this->active_session->has_been_used){
+            if ($this->active_session) {
+                if (!$this->active_session->has_been_used) {
                     $this->garage = $this->get_garage($this->client);
                     $this->update_interval_session($this->active_session,$this->garage);
                     $this->active_session->update_has_been_used();
                 }
-
-
             }
         }
     }
@@ -144,22 +135,19 @@ class NewShowVehiclesController extends Component
     */
     private function manage_session(Client $client,$token=null){
         $this->close_expired_sessions();
-        if($client->loggin_times && !$token){
+        if ($client->loggin_times && !$token) {
             return false;
         }
         // ¿Primera vez?: Crea la sesión
-        if(!$client->loggin_times){
-           return $this->create_client_session($client->id);
+        if (!$client->loggin_times) {
+            return $this->create_client_session($client->id);
         };
 
-
         // Si no es la primera vez lee la sesión activa
-        if($client->loggin_times){
-             return $this->get_active_session_with_token($client->id,$token);
-         }
-
+        if ($client->loggin_times) {
+            return $this->get_active_session_with_token($client->id,$token);
+        }
     }
-
 
     /** Regresa para que se vean los vehículos aprobados */
     public function return_to_approved(){
@@ -172,7 +160,6 @@ class NewShowVehiclesController extends Component
         $this->header_second = 'Based on your information these are vehicles you are eligible to purchase.';
         $this->view_to_show = 'livewire.new_show_vehicles.list_approved';
         $this->records = $this->read_approved_vehicles($this->client);
-
     }
 
     /** Vehículos en el Garaje  */
@@ -193,7 +180,7 @@ class NewShowVehiclesController extends Component
         $this->records = $this->read_vehicles_with_payment($this->client);
 
         // dd('Min=' . $this->left_value . 'Max=' . $this->left_maximum ,$this->records);
-         $this->vehicles_in_range  = $this->records->count() ? $this->records->count() : 0;
+        $this->vehicles_in_range  = $this->records->count() ? $this->records->count() : 0;
         //$this->vehicles_in_range  = 0;
     }
 
