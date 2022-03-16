@@ -57,22 +57,28 @@ class SuggestedVehicle extends Model
      * +--------------------------------------------+
      */
     // Actualiza campo para mostrar como adicional
-    public function update_show_like_additional($downpayment_initial_client,$from,$to){
-        if($from = env('APP_ADDITIONAL_DOWNPAYMENT_MIN',500)){
-            $downpayment_total_min = $downpayment_initial_client;
-        }else{
-            $downpayment_total_min = $downpayment_initial_client + $from;
-        }
+    public function update_show_like_additional($value=false){
+        // if($from = env('APP_ADDITIONAL_DOWNPAYMENT_MIN',500)){
+        //     $downpayment_total_min = $downpayment_initial_client;
+        // }else{
+        //     $downpayment_total_min = $downpayment_initial_client + $from;
+        // }
 
-        $downpayment_total_max  = $downpayment_initial_client + $to;
-        $downpayment_min_vehicle      = intdiv($this->sale_price * $this->dealer->percentage,100);
-        $this->show_like_additional = false;
+        // $downpayment_total_max  = $downpayment_initial_client + $to;
+        // $downpayment_min_vehicle      = intdiv($this->sale_price * $this->dealer->percentage,100);
+    //     dd('Precio=' .$this->sale_price . ' % dealer=' . $this->dealer->percentage .
+    //         ' Enganche Mínimo=' . $downpayment_min_vehicle . ' Inicial=' . $downpayment_initial_client .
+    //         ' Desde=' . $from . ' Hasta=' . $to . ' Total Min=' . $downpayment_total_min  .
+    //         ' Total Max=' .  $downpayment_total_max
+    //  );
+        $this->show_like_additional = $value;
         $this->save();
 
-        if($downpayment_min_vehicle >= $downpayment_total_min && $downpayment_min_vehicle <=$downpayment_total_max){
-            $this->show_like_additional = true;
-            $this->save();
-        }
+        // if($downpayment_min_vehicle >= $downpayment_total_min && $downpayment_min_vehicle <=$downpayment_total_max){
+        //     dd('Si está dentro del rango');
+        //     $this->show_like_additional = true;
+        //     $this->save();
+        // }
 
 
     }

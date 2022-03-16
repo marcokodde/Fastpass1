@@ -22,11 +22,42 @@ trait NewSuggestedVehiclesTrait {
 
 
     // Lee los registros sugeridos
-    private function read_vehicles_with_payment(Client $client){
+    private function read_vehicles_with_payment(Client $client,$from=null,$to=null){
+        if(!$from){
+            $from = env('APP_ADDITIONAL_DOWNPAYMENT_MIN');
+        }
+        if(!$to){
+            $to=env('APP_ADDITIONAL_DOWNPAYMENT_MAX');
+        }
 
-        // TODO: Actualizar el atributo show_like_additinal
+        if($from == env('APP_ADDITIONAL_DOWNPAYMENT_MIN')){
+            $from = 1;
+        }
+        // Lee todos los registros y actualiza a false mostrar vehículo
+        $records =SuggestedVehicle::ClientId($client->id)->where('downpayment_for_next_tier', '>',0)->get();
+        foreach($records as $record){
+            $record->update_show_like_additional();
+        }
+
+        // Recorre y en caso dado muestra los vehículos
+        foreach($records as $record){
+            $downpayment_total_min      = $client->downpayment + $from;
+            $downpayment_total_max      = $client->downpayment + $to;
+            $downpayment_min_vehicle    = intdiv($record->sale_price * $record->dealer->percentage,100);
+            if($downpayment_min_vehicle >= $downpayment_total_min && $downpayment_min_vehicle <=$downpayment_total_max){
+                       dd('Precio=' .$record->sale_price . ' % dealer=' . $record->dealer->percentage .
+                        ' Enganche Mínimo=' . $downpayment_min_vehicle . ' Inicial=' .$client->downpayment .
+                        ' Desde=' . $from . ' Hasta=' . $to . ' Total Min=' . $downpayment_total_min  .
+                        ' Total Max=' .  $downpayment_total_max
+                );
+                $record->update_show_like_additional(true);
+            }
+
+        }
+        dd('Actualizados los sugeridos');
+
         return SuggestedVehicle::ClientId($client->id)
-                    ->DownPayment($this->downpayment)
+                    ->where('show_like_addicional',1)
                     ->orderby('sale_price')
                     ->get();
 

@@ -16,7 +16,8 @@ class Client extends Model
         'client_id',
        ' downpayment',
         'loggin_times',
-        'read_vehicles_from_api'
+        'read_vehicles_from_api',
+        'show_like_additional'
     ];
 
     // Vehículos sugeridos
