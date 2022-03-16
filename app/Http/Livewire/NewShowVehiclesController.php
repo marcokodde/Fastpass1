@@ -177,7 +177,7 @@ class NewShowVehiclesController extends Component
         $this->header_page = 'ADDITIONAL VEHICLES';
         $this->header_second ='These are vehicles you are eligible to purchase with additional down payment.';
         $this->view_to_show = 'livewire.new_show_vehicles.list_additionals';
-        $this->records = $this->read_vehicles_with_payment($this->client);
+        $this->records = $this->read_vehicles_with_payment($this->client,$this->left_value,$this->right_value);
 
         // dd('Min=' . $this->left_value . 'Max=' . $this->left_maximum ,$this->records);
         $this->vehicles_in_range  = $this->records->count() ? $this->records->count() : 0;
