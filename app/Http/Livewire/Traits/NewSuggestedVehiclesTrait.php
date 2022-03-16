@@ -54,10 +54,10 @@ trait NewSuggestedVehiclesTrait {
             }
 
         }
-        dd('Actualizados los sugeridos');
+
 
         return SuggestedVehicle::ClientId($client->id)
-                    ->where('show_like_addicional',1)
+                    ->where('show_like_additional',1)
                     ->orderby('sale_price')
                     ->get();
 
