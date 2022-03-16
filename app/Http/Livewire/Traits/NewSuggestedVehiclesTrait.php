@@ -45,11 +45,11 @@ trait NewSuggestedVehiclesTrait {
             $downpayment_total_max      = $client->downpayment + $to;
             $downpayment_min_vehicle    = intdiv($record->sale_price * $record->dealer->percentage,100);
             if($downpayment_min_vehicle >= $downpayment_total_min && $downpayment_min_vehicle <=$downpayment_total_max){
-                       dd('Precio=' .$record->sale_price . ' % dealer=' . $record->dealer->percentage .
-                        ' Enganche Mínimo=' . $downpayment_min_vehicle . ' Inicial=' .$client->downpayment .
-                        ' Desde=' . $from . ' Hasta=' . $to . ' Total Min=' . $downpayment_total_min  .
-                        ' Total Max=' .  $downpayment_total_max
-                );
+                //        dd('Precio=' .$record->sale_price . ' % dealer=' . $record->dealer->percentage .
+                //         ' Enganche Mínimo=' . $downpayment_min_vehicle . ' Inicial=' .$client->downpayment .
+                //         ' Desde=' . $from . ' Hasta=' . $to . ' Total Min=' . $downpayment_total_min  .
+                //         ' Total Max=' .  $downpayment_total_max
+                // );
                 $record->update_show_like_additional(true);
             }
 
