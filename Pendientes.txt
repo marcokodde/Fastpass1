@@ -1,6 +1,3 @@
 Pendientes proyecto Fastpass.
-
-1.- Resolver el uso del slider y mostrar vehículos adicionales
-2.- (MANN) Adjuntar token para que el cliente pueda acceder al sistema una vez terminada la session.
 3.- Migracion a Servidor Nuevo
 4.- Llamar actualización de inventario desde c2c

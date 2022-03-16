@@ -56,7 +56,7 @@ trait ApiTrait {
                 'Accept' => 'application/json'])
             ->post('https://api.neoverify.net/v1/add_note/', [
                         'neo_id'    =>  $this->client_id,
-                        'note'      =>  'Test Ahava2.. Customer requested New Price Link: Token#'.$token.''
+                        'note'      =>  'Test Ahava.. "Remember that the client is sent the url of the site/client_id/token: example: https://name_site.com/client_id/token" Customer requested New Link: Token#'.$token.''
                     ]);
             return $response->json();
         } catch (RequestException $ex) {

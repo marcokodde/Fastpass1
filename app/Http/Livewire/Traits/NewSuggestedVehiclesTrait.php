@@ -34,7 +34,6 @@ trait NewSuggestedVehiclesTrait {
                     ->where('suggested_vehicles.downpayment_for_next_tier', '>',0)
                     ->orderBy('sale_price')
                     ->get();
-
     }
 
 
@@ -44,15 +43,13 @@ trait NewSuggestedVehiclesTrait {
                                 ->orderby('downpayment_for_next_tier')
                                 ->get();
 
-
         foreach($records as $record){
             $record->update_show_like_additional($client->downpayment,$from,$to);
-         }
+        }
 
         return SuggestedVehicle::ClientId($client->id)
                                 ->where('show_like_additional',1)
                                 ->get();
-
     }
 
 
@@ -69,7 +66,6 @@ trait NewSuggestedVehiclesTrait {
         }
 
         return  $this->client = Client::ClientId($this->client_id)->first();
-
     }
 
 
@@ -81,29 +77,26 @@ trait NewSuggestedVehiclesTrait {
                 'name' => $record['dealership'],
                 'percentage' => $this->decide_dealer_percentage($record)
             ]);
-
         }
     }
 
     // Decidir el porcentaje del distribuidor
     private function decide_dealer_percentage($record){
-            $dealer_percentages = array(
-                'North Freeway' => 10.00,
-                'Gulf Freeway'  => 10.00,
-                '1960'          => 10.00,
-                'Airline'       => 10.00,
-                'Shields'       => 7.00,
-                '240'           => 7.00,
-                'Tulsa HUB'     => 7.00,
-            );
+        $dealer_percentages = array(
+            'North Freeway' => 10.00,
+            'Gulf Freeway'  => 10.00,
+            '1960'          => 10.00,
+            'Airline'       => 10.00,
+            'Shields'       => 7.00,
+            'I-240'         => 7.00,
+            'Hub'           => 7.00,
+        );
 
-            if(array_key_exists($record['dealership'], $dealer_percentages)){
-                return $dealer_percentages[$record['dealership']];
-            }else{
-                return env('APP_PERCENTAGE_DEALER',7.00);
-            }
-
-
+        if(array_key_exists($record['dealership'], $dealer_percentages)){
+            return $dealer_percentages[$record['dealership']];
+        }else{
+            return env('APP_PERCENTAGE_DEALER',7.00);
+        }
     }
 
     // Crea o actualiza Cliente
@@ -119,7 +112,6 @@ trait NewSuggestedVehiclesTrait {
                 'downpayment'   => $record['downpayment'],
             ]);
         }
-
     }
 
     // Borra los vehículos sugeridos del cliente
@@ -147,11 +139,9 @@ trait NewSuggestedVehiclesTrait {
     // Pone autos sugeridos desde inventario local
     private function create_suggested_vehicles_to_client($records,$client_id){
         foreach($records as $record){
-
             $dealer_record      = Dealer::Name(ucwords($record['dealership']))->first();
             $client_record      = Client::ClientId($client_id)->first();
             $inventory_record   = Inventory::Stock($record['stock'])->first();
-
             if($dealer_record && $client_record && $inventory_record ){
                 $suggested_vehicle_client = SuggestedVehicle::DealerId($dealer_record->id)
                                                             ->InventoryId($inventory_record->id)
@@ -175,5 +165,4 @@ trait NewSuggestedVehiclesTrait {
             }
         }
     }
-
 }
