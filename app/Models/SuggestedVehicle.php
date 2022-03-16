@@ -58,16 +58,22 @@ class SuggestedVehicle extends Model
      */
     // Actualiza campo para mostrar como adicional
     public function update_show_like_additional($downpayment_initial_client,$from,$to){
-        $downpayment_total_min  = $downpayment_initial_client + $from;
+        if($from = env('APP_ADDITIONAL_DOWNPAYMENT_MIN',500)){
+            $downpayment_total_min = $downpayment_initial_client;
+        }else{
+            $downpayment_total_min = $downpayment_initial_client + $from;
+        }
+
         $downpayment_total_max  = $downpayment_initial_client + $to;
         $downpayment_min_vehicle      = intdiv($this->sale_price * $this->dealer->percentage,100);
         $this->show_like_additional = false;
         $this->save();
 
-        if( $downpayment_total_min >= $downpayment_min_vehicle  &&  $downpayment_total_max <= $downpayment_total_max){
+        if($downpayment_min_vehicle >= $downpayment_total_min && $downpayment_min_vehicle <=$downpayment_total_max){
             $this->show_like_additional = true;
             $this->save();
         }
+
 
     }
 
@@ -100,7 +106,7 @@ class SuggestedVehicle extends Model
 
     // Menor o igual a un enganche adicional
     public function scopeDownPayment($query,$downpayment=250){
-        $query->where('downpayment_for_next_tier', '<=', $downpayment)
+        $query->where('downpayment_for_next_tier', '>=', $downpayment)
               ->where('downpayment_for_next_tier', '>',0);
     }
 
