@@ -12,12 +12,17 @@ trait NewSuggestedVehiclesTrait {
 
     // Lee vehículos aprobados
     private function read_approved_vehicles(Client $client){
-        return SuggestedVehicle::select('suggested_vehicles.*')
-                    ->join('inventories', 'inventories.id', '=', 'suggested_vehicles.inventory_id')
-                    ->where('suggested_vehicles.client_id',$client->id)
-                    ->where('downpayment_for_next_tier', 0)
-                    ->orderBy('inventories.retail_price')
-                    ->get();
+
+        $this->update_all_show_like_additional_all($client);
+
+        foreach($client->suggested_vehicles_approved as $record){
+            $downpayment_min_vehicle    = intdiv($record->sale_price * $record->dealer->percentage,100);
+            if($client->downpayment >= $downpayment_min_vehicle){
+                $record->update_show_like_additional(true);
+            }
+        }
+
+        return SuggestedVehicle::ClientId($client->id)->where('show_like_additional',1)->orderby('sale_price')->get();
     }
 
 
@@ -34,27 +39,22 @@ trait NewSuggestedVehiclesTrait {
             $from = 1;
         }
         // Lee todos los registros y actualiza a false mostrar vehículo
-        $records =SuggestedVehicle::ClientId($client->id)->where('downpayment_for_next_tier', '>',0)->get();
-        foreach($records as $record){
-            $record->update_show_like_additional();
-        }
+
+        $this->update_all_show_like_additional_all($client);
 
         // Recorre y en caso dado muestra los vehículos
-        foreach($records as $record){
+        foreach($client->suggested_vehicles_with_downpayment as $record){
             $downpayment_total_min      = $client->downpayment + $from;
             $downpayment_total_max      = $client->downpayment + $to;
             $downpayment_min_vehicle    = intdiv($record->sale_price * $record->dealer->percentage,100);
+
             if($downpayment_min_vehicle >= $downpayment_total_min && $downpayment_min_vehicle <=$downpayment_total_max){
                 $record->update_show_like_additional(true);
             }
 
         }
 
-
-        return SuggestedVehicle::ClientId($client->id)
-                    ->where('show_like_additional',1)
-                    ->orderby('sale_price')
-                    ->get();
+        return SuggestedVehicle::ClientId($client->id)->where('show_like_additional',1)->orderby('sale_price')->get();
 
     }
 
@@ -186,5 +186,12 @@ trait NewSuggestedVehiclesTrait {
                 }
             }
         }
+    }
+
+    // Deshabilita like_show_like additional en todos los registros
+    private function update_all_show_like_additional_all(Client $client){
+            foreach($client->suggested_vehicles as $record){
+                $record->update_show_like_additional();
+            }
     }
 }

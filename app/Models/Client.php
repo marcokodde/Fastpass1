@@ -23,11 +23,21 @@ class Client extends Model
     // Vehículos sugeridos
 
     public function suggested_vehicles(){
-        return $this->hasMany(SuggestedVehicle::class,'client_id');
+        return $this->hasMany(SuggestedVehicle::class,'client_id')
+                    ->orderby('sale_price');
     }
 
     public function suggested_vehicles_with_downpayment(){
-        return $this->hasMany(SuggestedVehicle::class,'client_id')->where('downpayment_for_next_tier','>',0);
+        return $this->hasMany(SuggestedVehicle::class,'client_id')
+                    ->where('downpayment_for_next_tier','>',0)
+                    ->orderby('sale_price');;
+    }
+
+    // Aprobados por Neo
+    public function suggested_vehicles_approved(){
+        return $this->hasMany(SuggestedVehicle::class,'client_id')
+                    ->where('downpayment_for_next_tier','=',0)
+                    ->orderby('sale_price');
     }
 
     // Sesiones
