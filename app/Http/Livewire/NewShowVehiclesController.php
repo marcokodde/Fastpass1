@@ -66,7 +66,7 @@ class NewShowVehiclesController extends Component
         }
 
         if (!$this->client || !$this->active_session) {
-            return view('livewire.new_show_vehicles.not_active_session');
+            return view('livewire.new_show_vehicles.no_active_session');
         }
 
         $this->garage = $this->get_garage($this->client);

@@ -100,9 +100,9 @@ color: #01a03b;
             -moz-appearance: none;
             appearance: none;
             background-color: transparent;
-            border: 2px solid #BADC58;
+            border: 2px solid #f1c40f;
             border-radius: 0.6em;
-            color: #BADC58;
+            color: #f1c40f;
             cursor: pointer;
             display: -webkit-box;
             display: -webkit-flex;
@@ -129,9 +129,9 @@ color: #01a03b;
         }
 
         .third {
-            border-color: #BADC58;
+            border-color: #f1c40f;
             color: #fff;
-            box-shadow: 0 0 40px 40px #BADC58 inset, 0 0 0 0 #BADC58;
+            box-shadow: 0 0 40px 40px #f1c40f inset, 0 0 0 0 #f1c40f;
             -webkit-transition: all 150ms ease-in-out;
             transition: all 150ms ease-in-out;
         }
@@ -159,8 +159,8 @@ color: #01a03b;
             font-size: 2rem;
             font-weight: 200;
             line-height: 1;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
             padding: 1em 1em;
             text-decoration: none;
             text-align: center;
@@ -169,15 +169,15 @@ color: #01a03b;
             font-weight: 600;
         }
         .btn2:hover, .btn:focus {
-            color: #f1c40f;
+            color: #fff;
             outline: 0;
         }
 
         .fourth {
             border-color: #f1c40f;
-            color: black;
-            background-image: -webkit-linear-gradient(45deg, #BADC58 50%, transparent 50%);
-            background-image: linear-gradient(45deg, #BADC58 50%, transparent 50%);
+            color: white;
+            background-image: -webkit-linear-gradient(45deg, #fff 50%, transparent 50%);
+            background-image: linear-gradient(45deg, #fff 50%, transparent 50%);
             background-position: 100%;
             background-size: 400%;
             -webkit-transition: background 300ms ease-in-out;
@@ -185,7 +185,7 @@ color: #01a03b;
         }
         .fourth:hover {
             background-position: 0;
-            color: #fff;
+            color: black;
         }
         input[type=range] {
             -webkit-appearance: none;
