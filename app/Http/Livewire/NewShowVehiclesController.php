@@ -23,6 +23,7 @@ class NewShowVehiclesController extends Component
     public $active_session=null;
     public $garage;
     public $client_has_vehicles_with_downpayment=false;
+    public $client_has_vehicles_approved = false;
     // Variables para la vista
     public $records;
     public $header_page;
@@ -85,6 +86,7 @@ class NewShowVehiclesController extends Component
             $this->show_garage = false;
             $this->read_additionals();
         } else {
+
             $this->read_approved();
         }
         return view('livewire.new_show_vehicles.index');
@@ -110,7 +112,8 @@ class NewShowVehiclesController extends Component
         $this->client = Client::ClientId($this->client_id)->first();
 
         if ($this->client) {
-            $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
+            $this->client_has_vehicles_with_downpayment =   $this->client->has_vehicles_with_downpayment();
+            $this->client_has_vehicles_approved         =   $this->client->has_vehicles_approved();
             $this->active_session = $this->manage_session($this->client,$token);
 
             if ($this->active_session) {

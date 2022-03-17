@@ -61,6 +61,11 @@ class Client extends Model
         return $this->suggested_vehicles_with_downpayment->count();
     }
 
+    // ¿Tiene vehículos autorizados por defecto?
+    public function has_vehicles_approved(){
+        return $this->suggested_vehicles_approved->count();
+    }
+
     // Incrementa las veces que ha entrado
     public function update_loggin_times(){
         $this->loggin_times++;

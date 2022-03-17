@@ -17,6 +17,11 @@
                             <div class="custom-vehicle-details relative">
                                 @if(isset($records) && $records->count())
                                     <div class="vehicle-listings">
+                                         {{-- Que estoy presentando: --}}
+                                         {{-- Aprobados
+                                         Adicionales
+                                         Garage --}}
+
                                         @foreach ($records as $record )
                                             @include($view_to_show)
                                         @endforeach
