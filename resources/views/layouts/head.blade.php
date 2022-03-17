@@ -200,7 +200,7 @@ color: #01a03b;
             height: 12.8px;
             cursor: pointer;
             box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-            background: #ac51b5;
+            background: #6AB04C;
             border-radius: 25px;
             border: 0px solid #000101;
           }
@@ -216,7 +216,7 @@ color: #01a03b;
             margin-top: -3.6px;
           }
           input[type=range]:focus::-webkit-slider-runnable-track {
-            background: #ac51b5;
+            background: #6AB04C;
           }
           input[type=range]::-moz-range-track {
             width: 100%;
@@ -224,7 +224,7 @@ color: #01a03b;
             cursor: pointer;
             animate: 0.2s;
             box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-            background: #ac51b5;
+            background: #6AB04C;
             border-radius: 25px;
             border: 0px solid #000101;
           }
@@ -248,13 +248,13 @@ color: #01a03b;
             color: transparent;
           }
           input[type=range]::-ms-fill-lower {
-            background: #ac51b5;
+            background: #6AB04C;
             border: 0px solid #000101;
             border-radius: 50px;
             box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
           }
           input[type=range]::-ms-fill-upper {
-            background: #ac51b5;
+            background: #6AB04C;
             border: 0px solid #000101;
             border-radius: 50px;
             box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
@@ -269,10 +269,10 @@ color: #01a03b;
             cursor: pointer;
           }
           input[type=range]:focus::-ms-fill-lower {
-            background: #ac51b5;
+            background: #6AB04C;
           }
           input[type=range]:focus::-ms-fill-upper {
-            background: #ac51b5;
+            background: #6AB04C;
           }
     </style>
     <!-- Scripts -->

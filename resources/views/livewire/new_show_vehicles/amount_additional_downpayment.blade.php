@@ -24,7 +24,7 @@
                 <label class="font-oswald text-gray-700 font-bold ml-72">{{__('To:')}} ${{ $right_value}}</label>
             </div>
             <div class="flex mx-auto border-2 border-gray-400">
-                <input type="range" class="bg-blue-500"
+                <input type="range"  style="background-color: #6AB04C" class="-ml-1"
                     wire:model.lazy="left_value"
                     min="{{$left_mininum}}"
                     max="{{ $left_maximum}}"
@@ -32,7 +32,7 @@
                     wire:change="update_right_minimum"
                 >
 
-                <input type="range" class="bg-blue-500 -ml-2"
+                <input type="range"  style="background-color: #6AB04C" class="-ml-4"
                     wire:model.lazy="right_value"
                     min="{{$right_minimum}}"
                     max="{{ $right_maximum}}"
