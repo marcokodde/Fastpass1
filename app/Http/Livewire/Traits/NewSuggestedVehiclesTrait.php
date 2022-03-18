@@ -103,8 +103,11 @@ trait NewSuggestedVehiclesTrait {
         $dealer = Dealer::Name(ucwords($record['dealership']))->first();
         if(!$dealer){
             Dealer::create([
-                'name' => $record['dealership'],
-                'percentage' => $this->decide_dealer_percentage($record)
+                'name'          => $record['dealership'],
+                'percentage'    => $this->decide_dealer_percentage($record),
+                'open_sunday'   => $this->decide_open_sunday($record),
+                'hour_opening'  => $this->decide_hour_opening($record),
+                'hour_closing'  => $this->decide_hour_closing($record)
             ]);
         }
     }
@@ -127,6 +130,64 @@ trait NewSuggestedVehiclesTrait {
             return env('APP_PERCENTAGE_DEALER',7.00);
         }
     }
+
+    // Decidir si abre o no en domingo
+    private function decide_dealer_open_sunday($record){
+        $dealer_open_sundays = array(
+            'North Freeway' => true,
+            'Gulf Freeway'  => true,
+            '1960'          => true,
+            'Airline'       => true,
+            'Shields'       => false,
+            'I-240'         => false,
+            'Hub'           => false,
+        );
+
+        if(array_key_exists($record['dealership'], $dealer_open_sundays)){
+            return $dealer_open_sundays[$record['dealership']];
+        }else{
+            return env('APP_DEALER_OPEN_SUNDAY',true);
+        }
+    }
+
+    // Decide hora de apertura
+    private function decide_hour_opening($record){
+        $dealer_hour_openings = array(
+            'North Freeway' => 10,
+            'Gulf Freeway'  => 10,
+            '1960'          => 10,
+            'Airline'       => 10,
+            'Shields'       => 9,
+            'I-240'         => 9,
+            'Hub'           => 9,
+        );
+
+        if(array_key_exists($record['dealership'], $dealer_hour_openings)){
+            return $dealer_hour_openings[$record['dealership']];
+        }else{
+            return env('APP_DEALER_OPEN_SUNDAY',true);
+        }
+    }
+
+    // Decide hora de cierre
+    private function decide_hour_closing($record){
+        $dealer_hour_closings = array(
+            'North Freeway' => 19,
+            'Gulf Freeway'  => 19,
+            '1960'          => 19,
+            'Airline'       => 19,
+            'Shields'       => 18,
+            'I-240'         => 18,
+            'Hub'           => 18,
+        );
+
+        if(array_key_exists($record['dealership'], $dealer_hour_closings)){
+            return $dealer_hour_closings[$record['dealership']];
+        }else{
+            return env('APP_DEALER_OPEN_SUNDAY',true);
+        }
+        }
+
 
     // Crea o actualiza Cliente
     private function update_or_create_client($client_id,$record){

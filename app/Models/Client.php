@@ -16,8 +16,7 @@ class Client extends Model
         'client_id',
        ' downpayment',
         'loggin_times',
-        'read_vehicles_from_api',
-        'show_like_additional'
+        'date_at'
     ];
 
     // Vehículos sugeridos
@@ -72,11 +71,6 @@ class Client extends Model
         $this->save();
     }
 
-    // Actualiza para leer o no el API de nuevo
-    public function update_read_vehicles_from_api(){
-        $this->read_vehicles_from_api = !$this->read_vehicles_from_api;
-        $this->save();
-    }
 
     /**+------------+
      * | Búsquedas  |

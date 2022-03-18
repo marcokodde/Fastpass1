@@ -12,7 +12,10 @@ class Dealer extends Model
     public $timestamps = false;
     protected $fillable = [
         'name',
-        'percentage'
+        'percentage',
+        'open_sunday',
+        'hour_opening',
+        'hour_closing'
     ];
 
 
@@ -43,4 +46,6 @@ class Dealer extends Model
             $query->where('name',$valor);
         }
      }
+
+
 }

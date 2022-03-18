@@ -18,7 +18,7 @@ class CreateClientsTable extends Migration
             $table->string('client_id',50)->comment('Id Cliente Neo');
             $table->float('downpayment', 8, 2)->default(0)->comment('Enganche Inicial');
             $table->integer('loggin_times')->default(0)->comment('Vecese que ha ingresado');
-            $table->boolean('read_vehicles_from_api')->default(1)->comment('Read Api');
+            $table->dateTime('date_at', $precision = 0)->nullable()->default(null)->comment('Fecha y hora de cita');
         });
     }
 
