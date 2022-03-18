@@ -105,9 +105,9 @@ trait NewSuggestedVehiclesTrait {
             Dealer::create([
                 'name'          => $record['dealership'],
                 'percentage'    => $this->decide_dealer_percentage($record),
-                'open_sunday'   => $this->decide_open_sunday($record),
-                'hour_opening'  => $this->decide_hour_opening($record),
-                'hour_closing'  => $this->decide_hour_closing($record)
+                'open_sunday'   => $this->decide_dealer_open_sunday($record),
+                'hour_opening'  => $this->decide_dealer_hour_opening($record),
+                'hour_closing'  => $this->decide_dealer_hour_closing($record)
             ]);
         }
     }
@@ -151,7 +151,7 @@ trait NewSuggestedVehiclesTrait {
     }
 
     // Decide hora de apertura
-    private function decide_hour_opening($record){
+    private function decide_dealer_hour_opening($record){
         $dealer_hour_openings = array(
             'North Freeway' => 10,
             'Gulf Freeway'  => 10,
@@ -170,7 +170,7 @@ trait NewSuggestedVehiclesTrait {
     }
 
     // Decide hora de cierre
-    private function decide_hour_closing($record){
+    private function decide_dealer_hour_closing($record){
         $dealer_hour_closings = array(
             'North Freeway' => 19,
             'Gulf Freeway'  => 19,
