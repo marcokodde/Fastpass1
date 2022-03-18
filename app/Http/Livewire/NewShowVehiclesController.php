@@ -159,10 +159,15 @@ class NewShowVehiclesController extends Component
 
     /** Vehículos Aprobados */
     private function read_approved(){
-        $this->header_page = 'APPROVED VEHICLES';
-        $this->header_second = 'Based on your information these are vehicles you are eligible to purchase.';
-        $this->view_to_show = 'livewire.new_show_vehicles.list_approved';
         $this->records = $this->read_approved_vehicles($this->client);
+        if($this->records->count()) {
+            $this->header_page = 'APPROVED VEHICLES';
+            $this->header_second = 'Based on your information these are vehicles you are eligible to purchase.';
+        } else {
+            $this->header_page = 'You are approved, however, you need to increase your down payment to view vehicles you are eligible to purchase.';
+            $this->header_second = 'The options are endless, click Show Me MORE to view vehicles with extra down payment.';
+        }
+        $this->view_to_show = 'livewire.new_show_vehicles.list_approved';
     }
 
     /** Vehículos en el Garaje  */
