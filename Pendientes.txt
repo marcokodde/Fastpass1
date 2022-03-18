@@ -1,4 +1,8 @@
 Pendientes proyecto Fastpass.
-1.- Aplicar lo del porcentaje del distribuidor
-2.- Migracion a Servidor Nuevo
-3.- Llamar actualización de inventario desde c2c
+1.- Reestructurar detail_garages para que lea los detalles del vehículo del INVENTARIO
+2.- ABC parámetros: Pasar a tabla y abc de la misma las variables de entorno
+3.- Gestión de Citas del cliente
+4.- Garage: No distinguir origen de vehículos (aprobado o adicional) solo se considera ocupado si el vehículo está "Vendido"
+5.- Llamar actualización de inventario desde c2c
+6.- Migracion a Servidor Nuevo
+7.-
