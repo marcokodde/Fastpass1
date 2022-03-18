@@ -45,15 +45,18 @@ trait NewSuggestedVehiclesTrait {
         // Recorre y en caso dado muestra los vehículos
         foreach($client->suggested_vehicles_with_downpayment as $record){
 
-            $downpayment_total_min      = $client->downpayment + $from; // 4200
-            $downpayment_total_max      = $client->downpayment + $to;   // 5700
-            $downpayment_min_vehicle    = intdiv($record->sale_price * $record->dealer->percentage,100);  // 2349.50
+            $downpayment_total_min      = $client->downpayment + $from;
+            $downpayment_total_max      = $client->downpayment + $to;
+
+            $downpayment_min_vehicle    = intdiv($record->sale_price * $record->dealer->percentage,100);
 
 
-            //             2349.20        >=  4200                  Y    2349.50                <=  8200
             if( $client->downpayment >= $downpayment_min_vehicle ||
                 ($downpayment_min_vehicle >= $downpayment_total_min && $downpayment_min_vehicle <=$downpayment_total_max)){
-                $record->update_show_like_additional(true);
+                       if($record->downpayment_for_next_tier >= $from && $record->downpayment_for_next_tier <= $to  ){
+                        $record->update_show_like_additional(true);
+                    }
+
             }
 
         }
