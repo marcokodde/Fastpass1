@@ -78,8 +78,14 @@
         <div style="background-color: #6AB04C" class="body_background">
             <div style="background-color: #6AB04C" class="relative flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
                 <div class="block" style="margin-top: -50px;">
-                    <img style="height:75%; width:75%;" class="mx-auto"  src="{{asset('images/session_expired.png')}}">
-                    <button style="margin-top:-5%;" onclick="execute()" class="btn third mx-auto">{{__('Request a New Code')}}</button>
+                    <img style="height:70%; width:70%;" class="mx-auto"  src="{{asset('images/session_expire_garage.png')}}">
+                        <h2 style="margin-top:-10%; color:#fff" class="font-montserrat text-center uppercase">
+                            {{__('There have exit your garage')}}
+                        </h2>
+                        <label style="margin-top:-2%; color:#fff" class="font-montserrat text-center uppercase">
+                            {{__('To start a new session, request a new code')}}
+                        </label>
+                    <button style="margin-top:4%;" onclick="execute()" class="btn third mx-auto">{{__('Request a New Code')}}</button>
                 </div>
             </div>
         </div>

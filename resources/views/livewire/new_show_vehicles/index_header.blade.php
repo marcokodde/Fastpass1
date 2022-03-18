@@ -5,7 +5,7 @@
     @if($show_garage || $show_additional)
         <span class="relative inline-block sm:text-xs md:text-sm lg:text-lg">
             <button  wire:click="return_to_approved" title="{{__('Vehicles')}}">
-                <img src="{{asset('images/apprved.png')}}" class="h-16 w-16 sm:h-16 sm:w-16 2xl:h-32 2xl:w-32 md:h-20 md:w-20">
+                <img src="{{asset('images/prequalified.png')}}" class="h-16 w-16 sm:h-16 sm:w-16 2xl:h-32 2xl:w-32 md:h-20 md:w-20">
             </button>
         </span>
     @endif
