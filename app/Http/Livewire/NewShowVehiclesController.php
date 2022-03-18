@@ -160,8 +160,8 @@ class NewShowVehiclesController extends Component
     /** Vehículos Aprobados */
     private function read_approved(){
         $this->records = $this->read_approved_vehicles($this->client);
-        if($this->records->count()) {
-            $this->header_page = 'APPROVED VEHICLES';
+        if($this->records && $this->records->count()) {
+            $this->header_page = 'RECOMMENDED VEHICLES';
             $this->header_second = 'Based on your information these are vehicles you are eligible to purchase.';
         } else {
             $this->header_page = 'You are approved';

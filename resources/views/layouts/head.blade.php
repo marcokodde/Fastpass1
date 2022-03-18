@@ -187,6 +187,53 @@ color: #01a03b;
             background-position: 0;
             color: black;
         }
+
+        .btn_garage {
+          box-sizing: border-box;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          background-color: transparent;
+          border: 2px solid #f1c40f;
+          border-radius: 0.6em;
+          color: white;
+          cursor: pointer;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-align-self: center;
+              -ms-flex-item-align: center;
+                  align-self: center;
+          font-size: 2rem;
+          font-weight: 200;
+          line-height: 1;
+          margin-top: 5px;
+          margin-bottom: 15px;
+          padding: 1em 1em;
+          text-decoration: none;
+          text-align: center;
+          text-transform: uppercase;
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 600;
+      }
+      .btn-garage:hover, .btn:focus {
+          color: black;
+          outline: 0;
+      }
+
+      .garage {
+        border-color: #f1c40f;
+        color: white;
+        box-shadow: 0 0 40px 40px #f1c40f inset, 0 0 0 0 #f1c40f;
+        -webkit-transition: all 150ms ease-in-out;
+        transition: all 150ms ease-in-out;
+      }
+      .garage:hover {
+          box-shadow: 0 0 10px 0 #f1c40f inset, 0 0 10px 4px #f1c40f;
+          color: black;
+      }
+
         input[type=range] {
             -webkit-appearance: none;
             margin: 10px 0;
