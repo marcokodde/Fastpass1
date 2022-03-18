@@ -210,7 +210,7 @@ color: #01a03b;
             height: 20px;
             width: 39px;
             border-radius: 7px;
-            background: #65001c;
+            background: #416D30;
             cursor: pointer;
             -webkit-appearance: none;
             margin-top: -3.6px;
@@ -234,7 +234,7 @@ color: #01a03b;
             height: 20px;
             width: 39px;
             border-radius: 7px;
-            background: #65001c;
+            background: #416D30;
             cursor: pointer;
           }
           input[type=range]::-ms-track {
@@ -265,7 +265,7 @@ color: #01a03b;
             height: 20px;
             width: 39px;
             border-radius: 7px;
-            background: #65001c;
+            background: #416D30;
             cursor: pointer;
           }
           input[type=range]:focus::-ms-fill-lower {

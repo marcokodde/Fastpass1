@@ -1,5 +1,5 @@
-<div style="background-color:#5CB352; heigth:150%; widht:120%;" class="w-full h-full">
-    <div class="mx-auto px-8 pb-4 py-4">
+<div style="background-color: #6AB04C" class="max-w-screen-xl">
+    <div class="mx-auto px-8 pb-4 py-4 w-full">
         <div class="items-center text-center align-center">
             <h2 class="mb-2 font-montserrat text-center text-white">
                 {{__('There are no vehicles in your garage')}}

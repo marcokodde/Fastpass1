@@ -41,6 +41,8 @@
 
     @if($record->inventory->retail_price)
         <h3 class="mt-2">{{ __('Price') }}: ${{ number_format($record->inventory->retail_price, 0, '.', ',') }}</h3>
+    @elseif ($record->sale_price)
+        <h3 class="mt-2">{{ __('Price') }}: ${{ number_format($record->sale_price, 0, '.', ',') }}</h3>
     @else
         <h5 class="mt-2 font-bold">{{__('Price data not available') }}</h5>
     @endif
