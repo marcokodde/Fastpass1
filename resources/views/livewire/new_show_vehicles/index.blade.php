@@ -7,6 +7,10 @@
             <div class="bg-white overflow-hidden sm:rounded-lg mt-2">
                 @include('common.header_content')
 
+                @if($isOpen)
+                    @include('livewire.new_show_vehicles.add_appointment')
+                @endif
+
                 @if($show_additional && !$show_garage && $client_has_vehicles_with_downpayment)
                     @include('livewire.new_show_vehicles.amount_additional_downpayment')
                 @endif

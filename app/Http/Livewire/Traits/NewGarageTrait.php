@@ -11,6 +11,7 @@ use App\Models\SuggestedVehicle;
 trait NewGarageTrait {
 
     public $garage;
+    public $isOpen = 0;
     public $garage_detail;
     public $record_detail_garage;
     /** Crea  Garage */
@@ -143,4 +144,15 @@ trait NewGarageTrait {
     private function show_alert() {
         $this->dispatchBrowserEvent('show_toast_vehicle_added');
     }
+
+    public function openModal() {
+		$this->isOpen = true;
+	}
+
+    public function closeModal() {
+		$this->isOpen = false;
+		//$this->resetInputFields();
+		$this->resetErrorBag();
+    	$this->resetValidation();
+	}
 }

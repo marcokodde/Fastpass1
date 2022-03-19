@@ -2,6 +2,14 @@
     <img class="stnd skip-lazy dark-version" width="207" height="110" alt="CTC Auto Group" src="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/05/brand-logo.png"/>
 </div>
 <div class="absolute right-0 top-0 flex items-center justify-center mb-4">
+    @if($garage && $garage->occupied_spaces())
+        <button type="button" wire:click="show_appointment"
+            style="background-color:#6AB04C"
+            class="text-black px-8 pb-4 py-4 m-4 rounded-lg relative uppercase">
+            {{__('Add Appointment')}}
+        </button>
+    @endif
+
     @if($show_garage || $show_additional)
         <span class="relative inline-block sm:text-xs md:text-sm lg:text-lg">
             <button  wire:click="return_to_approved" title="{{__('Vehicles')}}">

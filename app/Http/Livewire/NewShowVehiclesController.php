@@ -45,7 +45,8 @@ class NewShowVehiclesController extends Component
     public $right_value;
 
     public $vehicles_in_range = 0;
-
+    public $ReservationDay;
+    public $hour;
     /**+----------------------------------------+
      * | LO QUE DEBE HACER ESTE CONTROLADOR     |
      * +----------------------------------------+
@@ -186,7 +187,12 @@ class NewShowVehiclesController extends Component
         $this->header_second ='These are vehicles you are eligible to purchase with additional down payment.';
         $this->view_to_show = 'livewire.new_show_vehicles.list_additionals';
         $this->records = $this->read_vehicles_with_payment($this->client,$this->left_value,$this->right_value);
-         $this->vehicles_in_range  = $this->records->count() ? $this->records->count() : 0;
+        $this->vehicles_in_range  = $this->records->count() ? $this->records->count() : 0;
+    }
+
+    // Muestra vista de citas
+    public function show_appointment() {
+        $this->openModal();
     }
 
     /** Valores Iniciales de los sliders */
@@ -210,5 +216,14 @@ class NewShowVehiclesController extends Component
         $this->left_maximum = $this->right_value -env('APP_ADDITIONAL_DOWNPAYMENT_STEP',500);
         $this->downpayment = $this->left_value;
         $this->read_additionals();
+    }
+
+    public function store_appointment() {
+        $date_at = $this->ReservationDay.' '.$this->hour;
+        Client::Where('client_id', $this->client_id)
+                ->update([
+                    'date_at'   => $date_at,
+                ]);
+        $this->closeModal();
     }
 }

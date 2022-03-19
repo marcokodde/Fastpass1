@@ -48,5 +48,12 @@
     "Request a New Code":"Solicitar un Nuevo Código",
     "CAN'T FIND WHAT YOU ARE LOKING FOR?":"¿NO ENCUENTRAS LO QUE BUSCAS?",
     "You are approved":"¡Ya estas aprobado!",
-    "However, you need to increase your down payment to view vehicles you are eligible to purchase.The options are endless, click SHOW ME MORE to view vehicles with extra down payment.":"Sin embargo, necesitas incrementar tu down payment para ver los vehiculos elegibles para tu compra. Tenemos muchas opciones, haz click en VER INVENTARIO para conocer que vehiculos puedes comprar aumentando tu pago inicial."
+    "However, you need to increase your down payment to view vehicles you are eligible to purchase.The options are endless, click SHOW ME MORE to view vehicles with extra down payment.":"Sin embargo, necesitas incrementar tu down payment para ver los vehiculos elegibles para tu compra. Tenemos muchas opciones, haz click en VER INVENTARIO para conocer que vehiculos puedes comprar aumentando tu pago inicial.",
+    "Add Appointment":"Agregar Cita",
+    "Pick your Date and Time to get Driving!":"¡Elige tu fecha y hora para conducir!",
+    "Appointment Date:":"Fecha de la Cita:",
+    "Date":"Fecha",
+    "Hour":"Hora",
+    "Save":"Guardar",
+    "Cancel":"Cancelar"
 }
