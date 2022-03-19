@@ -223,7 +223,12 @@ class NewShowVehiclesController extends Component
     }
 
     public function store_appointment() {
-        $date_at = $this->ReservationDay.' '.$this->hour;
+        $hh=substr($this->hour,0,2);
+        $mm=substr($this->hour,3,2);
+        $meridian = substr($this->hour,6,2);
+        $hh = $meridian == 'PM' ? $hh+12 : $hh;
+        $new_hour = $hh . ':' . $mm;
+        $date_at =  $this->ReservationDay.' ' . $new_hour;
         Client::Where('client_id', $this->client_id)
                 ->update([
                     'date_at'   => $date_at,
@@ -251,9 +256,10 @@ class NewShowVehiclesController extends Component
         $first_suggested = SuggestedVehicle::ClientId($this->client->id)->first();
         $dealer = Dealer::findOrFail($first_suggested->dealer->id);
         $this->reset(['hours_to_appointment']);
-        for($hh=$dealer->hour_opening;$hh<$dealer->hour_closing;$hh++){
+        for($hour=$dealer->hour_opening;$hour<$dealer->hour_closing;$hour++){
             for($mm=0;$mm<=45;$mm=$mm+15){
-                $am_pm =  $hh < 12 ? 'AM' : 'PM';
+                $am_pm = $hour < 12 ? 'AM' : 'PM';
+                $hh  = $hour > 12 ? $hour-12 : $hour;
                 array_push($this->hours_to_appointment,Str::padLeft($hh,2,"0") . ':' .  Str::padLeft($mm,2,"0"). ' ' . $am_pm);
             }
         }

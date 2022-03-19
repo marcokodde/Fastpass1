@@ -35,7 +35,7 @@
                         class="w-auto px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
                         <option value="" selected>{{__("Hour")}}</option>
                             @foreach($hours_to_appointment as $hour_to_appointment)
-                                <option value="{{ $loop->index }}">{{ $hour_to_appointment }}</option>
+                                <option value="{{ $hour_to_appointment }}">{{ $hour_to_appointment }}</option>
                             @endforeach
                         </select>
                     </div>
