@@ -26,10 +26,18 @@
 
                     <div class="mb-2">
                         <label class="block mb-2 text-sm font-bold text-gray-700">{{__("Hour")}}</label>
-                        <input type="time"
-                        wire:model="hour"
-                        step="3600" min="00:00" max="18:00"
+                        {{-- <input type="time"
+                            wire:model="hour"
+                            step="3600" min="00:00" max="18:00"
+                            class="w-auto px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        > --}}
+                        <select wire:model="hour"
                         class="w-auto px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                        <option value="" selected>{{__("Hour")}}</option>
+                            @foreach($hours_to_appointment as $hour_to_appointment)
+                                <option value="{{ $loop->index }}">{{ $hour_to_appointment }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">

@@ -2,13 +2,15 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Livewire\Traits\ApiTrait;
 use App\Models\Client;
+use App\Models\Dealer;
 use Livewire\Component;
+use Illuminate\Support\Str;
+use App\Models\SuggestedVehicle;
+use App\Http\Livewire\Traits\ApiTrait;
 use App\Http\Livewire\Traits\NewGarageTrait;
 use App\Http\Livewire\Traits\NewSessionClientTrait;
 use App\Http\Livewire\Traits\NewSuggestedVehiclesTrait;
-use App\Models\ClientSession;
 
 class NewShowVehiclesController extends Component
 {
@@ -47,6 +49,7 @@ class NewShowVehiclesController extends Component
     public $vehicles_in_range = 0;
     public $ReservationDay;
     public $hour;
+    public $hours_to_appointment = [];
     /**+----------------------------------------+
      * | LO QUE DEBE HACER ESTE CONTROLADOR     |
      * +----------------------------------------+
@@ -113,6 +116,7 @@ class NewShowVehiclesController extends Component
         $this->client = Client::ClientId($this->client_id)->first();
 
         if ($this->client) {
+            $this->create_list_hours();
             $this->client_has_vehicles_with_downpayment =   $this->client->has_vehicles_with_downpayment();
             $this->client_has_vehicles_approved         =   $this->client->has_vehicles_approved();
             $this->active_session = $this->manage_session($this->client,$token);
@@ -225,5 +229,34 @@ class NewShowVehiclesController extends Component
                     'date_at'   => $date_at,
                 ]);
         $this->closeModal();
+    }
+
+    // Crea lista de horarios posibles para la cita
+    /**+--------------------------------------------+
+     * | Objetivo: Tener una lista de horas  HH:MM  |
+     * +--------------------------------------------+
+     * | HH: Desde $dealer->hour_opening            |
+     * |     Hasta=$dealer->hour_closing            |
+     * | MM: Rangos de 15 minutos                   |
+     * +--------------------------------------------+
+     * | 1) Leer el distribuidor                    |
+     * | 2) Crear lista de horas  y minutos         |
+     * |   HH= Desde que abre hasta que cierra      |
+     * |       Dentro de cada hora ir 00-45         |
+     * |  Si HH < 12 --> AM si no --> PM            |
+     * +--------------------------------------------+
+     */
+
+    private function create_list_hours(){
+        $first_suggested = SuggestedVehicle::ClientId($this->client->id)->first();
+        $dealer = Dealer::findOrFail($first_suggested->dealer->id);
+        $this->reset(['hours_to_appointment']);
+        for($hh=$dealer->hour_opening;$hh<$dealer->hour_closing;$hh++){
+            for($mm=0;$mm<=45;$mm=$mm+15){
+                $am_pm =  $hh < 12 ? 'AM' : 'PM';
+                array_push($this->hours_to_appointment,Str::padLeft($hh,2,"0") . ':' .  Str::padLeft($mm,2,"0"). ' ' . $am_pm);
+            }
+        }
+       // dd($this->hours_to_appointment);
     }
 }

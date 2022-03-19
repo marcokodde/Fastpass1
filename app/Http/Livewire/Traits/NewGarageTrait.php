@@ -96,7 +96,7 @@ trait NewGarageTrait {
     */
 
     public function review_garage(){
-        $this->get_garage();
+        $this->get_garage($this->client);
         if ($this->garage && $this->garage->vehicles_in_garages->count()) {
             foreach ($this->garage->vehicles_in_garages as $vehicle_in_garage) {
                 $inventory_record = Inventory::DealerId($vehicle_in_garage->dealer_id)
