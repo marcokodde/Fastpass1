@@ -6,10 +6,10 @@ var toggleConfetti; //call to start or stop the confetti animation depending on 
 var removeConfetti; //call to stop the confetti animation and remove all confetti immediately
 
 (function() {
-	startConfetti = startConfettiInner;
-	stopConfetti = stopConfettiInner;
-	toggleConfetti = toggleConfettiInner;
-	removeConfetti = removeConfettiInner;
+	startConfetti   = startConfettiInner;
+	stopConfetti    = stopConfettiInner;
+	toggleConfetti  = toggleConfettiInner;
+	removeConfetti  = removeConfettiInner;
 	var colors = ["DodgerBlue", "OliveDrab", "Gold", "Pink", "SlateBlue", "LightBlue", "Violet", "PaleGreen", "SteelBlue", "SandyBrown", "Chocolate", "Crimson"]
 	var streamingConfetti = false;
 	var animationTimer = null;
@@ -75,6 +75,9 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 
 	function stopConfettiInner() {
 		streamingConfetti = false;
+        var canvas = document.getElementById("confetti-canvas");
+        canvas.setAttribute("style", "display:none;z-index:999999;pointer-events:none");
+
 	}
 
 	function removeConfettiInner() {
