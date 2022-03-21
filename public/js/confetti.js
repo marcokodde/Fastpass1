@@ -53,10 +53,14 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 				canvas.height = window.innerHeight;
 			}, true);
 		}else{
+            canvas.setAttribute("style", "display:block;");
+            canvas.width = width;
+			canvas.height = height;
             window.addEventListener("resize", function() {
 				canvas.width = window.innerWidth;
 				canvas.height = window.innerHeight;
 			}, true);
+
         }
 
 		var context = canvas.getContext("2d");

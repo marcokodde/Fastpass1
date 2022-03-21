@@ -7,7 +7,7 @@
 
             <div class="min-h-screen bg-white">
                 {{-- @livewire('navigation-menu') --}}
-                <canvas id="confetti-canvas" style="display:block"> </canvas>
+                <canvas id="confetti-canvas" style="display:none"> </canvas>
                 <!-- Page Heading -->
                 @if (isset($header))
                     <header class="bg-white shadow">
