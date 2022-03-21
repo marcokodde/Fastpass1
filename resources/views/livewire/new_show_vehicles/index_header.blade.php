@@ -6,7 +6,11 @@
         <button type="button" wire:click="show_appointment"
             style="background-color:#6AB04C"
             class="text-black px-8 pb-4 py-4 m-4 rounded-lg relative uppercase">
-            {{__('Add Appointment')}}
+            @if ($client->date_at)
+                {{__('Update Appointment')}}
+            @else
+                {{__('Add Appointment')}}
+            @endif
         </button>
     @endif
 

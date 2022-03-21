@@ -12,7 +12,7 @@
                         <span class="block text-lg font-headline text-gray-700 font-bold mb-2">{{__("Pick your Date and Time to get Driving!")}}</span>
                         <label  class="block text-gray-700 text-base font-bold mb-2">{{__("Appointment Date:")}}</label>
                         <input type="date"
-                            wire:model="ReservationDay"
+                            wire:model="date_at"
                             min=<?php $hoy=date("Y-m-d"); echo $hoy;?>
                             max=<?php  $date = date("Y-m-d");
                                         $mod_date = strtotime($date."+ 15 days");
@@ -21,7 +21,7 @@
                             required
                             style=cursor:pointer;
                             class="rounded w-auto border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        @error('ReservationDay') <span class="text-red-500">{{ $message }}</span>@enderror
+                        @error('date_at') <span class="text-red-500">{{ $message }}</span>@enderror
                     </div>
 
                     <div class="mb-2">

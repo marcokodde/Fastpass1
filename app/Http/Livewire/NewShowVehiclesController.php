@@ -47,7 +47,7 @@ class NewShowVehiclesController extends Component
     public $right_value;
 
     public $vehicles_in_range = 0;
-    public $ReservationDay;
+    public $date_at;
     public $hour;
     public $hours_to_appointment = [];
     /**+----------------------------------------+
@@ -223,15 +223,19 @@ class NewShowVehiclesController extends Component
     }
 
     public function store_appointment() {
+        $this->validate([
+            'date_at' => 'required',
+        ]);
+
         $hh=substr($this->hour,0,2);
         $mm=substr($this->hour,3,2);
         $meridian = substr($this->hour,6,2);
         $hh = $meridian == 'PM' ? $hh+12 : $hh;
         $new_hour = $hh . ':' . $mm;
-        $date_at =  $this->ReservationDay.' ' . $new_hour;
+        $date =  $this->date_at.' ' . $new_hour;
         Client::Where('client_id', $this->client_id)
                 ->update([
-                    'date_at'   => $date_at,
+                    'date_at'   => $date,
                 ]);
         $this->closeModal();
     }
