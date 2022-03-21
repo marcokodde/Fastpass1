@@ -7,5 +7,4 @@ Pendientes proyecto Fastpass.
 6.- Migracion a Servidor Nuevo
 7.- En la fecha para la cita:
     (a) Efecto confeti
-    (b) APP_MAX_DAYS_TO_DATE: Para limitar la fecha máxima que puede seleccionarse
     (c) Habilitar/Deshabilitar el domingo en función si el distribuidor abre o no ese día.
