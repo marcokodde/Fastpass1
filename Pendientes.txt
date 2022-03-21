@@ -5,4 +5,7 @@ Pendientes proyecto Fastpass.
 4.- Garage: No distinguir origen de vehículos (aprobado o adicional) solo se considera ocupado si el vehículo está "Vendido"
 5.- Llamar actualización de inventario desde c2c
 6.- Migracion a Servidor Nuevo
-7.-
+7.- En la fecha para la cita:
+    (a) Efecto confeti
+    (b) APP_MAX_DAYS_TO_DATE: Para limitar la fecha máxima que puede seleccionarse
+    (c) Habilitar/Deshabilitar el domingo en función si el distribuidor abre o no ese día.
