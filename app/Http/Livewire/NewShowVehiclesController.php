@@ -11,6 +11,7 @@ use App\Http\Livewire\Traits\ApiTrait;
 use App\Http\Livewire\Traits\NewGarageTrait;
 use App\Http\Livewire\Traits\NewSessionClientTrait;
 use App\Http\Livewire\Traits\NewSuggestedVehiclesTrait;
+use Carbon\Carbon;
 
 class NewShowVehiclesController extends Component
 {
@@ -50,6 +51,8 @@ class NewShowVehiclesController extends Component
     public $date_at;
     public $hour;
     public $hours_to_appointment = [];
+    public $max_date_to_appointment;
+    public $min_date_to_appointment;
     /**+----------------------------------------+
      * | LO QUE DEBE HACER ESTE CONTROLADOR     |
      * +----------------------------------------+
@@ -267,6 +270,8 @@ class NewShowVehiclesController extends Component
                 array_push($this->hours_to_appointment,Str::padLeft($hh,2,"0") . ':' .  Str::padLeft($mm,2,"0"). ' ' . $am_pm);
             }
         }
-       // dd($this->hours_to_appointment);
+        $this->min_date_to_appointment = Carbon::now()->format('Y-m-d');
+        $this->max_date_to_appointment = Carbon::now()->addDays(env('APP_MAX_DAYS_TO_DATE',2))->format('Y-m-d');
+
     }
 }

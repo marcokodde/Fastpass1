@@ -13,10 +13,8 @@
                         <label  class="block text-gray-700 text-base font-bold mb-2">{{__("Appointment Date:")}}</label>
                         <input type="date"
                             wire:model="date_at"
-                            min=<?php $hoy=date("Y-m-d"); echo $hoy;?>
-                            max=<?php  $date = date("Y-m-d");
-                                        $mod_date = strtotime($date."+ 15 days");
-                                        echo date("Y-m-d",$mod_date) . "\n"?>
+                            min="{{$min_date_to_appointment}}"
+                            max="{{$max_date_to_appointment}}"
                             placeholder="{{__("Date")}}"
                             required
                             style=cursor:pointer;
