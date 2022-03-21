@@ -40,7 +40,7 @@
                         </button>
                     </span>
                     <span class="flex w-full mt-3 rounded-md shadow-sm sm:mt-0 sm:w-auto">
-                        <button wire:click="closeModal()" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-md active:bg-green-500 focus:outline-none focus:shadow-outline-green hover:bg-green-500">
+                        <button wire:click="closeModal()" onclick="stopConfetti();" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-md active:bg-green-500 focus:outline-none focus:shadow-outline-green hover:bg-green-500">
                             {{__('Cancel')}}
                         </button>
                     </span>
