@@ -3,13 +3,11 @@
 </div>
 <div class="absolute right-0 top-0 flex items-center justify-center mb-4">
     @if($garage && $garage->occupied_spaces())
-        <button type="button" wire:click="show_appointment"
-            style="background-color:#6AB04C"
-            class="text-black px-8 pb-4 py-4 m-4 rounded-lg relative uppercase">
+        <button type="button" wire:click="show_appointment" onclick="startConfetti();">
             @if ($client->date_at)
-                {{__('Update Appointment')}}
+                <img src="{{asset('images/up_appointment.png')}}" class="h-16 w-16 sm:h-16 sm:w-16 2xl:h-32 2xl:w-32 md:h-20 md:w-20">
             @else
-                {{__('Add Appointment')}}
+                <img src="{{asset('images/add_apointment.png')}}" class="h-16 w-16 sm:h-16 sm:w-16 2xl:h-32 2xl:w-32 md:h-20 md:w-20">
             @endif
         </button>
     @endif
@@ -17,7 +15,7 @@
     @if($show_garage || $show_additional)
         <span class="relative inline-block sm:text-xs md:text-sm lg:text-lg">
             <button  wire:click="return_to_approved" title="{{__('Vehicles')}}">
-                <img src="{{asset('images/prequalified.png')}}" class="h-16 w-16 sm:h-16 sm:w-16 2xl:h-32 2xl:w-32 md:h-20 md:w-20">
+                <img src="{{asset('images/pre_qualified.png')}}" class="h-16 w-16 sm:h-16 sm:w-16 2xl:h-32 2xl:w-32 md:h-20 md:w-20">
             </button>
         </span>
     @endif
@@ -33,5 +31,4 @@
     </span>
 </div>
 <hr class="border-2 border-gray-200 mx-4 mt-4">
-
 @livewire('time-remainder', ['client_id' => $client_id,'token' => $token])

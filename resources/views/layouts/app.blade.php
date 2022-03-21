@@ -23,9 +23,9 @@
         </div>
 
         @stack('modals')
-
         @livewireScripts
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="{{ asset('js/confetti.js')}}"></script>
         <script>
             window.addEventListener('show_toast_vehicle_added',({detail:{type,message}})=>{
                 const Toast = Swal.mixin({
