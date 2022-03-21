@@ -16,7 +16,6 @@
                         </div>
                     </header>
                 @endif
-
                 <!-- Page Content -->
                 <main>
                     <canvas id="confetti-canvas" style="display:none"> </canvas>

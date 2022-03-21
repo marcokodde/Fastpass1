@@ -26,6 +26,11 @@
         @if($garage)
             <span class="absolute top-0 left-0 text-base rounded 2xl:top-28 2xl:left-12 sm:top-10 sm:left-0 md:top-10 md:left-0 inline-flex items-center justify-center 2xl:px-2 2xl:py-1 2xl:text-xl sm:text-base md:text-base font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 2xl:rounded-full">
                 {{$garage->occupied_spaces()}}
+                @if ($garage->occupied_spaces() == env('GARAGE_SPACES'))
+                    @php
+                        echo '<script>', 'startConfetti();', '</script>';
+                    @endphp
+                @endif
             </span>
         @endif
     </span>
