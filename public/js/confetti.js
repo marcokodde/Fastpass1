@@ -15,7 +15,7 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 	var animationTimer = null;
 	var particles = [];
 	var waveAngle = 0;
-	
+
 	function resetParticle(particle, width, height) {
 		particle.color = colors[(Math.random() * colors.length) | 0];
 		particle.x = Math.random() * width;
@@ -52,7 +52,13 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 				canvas.width = window.innerWidth;
 				canvas.height = window.innerHeight;
 			}, true);
-		}
+		}else{
+            window.addEventListener("resize", function() {
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+			}, true);
+        }
+
 		var context = canvas.getContext("2d");
 		while (particles.length < maxParticleCount)
 			particles.push(resetParticle({}, width, height));
