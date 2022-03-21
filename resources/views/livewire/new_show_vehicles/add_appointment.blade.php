@@ -1,3 +1,4 @@
+
 <div class="fixed inset-0 z-10 overflow-y-auto ease-out duration-400">
     <div class="flex items-end justify-center min-h-full px-2 pt-4 pb-4 mt-4 text-center sm:block sm:p-0">
         <div class="fixed inset-0 transition-opacity">
@@ -35,7 +36,7 @@
                 </div>
                 <div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
                     <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                        <button wire:click.prevent="store_appointment()" type="button" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-700 focus:outline-none focus:shadow-outline-purple hover:bg-purple-700">
+                        <button wire:click.prevent="store_appointment()" onclick="stopConfetti();" type="button" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-700 focus:outline-none focus:shadow-outline-purple hover:bg-purple-700">
                             {{__('Save')}}
                         </button>
                     </span>
