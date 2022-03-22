@@ -22,13 +22,13 @@ class Garage extends Model
     // Detalle de garages
     public function vehicles_in_garages(): HasMany
     {
-        return $this->hasMany(DetailGarage::class)->orderby('retail_price');
+        return $this->hasMany(DetailGarage::class);
     }
 
     // Detalle de garages
     public function vehicles_in_garages_availables(): HasMany
     {
-        return $this->hasMany(DetailGarage::class)->where('is_available_inventory', 1)->orderby('retail_price');
+        return $this->hasMany(DetailGarage::class)->where('is_available_inventory', 1);
     }
     /**+------------+
      * | Apoyo      |
@@ -74,7 +74,7 @@ class Garage extends Model
      }
 
     public function not_available_spaces(){
-        return ENV('GARAGE_SPACES') == $this->vehicles_in_garages->count();
+        return ENV('GARAGE_SPACES') == $this->occupied_spaces();
     }
      // Espacios ocupados (De Enganche Adicional)
      public function occupied_spaces_like_next_tier(){
