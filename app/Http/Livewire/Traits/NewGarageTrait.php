@@ -121,6 +121,7 @@ trait NewGarageTrait {
 
         return $this->record_detail_garage = DetailGarage::create([
             'garage_id'             => $this->garage->id,
+            'inventory_id'          =>$inventory_record->id,
             'dealer_id'             =>$inventory_record->dealer_id,
             'vin'                   =>$inventory_record->vin,
             'stock'                 =>$inventory_record->stock,

@@ -12,6 +12,7 @@ class DetailGarage extends Model
     public $timestamps = false;
     protected $fillable = [
         'garage_id',
+        'inventory_id',
         'dealer_id',
         'vin',
         'stock',
@@ -39,6 +40,10 @@ class DetailGarage extends Model
         return $this->belongsTo(Garage::class,'garage_id');
     }
 
+    // Al inventario que pertenece
+    public function inventory(){
+        return $this->belongsTo(Inventory::class,'inventory_id');
+    }
 
     /**+------------+
      * | Búsquedas  |
@@ -50,9 +55,16 @@ class DetailGarage extends Model
             $query->where('garage_id',$valor);
         }
      }
+
      public function scopeStock($query,$valor){
         if(trim($valor) != ""){
             $query->where('stock',$valor);
+        }
+     }
+
+     public function scopeInventoryId($query,$valor){
+        if(trim($valor) != ""){
+            $query->where('inventory_id',$valor);
         }
      }
 

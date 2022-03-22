@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('detail_garages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('garage_id')->constrained('garages');
+            $table->foreignId('garage_id')->constrained('garages')->comment('Id del garage');
+            $table->foreignId('inventory_id')->constrained('inventories')->comment('Id en Inventario');
             $table->string('dealer_id',15)->comment('Id distribuidor');
             $table->string('vin',25)->nullable()->default(null)->comment('VIN');
             $table->string('stock',20)->nullable()->default(null)->comment('Id Stock');

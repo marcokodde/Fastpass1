@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Inventory extends Model
@@ -40,6 +41,11 @@ class Inventory extends Model
         return $this->hasMany(SuggestedVehicle::class);
     }
 
+    // Detalle de garages
+    public function vehicles_in_garages(): HasMany
+    {
+        return $this->hasMany(DetailGarage::class);
+    }
 
     // Actualiza estado de Vendido
     public function update_sold_out($sold_out = false){
