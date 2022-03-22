@@ -1,6 +1,6 @@
 
 <div class="fixed inset-0 z-10 overflow-y-auto ease-out duration-400">
-    <div class="flex items-end justify-center min-h-full px-2 pt-4 pb-4 mt-4 text-center sm:block sm:p-0">
+    <div class="flex items-center justify-center min-h-full px-2 pt-4 pb-4 mt-4 text-center sm:block sm:p-0">
         <div class="fixed inset-0 transition-opacity">
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
