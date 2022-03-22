@@ -40,13 +40,15 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 					return window.setTimeout(callback, 16.6666667);
 				};
 		})();
+
+		var Div = document.getElementById("div1");
 		var canvas = document.getElementById("confetti-canvas");
 		if (canvas === null) {
 			canvas = document.createElement("canvas");
 			canvas.setAttribute("id", "confetti-canvas");
 			document.body.appendChild(canvas);
 		}
-
+		Div.setAttribute("style", "display:block;size:2.5rem");
         canvas.setAttribute("style", "display:block;z-index:999999;pointer-events:none");
         canvas.width = width;
         canvas.height = height;
@@ -76,8 +78,9 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 	function stopConfettiInner() {
 		streamingConfetti = false;
         var canvas = document.getElementById("confetti-canvas");
+		var Div = document.getElementById("div1");
         canvas.setAttribute("style", "display:none;z-index:999999;pointer-events:none");
-
+		Div.setAttribute("style", "display:none;size:2.5rem");
 	}
 
 	function removeConfettiInner() {
@@ -132,4 +135,5 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 			}
 		}
 	}
+
 })();
