@@ -229,15 +229,18 @@ class NewShowVehiclesController extends Component
 
     public function store_appointment() {
         $this->validate([
-            'date_at' => 'required',
+            'date_at'   => 'required',
+            'hour'      => 'required'
         ]);
 
         $hh=substr($this->hour,0,2);
         $mm=substr($this->hour,3,2);
         $meridian = substr($this->hour,6,2);
-        $hh = $meridian == 'PM' ? $hh+12 : $hh;
+
+        $hh = $meridian == 'PM' && $hh > 12 ? $hh+12 : $hh;
         $new_hour = $hh . ':' . $mm;
         $date =  $this->date_at.' ' . $new_hour;
+
         Client::Where('client_id', $this->client_id)
                 ->update([
                     'date_at'   => $date,
