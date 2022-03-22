@@ -18,7 +18,9 @@
                 @endif
                 <!-- Page Content -->
                 <main>
-                    <canvas id="confetti-canvas" style="display:none"> </canvas>
+                    <h1 id="div1" style="display:none" class="mt-10 text-center align-center items-center text-gray-700 font-bold">{{__('Congratulations!')}}</h1>
+                    <canvas class="bg-white transparent" id="confetti-canvas" style="display:none">
+                    </canvas>
                     {{ $slot }}
                 </main>
             </div>
