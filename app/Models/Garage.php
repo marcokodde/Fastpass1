@@ -42,8 +42,25 @@ class Garage extends Model
      }
 
      // Espacios ocupados (No importa si es o no de enganche adicional)
+     /**+-----------------------------------------------------------+
+      * | Determinar los espacios ocupados del garage               |
+      * +-----------------------------------------------------------+
+      * | 1.- Se toma el total de vehículos del detalle del garage  |
+      * | 2.- Se recorren los vehículos y por cada uno              |
+      * |     (a) Si está vendido se "resta 1" al total             |
+      * | Al terminar el recorreido se regresa el resultado         |
+      * +-----------------------------------------------------------+
+      */
      public function occupied_spaces(){
-        return $this->vehicles_in_garages->count();
+         $occupied_spaces = $this->vehicles_in_garages->count();
+         if($occupied_spaces){
+             foreach($this->vehicles_in_garages as $vehicle_in_garage){
+                 if($vehicle_in_garage->inventory->sold_out){
+                    $occupied_spaces--;
+                 }
+             }
+         }
+        return $occupied_spaces;
      }
 
      // Espacios ocupados que no estan disponibles
