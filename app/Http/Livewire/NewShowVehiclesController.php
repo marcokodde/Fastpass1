@@ -53,6 +53,8 @@ class NewShowVehiclesController extends Component
     public $hours_to_appointment = [];
     public $max_date_to_appointment;
     public $min_date_to_appointment;
+    public $dates_to_appointment = [];
+
     /**+----------------------------------------+
      * | LO QUE DEBE HACER ESTE CONTROLADOR     |
      * +----------------------------------------+
@@ -119,7 +121,7 @@ class NewShowVehiclesController extends Component
         $this->client = Client::ClientId($this->client_id)->first();
 
         if ($this->client) {
-            $this->create_list_hours();
+            $this->create_list_dates_and_hours_to_appointment();
             $this->client_has_vehicles_with_downpayment =   $this->client->has_vehicles_with_downpayment();
             $this->client_has_vehicles_approved         =   $this->client->has_vehicles_approved();
             $this->active_session = $this->manage_session($this->client,$token);
@@ -243,7 +245,40 @@ class NewShowVehiclesController extends Component
         $this->closeModal();
     }
 
-    // Crea lista de horarios posibles para la cita
+
+
+    private function create_list_dates_and_hours_to_appointment(){
+        $first_suggested = SuggestedVehicle::ClientId($this->client->id)->first();
+        $dealer = Dealer::findOrFail($first_suggested->dealer->id);
+        $this->create_list_dates_to_appointment($dealer);
+        $this->create_list_hours_to_appointment($dealer);
+
+    }
+
+    /**+--------------------------------------------------------------------+
+     * |         CREA LISTA DE FECHAS PARA CITA                             |
+     * +--------------------------------------------------------------------+
+     * | Ciclo desde 1 hasta la cantidad de fechas configuradas             |
+     * | Para cada iteración                                                |
+     * | 1.- Crea la fecha                                                  |
+     * | 2.- Si es domingo y distribuidor no abre salta a siguiente fecha   |
+     * | 3.- Agrega la fecha a la lista                                     |
+     * |    (*) No sea domingo                                              |
+     * |    (*) Sea domingo y el distribuidor abre los domingos             |
+     * +--------------------------------------------------------------------+
+     */
+
+    private function create_list_dates_to_appointment(Dealer $dealer){
+        $this->reset(['dates_to_appointment']);
+        for($i=0;$i<=env('APP_MAX_DAYS_TO_DATE',7);$i++){
+            $day_of_week=date('w',strtotime("+$i day"));
+            $fecha=date('Y-m-d',strtotime("+$i day"));
+            if($day_of_week !=0 || $dealer->open_sunday){
+                array_push($this->dates_to_appointment,$fecha);
+            }
+        }
+    }
+
     /**+--------------------------------------------+
      * | Objetivo: Tener una lista de horas  HH:MM  |
      * +--------------------------------------------+
@@ -259,9 +294,7 @@ class NewShowVehiclesController extends Component
      * +--------------------------------------------+
      */
 
-    private function create_list_hours(){
-        $first_suggested = SuggestedVehicle::ClientId($this->client->id)->first();
-        $dealer = Dealer::findOrFail($first_suggested->dealer->id);
+    private function create_list_hours_to_appointment(Dealer $dealer){
         $this->reset(['hours_to_appointment']);
         for($hour=$dealer->hour_opening;$hour<$dealer->hour_closing;$hour++){
             for($mm=0;$mm<=45;$mm=$mm+15){
@@ -272,6 +305,5 @@ class NewShowVehiclesController extends Component
         }
         $this->min_date_to_appointment = Carbon::now()->format('Y-m-d');
         $this->max_date_to_appointment = Carbon::now()->addDays(env('APP_MAX_DAYS_TO_DATE',2))->format('Y-m-d');
-
     }
 }
