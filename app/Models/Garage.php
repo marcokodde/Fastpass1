@@ -70,7 +70,7 @@ class Garage extends Model
 
      // Espacios disponibles (No importa si es o no de enganche adicional)
      public function available_spaces(){
-         return ENV('GARAGE_SPACES') - $this->vehicles_in_garages->count();
+         return ENV('GARAGE_SPACES') - $this->occupied_spaces();
      }
 
     public function not_available_spaces(){
