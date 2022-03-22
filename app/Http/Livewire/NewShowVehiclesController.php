@@ -252,19 +252,15 @@ class NewShowVehiclesController extends Component
         $dealer = Dealer::findOrFail($first_suggested->dealer->id);
         $this->create_list_dates_to_appointment($dealer);
         $this->create_list_hours_to_appointment($dealer);
-
     }
 
     /**+--------------------------------------------------------------------+
      * |         CREA LISTA DE FECHAS PARA CITA                             |
      * +--------------------------------------------------------------------+
-     * | Ciclo desde 1 hasta la cantidad de fechas configuradas             |
+     * | Ciclo desde 0 hasta la cantidad de fechas configuradas             |
      * | Para cada iteración                                                |
      * | 1.- Crea la fecha                                                  |
-     * | 2.- Si es domingo y distribuidor no abre salta a siguiente fecha   |
-     * | 3.- Agrega la fecha a la lista                                     |
-     * |    (*) No sea domingo                                              |
-     * |    (*) Sea domingo y el distribuidor abre los domingos             |
+     * | 2.- Si No es domingo o  distribuidor domingos agrega la fecha      |
      * +--------------------------------------------------------------------+
      */
 

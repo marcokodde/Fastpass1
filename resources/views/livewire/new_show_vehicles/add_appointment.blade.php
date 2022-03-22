@@ -18,9 +18,15 @@
                             max="{{$max_date_to_appointment}}"
                             placeholder="{{__("Date")}}"
                             required
+                            list="dates_available_to_appointment"
                             style=cursor:pointer;
                             class="rounded w-auto border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         @error('date_at') <span class="text-red-500">{{ $message }}</span>@enderror
+                        <datalist id="dates_available_to_appointment">
+                            @foreach($dates_to_appointment as $date_to_appointment)
+                                <option value="{{$date_to_appointment}}">
+                            @endforeach
+                        </datalist>
                     </div>
 
                     <div class="mb-2">
