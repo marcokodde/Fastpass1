@@ -1,9 +1,9 @@
 <div class="relative mt-12">
     @if ($record->garage)
         <div class="vehicle shadow-2xl">
-            @if($record->images)
+            @if($record->inventory->images)
                 @php
-                    $value = explode(",", $record->images);
+                    $value = explode(",", $record->inventory->images);
                 @endphp
 
                 @if($value[0])
@@ -23,27 +23,28 @@
                 @endif
             @endif
 
-            @if($record->vin || $record->make || $record->model )
-                <label class="text-xl font-oswald text-black font-bold block">{{$record->year}} {{$record->make}} {{$record->model}}</label>
+            @if($record->inventory->vin || $record->inventory->make || $record->inventory->model )
+                <label class="text-lg text-black font-oswald font-bold block">{{$record->inventory->year}} {{$record->inventory->make}} {{$record->inventory->model}}</label>
             @else
                 <p>{{ __('No data available') }}</p>
             @endif
 
-            @if($record->mileage)
-                <label class="font-oswald  block">{{ number_format($record->mileage, 0, '.', ',') }} {{ __('MILES') }}</label>
-            @else
-                <p>{{__('Mileage data available') }}</p>
-            @endif
-
-            @if($record->stock)
-                <label class="font-oswald  block">{{__('STOCK')}} {{ $record->stock }}</label>
+            @if($record->inventory->mileage)
+                <label class="font-oswald block">{{ number_format($record->inventory->mileage, 0, '.', ',') }} {{ __('MILES') }}</label>
             @else
                 <p>{{__('No data available') }}</p>
             @endif
-            @if($record->retail_price)
-                <h3 class="mt-2 @if ($record->inventory->sold_out) line-through @endif">{{ __('Price') }}: ${{ number_format($record->retail_price, 0, '.', ',') }}</h3>
-            @elseif($record->sales_price)
-                <h3 class="mt-2 @if ($record->inventory->sold_out) line-through @endif">{{ __('Price') }}: ${{ number_format($record->sales_price, 0, '.', ',') }}</h3>
+
+            @if($record->inventory->stock)
+                <label class="font-oswald block">{{__('STOCK')}} {{ $record->inventory->stock }}</label>
+            @else
+                <p>{{__('No data available') }}</p>
+            @endif
+
+            @if($record->inventory->retail_price)
+                <h3 class="mt-2 @if ($record->inventory->sold_out) line-through @endif">{{ __('Price') }}: ${{ number_format($record->inventory->retail_price, 0, '.', ',') }}</h3>
+            @elseif ($record->sale_price)
+                <h3 class="mt-2 @if ($record->inventory->sold_out) line-through @endif">{{ __('Price') }}: ${{ number_format($record->sale_price, 0, '.', ',') }}</h3>
             @else
                 <h5 class="mt-2 font-bold">{{__('Price data not available') }}</h5>
             @endif
