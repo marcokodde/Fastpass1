@@ -41,9 +41,9 @@
                 <p>{{__('No data available') }}</p>
             @endif
             @if($record->retail_price)
-                <h3 class="mt-2 @if (!$record->inventory->sold_out) line-through @endif">{{ __('Price') }}: ${{ number_format($record->retail_price, 0, '.', ',') }}</h3>
+                <h3 class="mt-2 @if ($record->inventory->sold_out) line-through @endif">{{ __('Price') }}: ${{ number_format($record->retail_price, 0, '.', ',') }}</h3>
             @elseif($record->sales_price)
-                <h3 class="mt-2 @if (!$record->inventory->sold_out) line-through @endif">{{ __('Price') }}: ${{ number_format($record->sales_price, 0, '.', ',') }}</h3>
+                <h3 class="mt-2 @if ($record->inventory->sold_out) line-through @endif">{{ __('Price') }}: ${{ number_format($record->sales_price, 0, '.', ',') }}</h3>
             @else
                 <h5 class="mt-2 font-bold">{{__('Price data not available') }}</h5>
             @endif
