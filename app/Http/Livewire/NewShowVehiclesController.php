@@ -253,8 +253,14 @@ class NewShowVehiclesController extends Component
     private function create_list_dates_and_hours_to_appointment(){
         $first_suggested = SuggestedVehicle::ClientId($this->client->id)->first();
         $dealer = Dealer::findOrFail($first_suggested->dealer->id);
+        $this->date_at = date('Y-m-d');
+        if(date('w') == 0 && !$dealer->open_sunday){
+            $this->date_at=date('Y-m-d',strtotime('+1 day'));
+        }
         $this->create_list_dates_to_appointment($dealer);
         $this->create_list_hours_to_appointment($dealer);
+        $this->min_date_to_appointment = Carbon::now()->format('Y-m-d');
+        $this->max_date_to_appointment = Carbon::now()->addDays(env('APP_MAX_DAYS_TO_DATE',2))->format('Y-m-d');
     }
 
     /**+--------------------------------------------------------------------+
@@ -276,6 +282,7 @@ class NewShowVehiclesController extends Component
                 array_push($this->dates_to_appointment,$fecha);
             }
         }
+
     }
 
     /**+--------------------------------------------+
@@ -295,14 +302,18 @@ class NewShowVehiclesController extends Component
 
     private function create_list_hours_to_appointment(Dealer $dealer){
         $this->reset(['hours_to_appointment']);
-        for($hour=$dealer->hour_opening;$hour<$dealer->hour_closing;$hour++){
+        $initial_hour = $dealer->hour_opening;
+        if(date('Y-m-d') == $this->date_at){
+            $initial_hour = intval(date('H')+1);
+        }
+
+        for($hour=$initial_hour;$hour<$dealer->hour_closing;$hour++){
             for($mm=0;$mm<=45;$mm=$mm+15){
                 $am_pm = $hour < 12 ? 'AM' : 'PM';
                 $hh  = $hour > 12 ? $hour-12 : $hour;
                 array_push($this->hours_to_appointment,Str::padLeft($hh,2,"0") . ':' .  Str::padLeft($mm,2,"0"). ' ' . $am_pm);
             }
         }
-        $this->min_date_to_appointment = Carbon::now()->format('Y-m-d');
-        $this->max_date_to_appointment = Carbon::now()->addDays(env('APP_MAX_DAYS_TO_DATE',2))->format('Y-m-d');
+       // dd($this->hours_to_appointment);
     }
 }
