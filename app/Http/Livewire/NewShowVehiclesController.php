@@ -289,12 +289,13 @@ class NewShowVehiclesController extends Component
     /**+--------------------------------------------+
      * | Objetivo: Tener una lista de horas  HH:MM  |
      * +--------------------------------------------+
-     * | HH: Desde $dealer->hour_opening            |
+     * | HH: Desde: Si es hoy a partir de la hora   |
+     * |            actual + 1                      |
+     *       Si es otro día $dealer->hour_opening   |
      * |     Hasta=$dealer->hour_closing            |
      * | MM: Rangos de 15 minutos                   |
      * +--------------------------------------------+
-     * | 1) Leer el distribuidor                    |
-     * | 2) Crear lista de horas  y minutos         |
+     * Crear lista de horas  y minutos              |
      * |   HH= Desde que abre hasta que cierra      |
      * |       Dentro de cada hora ir 00-45         |
      * |  Si HH < 12 --> AM si no --> PM            |
