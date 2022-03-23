@@ -40,7 +40,10 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 					return window.setTimeout(callback, 16.6666667);
 				};
 		})();
-
+		window.scroll({
+			top: 10,
+			behavior: 'smooth'
+		  });
 		var Div = document.getElementById("div1");
 		var canvas = document.getElementById("confetti-canvas");
 		if (canvas === null) {
