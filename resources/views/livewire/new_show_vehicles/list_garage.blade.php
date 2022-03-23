@@ -52,12 +52,12 @@
                 <h5 class="mt-2 font-bold text-red-600">{{__('Additional Down Payment') }}</h5>
             @endif
 
-            @if (!$record->inventory->sold_out)
+            @if ($record->inventory->sold_out)
                 <h3 class="mt-2 font-bold text-red-600">{{__('Vehicle Sold!') }}</h3>
             @endif
 
             <div class="mb-2">
-                @if ($record->inventory->sold_out)
+                @if (!$record->inventory->sold_out)
                     <button type="button" class="bg-gray-600 font-bold text-white px-8 pb-4 py-4 m-4 rounded relative border-2 border-gray-700 disabled" disabled>
                         {{__('IN MY GARAGE')}}
                     </button>
