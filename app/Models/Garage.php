@@ -83,7 +83,7 @@ class Garage extends Model
 
      // Espacios disponibles para Enganche Adicional
      public function available_spaces_like_next_tier(){
-        return ENV('GARAGE_SPACES_TO_NEXT_TIER') - $this->vehicles_in_garages->where('is_additional_next_tier',1)->count();
+        return ENV('GARAGE_SPACES_TO_NEXT_TIER') - $this->occupied_spaces();
      }
 
      //Los Espacios Para Vehiculos con Enganche estan ocupados
