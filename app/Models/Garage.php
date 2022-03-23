@@ -38,7 +38,7 @@ class Garage extends Model
 
      // Tiene espacio (no importa si es o no de enganche adicional)
      public function has_space(){
-        return $this->vehicles_in_garages->count() < ENV('GARAGE_SPACES');
+        return $this->occupied_spaces() < ENV('GARAGE_SPACES');
      }
 
      // Espacios ocupados (No importa si es o no de enganche adicional)
@@ -52,15 +52,15 @@ class Garage extends Model
       * +-----------------------------------------------------------+
       */
      public function occupied_spaces(){
-         $occupied_spaces = $this->vehicles_in_garages->count();
-         if($occupied_spaces){
+         $total_vehicles_in_garage = $this->vehicles_in_garages->count();
+         if($total_vehicles_in_garage){
              foreach($this->vehicles_in_garages as $vehicle_in_garage){
                  if($vehicle_in_garage->inventory->sold_out){
-                    $occupied_spaces--;
+                    $total_vehicles_in_garage--;
                  }
              }
          }
-        return $occupied_spaces;
+        return $total_vehicles_in_garage;
      }
 
      // Espacios ocupados que no estan disponibles
