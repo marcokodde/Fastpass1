@@ -242,10 +242,7 @@ class NewShowVehiclesController extends Component
         $new_hour = $hh . ':' . $mm;
         $date =  $this->date_at.' ' . $new_hour;
 
-        Client::Where('client_id', $this->client_id)
-                ->update([
-                    'date_at'   => $date,
-                ]);
+        Client::Where('client_id', $this->client_id)->update(['date_at'   => $date]);
         $this->closeModal();
     }
 
