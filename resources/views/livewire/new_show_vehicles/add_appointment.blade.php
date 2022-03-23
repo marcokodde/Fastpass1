@@ -14,6 +14,7 @@
                         <label  class="block text-gray-700 text-base font-bold mb-2">{{__("Appointment Date:")}}</label>
                         <input type="date"
                             wire:model="date_at"
+                            wire:change="create_list_hours_to_appointment({{$dealer}})"
                             min="{{$min_date_to_appointment}}"
                             max="{{$max_date_to_appointment}}"
                             placeholder="{{__("Date")}}"
