@@ -4,12 +4,12 @@
         @if($show_garage && !$show_additional && $garage && $client->date_at)
         <div class="grid items-center justify-center">
             <div>
-                <h2>
+                <h2 class="font-bold font-headline">
                     {{__('Congratulations!')}}
                 </h2>
             </div>
             <div>
-                <label for="date" class="block">
+                <label for="date" class="block font-headline font-semibold">
                     {{__('Your appointment to get your vehicile is')}}:
                 </label>
                 <span class="block font-bold text-lg text-gray-700 font-headline uppercase">
