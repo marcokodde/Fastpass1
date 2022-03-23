@@ -2,6 +2,5 @@ Pendientes proyecto Fastpass.
 1.- Reestructurar detail_garages para que lea los detalles del vehículo del INVENTARIO:
     (a) Dejar de usar datos de la tabla DETAIL_GARAGES y usar los de INVENTORIES
     (b) Eliminar atributos que están en INVENTORIES de tabla DETAIL_GARAGES
-2. Eliminar de la lista de "horas" las que ya hayan pasado el día de hoy
-3.- ABC parámetros: Pasar a tabla y abc de la misma las variables de entorno
-4.- Llamar actualización de inventario desde c2c
+2.- ABC parámetros: Pasar a tabla y abc de la misma las variables de entorno
+3.- Llamar actualización de inventario desde c2c

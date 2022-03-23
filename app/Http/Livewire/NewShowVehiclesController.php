@@ -316,6 +316,6 @@ class NewShowVehiclesController extends Component
                 array_push($this->hours_to_appointment,Str::padLeft($hh,2,"0") . ':' .  Str::padLeft($mm,2,"0"). ' ' . $am_pm);
             }
         }
-       // dd($this->hours_to_appointment);
+
     }
 }
