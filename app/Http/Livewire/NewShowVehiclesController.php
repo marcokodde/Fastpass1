@@ -238,7 +238,8 @@ class NewShowVehiclesController extends Component
         $mm=substr($this->hour,3,2);
         $meridian = substr($this->hour,6,2);
 
-        $hh = $meridian == 'PM' && $hh > 12 ? $hh+12 : $hh;
+        $hh = $meridian == 'PM' && $hh != 12 ? $hh+12 : $hh;
+
         $new_hour = $hh . ':' . $mm;
         $date =  $this->date_at.' ' . $new_hour;
 
