@@ -1,6 +1,25 @@
 <div>
     @include('livewire.new_show_vehicles.index_header')
-    <div class="sidemenu mt-12 w-64 absolute">
+    <div class="sidemenu mt-12 w-96 absolute">
+        @if($show_garage && !$show_additional && $garage && $client->date_at)
+        <div class="grid items-center justify-center">
+            <div>
+                <h2>
+                    {{__('Congratulations!')}}
+                </h2>
+            </div>
+            <div>
+                <label for="date" class="block">
+                    {{__('Your appointment to get your vehicile is')}}:
+                </label>
+                <span class="block font-bold text-lg text-gray-700 font-headline uppercase">
+                    {{date("d F Y", strtotime($client->date_at))}},
+                    {{date("H:i", strtotime($client->date_at))}}
+                </span>
+            </div>
+        </div>
+    @endif
+
     </div>
     <div class="py-2 mt-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -39,6 +58,7 @@
             @if($show_garage && !$show_additional && !$garage)
                 @include('livewire.new_show_vehicles.not_garage')
             @endif
+           
         </div>
     </div>
     @if(!$show_garage && $client_has_vehicles_with_downpayment)
