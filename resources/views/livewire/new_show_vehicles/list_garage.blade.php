@@ -11,7 +11,7 @@
                         <img src="{{ $value[0] }}" alt="{{ __('Not Image') }}">
                     </div>
                 @else
-                    <img class="h-44 w-44" src="{{ asset('images/default_image.png') }}" alt="">
+                    <img class="h-52 w-72" src="{{ asset('images/default_image.png') }}" alt="">
                 @endif
             @else
                 @if($record->images)
@@ -19,7 +19,7 @@
                         <img src="{{ $record->images }}" alt="{{ __('Not Image') }}">
                     </div>
                 @else
-                    <img class="h-44 w-44" src="{{ asset('images/default_image.png') }}" alt="">
+                    <img class="h-52 w-72" src="{{ asset('images/default_image.png') }}" alt="">
                 @endif
             @endif
 
@@ -43,8 +43,8 @@
 
             @if($record->inventory->retail_price)
                 <h3 class="mt-2 @if ($record->inventory->sold_out) line-through @endif">{{ __('Price') }}: ${{ number_format($record->inventory->retail_price, 0, '.', ',') }}</h3>
-            @elseif ($record->sale_price)
-                <h3 class="mt-2 @if ($record->inventory->sold_out) line-through @endif">{{ __('Price') }}: ${{ number_format($record->sale_price, 0, '.', ',') }}</h3>
+            @elseif ($record->sales_price)
+                <h3 class="mt-2 @if ($record->inventory->sold_out) line-through @endif">{{ __('Price') }}: ${{ number_format($record->sales_price, 0, '.', ',') }}</h3>
             @else
                 <h5 class="mt-2 font-bold">{{__('Price data not available') }}</h5>
             @endif
