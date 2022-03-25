@@ -3,13 +3,15 @@
 namespace App\Http\Livewire;
 
 use App\Models\Client;
-use App\Http\Livewire\Traits\ApiTrait;
-use App\Http\Livewire\Traits\NewSuggestedVehiclesTrait;
-
-
-
-use App\Models\ClientSession;
 use Livewire\Component;
+use App\Models\ClientSession;
+
+
+
+use Illuminate\Support\Facades\Http;
+use App\Http\Livewire\Traits\ApiTrait;
+use GuzzleHttp\Exception\RequestException;
+use App\Http\Livewire\Traits\NewSuggestedVehiclesTrait;
 
 class WelcomeController extends Component
 {
@@ -47,11 +49,7 @@ class WelcomeController extends Component
             dd('Respuesta de neo es nula');
         }
 
-        if(!$this->right_params){
-            return view('livewire.welcome.welcome-bad-params');
-        }
-
-        return view('livewire.welcome.welcome-controller');
+       return view('livewire.welcome.welcome-controller');
     }
 
     private function validate_params(){
@@ -85,6 +83,22 @@ class WelcomeController extends Component
     }
 
 
-
+    public function client_require_new_code(Client $client) {
+        $url_to_new_code = 'https://mewfastpass.com/' . $client->client_id . '/' . $client->session_with_token()->token;
+        try {
+            $response = Http::withHeaders([
+                'Connection' => 'keep-alive',
+                'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json'])
+            ->post('https://api.neoverify.net/v1/add_note/', [
+                        'neo_id'    =>  $this->client_id,
+                        'note'      =>  ' Client Requested New Code: Here is the New Code for you: ' . $url_to_new_code
+                    ]);
+            return $response->json();
+        } catch (RequestException $ex) {
+            return response()->json(['error' => $ex->getMessage()], 500);
+        }
+    }
 
 }

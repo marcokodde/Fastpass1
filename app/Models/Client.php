@@ -19,7 +19,7 @@ class Client extends Model
         'date_at'
     ];
 
-    // Vehículos sugeridos
+      // Vehículos sugeridos
 
     public function suggested_vehicles(){
         return $this->hasMany(SuggestedVehicle::class,'client_id')
@@ -44,6 +44,10 @@ class Client extends Model
         return $this->hasMany(ClientSession::class);
     }
 
+    // Sesión con token
+    public function session_with_token(){
+        return $this->sessions->whereNotNull('token')->where('active')->first();
+    }
     // Garages
     public function garages(): HasMany
     {
@@ -70,6 +74,7 @@ class Client extends Model
         $this->loggin_times++;
         $this->save();
     }
+
 
 
     /**+------------+

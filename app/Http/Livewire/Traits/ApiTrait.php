@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Traits;
 
 use App\Models\Client;
 use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Exception\RequestException;
 
 trait ApiTrait {
 
