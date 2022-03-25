@@ -80,7 +80,7 @@
                 <div class="block" style="margin-top: -50px;">
                     <img style="height:70%; width:70%;" class="mx-auto"  src="{{asset('images/session_expire_garage.png')}}">
                         <h2 style="margin-top:-10%; color:#fff" class="font-montserrat text-center uppercase">
-                            {{__('There have exit your garage')}}
+                            {{__('You have exited your garage')}}
                         </h2>
                         <label style="margin-top:-2%; color:#fff" class="font-montserrat text-center uppercase">
                             {{__('To start a new session, request a new code')}}
