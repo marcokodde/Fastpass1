@@ -1,31 +1,24 @@
 <div>
     @include('livewire.new_show_vehicles.index_header')
     <div class="sidemenu mt-12 w-96 absolute">
-        @if($show_garage && !$show_additional && $garage && $client->date_at)
-        <div class="grid items-center justify-center">
-            <div>
-                <h2 class="font-bold font-headline">
-                    {{__('Congratulations!')}}
-                </h2>
-            </div>
-            <div>
-                <label for="date" class="block font-headline font-semibold">
-                    {{__('Your appointment to get your vehicile is')}}:
-                </label>
-                <span class="block font-bold text-lg text-gray-700 font-headline uppercase">
-                    {{date("d F Y", strtotime($client->date_at))}},
-                    {{date("H:i", strtotime($client->date_at))}}
-                </span>
-            </div>
-        </div>
-    @endif
-
     </div>
     <div class="py-2 mt-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden sm:rounded-lg mt-2">
                 @include('common.header_content')
-
+                @if($show_garage && !$show_additional && $garage && $client->date_at)
+                    <div class="grid items-center justify-center">
+                        <div>
+                            <label for="date" class="block font-headline font-semibold">
+                                {{__('Your appointment to get your vehicle is')}}
+                            </label>
+                            <span class="block font-bold text-lg text-gray-700 font-headline uppercase">
+                                {{date("l d F Y", strtotime($client->date_at))}},
+                                {{date("H:i A", strtotime($client->date_at))}}
+                            </span>
+                        </div>
+                    </div>
+                @endif
                 @if($isOpen)
                     @include('livewire.new_show_vehicles.add_appointment')
                 @endif

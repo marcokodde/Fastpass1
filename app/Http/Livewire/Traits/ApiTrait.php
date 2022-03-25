@@ -79,7 +79,7 @@ trait ApiTrait {
                 'Accept' => 'application/json'])
             ->post('https://api.neoverify.net/v1/add_note/', [
                         'neo_id'    =>  $this->client_id,
-                        'note'      =>  ' Remember that the client is sent the url of the site/client_id/token: example: https://mewfastpass.com/client_id/token, Customer requested New Link: Token#'.$token.''
+                        'note'      =>  'We are sorry your session expired, do not worry click this link to go back to your garage www.newfastpass.com/'.$this->client_id.'/'.$token.' ',
                     ]);
             return $response->json();
         } catch (RequestException $ex) {
