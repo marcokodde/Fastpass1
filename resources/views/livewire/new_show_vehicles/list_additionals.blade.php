@@ -9,7 +9,7 @@
                 <img src="{{ $value[0] }}" alt="{{ __('Not Image') }}">
             </div>
         @else
-            <img class="h-44 w-44 items-center align-center mx-auto" src="{{ asset('images/default.jpeg') }}" alt="">
+            <img class="h-44 w-52 items-center align-center mx-auto" src="{{ asset('images/default.jpeg') }}" alt="">
         @endif
     @else
         @if($record->images)
@@ -17,7 +17,7 @@
                 <img src="{{ $record->images }}" alt="{{ __('Not Image') }}">
             </div>
         @else
-            <img class="h-44 w-44 items-center align-center mx-auto" src="{{ asset('images/default.jpeg') }}" alt="">
+            <img class="h-44 w-52 items-center align-center mx-auto" src="{{ asset('images/default.jpeg') }}" alt="">
         @endif
     @endif
 

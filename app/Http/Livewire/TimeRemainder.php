@@ -85,18 +85,10 @@ class TimeRemainder extends Component
 
     /** Crea nueva sesion con token */
     private function create_new_session(){
-        //TODO: Enviar nota Sesión expiró:
-        // http://fastpass.test/suggested_vehicles?client_id=IvViysJTjUGmTcP20P7GflE26&&token=<Token>
         $this->client->update_loggin_times();
         $token= $this->create_client_token();
         $this->create_client_session(60*24*30,$token,1);
-        //TODO: Enviar nota Sesión expiró:
-        // http://fastpass.test/suggested_vehicles?client_id=IvViysJTjUGmTcP20P7GflE26&&token=<Token>
-
-
-        // Envio de Nota cuando la session expiro, de momento se comenta hasta que se de el Visto Bueno.
-
-        //$this->send_note_api_expire($token);
+        $this->send_note_api_expire($token);
         return redirect()->to('expire_session');
     }
 }

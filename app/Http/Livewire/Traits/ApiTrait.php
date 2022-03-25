@@ -3,13 +3,14 @@
 namespace App\Http\Livewire\Traits;
 
 
+use App\Models\Client;
 use Illuminate\Support\Facades\Http;
 
 trait ApiTrait {
 
     private $api_url= 'https://api.neoverify.com/v1/get_recommended_inventory?id=';
     private $api_inventory = 'http://c2c.teamkodde.com/api/inventory/';
-
+    public $customer;
 
     // Lee vehículos sugerios por NEO
     private function read_api_suggested_vehicles(){
@@ -21,7 +22,6 @@ trait ApiTrait {
         ])->get($this->api_url . $this->client_id) ,true);
     }
 
-
     /** Lee registro de auto en inventario */
     private function read_inventory_stock($stock){
         $url_inventory = $this->api_inventory.$stock;
@@ -30,20 +30,42 @@ trait ApiTrait {
 
     /** Envio de API, cuando el usuario se expiro sesion o en su caso si le intereso un vehiculo */
     private function send_note_api_vehicle($stock) {
-        try {
-            $response = Http::withHeaders([
-                'Connection' => 'keep-alive',
-                'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json'])
-            ->post('https://api.neoverify.net/v1/add_note/', [
-                        'neo_id'    =>  $this->client_id,
-                        'note'      =>  'The customer added this vehicle to his garage:  Stock#'.$stock->stock.'',
-                        'note_type' =>  'Vehicle'
-                    ]);
-            return $response->json();
-        } catch (RequestException $ex) {
-            return response()->json(['error' => $ex->getMessage()], 500);
+        $this->customer = Client::Where('client_id',"=" ,$this->client_id)->get();
+        foreach ($this->customer as $client) {
+        }
+
+        if ($client->date_at) {
+            try {
+                $response = Http::withHeaders([
+                    'Connection' => 'keep-alive',
+                    'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json'])
+                ->post('https://api.neoverify.net/v1/add_note/', [
+                            'neo_id'    =>  $this->client_id,
+                            'note'      =>  'The customer added an appointment, these are his data:: '.$this->customer->date_at.', and vehicle to his garage:  Stock#'.$stock->stock.'',
+                            'note_type' =>  'Vehicle'
+                        ]);
+                return $response->json();
+            } catch (RequestException $ex) {
+                return response()->json(['error' => $ex->getMessage()], 500);
+            }
+        } else {
+            try {
+                $response = Http::withHeaders([
+                    'Connection' => 'keep-alive',
+                    'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json'])
+                ->post('https://api.neoverify.net/v1/add_note/', [
+                            'neo_id'    =>  $this->client_id,
+                            'note'      =>  'The customer added this vehicle to his garage:  Stock#'.$stock->stock.'',
+                            'note_type' =>  'Vehicle'
+                        ]);
+                return $response->json();
+            } catch (RequestException $ex) {
+                return response()->json(['error' => $ex->getMessage()], 500);
+            }
         }
     }
 
@@ -56,7 +78,7 @@ trait ApiTrait {
                 'Accept' => 'application/json'])
             ->post('https://api.neoverify.net/v1/add_note/', [
                         'neo_id'    =>  $this->client_id,
-                        'note'      =>  'Test Ahava.. "Remember that the client is sent the url of the site/client_id/token: example: https://name_site.com/client_id/token" Customer requested New Link: Token#'.$token.''
+                        'note'      =>  ' Remember that the client is sent the url of the site/client_id/token: example: https://mewfastpass.com/client_id/token, Customer requested New Link: Token#'.$token.''
                     ]);
             return $response->json();
         } catch (RequestException $ex) {
