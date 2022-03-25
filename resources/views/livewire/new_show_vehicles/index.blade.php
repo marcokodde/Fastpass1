@@ -14,7 +14,7 @@
                             </label>
                             <span class="block font-bold text-lg text-gray-700 font-headline uppercase">
                                 {{date("l d F Y", strtotime($client->date_at))}},
-                                {{date("H:i A", strtotime($client->date_at))}}
+                                {{date("g:i A", strtotime($client->date_at))}}
                             </span>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
             @if($show_garage && !$show_additional && !$garage)
                 @include('livewire.new_show_vehicles.not_garage')
             @endif
-           
+
         </div>
     </div>
     @if(!$show_garage && $client_has_vehicles_with_downpayment)
