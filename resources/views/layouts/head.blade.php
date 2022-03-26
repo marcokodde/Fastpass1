@@ -335,6 +335,44 @@ color: #01a03b;
             z-index: 100;
             margin-top: 0;
           }
+
+          .btn_reques_code {
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: transparent;
+            border-color: #f1c40f;
+            border: 2px solid #f1c40f;
+            border-radius: 0.6em;
+            color:white;
+            cursor: pointer;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-self: center;
+                -ms-flex-item-align: center;
+                    align-self: center;
+            font-size: 2rem;
+            font-weight: 200;
+            line-height: 1;
+            margin-top: -105px;
+            margin-bottom: 15px;
+            padding: 1em 1em;
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            box-shadow: 0 0 40px 40px #f1c40f inset, 0 0 0 0 #f1c40f;
+            -webkit-transition: all 150ms ease-in-out;
+            transition: all 150ms ease-in-out;
+        }
+        .btn_reques_code :hover, .btn:focus {
+          box-shadow: 0 0 10px 0 #f1c40f inset, 0 0 10px 4px #f1c40f;
+          color: black;
+        }
     </style>
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
