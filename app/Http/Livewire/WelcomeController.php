@@ -91,7 +91,7 @@ class WelcomeController extends Component
                 'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json'])
-            ->post('https://api.neoverify.net/v1/add_note/', [
+            ->post('https://api.neoverify.com/v1/add_note/', [
                         'neo_id'    =>  $this->client_id,
                         'note'      =>  ' Client Requested New Code: Here is the New Code for you: ' . $url_to_new_code
                     ]);

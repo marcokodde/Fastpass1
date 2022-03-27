@@ -42,7 +42,7 @@ trait ApiTrait {
                     'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json'])
-                ->post('https://api.neoverify.net/v1/add_note/', [
+                ->post('https://api.neoverify.com/v1/add_note/', [
                             'neo_id'    =>  $this->client_id,
                             'note'      =>  'The customer added an appointment, these are his data:: '.$this->customer->date_at.', and vehicle to his garage:  Stock#'.$stock->stock.'',
                             'note_type' =>  'Vehicle'
@@ -58,7 +58,7 @@ trait ApiTrait {
                     'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json'])
-                ->post('https://api.neoverify.net/v1/add_note/', [
+                ->post('https://api.neoverify.com/v1/add_note/', [
                             'neo_id'    =>  $this->client_id,
                             'note'      =>  'The customer added this vehicle to his garage:  Stock#'.$stock->stock.'',
                             'note_type' =>  'Vehicle'
@@ -77,7 +77,7 @@ trait ApiTrait {
                 'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json'])
-            ->post('https://api.neoverify.net/v1/add_note/', [
+            ->post('https://api.neoverify.com/v1/add_note/', [
                         'neo_id'    =>  $this->client_id,
                         'note'      =>  'We are sorry your session expired, do not worry click this link to go back to your garage www.newfastpass.com/'.$this->client_id.'/'.$token.' ',
                     ]);
