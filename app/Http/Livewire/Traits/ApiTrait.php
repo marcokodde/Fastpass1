@@ -10,7 +10,7 @@ use GuzzleHttp\Exception\RequestException;
 trait ApiTrait {
 
     private $api_url= 'https://api.neoverify.com/v1/get_recommended_inventory?id=';
-    private $api_inventory = 'http://c2c.teamkodde.com/api/inventory/';
+    private $api_inventory = 'http://www.ctcinventory.com//api/inventory/';
     public $customer;
 
     // Lee vehículos sugerios por NEO
