@@ -2,19 +2,19 @@
     class="body_background relative flex justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0">
 
     @if($right_params)
-    <div class="mx-auto block 2xl:-mt-12 sm:-mt-20 md:mt-1">
-        <img  style="height:75%; width:75%;"  class="sm:h-72 sm:w-72 md:h-96 md:w-96 mx-auto object-scale-down" src="{{asset('images/welcome_home.png')}}">
-            <button style="background-color:#f1c40f" class="btn mx-auto text-white">
-                <a class="text-white font-semibold font-headline "
-                @if($token)
-                    href="{{ url('show_vehicles/'.$client_id . '/'.$token) }}">
-                @else
-                    href="{{ url('show_vehicles/'.$client_id) }}">
-                @endif
-                {{ __('UNLOCK PRICES')}}
-                </a>
-            </button>
-    </div>
+        <div class="mx-auto block 2xl:-mt-12 sm:-mt-20 md:mt-1">
+            <img  style="height:75%; width:75%;"  class="sm:h-72 sm:w-72 md:h-96 md:w-96 mx-auto object-scale-down" src="{{asset('images/welcome_home.png')}}">
+                <button style="background-color:#f1c40f" class="btn mx-auto text-white">
+                    <a class="text-white font-semibold font-headline "
+                    @if($token)
+                        href="{{ url('show_vehicles/'.$client_id . '/'.$token) }}">
+                    @else
+                        href="{{ url('show_vehicles/'.$client_id) }}">
+                    @endif
+                    {{ __('UNLOCK PRICES')}}
+                    </a>
+                </button>
+        </div>
 
     @elseif(!$right_params && $client->session_with_token())
         @include('livewire.welcome.welcome_request_new_code')
