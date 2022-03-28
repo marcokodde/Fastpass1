@@ -89,6 +89,6 @@ class TimeRemainder extends Component
         $token= $this->create_client_token();
         $this->create_client_session(60*24*30,$token,1);
         $this->send_note_api_expire($token);
-        return redirect()->to('expire_session');
+        return redirect('/' .$this->client_id);
     }
 }
