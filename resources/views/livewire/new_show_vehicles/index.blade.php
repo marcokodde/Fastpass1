@@ -13,7 +13,7 @@
                                 {{__('Your appointment to get your vehicle is')}}
                             </label>
                             <span class="block font-bold text-lg text-gray-700 font-headline uppercase">
-                                {{date("l d F Y", strtotime($client->date_at))}},
+                                {{date("l F d Y", strtotime($client->date_at))}},
                                 {{date("g:i A", strtotime($client->date_at))}}
                             </span>
                         </div>

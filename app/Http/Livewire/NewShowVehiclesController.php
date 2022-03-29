@@ -202,6 +202,9 @@ class NewShowVehiclesController extends Component
 
     // Muestra vista de citas
     public function show_appointment() {
+        if($this->client->date_at){
+            $this->date_at = $this->client->date_at;
+        }
         $this->openModal();
     }
 
@@ -243,7 +246,10 @@ class NewShowVehiclesController extends Component
         $new_hour = $hh . ':' . $mm;
         $date =  $this->date_at.' ' . $new_hour;
 
-        $client = Client::Where('client_id', $this->client_id)->update(['date_at'   => $date]);
+        $client = Client::Where('client_id', $this->client_id)->first();
+
+        $client->date_at   = $date;
+        $client->save();
         $this->send_note_appointment($client);
         $this->closeModal();
     }
@@ -253,7 +259,11 @@ class NewShowVehiclesController extends Component
     private function create_list_dates_and_hours_to_appointment(){
         $first_suggested = SuggestedVehicle::ClientId($this->client->id)->first();
         $this->dealer = Dealer::findOrFail($first_suggested->dealer->id);
-        $this->date_at = date('Y-m-d');
+        if(!$this->date_at){
+            $this->date_at = date('Y-m-d');
+        }
+
+
         if(date('w') == 0 && !$this->dealer->open_sunday){
             $this->date_at=date('Y-m-d',strtotime('+1 day'));
         }
