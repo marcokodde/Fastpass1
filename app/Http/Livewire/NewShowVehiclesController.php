@@ -203,10 +203,6 @@ class NewShowVehiclesController extends Component
     // Muestra vista de citas
     public function show_appointment() {
 
-        if($this->client->date_at){
-            $this->date_at = substr($this->client->date_at,0,10);
-        }
-
         $this->openModal();
     }
 
@@ -254,8 +250,6 @@ class NewShowVehiclesController extends Component
             $this->send_note_appointment($this->client);
         }
 
-
-
         $this->closeModal();
     }
 
@@ -296,6 +290,13 @@ class NewShowVehiclesController extends Component
             if($day_of_week !=0 || $dealer->open_sunday){
                 array_push($this->dates_to_appointment,$fecha);
             }
+        }
+
+        if($this->client->date_at && in_array(substr($this->client->date_at,0,10),$this->dates_to_appointment)){
+            $this->date_at = substr($this->client->date_at,0,10);
+
+        }else{
+            $this->date_at = date('Y-m-d');
         }
 
     }
