@@ -2,7 +2,7 @@
     <img class="stnd skip-lazy dark-version" width="207" height="110" alt="CTC Auto Group" src="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/05/brand-logo.png"/>
     <div style="background-color: #6AB04C" class="relative flex items-center justify-center bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
         <div class="mx-auto block 2xl:-mt-44 mt-0 md:mt-1 sm:mt-0">
-            <img style="height:70%; width:70%;" class="mx-auto" src="{{asset('images/session_expire_garage.png')}}">
+            <img style="height:70%; width:70%;" class="mx-auto" src="{{asset('images/exit_garage.png')}}">
             <button wire:click.prevent="client_require_new_code({{$client}})" onclick="execute()"
                     style="background-color:#f1c40f" class="btn_reques_code mx-auto text-white hover:text-black">
                 {{ __('REQUEST NEW CODE')}}

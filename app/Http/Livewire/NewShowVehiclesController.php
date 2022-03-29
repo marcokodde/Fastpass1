@@ -245,9 +245,7 @@ class NewShowVehiclesController extends Component
 
         $new_hour = $hh . ':' . $mm;
         $date =  $this->date_at.' ' . $new_hour;
-
         $this->client = Client::Where('client_id', $this->client_id)->first();
-
         $this->client->date_at   = $date;
         $this->client->save();
 

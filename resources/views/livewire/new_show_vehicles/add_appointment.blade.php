@@ -12,24 +12,24 @@
                     <div class="mb-4">
                         <span class="block text-lg font-headline text-gray-700 font-bold mb-2">{{__("Pick your Date and Time to get Driving!")}}</span>
                         <label  class="block text-gray-700 text-base font-bold mb-2">{{__("Appointment Date:")}}</label>
+
                         <input type="date"
                             wire:model="date_at"
                             wire:change="create_list_hours_to_appointment({{$dealer}})"
                             min="{{$min_date_to_appointment}}"
                             max="{{$max_date_to_appointment}}"
-                            placeholder="{{__("Date")}}"
                             required
                             list="dates_available_to_appointment"
                             style=cursor:pointer;
                             class="rounded w-auto border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         @error('date_at') <span class="text-red-500">{{ $message }}</span>@enderror
+
                         <datalist id="dates_available_to_appointment">
                             @foreach($dates_to_appointment as $date_to_appointment)
                                 <option value="{{$date_to_appointment}}">
                             @endforeach
                         </datalist>
                     </div>
-
                     <div class="mb-2">
                         <label class="block mb-2 text-sm font-bold text-gray-700">{{__("Hour")}}</label>
                         <select wire:model="hour"
@@ -39,6 +39,7 @@
                                 <option value="{{ $hour_to_appointment }}">{{ $hour_to_appointment }}</option>
                             @endforeach
                         </select>
+                        @error('hour') <span class="text-red-500">{{ $message }}</span>@enderror
                     </div>
                 </div>
                 <div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
@@ -57,3 +58,4 @@
         </div>
     </div>
 </div>
+
