@@ -77,7 +77,6 @@ trait ApiTrait {
                         'neo_id'    =>  $this->client_id,
                         'note'      =>  'Client Appointment: '.$customer->date_at.' ',
                     ]);
-                    dd($response->content());
             return $response->json();
         } catch (RequestException $ex) {
             return response()->json(['error' => $ex->getMessage()], 500);

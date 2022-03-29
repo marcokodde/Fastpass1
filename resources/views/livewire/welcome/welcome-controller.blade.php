@@ -16,7 +16,7 @@
                 </button>
         </div>
 
-    @elseif(!$right_params && $client->session_with_token())
+    @elseif(!$right_params && $client && $client->session_with_token())
         @include('livewire.welcome.welcome_request_new_code')
     @else
         <img class="stnd skip-lazy dark-version" width="207" height="110" alt="CTC Auto Group" src="https://149646797.v2.pressablecdn.com/wp-content/uploads/2021/05/brand-logo.png"/>
