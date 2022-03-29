@@ -321,6 +321,7 @@ class NewShowVehiclesController extends Component
 
     public function create_list_hours_to_appointment(Dealer $dealer){
         $this->reset(['hours_to_appointment']);
+        $this->review_date_and_hour($dealer);
         $initial_hour = $dealer->hour_opening;
         if(date('Y-m-d') == $this->date_at){
             $initial_hour = intval(date('H')+1);
@@ -334,8 +335,18 @@ class NewShowVehiclesController extends Component
             }
         }
 
+
+
+
+    }
+
+    private function review_date_and_hour($dealer){
         if($this->client->date_at < now()){
-            $hh = date('H')+1;
+            $hh = date('H')+8;
+            if($hh > $dealer->hour_closing){
+                $this->date_at =   date('Y-m-d',strtotime( date("Y-m-d")."+ 1 days"));
+                $hh =  $dealer->hour_opening + 1;
+            }
             $mm = 0;
         }else{
             $hh = substr($this->client->date_at,11,2);
@@ -345,7 +356,5 @@ class NewShowVehiclesController extends Component
         $am_pm = $hh < 12 ? 'AM' : 'PM';
         $hh = $hh > 12 ? $hh - 12 : $hh;
         $this->hour =Str::padLeft($hh,2,"0") . ':' .  Str::padLeft($mm,2,"0"). ' ' . $am_pm;
-
-
     }
 }
