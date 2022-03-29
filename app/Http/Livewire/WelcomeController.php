@@ -84,7 +84,7 @@ class WelcomeController extends Component
 
 
     public function client_require_new_code(Client $client) {
-        $url_to_new_code = 'https://mewfastpass.com/' . $client->client_id . '/' . $client->session_with_token()->token;
+        $url_to_new_code = 'https://newfastpass.com/' . $client->client_id . '/' . $client->session_with_token()->token;
         try {
             $response = Http::withHeaders([
                 'Connection' => 'keep-alive',
