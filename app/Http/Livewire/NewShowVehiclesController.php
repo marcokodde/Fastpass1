@@ -202,9 +202,11 @@ class NewShowVehiclesController extends Component
 
     // Muestra vista de citas
     public function show_appointment() {
+
         if($this->client->date_at){
-            $this->date_at = $this->client->date_at;
+            $this->date_at = substr($this->client->date_at,0,10);
         }
+
         $this->openModal();
     }
 
@@ -245,11 +247,14 @@ class NewShowVehiclesController extends Component
 
         $new_hour = $hh . ':' . $mm;
         $date =  $this->date_at.' ' . $new_hour;
-        $this->client = Client::Where('client_id', $this->client_id)->first();
+
         $this->client->date_at   = $date;
         $this->client->save();
+        if(env('APP_SEND_APPOINTMENT_NOTE',true)){
+            $this->send_note_appointment($this->client);
+        }
 
-        $this->send_note_appointment($this->client);
+
 
         $this->closeModal();
     }

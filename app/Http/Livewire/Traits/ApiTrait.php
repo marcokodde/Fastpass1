@@ -67,19 +67,26 @@ trait ApiTrait {
 
     private function send_note_appointment($client) {
         $customer = Client::FindorFail($client);
-        try {
-            $response = Http::withHeaders([
-                'Connection' => 'keep-alive',
-                'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json'])
-            ->post('https://api.neoverify.com/v1/add_note/', [
-                        'neo_id'    =>  $this->client_id,
-                        'note'      =>  'Client Appointment: '.$customer->date_at.' ',
-                    ]);
-            return $response->json();
-        } catch (RequestException $ex) {
-            return response()->json(['error' => $ex->getMessage()], 500);
+        if(env('APP_SEND_APPOINTMENT_NOTE',true)){
+            dd('enviará nota');
+            try {
+                $response = Http::withHeaders([
+                    'Connection' => 'keep-alive',
+                    'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json'])
+                ->post('https://api.neoverify.com/v1/add_note/', [
+                            'neo_id'    =>  $this->client_id,
+                            'note'      =>  'Client Appointment: '.$customer->date_at.' ',
+                        ]);
+                return $response->json();
+            } catch (RequestException $ex) {
+                return response()->json(['error' => $ex->getMessage()], 500);
+            }
+        }else{
+            dd('No envía nota');
         }
+
+
     }
 }
