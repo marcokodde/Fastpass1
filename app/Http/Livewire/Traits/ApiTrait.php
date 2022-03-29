@@ -31,7 +31,7 @@ trait ApiTrait {
 
     /** Envio de API, cuando el usuario se expiro sesion o en su caso si le intereso un vehiculo */
     private function send_note_api_vehicle($stock) {
-        $this->customer = Client::Where('client_id',"=" ,$this->client_id)->get();
+        $this->client = Client::Where('client_id',"=" ,$this->client_id)->get();
         foreach ($this->customer as $client) {
         }
 
