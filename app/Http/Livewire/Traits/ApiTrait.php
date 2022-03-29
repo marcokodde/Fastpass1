@@ -31,42 +31,20 @@ trait ApiTrait {
 
     /** Envio de API, cuando el usuario se expiro sesion o en su caso si le intereso un vehiculo */
     private function send_note_api_vehicle($stock) {
-        $this->client = Client::Where('client_id',"=" ,$this->client_id)->get();
-        foreach ($this->customer as $client) {
-        }
-
-        if ($client->date_at) {
-            try {
-                $response = Http::withHeaders([
-                    'Connection' => 'keep-alive',
-                    'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json'])
-                ->post('https://api.neoverify.com/v1/add_note/', [
-                            'neo_id'    =>  $this->client_id,
-                            'note'      =>  'The customer added an appointment, these are his data:: '.$this->customer->date_at.', and vehicle to his garage:  Stock#'.$stock->stock.'',
-                            'note_type' =>  'Vehicle'
-                        ]);
-                return $response->json();
-            } catch (RequestException $ex) {
-                return response()->json(['error' => $ex->getMessage()], 500);
-            }
-        } else {
-            try {
-                $response = Http::withHeaders([
-                    'Connection' => 'keep-alive',
-                    'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json'])
-                ->post('https://api.neoverify.com/v1/add_note/', [
-                            'neo_id'    =>  $this->client_id,
-                            'note'      =>  'The customer added this vehicle to his garage:  Stock#'.$stock->stock.'',
-                            'note_type' =>  'Vehicle'
-                        ]);
-                return $response->json();
-            } catch (RequestException $ex) {
-                return response()->json(['error' => $ex->getMessage()], 500);
-            }
+        try {
+            $response = Http::withHeaders([
+                'Connection' => 'keep-alive',
+                'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json'])
+            ->post('https://api.neoverify.com/v1/add_note/', [
+                        'neo_id'    =>  $this->client_id,
+                        'note'      =>  'The customer added this vehicle to his garage:  Stock#'.$stock->stock.'',
+                        'note_type' =>  'Vehicle'
+                    ]);
+            return $response->json();
+        } catch (RequestException $ex) {
+            return response()->json(['error' => $ex->getMessage()], 500);
         }
     }
 
@@ -81,6 +59,25 @@ trait ApiTrait {
                         'neo_id'    =>  $this->client_id,
                         'note'      =>  'We are sorry your session expired, do not worry click this link to go back to your garage www.newfastpass.com/'.$this->client_id.'/'.$token.' ',
                     ]);
+            return $response->json();
+        } catch (RequestException $ex) {
+            return response()->json(['error' => $ex->getMessage()], 500);
+        }
+    }
+
+    private function send_note_appointment($client) {
+        $customer = Client::FindorFail($client);
+        try {
+            $response = Http::withHeaders([
+                'Connection' => 'keep-alive',
+                'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json'])
+            ->post('https://api.neoverify.com/v1/add_note/', [
+                        'neo_id'    =>  $this->client_id,
+                        'note'      =>  'Client Appointment: '.$customer->date_at.' ',
+                    ]);
+                    dd($response->content());
             return $response->json();
         } catch (RequestException $ex) {
             return response()->json(['error' => $ex->getMessage()], 500);

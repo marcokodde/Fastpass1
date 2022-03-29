@@ -26,21 +26,8 @@
                 top center
                 no-repeat`
         }).then((result) => {
-                window.location.href = "http://fastpass.test/";
+                window.location.href = "http://fastpass1.test/expire_session";
             })
-
-        // Swal.fire({
-        //     title: 'Your purchase process is almost done, wait for an email or text to get a new code',
-        //         showCancelButton: false,
-        //         cancelButtonText: 'Cancelar',
-        //         confirmButtonColor: '#3085d6',
-        //         confirmButtonText: 'Ok!'
-        //     }).then((result) => {
-        //         window.location.href = "http://fastpass.test/";
-        //     })
-
-
-
     }
 </script>
 

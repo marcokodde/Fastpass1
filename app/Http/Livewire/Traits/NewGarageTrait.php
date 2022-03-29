@@ -75,7 +75,7 @@ trait NewGarageTrait {
                 if($this->garage->occupied_spaces()+1 == env('GARAGE_SPACES')) {
                     $this->isOpen = true;
                 }
-                $this->send_note_api_vehicle($this->record_detail_garage);
+                //$this->send_note_api_vehicle($this->record_detail_garage);
                 $this->show_alert();
             }
         }

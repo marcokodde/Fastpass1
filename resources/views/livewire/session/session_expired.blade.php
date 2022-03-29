@@ -78,33 +78,10 @@
         <div style="background-color: #6AB04C" class="body_background">
             <div style="background-color: #6AB04C" class="relative flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
                 <div class="block" style="margin-top: -50px;">
-                    <img style="height:70%; width:70%;" class="mx-auto"  src="{{asset('images/session_expire_garage.png')}}">
-                        <h2 style="margin-top:-10%; color:#fff" class="font-montserrat text-center uppercase">
-                            {{__('You have exited your garage')}}
-                        </h2>
-                        <label style="margin-top:-2%; color:#fff" class="font-montserrat text-center uppercase">
-                            {{__('To start a new session, request a new code')}}
-                        </label>
-                    <button style="margin-top:4%;" onclick="execute()" class="btn third mx-auto">{{__('Request a New Code')}}</button>
+                    <img style="height:80%; width:80%;" class="mx-auto"  src="{{asset('images/code.png')}}">
                 </div>
             </div>
         </div>
         <input type="hidden" id="refreshed" value="no">
     </body>
-    <script>
-        function execute() {
-            Swal.fire({
-                title: 'Good Job!, We will send you a code wait for it to enjoy your next vehicle',
-                width: 450,
-                padding: '3em',
-                background:'#6AB04C',
-                color: '#fff',
-                radius:'24px',
-                backdrop: `rgba(0,0,123,0.4)
-                    url("/images/car_rotate.gif")
-                    top center
-                    no-repeat`
-            })
-        }
-    </script>
 </html>
