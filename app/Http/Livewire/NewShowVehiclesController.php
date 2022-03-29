@@ -202,7 +202,6 @@ class NewShowVehiclesController extends Component
 
     // Muestra vista de citas
     public function show_appointment() {
-
         $this->openModal();
     }
 
@@ -244,11 +243,12 @@ class NewShowVehiclesController extends Component
         $new_hour = $hh . ':' . $mm;
         $date =  $this->date_at.' ' . $new_hour;
 
+        $this->client = Client::Where('client_id', $this->client_id)->first();
+
         $this->client->date_at   = $date;
         $this->client->save();
-        if(env('APP_SEND_APPOINTMENT_NOTE',true)){
-            $this->send_note_appointment($this->client);
-        }
+
+        $this->send_note_appointment($this->client);
 
         $this->closeModal();
     }
@@ -292,11 +292,13 @@ class NewShowVehiclesController extends Component
             }
         }
 
-        if($this->client->date_at && in_array(substr($this->client->date_at,0,10),$this->dates_to_appointment)){
-            $this->date_at = substr($this->client->date_at,0,10);
+        if($this->client->date_at){
+            if(in_array(substr($this->client->date_at,0,10),$this->dates_to_appointment)){
+                $this->date_at = substr($this->client->date_at,0,10);
+            }else{
+                $this->date_at = date('Y-m-d');
+            }
 
-        }else{
-            $this->date_at = date('Y-m-d');
         }
 
     }
@@ -331,6 +333,19 @@ class NewShowVehiclesController extends Component
                 array_push($this->hours_to_appointment,Str::padLeft($hh,2,"0") . ':' .  Str::padLeft($mm,2,"0"). ' ' . $am_pm);
             }
         }
+
+        if($this->client->date_at < now()){
+            $hh = date('H')+1;
+            $mm = 0;
+        }else{
+            $hh = substr($this->client->date_at,11,2);
+            $mm = substr($this->client->date_at,14,2);
+        }
+
+        $am_pm = $hh < 12 ? 'AM' : 'PM';
+        $hh = $hh > 12 ? $hh - 12 : $hh;
+        $this->hour =Str::padLeft($hh,2,"0") . ':' .  Str::padLeft($mm,2,"0"). ' ' . $am_pm;
+
 
     }
 }
