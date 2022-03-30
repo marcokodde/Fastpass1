@@ -1,4 +1,5 @@
 <div class="vehicle shadow-2xl">
+    <a href="{{url('inventory/show/' . $record->inventory->id) }}">
     @if($record->inventory->images)
         @php
             $value = explode(",", $record->inventory->images);
@@ -50,7 +51,7 @@
     @if($record->downpayment_for_next_tier > 0)
         <h5 class="mt-2 font-bold text-red-600">{{__('Additional Down Payment') }}</h5>
     @endif
-
+    </a>
     <div class="mb-2">
        @include('livewire.new_show_vehicles.button_to_add_vehicle')
     </div>

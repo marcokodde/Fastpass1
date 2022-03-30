@@ -60,6 +60,4 @@
 
     @include('common.fastpass')
 </div>
-<script>
-    history.forward()
-</script>
+

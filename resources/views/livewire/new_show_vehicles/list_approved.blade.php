@@ -1,9 +1,9 @@
 <div class="vehicle shadow-2xl">
+    <a href="{{url('inventory/show/' . $record->inventory->id) }}">
     @if($record->inventory->images)
         @php
             $value = explode(",", $record->inventory->images);
         @endphp
-
         @if($value[0])
             <div class="box_to_image">
                 <img src="{{ $value[0] }}" alt="{{ __('Not Image') }}">
@@ -52,7 +52,7 @@
 
         <h6 class=" text-2xl font-semibold mt-2">{{ __('Payment') }}: ${{ number_format($record->downpayment_for_next_tier, 0, '.', ',') }}</h6>
     @endif
-
+    </a>
     <div class="mb-2">
         @include('livewire.new_show_vehicles.button_to_add_vehicle')
     </div>

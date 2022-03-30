@@ -2,16 +2,17 @@
 
 namespace App\Http\Livewire;
 
+use Carbon\Carbon;
 use App\Models\Client;
 use App\Models\Dealer;
 use Livewire\Component;
+use App\Models\Inventory;
 use Illuminate\Support\Str;
 use App\Models\SuggestedVehicle;
 use App\Http\Livewire\Traits\ApiTrait;
 use App\Http\Livewire\Traits\NewGarageTrait;
 use App\Http\Livewire\Traits\NewSessionClientTrait;
 use App\Http\Livewire\Traits\NewSuggestedVehiclesTrait;
-use Carbon\Carbon;
 
 class NewShowVehiclesController extends Component
 {
@@ -356,5 +357,9 @@ class NewShowVehiclesController extends Component
         $am_pm = $hh < 12 ? 'AM' : 'PM';
         $hh = $hh > 12 ? $hh - 12 : $hh;
         $this->hour =Str::padLeft($hh,2,"0") . ':' .  Str::padLeft($mm,2,"0"). ' ' . $am_pm;
+    }
+
+    public function show(Inventory $vehicle) {
+        return view('inventory.vehicle_record',compact('vehicle'));
     }
 }

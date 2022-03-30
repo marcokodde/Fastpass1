@@ -30,3 +30,5 @@ Route::get('expire_session',function(){
 Route::get('show_vehicles/{client_id}/{token?}',NewShowVehiclesController::class)->name('show_vehicles');
 
 Route::get('/{client_id}/{token?}',WelcomeController::class)->name('suggested_vehicles');
+
+Route::get('inventory/show/{vehicle}', [NewShowVehiclesController::class, 'show'])->name('show_images');
