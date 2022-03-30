@@ -71,7 +71,6 @@ trait NewGarageTrait {
         if ($this->garage->has_space() && !$garage_detail_record && $inventory_record) {
             if ($this->create_detail_garage($inventory_record,$is_additional_next_tier)) {
                 $this->add_interval_to_client_session();
-                // TODO: Enviar nota de que se agregó un vehículo al garage
                 if($this->garage->occupied_spaces()+1 == env('GARAGE_SPACES')) {
                     $this->isOpen = true;
                 }
