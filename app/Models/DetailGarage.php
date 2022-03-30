@@ -14,11 +14,7 @@ class DetailGarage extends Model
         'garage_id',
         'inventory_id',
         'dealer_id',
-        'vin',
-        'stock',
-        'retail_price',
         'sales_price',
-        'images',
         'is_additional_next_tier',
         'is_available_inventory'
     ];
@@ -38,23 +34,15 @@ class DetailGarage extends Model
      * +------------+
      */
 
-     public function scopeGarageId($query,$valor){
+    public function scopeGarageId($query,$valor){
         if(trim($valor) != ""){
             $query->where('garage_id',$valor);
         }
-     }
+    }
 
-     public function scopeStock($query,$valor){
-        if(trim($valor) != ""){
-            $query->where('stock',$valor);
-        }
-     }
-
-     public function scopeInventoryId($query,$valor){
+    public function scopeInventoryId($query,$valor){
         if(trim($valor) != ""){
             $query->where('inventory_id',$valor);
         }
-     }
-
-
+    }
 }

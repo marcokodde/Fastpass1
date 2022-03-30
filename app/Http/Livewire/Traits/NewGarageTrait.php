@@ -63,7 +63,7 @@ trait NewGarageTrait {
             $is_additional_next_tier= $suggested_vehicle  = false;
         }
 
-        $garage_detail_record = DetailGarage::GarageId($this->garage->id)->Stock($stock)->first();
+        $garage_detail_record = DetailGarage::GarageId($this->garage->id)->InventoryId($inventory_record->id)->first();
         if ($garage_detail_record) {
             $garage_detail_record->is_available_inventory = $inventory_record ? 1 : 0;
         }
@@ -122,11 +122,7 @@ trait NewGarageTrait {
             'garage_id'             => $this->garage->id,
             'inventory_id'          =>$inventory_record->id,
             'dealer_id'             =>$inventory_record->dealer_id,
-            'vin'                   =>$inventory_record->vin,
-            'stock'                 =>$inventory_record->stock,
-            'retail_price'          =>$inventory_record->retail_price,
             'sales_price'           =>$inventory_record->suggested_vehicles[0]['sale_price'],
-            'images'                =>$inventory_record->images,
             'is_additional_next_tier'=>$is_additional_next_tier,
             'is_available_inventory' =>$is_available_inventory]);
     }

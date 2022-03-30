@@ -47,22 +47,16 @@ trait NewSuggestedVehiclesTrait {
 
             $downpayment_total_min      = $client->downpayment + $from;
             $downpayment_total_max      = $client->downpayment + $to;
-
             $downpayment_min_vehicle    = intdiv($record->sale_price * $record->dealer->percentage,100);
 
-
-            if( $client->downpayment >= $downpayment_min_vehicle ||
-                ($downpayment_min_vehicle >= $downpayment_total_min && $downpayment_min_vehicle <=$downpayment_total_max)){
-                       if($record->downpayment_for_next_tier >= $from && $record->downpayment_for_next_tier <= $to  ){
-                        $record->update_show_like_additional(true);
-                    }
-
+            if ($client->downpayment >= $downpayment_min_vehicle ||
+                ($downpayment_min_vehicle >= $downpayment_total_min && $downpayment_min_vehicle <=$downpayment_total_max)) {
+                if ($record->downpayment_for_next_tier >= $from && $record->downpayment_for_next_tier <= $to) {
+                    $record->update_show_like_additional(true);
+                }
             }
-
         }
-
         return SuggestedVehicle::ClientId($client->id)->where('show_like_additional',1)->orderby('sale_price')->get();
-
     }
 
 
@@ -247,14 +241,16 @@ trait NewSuggestedVehiclesTrait {
                     $sales_price = $record['sale_price'];
                 }
                 if (!$suggested_vehicle_client) {
-                    SuggestedVehicle::create([
-                        'dealer_id'     => $dealer_record->id,
-                        'client_id'     => $client_record->id,
-                        'inventory_id'  => $inventory_record->id,
-                        'sale_price'     => $sales_price,
-                        'grade'         => $record['grade'],
-                        'downpayment_for_next_tier' => $record['additionalDownpaymentForNextTier']
-                    ]);
+                    if ($record['grade'] <> "D" && $record['grade'] <> "E") {
+                        $create = SuggestedVehicle::create([
+                            'dealer_id'     => $dealer_record->id,
+                            'client_id'     => $client_record->id,
+                            'inventory_id'  => $inventory_record->id,
+                            'sale_price'     => $sales_price,
+                            'grade'         => $record['grade'],
+                            'downpayment_for_next_tier' => $record['additionalDownpaymentForNextTier']
+                        ]);
+                    }
                 }
             }
         }
@@ -262,8 +258,8 @@ trait NewSuggestedVehiclesTrait {
 
     // Deshabilita like_show_like additional en todos los registros
     private function update_all_show_like_additional_all(Client $client){
-            foreach($client->suggested_vehicles as $record){
-                $record->update_show_like_additional();
-            }
+        foreach($client->suggested_vehicles as $record){
+            $record->update_show_like_additional();
+        }
     }
 }

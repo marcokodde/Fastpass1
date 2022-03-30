@@ -10,7 +10,7 @@ use GuzzleHttp\Exception\RequestException;
 trait ApiTrait {
 
     private $api_url= 'https://api.neoverify.com/v1/get_recommended_inventory?id=';
-    private $api_inventory = 'http://c2c.teamkodde.com/api/inventory/';
+    private $api_inventory = 'http://www.ctcinventory.com/api/inventory/';
     public $customer;
 
     // Lee vehículos sugerios por NEO
@@ -67,26 +67,19 @@ trait ApiTrait {
 
     private function send_note_appointment($client) {
         $customer = Client::FindorFail($client);
-        if(env('APP_SEND_APPOINTMENT_NOTE',true)){
-            dd('enviará nota');
-            try {
-                $response = Http::withHeaders([
-                    'Connection' => 'keep-alive',
-                    'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json'])
-                ->post('https://api.neoverify.com/v1/add_note/', [
-                            'neo_id'    =>  $this->client_id,
-                            'note'      =>  'Client Appointment: '.$customer->date_at.' ',
-                        ]);
-                return $response->json();
-            } catch (RequestException $ex) {
-                return response()->json(['error' => $ex->getMessage()], 500);
-            }
-        }else{
-            dd('No envía nota');
+        try {
+            $response = Http::withHeaders([
+                'Connection' => 'keep-alive',
+                'Access-Token' => 'dRfgmuyehzDmagMcz62wrRiqa',
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json'])
+            ->post('https://api.neoverify.com/v1/add_note/', [
+                        'neo_id'    =>  $this->client_id,
+                        'note'      =>  'Client Appointment: '.$customer->date_at.' ',
+                    ]);
+            return $response->json();
+        } catch (RequestException $ex) {
+            return response()->json(['error' => $ex->getMessage()], 500);
         }
-
-
     }
 }

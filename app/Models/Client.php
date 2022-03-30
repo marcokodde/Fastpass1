@@ -29,7 +29,7 @@ class Client extends Model
     public function suggested_vehicles_with_downpayment(){
         return $this->hasMany(SuggestedVehicle::class,'client_id')
                     ->where('downpayment_for_next_tier','>',0)
-                    ->orderby('sale_price');;
+                    ->orderby('sale_price');
     }
 
     // Aprobados por Neo
