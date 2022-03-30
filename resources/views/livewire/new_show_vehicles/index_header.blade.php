@@ -36,4 +36,6 @@
     @endif
 </div>
 <hr class="border-2 border-gray-200 mx-4 mt-4">
-@livewire('time-remainder', ['client_id' => $client_id,'token' => $token])
+@if(date('H') >= env('APP_HOUR_MIN_TO_NOT_EXPIRE_SESSION',6) && date('H') <= env('APP_HOUR_MAX_TO_NOT_EXPIRE_SESSION',21) )
+    @livewire('time-remainder', ['client_id' => $client_id,'token' => $token])
+@endif
