@@ -40,8 +40,12 @@ class TimeRemainder extends Component
 
         if($this->client_session){
             $this->expire_at = new \Carbon\Carbon( $this->client_session->expire_at);
-            if(now() > $this->expire_at ){
+            if( now() > $this->expire_at
+             && date('H') <= env('APP_HOUR_MAX_TO_NOT_EXPIRE_SESSION',21)
+             && date('H') >= env('APP_HOUR_MIN_TO_NOT_EXPIRE_SESSION',6)){
                 $this->client_session->expire_session();
+                $this->client_session->update_expired_sessions();
+                $this->client_session->update_active_sessions('output');
                 $this->create_new_session();
             }
             $this->calculate_remainder_time();

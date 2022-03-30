@@ -75,6 +75,26 @@ class Client extends Model
         $this->save();
     }
 
+    // Incrementa las veces que ha entrado
+    public function update_times_loggin(){
+        $this->times_loggin++;
+        $this->save();
+    }
+
+    // Incrementa las veces que ha expirado sesión
+    public function update_expired_sessions(){
+        $this->expired_sessions++;
+        $this->save();
+    }
+
+    // Actualiza las sesiones Activas
+    public function update_active_sessions($type = 'input'){
+
+        $this->active_sessions = $type == 'input' ? $this->active_sessions++ : $this->active_sessions--;
+        $this->active_sessions =   $this->active_sessions < 0  ? $this->active_sessions=0 : $this->active_sessions;
+        $this->save();
+    }
+
 
 
     /**+------------+
