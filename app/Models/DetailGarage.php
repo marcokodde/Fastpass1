@@ -13,7 +13,6 @@ class DetailGarage extends Model
     protected $fillable = [
         'garage_id',
         'inventory_id',
-        'dealer_id',
         'sales_price',
         'is_additional_next_tier',
         'is_available_inventory'

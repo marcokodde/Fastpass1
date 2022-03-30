@@ -121,7 +121,6 @@ trait NewGarageTrait {
         return $this->record_detail_garage = DetailGarage::create([
             'garage_id'             => $this->garage->id,
             'inventory_id'          =>$inventory_record->id,
-            'dealer_id'             =>$inventory_record->dealer_id,
             'sales_price'           =>$inventory_record->suggested_vehicles[0]['sale_price'],
             'is_additional_next_tier'=>$is_additional_next_tier,
             'is_available_inventory' =>$is_available_inventory]);
