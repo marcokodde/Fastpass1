@@ -22,6 +22,7 @@ class CreateClientsTable extends Migration
             $table->integer('times_loggin')->default(0)->comment('Vecese que ha ingresado nuevo control');
             $table->integer('active_sessions')->default(0)->comment('Sesiones Activas');
             $table->dateTime('date_at', $precision = 0)->nullable()->default(null)->comment('Fecha y hora de cita');
+            $table->timestamps();
         });
     }
 

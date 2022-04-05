@@ -1,5 +1,5 @@
 <div class="vehicle shadow-2xl">
-    <a href="{{url('inventory/show/' . $record->inventory->id) }}">
+    <a href="{{url('inventory/show/' . $record->inventory->id) }}" title="Click to view images">
     @if($record->inventory->images)
         @php
             $value = explode(",", $record->inventory->images);
