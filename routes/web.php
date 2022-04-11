@@ -3,10 +3,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventoryController;
+use App\Http\Livewire\Clients;
 use App\Http\Livewire\NewShowVehiclesController;
 use App\Http\Livewire\TestController;
 use App\Http\Livewire\WelcomeController;
 
+Route::get('total_clients',Clients::class)->name('total_clients');
 require 'pruebas.php';
 
 //Route::get('test_controller',TestController::class)->name('test_controller');
@@ -32,3 +34,5 @@ Route::get('show_vehicles/{client_id}/{token?}',NewShowVehiclesController::class
 Route::get('/{client_id}/{token?}',WelcomeController::class)->name('suggested_vehicles');
 
 Route::get('inventory/show/{vehicle}', [NewShowVehiclesController::class, 'show'])->name('show_images');
+
+
