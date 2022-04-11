@@ -8,7 +8,7 @@ use App\Http\Livewire\NewShowVehiclesController;
 use App\Http\Livewire\TestController;
 use App\Http\Livewire\WelcomeController;
 
-Route::get('total_clients',Clients::class)->name('total_clients');
+Route::get('queries/total_clients',Clients::class)->name('total_clients');
 require 'pruebas.php';
 
 //Route::get('test_controller',TestController::class)->name('test_controller');
