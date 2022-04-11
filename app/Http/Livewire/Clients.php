@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Client;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +15,7 @@ class Clients extends Component
                     ->groupBy('date')
                     ->get();
 
-
+    $records = Client::all();
 
     return view('livewire.clients', [
         'records' => $records,
