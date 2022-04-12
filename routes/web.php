@@ -4,14 +4,21 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventoryController;
 use App\Http\Livewire\Clients;
+use App\Http\Livewire\Locators;
 use App\Http\Livewire\NewShowVehiclesController;
+use App\Http\Livewire\Reasons;
+use App\Http\Livewire\Sources;
 use App\Http\Livewire\TestController;
 use App\Http\Livewire\WelcomeController;
 
 Route::get('queries/total_clients',Clients::class)->name('total_clients');
 require 'pruebas.php';
 
-//Route::get('test_controller',TestController::class)->name('test_controller');
+Route::middleware(['auth'])->group(function () {
+    Route::get('locators', Locators::class)->name('locators');      // Localidades
+    Route::get('sources', Sources::class)->name('sources');         // Fuentes de como nos conoció
+    Route::get('reasons', Reasons::class)->name('reasons');         // Motivos
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

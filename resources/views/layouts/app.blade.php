@@ -29,6 +29,7 @@
         @livewireScripts
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script src="{{ asset('js/confetti.js')}}"></script>
+
         <script>
             window.addEventListener('show_toast_vehicle_added',({detail:{type,message}})=>{
                 const Toast = Swal.mixin({
@@ -49,6 +50,29 @@
                 })
 
             })
+
+            function confirm_modal(id) {
+                var record = id;
+                Swal.fire({
+                    title: "{{__('Are you sure?')}}",
+                    text: "{{__('You wo not be able to revert this!')}}",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: "{{__('Yes, delete it!')}}",
+                    cancelButtonText: "{{__('Cancel')}}",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.livewire.emit('destroy', record);
+                        Swal.fire(
+                        'Deleted!',
+                        "{{__('Your record has been deleted.')}}",
+                        'success'
+                        )
+                    }
+                })
+            }
         </script>
     </body>
 </html>

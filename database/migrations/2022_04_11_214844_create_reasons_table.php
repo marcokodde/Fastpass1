@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Locators extends Migration
+class CreateReasonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class Locators extends Migration
      */
     public function up()
     {
-        Schema::create('locators', function (Blueprint $table) {
+        Schema::create('reasons', function (Blueprint $table) {
             $table->id();
-            $table->string('name',100)->comment('Locator Name');
+            $table->string('english',50)->nullable()->comment('English');
+            $table->string('spanish',50)->nullable()->comment('Spanish');
         });
     }
 
@@ -26,6 +27,6 @@ class Locators extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('locators');
+        Schema::dropIfExists('reasons');
     }
 }
