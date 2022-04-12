@@ -24,9 +24,6 @@ class Locators extends Component {
         //$this->authorize('hasaccess', 'Locators.index');
         $this->manage_title = __('Manage') . ' ' . __('Locators');
         $this->search_label = "Locator Name";
-        $this->view_form = 'livewire.locators.form';
-        $this->view_table = 'livewire.locators.table';
-        $this->view_list  = 'livewire.locators.list';
     }
 
 
@@ -40,7 +37,7 @@ class Locators extends Component {
                                                         : __('Create') . ' ' . __('Locator');
 
         $searchTerm = '%' . $this->search . '%';
-        return view('livewire.index', [
+        return view('livewire.locators.index', [
             'records' => Locator::Name($searchTerm)->paginate($this->pagination),
         ]);
 	}
