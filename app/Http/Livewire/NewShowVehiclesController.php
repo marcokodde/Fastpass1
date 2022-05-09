@@ -124,9 +124,9 @@ class NewShowVehiclesController extends Component
 
         if ($this->client) {
             $this->create_list_dates_and_hours_to_appointment();
-            $this->client_has_vehicles_with_downpayment =   $this->client->has_vehicles_with_downpayment();
-            $this->client_has_vehicles_approved         =   $this->client->has_vehicles_approved();
-            $this->active_session = $this->manage_session($this->client,$token);
+            $this->client_has_vehicles_with_downpayment = $this->client->has_vehicles_with_downpayment();
+            $this->client_has_vehicles_approved         = $this->client->has_vehicles_approved();
+            $this->active_session                       = $this->manage_session($this->client,$token);
 
             if ($this->active_session) {
                 if (!$this->active_session->has_been_used) {
@@ -155,11 +155,13 @@ class NewShowVehiclesController extends Component
         }
         // ¿Primera vez?: Crea la sesión
         if (!$client->loggin_times) {
+            $this->client->update_loggin_times();
             return $this->create_client_session($client->id);
         };
 
         // Si no es la primera vez lee la sesión activa
         if ($client->loggin_times) {
+            $this->client->update_loggin_times();
             return $this->get_active_session_with_token($client->id,$token);
         }
     }
@@ -257,20 +259,26 @@ class NewShowVehiclesController extends Component
 
 
     private function create_list_dates_and_hours_to_appointment(){
-        $first_suggested = SuggestedVehicle::ClientId($this->client->id)->first();
-        $this->dealer = Dealer::findOrFail($first_suggested->dealer->id);
-        if(!$this->date_at){
-            $this->date_at = date('Y-m-d');
-        }
-
-
-        if(date('w') == 0 && !$this->dealer->open_sunday){
-            $this->date_at=date('Y-m-d',strtotime('+1 day'));
-        }
-        $this->create_list_dates_to_appointment($this->dealer);
-        $this->create_list_hours_to_appointment($this->dealer);
         $this->min_date_to_appointment = Carbon::now()->format('Y-m-d');
         $this->max_date_to_appointment = Carbon::now()->addDays(env('APP_MAX_DAYS_TO_DATE',2))->format('Y-m-d');
+        $first_suggested = SuggestedVehicle::ClientId($this->client->id)->first();
+        if($first_suggested){
+            $this->dealer = Dealer::findOrFail($first_suggested->dealer->id);
+            if(!$this->date_at){
+                $this->date_at = date('Y-m-d');
+            }
+
+
+            if(date('w') == 0 && !$this->dealer->open_sunday){
+                $this->date_at=date('Y-m-d',strtotime('+1 day'));
+            }
+            $this->create_list_dates_to_appointment($this->dealer);
+            $this->create_list_hours_to_appointment($this->dealer);
+            $this->min_date_to_appointment = Carbon::now()->format('Y-m-d');
+            $this->max_date_to_appointment = Carbon::now()->addDays(env('APP_MAX_DAYS_TO_DATE',2))->format('Y-m-d');
+        }
+
+
     }
 
     /**+--------------------------------------------------------------------+
