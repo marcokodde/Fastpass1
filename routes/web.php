@@ -43,3 +43,6 @@ Route::get('/{client_id}/{token?}',WelcomeController::class)->name('suggested_ve
 Route::get('inventory/show/{vehicle}', [NewShowVehiclesController::class, 'show'])->name('show_images');
 
 
+Route::get('queries/show/interest/calulator',function(){
+    return view('calculadora.index');
+});

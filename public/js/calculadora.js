@@ -5,13 +5,11 @@ function calcular(){
     var  has_error  = false;
     var  cost       = document.getElementById('cost').value;
     var  downpayment= document.getElementById('downpayment').value;
-    var  rate       =   document.getElementById('rate').value;
+    var  rate       =  document.getElementById('rate').value;
     var  plazo      = document.getElementById('plazo').value;
     var  plazo_ctc  = document.getElementById('plazo_ctc').value;
-    var  amount     = cost-downpayment
 
 
-    document.getElementById('amount').value = amount;
 
     if (!cost) {
         show_error('Indique el costo del vehículo');
@@ -19,9 +17,14 @@ function calcular(){
         has_error = true;
         return;
     }else{
+        var downpayment_ctc = redondear( cost * .2).toFixed(2);
+        var amount_ctc = cost - downpayment_ctc;
+        document.getElementById('downpayment_ctc').value = downpayment_ctc;
+        document.getElementById('amount_ctc').value =amount_ctc ;
         hide_error();
         has_error = false;
     }
+
 
     if (!downpayment) {
         show_error('Indique el enganche');
@@ -29,7 +32,16 @@ function calcular(){
         has_error = true;
         return;
     }else{
+        var  amount     = cost-downpayment
+        document.getElementById('amount').value = amount;
+        if(downpayment > downpayment_ctc){
+            var downpayment_ctc = redondear( downpayment).toFixed(2);
+            var amount_ctc = cost - downpayment_ctc;
+            document.getElementById('downpayment_ctc').value = downpayment_ctc;
+            document.getElementById('amount_ctc').value =amount_ctc ;
+        }
         hide_error();
+
         has_error = false;
     }
 
@@ -68,8 +80,11 @@ function calcular(){
         hide_results()
     }else{
 
+
+
+
         otros_pago_mensual  = calcular_pago_mensual(rate,plazo,amount);
-        pago_mensual_coast = calcular_pago_mensual(0,plazo_ctc,amount);
+        pago_mensual_coast = calcular_pago_mensual(0,plazo_ctc,amount_ctc);
         otros_pago_total    = otros_pago_mensual * plazo;
         document.getElementById('month_others').value = otros_pago_mensual;
         document.getElementById('month_ctc').value = pago_mensual_coast;

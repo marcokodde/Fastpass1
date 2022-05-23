@@ -27,18 +27,25 @@
                 <th>($) Costo Vehículo</th>
                 <th>($) Enganche )</th>
                 <th>($) Importe a Financiar</th>
-                <th>Tasa Interés (anual) (%)</th>
+                <th>Interés (anual) (%)</th>
                 <th>Meses Otros</th>
+                <th>($) Enganche CTC )</th>
+                <th>($)Financiar CTC</th>
+
                 <th>Meses CTC</th>
 
             </tr>
             <tr>
+                {{-- Costo Vehículo --}}
                 <td align="right">
                     <input id="cost" type="text"
                             onchange="calcular()"
                             onblur="calcular()"
                     >
                 </td>
+
+                {{-- Enganche Otros --}}
+
                 <td align="right">
                     <input id="downpayment"
                             type="text"
@@ -46,12 +53,17 @@
                     >
                 </td>
 
+
+                {{-- Importe a Financiar --}}
                 <td align="right">
                     <input id="amount"
                             type="text"
                              disabled
                     >
                 </td>
+
+                {{-- Interés Anual --}}
+
                 <td align="right">
                     <input type="number"
                         id="rate"
@@ -62,7 +74,9 @@
                     >
                 </td>
 
-                <td>
+                 {{-- Plazo Otros --}}
+
+                 <td>
                     <input type="number"
                              id="plazo"
                              step="1"
@@ -72,6 +86,26 @@
                     >
 
                 </td>
+
+                 {{-- Enganche CTC --}}
+
+                <td align="right">
+                    <input id="downpayment_ctc"
+                            type="text"
+                            disabled
+                    >
+                </td>
+
+                {{-- Financiar CTC --}}
+                <td align="right">
+                    <input id="amount_ctc"
+                            type="text"
+                            disabled
+                    >
+                </td>
+
+                {{-- Plazo CTC --}}
+
                 <td align="right">
                     <input id="plazo_ctc"
                             type="text"
@@ -80,6 +114,10 @@
                             disabled
                     >
                 </td>
+
+
+
+
 
             </tr>
             </table>
