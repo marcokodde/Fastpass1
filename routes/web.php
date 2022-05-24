@@ -1,15 +1,16 @@
 <?php
 
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\InventoryController;
 use App\Http\Livewire\Clients;
-use App\Http\Livewire\Locators;
-use App\Http\Livewire\NewShowVehiclesController;
 use App\Http\Livewire\Reasons;
 use App\Http\Livewire\Sources;
+use App\Http\Livewire\Locators;
+use App\Http\Livewire\Calculator;
 use App\Http\Livewire\TestController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\WelcomeController;
+use App\Http\Controllers\InventoryController;
+use App\Http\Livewire\NewShowVehiclesController;
 
 Route::get('queries/total_clients',Clients::class)->name('total_clients');
 require 'pruebas.php';
@@ -46,3 +47,4 @@ Route::get('inventory/show/{vehicle}', [NewShowVehiclesController::class, 'show'
 Route::get('queries/show/interest/calulator',function(){
     return view('calculadora.index');
 });
+Route::get('queries/show/interest/calulator',Calculator::class)->name('calculator_interes');
