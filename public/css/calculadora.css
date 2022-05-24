@@ -42,3 +42,10 @@ table{
 .error_element{
     background-color: red;
 }
+
+.box_error {
+    border: 2px solid rgb(149, 149, 249);
+    height: 50px;
+    width: 800px;
+    color: red;
+  }

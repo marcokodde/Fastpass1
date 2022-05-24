@@ -41,6 +41,7 @@
                     <input id="cost" type="text"
                             onchange="calcular()"
                             onblur="calcular()"
+                            onkeydown="return filterFloat(event,this)"
                     >
                 </td>
 
@@ -50,6 +51,7 @@
                     <input id="downpayment"
                             type="text"
                             onchange="calcular()"
+                            onkeydown="return filterFloat(event,this)"
                     >
                 </td>
 
@@ -67,8 +69,8 @@
                 <td align="right">
                     <input type="number"
                         id="rate"
-                        step=".01"
-                        min="0"
+                        step="1"
+                        min="1"
                         max="40.00"
                         onchange="calcular()"
                     >
@@ -92,7 +94,8 @@
                 <td align="right">
                     <input id="downpayment_ctc"
                             type="text"
-                            disabled
+                            onchange="calcular()"
+                            onkeydown="return filterFloat(event,this)"
                     >
                 </td>
 
@@ -117,12 +120,10 @@
 
 
 
-
-
             </tr>
             </table>
 
-            <div id="errors" style="display: none;color:red"> </div>
+            <div id="errors" class="box_error" style="display: none;color:red"> </div>
 
             </br>
 
