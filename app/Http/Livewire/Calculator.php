@@ -59,9 +59,17 @@ class Calculator extends Component
         } else {
             $this->ctc_amount = 0;
         }
+        if ($this->rate && is_numeric($this->rate) && $this->rate > 0 && $this->plazo && is_numeric($this->plazo) && $this->plazo > 0 &&  $this->amount && is_numeric($this->amount) && $this->amount > 0) {
+            $this->others_amount_by_month   = $this->pmt($this->rate,$this->plazo,$this->amount);
+        } else {
+            $this->others_amount_by_month = 0;
+        }
+        if ($this->others_amount_by_month && $this->plazo && is_numeric($this->plazo) && $this->plazo > 0) {
+            $this->others_amount_total = $this->others_amount_by_month * $this->plazo;
+        } else {
+            $this->others_amount_total = 0;
+        }
 
-        $this->others_amount_by_month   = $this->pmt($this->rate,$this->plazo,$this->amount);
-        $this->others_amount_total      = $this->others_amount_by_month * $this->plazo;
         $this->ctc_amount_by_month      = $this->pmt(0,36,$this->ctc_amount);
         $this->ctc_amount_total         = $this->ctc_amount_by_month * 36;
     }
