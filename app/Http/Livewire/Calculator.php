@@ -9,10 +9,10 @@ use function PHPUnit\Framework\isEmpty;
 class Calculator extends Component
 {
 
-    public $cost                    = 32000;
-    public $downpayment             = 4500;
-    public $rate                    = 4.90;
-    public $plazo                   = 60;
+    public $cost                    = 0;
+    public $downpayment             = 0;
+    public $rate                    = 0;
+    public $plazo                   = 1;
 
     public $amount                  = 0;
     public $others_amount_by_month  = 0;
