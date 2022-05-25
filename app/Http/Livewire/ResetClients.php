@@ -50,9 +50,9 @@ class ResetClients extends Component {
 	public function destroy(Client $client) {
         $client->suggested_vehicles()->delete();
         $client->garages()->delete();
+        $client->sessions()->delete();
         $client->delete();
         $this->show_alert('success',__('The data has been deleted'));
         $this->reset(['search']);
     }
 }
-

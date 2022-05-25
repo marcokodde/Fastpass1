@@ -1,70 +1,71 @@
 <div class="mx-auto text-center items-center">
-    <div class="grid grid-cols-3 gap-2">
+    <div class="grid lg:grid-cols-3 lg:gap-2 sm:grid-cols-1 sm:gap-1 mt-4">
         <div>
         </div>
         <div class="well center-block" style="border: 1px solid rgb(150, 146, 146);">
             <div class="flex rounded-lg justify-between">
                 <label for="cost"
-                    class="form-control inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Costo del Vehiculo:")}}</label>
-                <input type="text"
-                        wire:model="cost"
-                        wire:change="calcular"
-                        id="cost"
-                        maxlength="15"
-                        id="amount"
-                        class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        onkeydown="return filterFloat(event,this)"
-                >
+                class="form-control inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Costo del Vehiculo:")}}</label>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <input type="text"
+                    wire:model="cost"
+                    wire:change="calcular"
+                    id="cost"
+                    maxlength="15"
+                    id="amount"
+                    class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    onkeydown="return filterFloat(event,this)"
+                    >
+                </div>
             </div>
 
             <div class="flex rounded-lg justify-between">
                 <label for="downpayment"
-                        class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Enganche:")}}</label>
-                <input type="text"
+                class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Enganche:")}}</label>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <input type="text"
                         wire:model="downpayment"
                         wire:change="calcular"
                         maxlength="15"
                         id="downpayment"
                         onkeydown="return filterFloat(event,this)"
                         class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                >
+                    >
+                </div>
             </div>
 
             <div class="flex rounded-lg justify-between">
                 <label for="rate"
-                        class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("%Interes:")}}</label>
-                <input type="number"
+                    class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("%Interes:")}}</label>
+                    <input type="number"
                         wire:model="rate"
                         wire:change="calcular"
                         min="1"
                         step="1"
                         id="rate"
-                        class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                >
-
+                        class="shadow m-1 appearance-none border rounded w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    >
             </div>
 
             <div class="flex rounded-lg justify-between">
                 <label  for="plazo"
-                        class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Plazo:")}}</label>
-                <input type="number"
+                    class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Plazo:")}}</label>
+                    <input type="number"
                         wire:model="plazo"
                         wire:change="calcular"
                         min="1"
                         max="99"
                         id="plazo"
-                        class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                >
-
+                        class="shadow m-1 appearance-none border rounded w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    >
             </div>
-
         </div>
         <div>
         </div>
     </div>
     <br>
     <div class="mx-auto items-center text-center">
-        <div class="grid grid-cols-4 gap-2">
+        <div class="grid lg:grid-cols-4 lg:gap-2  sm:grid-cols-2 sm:gap-1">
             <div>
             </div>
             <div class="h-96 w-96 border-2 border-collapse border-gray-500" style="border: 2px solid #000;">
@@ -99,8 +100,7 @@
 
                 <div class="flex text-white rounded justify-between mt-4">
                     <label class="inline px-2 m-2 text-white bg-red-600 rounded text-sm font-bold text-left">{{__("Pagas de Mas")}}:</label>
-                    <input type="text" maxlength="15"
-                    class="text-white" >
+                    <label class="inline px-2 m-2 text-black  rounded text-sm font-bold text-left">{{__("$ Pago+")}}</label>
                 </div>
             </div>
 
@@ -127,32 +127,33 @@
 
                 <div class="flex rounded-lg justify-between">
                     <label for="ctc_downpayment"
-                        class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Enganche:")}}</label>
-                    <input type="text"
+                    class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Enganche:")}}</label>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <input type="text"
                             wire:model="ctc_downpayment"
                             wire:change="calcular"
                             maxlength="15"
                             id="ctc_downpayment"
                             onkeydown="return filterFloat(event,this)"
                             class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    >
+                        >
+                    </div>
                 </div>
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Pago de Intereses:")}}</label>
-                    <label> {{ number_format($ctc_amount_total - $cost, 2, '.', ',')}} </label>
+                    <label> {{ number_format($ctc_amount_total - $cost, 2, '.', ',')}}</label>
 
                 </div>
 
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("TOTAL PAGADO:")}}</label>
-                    <label> {{ number_format($ctc_amount_total, 2, '.', ',')}} </label>
+                    <label> {{ number_format($ctc_amount_total, 2, '.', ',')}}</label>
 
                 </div>
 
                 <div class="flex rounded justify-between  mt-4">
                     <label class="inline px-2 m-2 text-white bg-green-600 rounded text-sm font-bold text-left">{{__("Ahorras")}}:</label>
-                    <input type="text" maxlength="15"
-                    class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline" >
+                    <label class="inline px-2 m-2 text-black  rounded text-sm font-bold text-left">{{__("$ Ahorro")}}</label>
                 </div>
             </div>
             <div>
