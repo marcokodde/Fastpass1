@@ -4,27 +4,58 @@
         </div>
         <div class="well center-block" style="border: 1px solid rgb(150, 146, 146);">
             <div class="flex rounded-lg justify-between">
-                <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Costo del Vehiculo:")}}</label>
-                <input type="text" maxlength="15" id="amount" value="45000"
-                class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                <label for="cost"
+                    class="form-control inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Costo del Vehiculo:")}}</label>
+                <input type="text"
+                        wire:model="cost"
+                        wire:change="calcular"
+                        id="cost"
+                        maxlength="15"
+                        id="amount"
+                        class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        onkeydown="return filterFloat(event,this)"
+                >
             </div>
 
             <div class="flex rounded-lg justify-between">
-                <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Enganche:")}}</label>
-                <input type="text" maxlength="15" id="downpayment" onchange="calcular()" value="4500"
-                class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                <label for="downpayment"
+                        class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Enganche:")}}</label>
+                <input type="text"
+                        wire:model="downpayment"
+                        wire:change="calcular"
+                        maxlength="15"
+                        id="downpayment"
+                        onkeydown="return filterFloat(event,this)"
+                        class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                >
             </div>
 
             <div class="flex rounded-lg justify-between">
-                <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("%Interes:")}}</label>
-                <input type="text" maxlength="15" id="rate" onchange="calcular()" value="4.9"
-                class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                <label for="rate"
+                        class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("%Interes:")}}</label>
+                <input type="number"
+                        wire:model="rate"
+                        wire:change="calcular"
+                        min="1"
+                        step="1"
+                        id="rate"
+                        class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                >
+
             </div>
 
             <div class="flex rounded-lg justify-between">
-                <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Termino:")}}</label>
-                <input type="text" maxlength="15" id="plazo" onchange="calcular()" value="60"
-                class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                <label  for="plazo"
+                        class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Plazo:")}}</label>
+                <input type="number"
+                        wire:model="plazo"
+                        wire:change="calcular"
+                        min="1"
+                        max="99"
+                        id="plazo"
+                        class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                >
+
             </div>
 
         </div>
@@ -41,33 +72,29 @@
 
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold">{{__("Total Prestamo")}}</label>
-                    <input type="text" maxlength="15"
-                    class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                    <label> {{ number_format($amount, 2, '.', ',')}} </label>
                 </div>
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Pago Mensual")}}</label>
-                    <input type="text" maxlength="15"
-                    class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                    <label> {{ number_format($others_amount_by_month, 2, '.', ',')}} </label>
                 </div>
+
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Meses:")}}</label>
-                    <input type="text" maxlength="15"
-                    class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                    <label> {{ $plazo}} </label>
                 </div>
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Enganche:")}}</label>
-                    <input type="text" maxlength="15"
-                    class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                    <label> {{ number_format($downpayment, 2, '.', ',')}} </label>
                 </div>
                 <div class="flex rounded-lg justify-between">
-                    <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Pago de Intereses:")}}</label>
-                    <input type="text" maxlength="15"
-                    class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                    <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Pago Mensual:")}}</label>
+                    <label> {{ number_format($others_amount_by_month, 2, '.', ',')}} </label>
                 </div>
+
                 <div class="flex rounded-lg justify-between">
-                    <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("TOTAL PAGADO:")}}</label>
-                    <input type="text" maxlength="15"
-                    class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                    <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("PAGO TOTAL:")}}</label>
+                    <label> {{ number_format($others_amount_total, 2, '.', ',')}} </label>
                 </div>
 
                 <div class="flex text-white rounded justify-between mt-4">
@@ -83,33 +110,43 @@
 
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Total Prestamo:")}}</label>
-                    <input type="text" maxlength="15"
-                    class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                    <label> {{ number_format($ctc_amount, 2, '.', ',')}} </label>
                 </div>
+
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Pago Mensual:")}}</label>
-                    <input type="text" maxlength="15"
-                    class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                    <label> {{ number_format($ctc_amount_by_month, 2, '.', ',')}} </label>
+
                 </div>
+
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Meses:")}}</label>
-                    <input type="text" maxlength="15"
-                    class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                    <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{$ctc_plazo}}</label>
+
                 </div>
+
                 <div class="flex rounded-lg justify-between">
-                    <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Enganche:")}}</label>
-                    <input type="text" maxlength="15"
-                    class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                    <label for="ctc_downpayment"
+                        class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Enganche:")}}</label>
+                    <input type="text"
+                            wire:model="ctc_downpayment"
+                            wire:change="calcular"
+                            maxlength="15"
+                            id="ctc_downpayment"
+                            onkeydown="return filterFloat(event,this)"
+                            class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    >
                 </div>
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Pago de Intereses:")}}</label>
-                    <input type="text" maxlength="15"
-                    class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                    <label> {{ number_format($ctc_amount_total - $cost, 2, '.', ',')}} </label>
+
                 </div>
+
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("TOTAL PAGADO:")}}</label>
-                    <input type="text" maxlength="15"
-                    class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                    <label> {{ number_format($ctc_amount_total, 2, '.', ',')}} </label>
+
                 </div>
 
                 <div class="flex rounded justify-between  mt-4">
@@ -127,7 +164,7 @@
             <label class="block px-2 m-2 text-gray-700 text-2xl font-pop font-bold uppercase">{{__("Beneficios")}}</label>
             <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("En base a la informacion ingresada")}}</label>
             <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("Ahorras un total de $14,000.00")}}</label>
-            <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("Terminaras de pagar tu vehiculo en 36 Meses")}}</label>
+            <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("Terminaras de pagar tu vehiculo en ") . $ctc_plazo . '' . __('Months')}}</label>
             <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("Te ahorras 12 Meses de pagos")}}</label>
             <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("Tan solo con pagar $3,000 mas de enganche")}}</label>
             <label class="block px-2 m-2 text-gray-700 text-2xl font-pop font-bold">{{__("Comienza ahorrar hoy mismo")}}</label>
@@ -139,3 +176,5 @@
         {{__("Descubre si calificas")}}
     </div>
 </div>
+<script src="{{asset('js/calculadora.js')}}"></script>
+
