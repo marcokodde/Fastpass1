@@ -26,8 +26,9 @@
                         maxlength="15"
                         id="downpayment"
                         onkeydown="return filterFloat(event,this)"
-                        class="text-righ shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                >
+                        class="text-right shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+
+                        >
             </div>
 
             <div class="flex rounded-lg justify-between">
@@ -152,7 +153,8 @@
                 <div class="flex rounded justify-between  mt-4">
                     <label class="inline px-2 m-2 text-white bg-green-600 rounded text-sm font-bold text-left">{{__("Ahorras")}}:</label>
                     <input type="text" maxlength="15"
-                    class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline" >
+                     class="text-right shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    >
                 </div>
             </div>
             <div>
