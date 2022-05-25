@@ -40,7 +40,7 @@ Route::get('/{client_id}/{token?}',WelcomeController::class)->name('suggested_ve
 Route::get('inventory/show/{vehicle}', [NewShowVehiclesController::class, 'show'])->name('show_images');
 
 
-Route::get('queries/show/interest/calulator',function(){
+Route::get('queries/show/interest/calculator',function(){
     return view('calculadora.index');
 });
-Route::get('queries/show/interest/calulator',Calculator::class)->name('calculator_interes');
+Route::get('queries/show/interest/calculator',Calculator::class)->name('calculator_interes');

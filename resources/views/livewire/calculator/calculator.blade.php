@@ -68,6 +68,7 @@
         <div class="grid lg:grid-cols-4 lg:gap-2  sm:grid-cols-2 sm:gap-1">
             <div>
             </div>
+            {{--  Columna 1 Otras Agencias --}}
             <div class="h-96 w-96 border-2 border-collapse border-gray-500" style="border: 2px solid #000;">
                 <label class="inline px-2 m-2 text-gray-700 text-lg font-pop font-semibold mb-4">{{__("Otras Agencias")}}</label>
 
@@ -86,37 +87,46 @@
                 </div>
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Enganche:")}}</label>
-                    <label> {{ number_format($downpayment, 2, '.', ',')}} </label>
+                    @if ($downpayment)
+                        <label> {{ number_format($downpayment, 2, '.', ',')}} </label>
+                    @endif
                 </div>
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Pago Mensual:")}}</label>
-                    <label> {{ number_format($others_amount_by_month, 2, '.', ',')}} </label>
+                    @if ($downpayment)
+                        <label> {{ number_format($others_amount_by_month, 2, '.', ',')}} </label>
+                    @endif
                 </div>
 
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("PAGO TOTAL:")}}</label>
+                    @if($others_amount_total)
                     <label> {{ number_format($others_amount_total, 2, '.', ',')}} </label>
+                    @endif
                 </div>
 
                 <div class="flex text-white rounded justify-between mt-4">
-                    <label class="inline px-2 m-2 text-white bg-red-600 rounded text-sm font-bold text-left">{{__("Pagas de Mas")}}:</label>
-                    <label class="inline px-2 m-2 text-black  rounded text-sm font-bold text-left">{{__("$ Pago+")}}</label>
+                    <label class="inline px-2 m-2 text-white bg-red-600 rounded text-lg font-bold text-left">{{__("Pagas de Mas")}}:</label>
+                    <label class="inline px-2 m-2 text-white  rounded-lg text-lg bg-red-600 font-bold text-left">${{number_format($others_amount_total-$ctc_amount_total)}}</label>
                 </div>
             </div>
 
-            {{--  Columna central 2  --}}
+            {{--  Columna 2 CTC ahorro --}}
             <div class="h-96 w-96 border-2 border-collapse border-gray-500" style="border: 2px solid #000;">
                 <label class="inline px-2 m-2 text-gray-700 text-lg font-pop font-semibold mb-4">{{__("Programa 0% de Interes")}}</label>
 
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Total Prestamo:")}}</label>
-                    <label> {{ number_format($ctc_amount, 2, '.', ',')}} </label>
+                    @if ($ctc_amount)
+                        <label> {{ number_format($ctc_amount, 2, '.', ',')}} </label>
+                    @endif
                 </div>
 
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Pago Mensual:")}}</label>
-                    <label> {{ number_format($ctc_amount_by_month, 2, '.', ',')}} </label>
-
+                    @if($ctc_amount_by_month)
+                        <label> {{ number_format($ctc_amount_by_month, 2, '.', ',')}} </label>
+                    @endif
                 </div>
 
                 <div class="flex rounded-lg justify-between">
@@ -141,33 +151,39 @@
                 </div>
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("Pago de Intereses:")}}</label>
-                    <label> {{ number_format($ctc_amount_total - $cost, 2, '.', ',')}}</label>
-
+                    @if ($ctc_amount_total && $cost)
+                        <label> {{ number_format($ctc_amount_total - $cost, 2, '.', ',')}}</label>
+                    @endif
                 </div>
 
                 <div class="flex rounded-lg justify-between">
                     <label class="inline px-2 m-2 text-gray-700 text-sm font-bold text-left">{{__("TOTAL PAGADO:")}}</label>
-                    <label> {{ number_format($ctc_amount_total, 2, '.', ',')}}</label>
-
+                    @if ($ctc_amount_total)
+                        <label> {{ number_format($ctc_amount_total, 2, '.', ',')}}</label>
+                    @endif
                 </div>
 
                 <div class="flex rounded justify-between  mt-4">
-                    <label class="inline px-2 m-2 text-white bg-green-600 rounded text-sm font-bold text-left">{{__("Ahorras")}}:</label>
-                    <label class="inline px-2 m-2 text-black  rounded text-sm font-bold text-left">{{__("$ Ahorro")}}</label>
+                    <label class="inline px-2 m-2 text-white bg-green-600 rounded text-lg font-bold text-left">{{__("Ahorras")}}:</label>
+                    <label class="inline px-2 m-2 text-black  rounded text-lg font-bold text-left">${{number_format($others_amount_total-$ctc_amount_total)}}</label>
                 </div>
             </div>
             <div>
             </div>
         </div>
-<br>
-<br>
+        <br>
+        <br>
         <div class="mx-auto text-center">
             <label class="block px-2 m-2 text-gray-700 text-2xl font-pop font-bold uppercase">{{__("Beneficios")}}</label>
             <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("En base a la informacion ingresada")}}</label>
-            <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("Ahorras un total de $14,000.00")}}</label>
+            @if ($others_amount_total)
+                <label class="block px-2 m-2 text-gray-700 text-2xl font-pop font-bold">{{__("Ahorras un total de $") . number_format($others_amount_total-$ctc_amount_total) . ' ' . __('')}}</label>
+            @endif
             <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("Terminaras de pagar tu vehiculo en ") . $ctc_plazo . ' ' . __('Meses')}}</label>
             <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("Te ahorras 12 Meses de pagos")}}</label>
-            <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("Tan solo con pagar $") . $ctc_downpayment-$downpayment . ' ' . __('mas de enganche')}}</label>
+            @if ($ctc_downpayment)
+                <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("Tan solo con pagar $") . $ctc_downpayment-$downpayment . ' ' . __('mas de enganche')}}</label>
+            @endif
             <label class="block px-2 m-2 text-gray-700 text-2xl font-pop font-bold">{{__("Comienza ahorrar hoy mismo")}}</label>
         </div>
         <button type="button"
@@ -178,4 +194,3 @@
     </div>
 </div>
 <script src="{{asset('js/calculadora.js')}}"></script>
-

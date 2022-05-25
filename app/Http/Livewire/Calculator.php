@@ -7,12 +7,10 @@ use Livewire\Component;
 class Calculator extends Component
 {
 
-    public $cost = 0;
-    public $downpayment = 0;
-    public $rate = 1.0;
-    public $plazo =36;
-
-
+    public $cost                    = 0;
+    public $downpayment             = 0;
+    public $rate                    = 1.0;
+    public $plazo                   = 36;
     public $amount                  = 0;
     public $others_amount_by_month  = 0;
     public $others_amount_total     = 0;
@@ -32,23 +30,34 @@ class Calculator extends Component
     public function calcular(){
         if ($this->cost && is_numeric($this->cost) && $this->cost > 0) {
             $this->ctc_downpayment = $this->cost * 0.2;
+        } else {
+            $this->ctc_downpayment = 0;
         }
 
-        if ($this->downpayment && is_numeric($this->downpayment) && $this->downpayment > 0) {
+        if ($this->cost && is_numeric($this->cost) && $this->cost > 0 && $this->downpayment && is_numeric($this->downpayment) && $this->downpayment > 0) {
             $this->amount = $this->cost - $this->downpayment;
+        } else {
+            $this->amount = 0;
         }
 
-        if ($this->ctc_downpayment && is_numeric($this->ctc_downpayment) && $this->ctc_downpayment > 0) {
+        if ($this->ctc_downpayment && is_numeric($this->ctc_downpayment) && $this->ctc_downpayment > 0 && $this->cost && is_numeric($this->cost) && $this->cost > 0) {
             if ($this->ctc_downpayment < $this->cost * 0.2) {
                 $this->ctc_downpayment = $this->cost * 0.2;
             }
+        } else {
+            $this->ctc_downpayment = 0;
         }
 
-        if ($this->rate && is_numeric($this->rate) && $this->rate > 0) {
+        if ($this->rate && is_numeric($this->rate) && $this->rate > 0 && $this->cost && is_numeric($this->cost) && $this->cost > 0 && $this->downpayment && is_numeric($this->downpayment) && $this->downpayment > 0) {
             $this->amount = $this->cost - $this->downpayment;
+        } else {
+            $this->amount = 0;
         }
-        if ($this->ctc_downpayment && is_numeric($this->ctc_downpayment) && $this->ctc_downpayment > 0) {
+
+        if ($this->cost && is_numeric($this->cost) && $this->cost > 0 && $this->ctc_downpayment && is_numeric($this->ctc_downpayment) && $this->ctc_downpayment > 0) {
             $this->ctc_amount = $this->cost - $this->ctc_downpayment;
+        } else {
+            $this->ctc_amount = 0;
         }
 
         $this->others_amount_by_month   = $this->pmt($this->rate,$this->plazo,$this->amount);
