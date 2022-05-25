@@ -181,7 +181,7 @@
             @endif
             <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("Terminaras de pagar tu vehiculo en ") . $ctc_plazo . ' ' . __('Meses')}}</label>
             <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("Te ahorras 12 Meses de pagos")}}</label>
-            @if ($ctc_downpayment)
+            @if ($ctc_downpayment && $downpayment)
                 <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("Tan solo con pagar $") . $ctc_downpayment-$downpayment . ' ' . __('mas de enganche')}}</label>
             @endif
             <label class="block px-2 m-2 text-gray-700 text-2xl font-pop font-bold">{{__("Comienza ahorrar hoy mismo")}}</label>
