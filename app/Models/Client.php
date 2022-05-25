@@ -50,7 +50,7 @@ class Client extends Model
     // Garages
     public function garages(): HasMany
     {
-        return $this->hasMany(Garage::class);
+        return $this->hasMany(Garage::class,'client_id','client_id');
     }
 
     /**+------------+

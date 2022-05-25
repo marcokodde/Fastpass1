@@ -11,7 +11,7 @@ use App\Http\Livewire\Sources;
 use App\Http\Livewire\TestController;
 use App\Http\Livewire\WelcomeController;
 
-Route::get('queries/total_clients',Clients::class)->name('total_clients');
+require 'special_routes.php';
 require 'pruebas.php';
 
 Route::middleware(['auth'])->group(function () {
