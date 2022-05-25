@@ -1,4 +1,32 @@
 {
+   "Cost is Empty": "Costo está vacío",
+   "Cost is not numeri":"Costo no es número",
+   "Cost must be greater than 0":"Costo debe ser mayor a 0",
+
+   "Downpayment is Empty": "Enganche está vacío",
+   "Downpayment is not numeri":"Enganche no es número",
+   "Downpayment must be greater than 0":"Enganche debe ser mayor a 0",
+
+   "Rate is Empty": "Tasa de Interés está vacíao",
+   "Rate is not numeri":"Tasa de Interés no es número",
+   "Rate must be greater than 0":"Tasa de Interés debe ser mayor a 0",
+
+   "Term is Empty": "Plazo está vacío",
+   "Term is not numeri":"Plazo  no es número",
+   "Term must be greater than 0":"Plazo  debe ser mayor a 0",
+
+   "Vehicle Cost": "Costo del Vehículo",
+   "Downpayment":"Enganche",
+   "Rate": "Tasa Interés",
+   "Term": "Plazo",
+   "Months": "Meses",
+   "Other  Dealers": "Otros Distribuidores",
+   "Total Loan" :"Total Prestamo",
+   "Monthly Payment":"Pago Mensual",
+   "Full Payment": "Pago Total",
+   "You Pay More": "Pagas de Mas",
+   "0% Interest Program": "Programa 0% Interés",
+
     "The data has been deleted": "Los datos han sido eliminados",
     "Client Id Does Not Exists": "Cliente No Existe",
      "Read Client": "Leer Cliente",
