@@ -12,6 +12,8 @@ class ResetClients extends Component
 
     protected $queryString = [];
 
+
+
     public function mount(){
         $this->client_id = '8I09dwlw9SjFktU3SHFgV0JlD';
     }
@@ -38,6 +40,6 @@ class ResetClients extends Component
     }
 
     public function updatingSearch(): void{
-		$this->gotoPage(1);
+
 	}
 }

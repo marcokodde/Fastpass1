@@ -1,4 +1,7 @@
 {
+    "Client Id Does Not Exists": "Cliente No Existe",
+     "Read Client": "Leer Cliente",
+    "Reset Data Client": "Restablecer Datos de Cliente",
     "Locator": "Localidad",
     "Locators": "Localidades",
     "Name": "Nombre",

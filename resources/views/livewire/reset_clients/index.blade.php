@@ -43,7 +43,10 @@
                             <label class="block text-gray-700 text-sm font-bold mb-2 text-left">{{__("Sessions")}}</label>
                             <label class="block text-gray-700 text-sm font-bold mb-2 text-left">{{$client->sessions->count()}}</label>
                         </div>
-
+                    @elseif($client_id)
+                        <div class="mb-4">
+                            <label class="block text-red-700  font-bold mb-2 text-center text-5xl capitalize">{{__("Client Id Does Not Exists")}}</label>
+                        </div>
                     @endif
                 </div>
                 <div class="float-right">
