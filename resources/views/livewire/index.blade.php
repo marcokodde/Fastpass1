@@ -26,7 +26,7 @@
 
     {{-- Si se crea o edita --}}
     @if($isOpen && isset($view_form))
-   {{ $create_button_label}}
+        {{ $create_button_label}}
         @include($view_form)
     @endif
 </div>

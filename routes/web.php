@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\WelcomeController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Livewire\NewShowVehiclesController;
+use App\Http\Livewire\ResetClients;
 
 require 'special_routes.php';
 require 'pruebas.php';
@@ -19,6 +20,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('locators', Locators::class)->name('locators');      // Localidades
     Route::get('sources', Sources::class)->name('sources');         // Fuentes de como nos conoció
     Route::get('reasons', Reasons::class)->name('reasons');         // Motivos
+    Route::get('reset_clients',ResetClients::class)->name('reset_clients'); // Reiniciar Cliente
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

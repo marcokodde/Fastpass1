@@ -14,27 +14,29 @@
                     <form>
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                             <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2 text-left">{{__("Name")}}</label>
-                                <input type="text" wire:model="name" placeholder="{{__("Name")}}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                @error('name') <span class="text-red-500">{{ $message }}</span>@enderror
-                            </div>
-                            <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2 text-left">{{__("Slug")}}</label>
-                                <input type="text"  wire:model="slug"  placeholder="Slug"class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                @error('slug') <span class="text-red-500">{{ $message }}</span>@enderror
-                            </div>
-                            <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2 text-left">{{__("English")}}</label>
-                                <textarea wire:model="english"  cols="30" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
-                                @error('english') <span class="text-red-500">{{ $message }}</span>@enderror
+                                <input type="text"
+                                         wire:model="english"
+                                          placeholder="{{__("English")}}"
+                                          maxlength="50"
+                                          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                >
+
                             </div>
+                            <div>@error('english') <span class="text-red-500">{{ $message }}</span>@enderror</div>
+
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2 text-left">{{__("Spanish")}}</label>
-                                <textarea wire:model="spanish" cols="30" rows="3"  placeholder="{{__("Name")}}"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                </textarea>
-                                @error('spanish') <span class="text-red-500">{{ $message }}</span>@enderror
-                            </div>
+                                <input type="text"
+                                        wire:model="spanish"
+                                         placeholder="{{__('Spanis')}}h"
+                                         maxlength="50"
+
+                                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                >
+                                                     </div>
+                            <div>@error('spanish') <span class="text-red-500">{{ $message }}</span>@enderror</div>
+
                         </div>
                         @include('common.crud_save_cancel')
                     </form>

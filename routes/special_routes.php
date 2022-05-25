@@ -17,7 +17,7 @@ Route::get('calculadora',function(){
 });
 
 Route::get('queries/total_clients',Clients::class)->name('total_clients');
-Route::get('reset_clients',ResetClients::class)->name('reset_clients');
+//Route::get('reset_clients',ResetClients::class)->name('reset_clients');
 
 Route::get('queries/reset/client_id/{client_id}',function($client_id){
 

@@ -2,44 +2,57 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Client;
 use Livewire\Component;
 
-class ResetClients extends Component
-{
-    public $client_id;
-    public $client;
+use App\Http\Livewire\Traits\CrudTrait;
+use App\Models\Client;
+use App\Models\Reason;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-    protected $queryString = [];
+use Livewire\WithPagination;
 
+class ResetClients extends Component {
+    use AuthorizesRequests;
+    use WithPagination;
+    use CrudTrait;
 
+    protected $listeners = ['destroy'];
+    public $record = null;
 
-    public function mount(){
-        $this->client_id = '8I09dwlw9SjFktU3SHFgV0JlD';
-    }
-
-    public function render()
+    public function mount()
     {
-        return view('livewire.reset_clients.index');
+       // $this->authorize('hasaccess', 'reset.index');
+        $this->manage_title = __('Reset Data Client ');
+        $this->search_label = "Neo Client Id";
+        $this->view_table = 'livewire.reset_clients.table';
     }
 
-    public function read_client(){
 
-        if($this->client_id){
-            $this->client = Client::ClientId($this->client_id)->first();
+    /*+----------------------------------------------+
+	| Presenta formulario filtrando la búsqueda    |
+	+----------------------------------------------+
+	 */
+
+	public function render() {
+        $this->record = null;
+        if(strlen($this->search )){
+            $this->record = Client::ClientId($this->search)->first();
+
         }
+        return view('livewire.reset_clients.index');
+	}
 
-    }
 
-    // Elimina datos del cliente
-    public function destroy(Client $client){
+    /*+---------------------------------+
+	  | Elimina los datos del Cliente   |
+	  +---------------------------------+
+	 */
+	public function destroy(Client $client) {
         $client->suggested_vehicles()->delete();
         $client->garages()->delete();
-        $client->sessions()->delete();
         $client->delete();
+        $this->show_alert('success',__('The data has been deleted'));
+        $this->reset(['search']);
     }
-
-    public function updatingSearch(): void{
-
-	}
 }
+
