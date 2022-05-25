@@ -90,7 +90,7 @@
         <div class="mx-auto text-center">
             <label class="block px-2 m-2 text-gray-700 text-2xl font-pop font-bold uppercase">{{__("Beneficios")}}</label>
             <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("En base a la informacion ingresada")}}</label>
-            @if ($others_amount_total)
+            @if ($others_amount_total && $ctc_amount_total)
                 <label class="block px-2 m-2 text-gray-700 text-2xl font-pop font-bold">{{__("Ahorras un total de $") . number_format($others_amount_total-$ctc_amount_total) . ' ' . __('')}}</label>
             @endif
 
