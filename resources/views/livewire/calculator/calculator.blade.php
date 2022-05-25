@@ -12,7 +12,7 @@
                         id="cost"
                         maxlength="15"
                         id="amount"
-                        class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        class="text-right shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         onkeydown="return filterFloat(event,this)"
                 >
             </div>
@@ -26,7 +26,7 @@
                         maxlength="15"
                         id="downpayment"
                         onkeydown="return filterFloat(event,this)"
-                        class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        class="text-righ shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 >
             </div>
 
@@ -134,7 +134,7 @@
                             maxlength="15"
                             id="ctc_downpayment"
                             onkeydown="return filterFloat(event,this)"
-                            class="shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            class="text-righ shadow m-1 appearance-none border rounded w-1/5 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     >
                 </div>
                 <div class="flex rounded-lg justify-between">
