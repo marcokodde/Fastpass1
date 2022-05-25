@@ -79,7 +79,8 @@ trait NewSuggestedVehiclesTrait {
     // Lee el registro de tabla CLIENTS
     private function read_client(){
         $records = $this->read_api_suggested_vehicles();
-        if(!$records || is_null($records) || count($records)< 1 ){
+
+        if( is_null($records) || (isset($records['status']) &&  $records['status']== 500) ){
             return false;
         }
 
