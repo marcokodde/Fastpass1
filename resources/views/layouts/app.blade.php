@@ -6,7 +6,9 @@
             <x-jet-banner />
 
             <div class="min-h-screen bg-white">
-                @livewire('navigation-menu')
+                @auth
+                    @livewire('navigation-menu')
+                @endauth
 
                 <!-- Page Heading -->
                 @if (isset($header))

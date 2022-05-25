@@ -2,9 +2,6 @@
 
 
 use App\Http\Livewire\Clients;
-use App\Http\Livewire\Reasons;
-use App\Http\Livewire\Sources;
-use App\Http\Livewire\Locators;
 use App\Http\Livewire\Calculator;
 use App\Http\Livewire\TestController;
 use Illuminate\Support\Facades\Route;
@@ -17,9 +14,6 @@ require 'special_routes.php';
 require 'pruebas.php';
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('locators', Locators::class)->name('locators');      // Localidades
-    Route::get('sources', Sources::class)->name('sources');         // Fuentes de como nos conoció
-    Route::get('reasons', Reasons::class)->name('reasons');         // Motivos
     Route::get('reset_clients',ResetClients::class)->name('reset_clients'); // Reiniciar Cliente
 });
 
