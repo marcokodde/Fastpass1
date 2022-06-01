@@ -198,7 +198,8 @@
                         {{-- Diferencia de meses --}}
                         @if($diference_plazo != 0 )
 
-                            <label class="block px-2 m-2 text-black text-2xl font-bold font-pop">
+                            <label class="block px-2 m-2 text-gray-700 text-lg font-pop">
+                                3)
                                 @if($diference_plazo > 1)
                                     {{__("You save"). ' ' . $diference_plazo . ' ' . __('Months of payments')}}
                                 @else
@@ -210,9 +211,16 @@
                         @endif
 
                         @if ($ctc_downpayment && $downpayment && $ctc_downpayment != $downpayment)
-                            3) {{__("just by investing $") . number_format($ctc_downpayment-$downpayment) . ' ' . __('more down payment')}}</label>
-                        @endif
+                            <label class="block px-2 m-2 text-gray-700 text-lg font-pop">
+                                @if($diference_plazo != 0 )
+                                    4)
+                                @else
+                                    3)
+                                @endif
+                                {{__("just by investing $") . number_format($ctc_downpayment-$downpayment) . ' ' . __('more down payment')}}</label>
                             </label>
+
+                        @endif
                 </div>
             </section>
             <br>
