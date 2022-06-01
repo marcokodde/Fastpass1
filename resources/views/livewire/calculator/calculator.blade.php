@@ -11,20 +11,23 @@
         <label class="text-2xl font-pop">{{__('Enter the data to start')}}</label>
     </div>
     <br>
+
         <div class="grid lg:grid-cols-3 gap-1 sm:grid-cols-1">
             <div class="border-2 shadow border-collapse border-gray-600 m-8 py-4">
+                {{-- Costo Vehículo --}}
                 <div>
                     <h3 class="lg:text-3xl sm:text-sm">{{__("Vehicle Cost")}}</h3>
-                    <span>
-                        <input type="text"
+                    <input type="text"
                         wire:model="cost"
                         wire:change="calculate"
                         id="cost"
                         maxlength="15"
                         id="amount"
                         onkeydown="return filterFloat(event,this)">
-                    </span>
+
                 </div>
+
+                {{-- Enganche --}}
                 <div>
                     <h3 class="lg:text-3xl sm:text-sm">{{__("Downpayment")}}:</h3>
                     <input type="text"
@@ -35,6 +38,7 @@
                     onkeydown="return filterFloat(event,this)">
                 </div>
 
+                {{-- Tasa de interés --}}
                 <div>
                     <h3 class="lg:text-3xl sm:text-sm block">{{__("Rate")}}% :</h3>
                     <input type="number"
@@ -46,6 +50,7 @@
                     class="w-1/2">
                 </div>
 
+                {{-- Plazo --}}
                 <div>
                     <h3 class="lg:text-3xl sm:text-sm block">{{__("Term"). ' (' . __('Months') . ')'}} </h3>
                     <input type="number"
@@ -57,6 +62,7 @@
                     class="w-1/2">
                 </div>
             </div>
+
             {{--  Otras Agencias  --}}
             <div class="datos">
                 <label class="lg:text-3xl sm:text-sm">{{__('Others Agencies')}}</label>
@@ -65,49 +71,51 @@
                     <span class="text-lg font-normal">{{__("Vehicle Cost")}}:
                     </span>
                     <h5>
-                        {{ number_format($cost, 0, '.', ',')}}
+                        @if($cost) {{ number_format($cost, 0, '.', ',')}} @endif
                     </h5>
                 </div>
                 <hr class="border border-collapse border-white">
                 <div class="datos">{{-- Enganche --}}
                     <span class="text-lg font-normal">{{__("Downpayment")}}:</span>
                     <h5>
-                        {{ number_format($downpayment, 0, '.', ',')}}
+                        @if($downpayment) {{ number_format($downpayment, 0, '.', ',')}} @endif
                     </h5>
                 </div>
                 <hr class="border border-collapse border-white">
                 <div class="datos">{{-- Importe a financiar --}}
                     <span class="text-lg font-normal">{{__("Total Loan")}}:</span>
                     <h5>
-                        {{ number_format($amount, 0, '.', ',')}}
+                       @if($amount) {{ number_format($amount, 0, '.', ',')}} @endif
                     </h5>
                 </div>
                 <hr class="border border-collapse border-white">
                 <div class="datos"> {{-- Pago Mensual --}}
                     <span class="text-lg font-normal">{{__("Monthly Payment")}}:</span>
                     <h5>
-                        {{ number_format($others_amount_by_month, 2, '.', ',')}}
+                        @if($others_amount_by_month) {{ number_format($others_amount_by_month, 2, '.', ',')}} @endif
                     </h5>
                 </div>
                 <hr class="border border-collapse border-white">
                 <div class="datos"> {{-- Plazo en Meses --}}
                     <span class="text-lg font-normal">{{__("Months")}}:</span>
                     <h5>
-                        {{ $plazo}}
+                        @if($plazo) {{ $plazo}} @endif
                     </h5>
                 </div>
                 <hr class="border border-collapse border-white">
                 <div class="datos"> {{--Pago Total --}}
                     <span class="text-lg font-normal">{{__("Full Payment")}}:</span>
                     <h5>
-                        {{ number_format($others_amount_total, 2, '.', ',')}}
+                        @if($others_amount_total) {{ number_format($others_amount_total, 2, '.', ',')}} @endif
                     </h5>
                 </div>
                 <hr class="border border-collapse border-white">
                 <div class="datos">{{-- Diferencia --}}
                     <span class="text-lg font-normal">{{__("You Pay More")}}:</span>
                     <h5>
-                        ${{number_format($others_amount_total-$ctc_amount_total)}}
+                        @if($others_amount_total-$ctc_amount_total)
+                            ${{number_format($others_amount_total-$ctc_amount_total)}}
+                        @endif
                     </h5>
                 </div>
             </div>
@@ -119,95 +127,101 @@
                     <span class="whitesub">{{__("Vehicle Cost")}}:
                     </span>
                     <h5>
-                        {{ number_format($cost, 0, '.', ',')}}
+                        @if($cost) {{ number_format($cost, 0, '.', ',')}} @endif
+
                     </h5>
                 </div>
                 <hr class="border border-collapse border-white">
                 <div class="greendata" align="">{{-- Enganche --}}
                     <span class="whitesub">{{__("Downpayment")}}:</span>
                     <h5>
-                        {{ number_format($ctc_downpayment,0, '.', ',')}}
+                        @if($ctc_downpayment) {{ number_format($ctc_downpayment,0, '.', ',')}} @endif
                     </h5>
                 </div>
                 <hr class="border border-collapse border-white">
                 <div class="greendata" align="">{{-- Importe a financiar --}}
                     <span class="whitesub">{{__("Total Loan")}}:</span>
                     <h5>
-                        {{ number_format($ctc_amount, 0, '.', ',')}}
+                       @if($ctc_amount) {{ number_format($ctc_amount, 0, '.', ',')}} @endif
                     </h5>
                 </div>
                 <hr class="border border-collapse border-white">
                 <div class="greendata" align=""> {{-- Pago Mensual --}}
                     <span class="whitesub">{{__("Monthly Payment")}}:</span>
                     <h5>
-                        {{ number_format($ctc_amount_by_month, 2, '.', ',')}}
+                       @if($ctc_amount_by_month) {{ number_format($ctc_amount_by_month, 2, '.', ',')}} @endif
                     </h5>
                 </div>
                 <hr class="border border-collapse border-white">
                 <div class="greendata" align=""> {{-- Plazo en Meses --}}
                     <span class="whitesub">{{__("Months")}}:</span>
                     <h5>
-                        {{ $ctc_plazo}}
+                        @if($ctc_plazo) {{ $ctc_plazo}} @endif
                     </h5>
                 </div>
                 <hr class="border border-collapse border-white">
                 <div class="greendata" align=""> {{--Pago Total --}}
                     <span class="whitesub">{{__("Full Payment")}}:</span>
                     <h5>
-                        {{ number_format($ctc_amount_total, 2, '.', ',')}}
+                       @if($ctc_amount_total) {{ number_format($ctc_amount_total, 2, '.', ',')}} @endif
                     </h5>
                 </div>
                 <hr class="border border-collapse border-white">
                 <div class="greendata" align="">{{-- Diferencia --}}
                     <span class="whitesub">{{__("Payment you save")}}:</span>
                     <h5>
-                        ${{number_format($ctc_amount_total-$others_amount_total)}}
+                        @if($ctc_amount_total-$others_amount_total)
+                            ${{number_format($ctc_amount_total-$others_amount_total)}}
+                        @endif
                     </h5>
                 </div>
             </div>
         </div>
 
-    <section>
-        <div class="mx-auto text-center items-center justify-center" id="results">
-            <h1 class="text-5xl">{{__('Benefits')}}</h1>
-        </div>
-        <br>
-        <div class="mx-auto text-center items-center justify-center" style="background-color: #EDEDED;">
-                <label class="block px-2 m-2 text-gray-700 text-lg font-pop">1) {{__("Based on the aggregate information, you save ")}}:
-                    @if ($others_amount_total && $ctc_amount_total)
-                        <span class="font-bold text-black">${{ number_format($others_amount_total-$ctc_amount_total)}}</span>
-                    @endif
-                </label>
+        @if($cost && $downpayment && $rate && $plazo)
+            <section>
+                <div class="mx-auto text-center items-center justify-center" id="results">
+                    <h1 class="text-5xl">{{__('Benefits')}}</h1>
+                </div>
+                <br>
+                <div class="mx-auto text-center items-center justify-center" style="background-color: #EDEDED;">
+                        <label class="block px-2 m-2 text-gray-700 text-lg font-pop">1) {{__("Based on the aggregate information, you save ")}}:
+                            @if ($others_amount_total && $ctc_amount_total)
+                                <span class="font-bold text-black">${{ number_format($others_amount_total-$ctc_amount_total)}}</span>
+                            @endif
+                        </label>
 
-                <label class="block px-2 m-2 text-gray-700 text-lg font-pop">2) {{__("You will finish paying for your vehicle in ")}}
-                    <span class="font-bold text-black">{{ $ctc_plazo }} {{__(' Months')}}</span>
-                </label>
+                        <label class="block px-2 m-2 text-gray-700 text-lg font-pop">2) {{__("You will finish paying for your vehicle in ")}}
+                            <span class="font-bold text-black">{{ $ctc_plazo }} {{__(' Months')}}</span>
+                        </label>
 
-                {{-- Diferencia de meses --}}
-                @if($diference_plazo != 0 )
+                        {{-- Diferencia de meses --}}
+                        @if($diference_plazo != 0 )
 
-                    <label class="block px-2 m-2 text-black text-2xl font-bold font-pop">
-                        @if($diference_plazo > 1)
-                            {{__("You save"). ' ' . $diference_plazo . ' ' . __('Months of payments')}}
-                        @else
-                            {{__("You save"). ' ' . $diference_plazo . ' ' . __('Month of payments')}}
+                            <label class="block px-2 m-2 text-black text-2xl font-bold font-pop">
+                                @if($diference_plazo > 1)
+                                    {{__("You save"). ' ' . $diference_plazo . ' ' . __('Months of payments')}}
+                                @else
+                                    {{__("You save"). ' ' . $diference_plazo . ' ' . __('Month of payments')}}
 
+                                @endif
+                        {{-- @else
+                            <label class="block px-2 m-2 text-black text-2xl font-bold font-pop"> {{__("You save")}} --}}
                         @endif
-                {{-- @else
-                    <label class="block px-2 m-2 text-black text-2xl font-bold font-pop"> {{__("You save")}} --}}
-                @endif
 
-                @if ($ctc_downpayment && $downpayment && $ctc_downpayment != $downpayment)
-                    {{__("just by investing $") . number_format($ctc_downpayment-$downpayment) . ' ' . __('more down payment')}}</label>
-                @endif
-                    </label>
-        </div>
-    </section>
-<br>
-<div align="center">
-    <h1 class="text-5xl">{{__('Start saving today!')}}</h1>
-    <button>{{__('Find out if you apply')}}</button>
-</div>
-<br>
+                        @if ($ctc_downpayment && $downpayment && $ctc_downpayment != $downpayment)
+                            {{__("just by investing $") . number_format($ctc_downpayment-$downpayment) . ' ' . __('more down payment')}}</label>
+                        @endif
+                            </label>
+                </div>
+            </section>
+            <br>
+            <div align="center">
+                <h1 class="text-5xl">{{__('Start saving today!')}}</h1>
+                <button>{{__('Find out if you apply')}}</button>
+            </div>
+        @endif
+
+        <br>
 </div>
 <script src="{{asset('js/calculadora.js')}}"></script>

@@ -44,12 +44,11 @@ class Calculator extends Component
         $this->validate_data();
 
         if (count($this->errors)) {
-            //dd($this->errors);
+            $this->reset_values();
             return;
         }
 
         $this->reset_values();
-        // dd('A punto de calcular');
         $this->amount                   = round($this->cost - $this->downpayment, 2);
         $this->ctc_downpayment          = round($this->cost * 0.2, 2);
         $this->ctc_amount               = round($this->cost - $this->ctc_downpayment, 2);
@@ -109,8 +108,6 @@ class Calculator extends Component
     private function validate_field($field,$message,$min=0){
 
         if (strlen($field) < 1) {
-            dd($field);
-
             array_push($this->errors, __($message) . ' ' . __('is Empty'));
         }
 
