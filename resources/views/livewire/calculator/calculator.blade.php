@@ -191,7 +191,7 @@
                             @endif
                         </label>
 
-                        <label class="block px-2 m-2 text-gray-700 text-lg font-pop">2) {{__("You will finish paying for your vehicle in ")}}
+                        <label class="block px-2 m-2 text-gray-700 text-lg font-pop">2) {{__("You will finish paying for your vehicle in")}}
                             <span class="font-bold text-black">{{ $ctc_plazo }} {{__(' Months')}}</span>
                         </label>
 
@@ -210,7 +210,7 @@
                         @endif
 
                         @if ($ctc_downpayment && $downpayment && $ctc_downpayment != $downpayment)
-                            {{__("just by investing $") . number_format($ctc_downpayment-$downpayment) . ' ' . __('more down payment')}}</label>
+                            3) {{__("just by investing $") . number_format($ctc_downpayment-$downpayment) . ' ' . __('more down payment')}}</label>
                         @endif
                             </label>
                 </div>
