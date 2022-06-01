@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Livewire\Traits\ApiTrait;
 use GuzzleHttp\Exception\RequestException;
 use App\Http\Livewire\Traits\NewSuggestedVehiclesTrait;
+use App\Models\History;
 
 class WelcomeController extends Component
 {
@@ -27,13 +28,41 @@ class WelcomeController extends Component
     public $response_neo_is_null = false;
     public $records;
     public $there_are_records_api=false;
+    public $attempts = 1;
+    public $max_attemps = 2;
 
     public function mount($client_id,$token=null){
         $this->client_id = $client_id;
         $this->token = $token;
+        $this->general_process();
+    }
 
+    public function render()
+    {
+        if ($this->right_params){
+            return view('livewire.welcome.welcome-controller');
+        }
+        if (!$this->right_params && $this->client && $this->client->session_with_token() ){
+            return view('livewire.welcome.welcome_request_new_code');
+
+        }else{
+            if ($this->client && $this->attempts < $this->max_attemps) {
+                $this->reset_client_data();
+                $this->general_process();
+            }else{
+                return view('livewire.welcome.welcome_error');
+            }
+
+        }
+
+        return view('livewire.welcome.welcome_error');
+
+
+    }
+
+    private function general_process(){
+        $this->attempts++;
         $this->right_params = $this->validate_params();
-
 
         if($this->client){
             $this->there_are_records_api = $this->load_suggested_vehicles();
@@ -42,21 +71,6 @@ class WelcomeController extends Component
                 $this->client->update_active_sessions();
             }
         }
-
-
-    }
-
-    public function render()
-    {
-        // if($this->there_are_records_api){
-        //     dd('Si hay registros en la api para el cliente ' . $this->client_id);
-        // }
-
-        if( $this->response_neo_is_null){
-            dd('Respuesta de neo es nula');
-        }
-
-       return view('livewire.welcome.welcome-controller');
     }
 
     private function validate_params(){
@@ -65,9 +79,10 @@ class WelcomeController extends Component
             return false;
         }
 
-        $this->client = $this->read_client();
+        $this->client = $this->read_client(); // Si no está el cliente lo crea
 
         if(!$this->client){
+            $this->client_created = false;
             return false;
         }
 
@@ -81,6 +96,8 @@ class WelcomeController extends Component
                                         ->Token($this->token)
                                         ->Active()
                                         ->first();
+            dd($record_session);
+
             if(!$record_session){
                 return false;
             }
@@ -108,4 +125,16 @@ class WelcomeController extends Component
         }
     }
 
+
+    private function reset_data_client(){
+        $client_to_delete = Client::where('client_id',$this->client_id)->first();
+        $client_to_delete->suggested_vehicles()->delete();
+        $client_to_delete->garages()->delete();
+        $client_to_delete->sessions()->delete();
+        $client_to_delete->delete();
+    }
+
+    private function create_history(){
+
+    }
 }

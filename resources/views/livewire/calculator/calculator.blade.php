@@ -17,18 +17,17 @@
                     <h3 class="lg:text-3xl sm:text-sm">{{__("Vehicle Cost")}}</h3>
                     <input type="text"
                     wire:model="cost"
-                    wire:change="calcular"
+                    wire:change="calculate"
                     id="cost"
                     maxlength="15"
                     id="amount"
                     onkeydown="return filterFloat(event,this)">
                 </div>
-
                 <div>
                     <h3 class="lg:text-3xl sm:text-sm">{{__("Downpayment")}}:</h3>
                     <input type="text"
                     wire:model="downpayment"
-                    wire:change="calcular"
+                    wire:change="calculate"
                     maxlength="15"
                     id="downpayment"
                     onkeydown="return filterFloat(event,this)">
@@ -38,7 +37,7 @@
                     <h3 class="lg:text-3xl sm:text-sm block">{{__("Rate")}}% :</h3>
                     <input type="number"
                     wire:model="rate"
-                    wire:change="calcular"
+                    wire:change="calculate"
                     min="1"
                     step="1"
                     id="rate"
@@ -49,7 +48,7 @@
                     <h3 class="lg:text-3xl sm:text-sm block">{{__("Term"). ' (' . __('Months') . ')'}} </h3>
                     <input type="number"
                     wire:model="plazo"
-                    wire:change="calcular"
+                    wire:change="calculate"
                     min="1"
                     max="99"
                     id="plazo"
@@ -165,6 +164,7 @@
                 </div>
             </div>
         </div>
+
     <section>
         <div class="mx-auto text-center items-center justify-center" id="results">
             <h1 class="text-5xl">{{__('Benefits')}}</h1>
