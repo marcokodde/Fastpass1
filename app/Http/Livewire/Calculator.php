@@ -24,7 +24,11 @@ class Calculator extends Component
     public $ctc_amount              = 0;
     public $errors                  = array();
     public $diference_plazo         = 0;
+    public $editing;
 
+    protected $rules=[
+        'editing.ctc_downpayment' => 'nullable|string|min:3'
+    ];
 
     public function mount(){
         $this->calculate();
@@ -36,28 +40,40 @@ class Calculator extends Component
         return view('livewire.calculator.calculator');
     }
 
-
     // Calcula valores
     public function calculate()
     {
         $this->errors = [];
         $this->validate_data();
-
         if (count($this->errors)) {
             $this->reset_values();
             return;
         }
 
         $this->reset_values();
-        $this->amount                   = round($this->cost - $this->downpayment, 2);
-        $this->ctc_downpayment          = round($this->cost * 0.2, 2);
-        $this->ctc_amount               = round($this->cost - $this->ctc_downpayment, 2);
-        $this->others_amount_by_month   = $this->pmt($this->rate, $this->plazo, $this->amount);
-        $this->others_amount_total      = $this->others_amount_by_month * $this->plazo;
-        $this->ctc_amount_by_month      = $this->pmt(0, 36, $this->ctc_amount);
-        $this->ctc_amount_total         = $this->ctc_amount_by_month * $this->ctc_plazo;
+        $ctc_downpayment = $this->editing;
 
-        $this->diference_plazo  = $this->plazo > $this->ctc_plazo ? $this->plazo - $this->ctc_plazo : 0;
+        if ($ctc_downpayment) {
+            $this->amount                   = round($this->cost - $this->downpayment, 2);
+            $this->ctc_downpayment          = $ctc_downpayment;
+            $this->ctc_amount               = round($this->cost - $this->ctc_downpayment, 2);
+            $this->others_amount_by_month   = $this->pmt($this->rate, $this->plazo, $this->amount);
+            $this->others_amount_total      = $this->others_amount_by_month * $this->plazo;
+            $this->ctc_amount_by_month      = $this->pmt(0, 36, $this->ctc_amount);
+            $this->ctc_amount_total         = $this->ctc_amount_by_month * $this->ctc_plazo;
+            $this->diference_plazo  = $this->plazo > $this->ctc_plazo ? $this->plazo - $this->ctc_plazo : 0;
+        } else {
+            $this->amount                   = round($this->cost - $this->downpayment, 2);
+            $this->ctc_downpayment          = round($this->cost * 0.2, 2);
+            $this->ctc_amount               = round($this->cost - $this->ctc_downpayment, 2);
+            $this->others_amount_by_month   = $this->pmt($this->rate, $this->plazo, $this->amount);
+            $this->others_amount_total      = $this->others_amount_by_month * $this->plazo;
+            $this->ctc_amount_by_month      = $this->pmt(0, 36, $this->ctc_amount);
+            $this->ctc_amount_total         = $this->ctc_amount_by_month * $this->ctc_plazo;
+    
+            $this->diference_plazo  = $this->plazo > $this->ctc_plazo ? $this->plazo - $this->ctc_plazo : 0;
+        }
+        
     }
 
     /*+-------------------------------------+

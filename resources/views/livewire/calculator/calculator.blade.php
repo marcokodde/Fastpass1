@@ -64,7 +64,7 @@
             </div>
 
             {{--  Otras Agencias  --}}
-            <div class="datos">
+            <div class="datos m-4 py-8">
                 <label class="lg:text-3xl sm:text-sm">{{__('Others Agencies')}}</label>
                 <hr class="border border-collapse border-white">
                 <div class="datos">{{-- Costo Vehiculo --}}
@@ -120,7 +120,7 @@
                 </div>
             </div>
             {{--  CTC 0 % Interes --}}
-            <div  class="greendata">
+            <div  class="greendata m-4 py-8">
                 <label class="lg:text-3xl sm:text-sm" id="whitein">{{__('0% Interest')}}</label>
                 <hr class="border border-collapse border-white">
                 <div class="greendata">{{-- Costo Vehiculo --}}
@@ -132,14 +132,28 @@
                     </h5>
                 </div>
                 <hr class="border border-collapse border-white">
-                <div class="greendata" align="">{{-- Enganche --}}
-                    <span class="whitesub">{{__("Downpayment")}}:</span>
-                    <h5>
-                        @if($ctc_downpayment) {{ number_format($ctc_downpayment,0, '.', ',')}} @endif
-                    </h5>
+                <div class="greendata">{{-- Enganche --}}
+                    <span class="whitesub">{{__("Downpayment")}}:
+                        <svg xmlns="http://www.w3.org/2000/svg" title="{{__('Add Downpayment')}}" class="h-5 w-5 inline" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                            <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                        <input type="text"
+                        wire:model="editing"
+                        wire:change="calculate"
+                        maxlength="15"
+                        onkeydown="return filterFloat(event,this)"
+                        title="{{__('Add Downpayment')}}"
+                        @if ($ctc_downpayment || $editing > $ctc_downpayment)
+                            placeholder="{{ number_format($ctc_downpayment,0, '.', ',')}}"
+                        @else
+                            placeholder="{{ number_format($editing,0, '.', ',')}}"
+                        @endif
+                        class="form-control">
                 </div>
                 <hr class="border border-collapse border-white">
-                <div class="greendata" align="">{{-- Importe a financiar --}}
+                <div class="greendata">{{-- Importe a financiar --}}
                     <span class="whitesub">{{__("Total Loan")}}:</span>
                     <h5>
                        @if($ctc_amount) {{ number_format($ctc_amount, 0, '.', ',')}} @endif
@@ -232,4 +246,4 @@
 
         <br>
 </div>
-<script src="{{asset('js/calculadora.js')}}"></script>
+

@@ -11,7 +11,7 @@ function calcular(){
     var  rate           =  document.getElementById('rate').value;
     var  plazo          = document.getElementById('plazo').value;
     var  plazo_ctc      = document.getElementById('plazo_ctc').value;
-    var  downpayment_ctc= document.getElementById('downpayment_ctc').value;
+    var  downpayment_ctc= document.getElementById('ctc_downpayment').value;
 
 
 
@@ -34,7 +34,7 @@ function calcular(){
     unmark_error('downpayment_ctc')
     if(!downpayment_ctc){
         var downpayment_ctc = redondear( cost * 20/100).toFixed(0);
-        document.getElementById('downpayment_ctc').value = downpayment_ctc;
+        document.getElementById('ctc_downpayment').value = downpayment_ctc;
     }
 
     if(downpayment_ctc && downpayment_ctc < redondear( cost * .20/100).toFixed(0)){
