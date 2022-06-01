@@ -15,13 +15,15 @@
             <div class="border-2 shadow border-collapse border-gray-600 m-8 py-4">
                 <div>
                     <h3 class="lg:text-3xl sm:text-sm">{{__("Vehicle Cost")}}</h3>
-                    <input type="text"
-                    wire:model="cost"
-                    wire:change="calculate"
-                    id="cost"
-                    maxlength="15"
-                    id="amount"
-                    onkeydown="return filterFloat(event,this)">
+                    <span>
+                        <input type="text"
+                        wire:model="cost"
+                        wire:change="calculate"
+                        id="cost"
+                        maxlength="15"
+                        id="amount"
+                        onkeydown="return filterFloat(event,this)">
+                    </span>
                 </div>
                 <div>
                     <h3 class="lg:text-3xl sm:text-sm">{{__("Downpayment")}}:</h3>
@@ -182,13 +184,20 @@
                 </label>
 
                 {{-- Diferencia de meses --}}
-                @if($diference_plazo)
-                    <label class="block px-2 m-2 text-black text-2xl font-bold font-pop">3) {{__("You save"). ' ' . $plazo-$ctc_plazo . ' ' . __('Months of payments')}}
-                @else
-                    <label class="block px-2 m-2 text-black text-2xl font-bold font-pop">3) {{__("You save")}}
+                @if($diference_plazo != 0 )
+
+                    <label class="block px-2 m-2 text-black text-2xl font-bold font-pop">
+                        @if($diference_plazo > 1)
+                            {{__("You save"). ' ' . $diference_plazo . ' ' . __('Months of payments')}}
+                        @else
+                            {{__("You save"). ' ' . $diference_plazo . ' ' . __('Month of payments')}}
+
+                        @endif
+                {{-- @else
+                    <label class="block px-2 m-2 text-black text-2xl font-bold font-pop"> {{__("You save")}} --}}
                 @endif
 
-                @if ($ctc_downpayment && $downpayment)
+                @if ($ctc_downpayment && $downpayment && $ctc_downpayment != $downpayment)
                     {{__("just by investing $") . number_format($ctc_downpayment-$downpayment) . ' ' . __('more down payment')}}</label>
                 @endif
                     </label>
