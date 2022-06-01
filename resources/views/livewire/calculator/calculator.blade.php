@@ -22,7 +22,7 @@
                         <h4>{{__("Vehicle Cost")}}</h4>
                         <input type="text"
                         wire:model="cost"
-                        wire:change="calcular"
+                        wire:change="calculate"
                         id="cost"
                         maxlength="15"
                         id="amount"
@@ -34,7 +34,7 @@
                         <h4>{{__("Downpayment")}}:</h4>
                         <input type="text"
                         wire:model="downpayment"
-                        wire:change="calcular"
+                        wire:change="calculate"
                         maxlength="15"
                         id="downpayment"
                         onkeydown="return filterFloat(event,this)">
@@ -45,20 +45,20 @@
                         <h4>{{__("Rate")}}% :</h4>
                         <input type="number"
                         wire:model="rate"
-                        wire:change="calcular"
+                        wire:change="calculate"
                         min="1"
                         step="1"
                         id="rate"
                         class="w-1/2">
                     </td>
                 </tr>
-            
+
                 <tr>
                     <td>
                         <h4>{{__("Term"). ' (' . __('Months') . ')'}} </h4>
                         <input type="number"
                         wire:model="plazo"
-                        wire:change="calcular"
+                        wire:change="calculate"
                         min="1"
                         max="99"
                         id="plazo"
@@ -90,21 +90,22 @@
                             <h4>{{__("Vehicle Cost")}}:
                             </h4>
                             <h4>
-                                {{ number_format($cost, 0, '.', ',')}}
+                                @if($cost) {{ number_format($cost, 0, '.', ',')}} @endif
+
                             </h4>
                         </td>
                         <td class="greendata" align="">
                             <h4 class="whitesub">{{__("Vehicle Cost")}}:
                             </h4>
                             <h4>
-                                {{ number_format($cost, 0, '.', ',')}}
+                                @if($cost) {{ number_format($cost, 0, '.', ',')}} @endif
                             </h4>
                         </td>
                     </tr>
                     {{-- Enganche --}}
                     <tr>
                         <td class="datos"><h4>{{__("Downpayment")}}:</h4>
-                            {{ number_format($downpayment, 0, '.', ',')}}
+                           @if($downpayment) {{ number_format($downpayment, 0, '.', ',')}} @endif
                         </td>
                         <td class="greendata" align="">
                             <h4 class="whitesub">{{__("Downpayment")}}:</h4>
@@ -194,14 +195,14 @@
                                 @if ($others_amount_total && $ctc_amount_total)
                                     <label class="block px-2 m-2 text-gray-700 text-2xl font-pop font-bold">{{__("You save a total of $") . number_format($others_amount_total-$ctc_amount_total) . ' ' . __('')}}</label>
                                 @endif
-    
-                                <label class="block px-2 m-2 text-gray-700 text-lg font-pop">2) {{__("You will finish paying for your vehicle in") . $ctc_plazo . ' ' . __('Months')}}</label>
-    
+
+                                <label class="block px-2 m-2 text-gray-700 text-lg font-pop">2) {{__("You will finish paying for your vehicle in") . ' ' . $ctc_plazo . ' ' . __('Months')}}</label>
+
                                 {{-- Diferencia de meses --}}
                                 @if($diference_plazo)
                                     <label class="block px-2 m-2 text-gray-700 text-lg font-pop">{{__("You save"). ' ' . $diference_plazo . ' ' . __('Months of payments')}}</label>
                                 @endif
-    
+
                                 @if ($ctc_downpayment && $downpayment)
                                     <label class="block px-2 m-2 text-gray-700 text-lg font-pop">3) {{__("Just paying $") . number_format($ctc_downpayment-$downpayment, 2, '.', ',') . ' ' . __('more hitch')}}</label>
                                 @endif

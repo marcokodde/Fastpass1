@@ -27,8 +27,9 @@ class Calculator extends Component
 
 
     public function mount(){
-        $this->calcular();
+        $this->calculate();
     }
+
     // Manda a la vista
     public function render()
     {
@@ -37,15 +38,18 @@ class Calculator extends Component
 
 
     // Calcula valores
-    public function calcular()
+    public function calculate()
     {
-
+        $this->errors = [];
         $this->validate_data();
+
         if (count($this->errors)) {
+            //dd($this->errors);
             return;
         }
-        $this->reset_values();
 
+        $this->reset_values();
+        // dd('A punto de calcular');
         $this->amount                   = round($this->cost - $this->downpayment, 2);
         $this->ctc_downpayment          = round($this->cost * 0.2, 2);
         $this->ctc_amount               = round($this->cost - $this->ctc_downpayment, 2);
@@ -54,22 +58,26 @@ class Calculator extends Component
         $this->ctc_amount_by_month      = $this->pmt(0, 36, $this->ctc_amount);
         $this->ctc_amount_total         = $this->ctc_amount_by_month * $this->ctc_plazo;
 
-        $this->diference_plazo  = $this->plazo > $this->ctc_plazo ? $this->plazo > $this->ctc_plazo : 0;
+        $this->diference_plazo  = $this->plazo > $this->ctc_plazo ? $this->plazo - $this->ctc_plazo : 0;
     }
 
-    // Restaura valores 
+    /*+-------------------------------------+
+      | reset_values(borrar parámetros?)    |
+      +-------------------------------------+
+     */
     private function reset_values($reset_all = false)
     {
         if ($reset_all) {
             $this->reset(['cost', 'downpayment', 'rate', 'plazo']);
         }
+
         $this->reset([
-            'amount', 
+            'amount',
             'ctc_downpayment',
-            'ctc_amount', 
-            'others_amount_by_month', 
-            'others_amount_total', 
-            'ctc_amount_by_month', 
+            'ctc_amount',
+            'others_amount_by_month',
+            'others_amount_total',
+            'ctc_amount_by_month',
             'ctc_amount_total'
         ]);
     }
@@ -77,66 +85,45 @@ class Calculator extends Component
     // Valida que los datos base sean válidos
     private function validate_data()
     {
-        $errors = [];
 
-        // Costo Vehículo
-        if (isEmpty($this->cost)) {
-            array_push($errors, __('Cost is Empty'));
-        }
-
-        if (!is_numeric($this->cost)) {
-            array_push($errors, __('Cost is not numeric'));
-        }
-
-        if ($this->cost < 0) {
-            array_push($errors, __('Cost must be greater than 0'));
-        }
-
-        // Enganche
-        if (isEmpty($this->downpayment)) {
-            array_push($errors, __('Downpayment is Empty'));
-        }
-
-        if (!is_numeric($this->downpayment)) {
-            array_push($errors, __('Downpayment is not numeric'));
-        }
-
-        if ($this->downpayment < 0) {
-            array_push($errors, __('Downpayment must be greater than 0'));
-        }
-
-        // Tasa de interés
-        if (isEmpty($this->rate)) {
-            array_push($errors, __('Rate is Empty'));
-        }
-
-        if (!is_numeric($this->rate)) {
-            array_push($errors, __('Rate is not numeric'));
-        }
-
-        if ($this->rate < 0) {
-            array_push($errors, __('Rate  must be greater than 0'));
-        }
-
-
-        // Plazo
-        if (isEmpty($this->plazo)) {
-            array_push($errors, __('Months  is Empty'));
-        }
-
-        if (!is_numeric($this->plazo)) {
-            array_push($errors, __('Months  is not numeric'));
-        }
-
-        if ($this->plazo < 10) {
-            array_push($errors, __('Months  must be greater than 1'));
-        }
+        $this->validate_field($this->cost,'Cost');
+        $this->validate_field($this->downpayment,'downpayment');
+        $this->validate_field($this->rate,'Rate');
+        $this->validate_field($this->plazo,'Months',1);
     }
 
-    // Calcula pago mensual functión pmt clásica
-    private function  pmt($rate = 0, $plazo = 36, $amount)
+    /*+-----------------------------+
+      | pmt(rate,plazo,importe)     |
+      +-----------------------------+
+     */
+    private function  pmt($rate = 0, $plazo = 36, $amount): float
     {
         if ($rate == 0) return $amount / $plazo;
         return ($rate / 100 / 12 * $amount) / (1 - pow(1 + $rate / 100 / 12, ($plazo * -1)));
     }
+
+    /*+---------------------------------------------------------+
+      | Validate_fields(campo a validar,mensaje,valor mínimo)   |
+      +---------------------------------------------------------+
+     */
+    private function validate_field($field,$message,$min=0){
+
+        if (strlen($field) < 1) {
+            dd($field);
+
+            array_push($this->errors, __($message) . ' ' . __('is Empty'));
+        }
+
+        if (!is_numeric($field))  array_push($this->errors, __($message) . ' ' . __('is not numeric'));
+
+        if ($field < $min) {
+            if($min == 0){
+                array_push($this->errors, __($message) . ' ' .  __('must be greater than 0'));
+            }else{
+                array_push($this->errors, __($message) . ' ' .  __('must be greater than 1'));
+            }
+        }
+
+    }
+
 }
