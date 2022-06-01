@@ -91,6 +91,9 @@ color: #01a03b;
 </style>
 <link rel='stylesheet' id='redux-google-fonts-salient_redux-css'  href='https://fonts.googleapis.com/css?family=Roboto+Condensed%3A700%7COswald%7CBebas+Neue%3A400%7CAnton%3A400%7CMontserrat%3A700&#038;ver=1634402610' type='text/css' media='all' />
 <link rel="stylesheet" href="{{ asset('css/alert_sytles.css') }}">
+<link rel="stylesheet" href="{{ asset('css/calculadora_styles.css') }}">
+
+
     @livewireStyles
     <style type="text/css">
         .btn {
