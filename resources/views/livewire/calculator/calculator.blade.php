@@ -1,7 +1,7 @@
 <div>
-    <div class="mx-auto text-center items-center" id="header">
+    <div class="mx-auto text-center items-center" id="header_calculator">
         <div align="center">
-            <img src="{{asset('images/logo_ctc_calculator.png')}}" alt="" width="10%" id="logo">
+            <img src="{{asset('images/logo_ctc_calculator.png')}}" alt="" width="10%" id="logo_calculator">
         </div>
     </div>
     <div class="mx-auto text-center items-center justify-center">
@@ -228,11 +228,11 @@
             <div align="center">
                 <h1 class="text-5xl">{{__('Start saving today!')}}</h1>
                 @if(App::isLocale('en'))
-                    <button>
+                    <button class="button_calculator">
                         <a href="https://ctcflashpass.com/0-interest">{{__('Find out if you apply')}}</a>
                     </button>
                 @else
-                    <button>
+                    <button class="button_calculator">
                         <a href="https://ctcflashpass.com/0-interes">{{__('Descubre si aplicas')}}</a>
                     </button>
                 @endif

@@ -1,19 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
 
-body{
-	font-family: montserrat;
-	font-size: 20px;
-	color: #707070;
-}
 
-
-#logo{
+#logo_calculator{
 	align-content: center;
 	text-align: center;
 }
 
-#header{
+#header_calculator{
 	align-content: center;
 	background: #51B655;
 	border: none; 
@@ -92,13 +86,8 @@ h4{
 	color: white
 }
 
-li{
-	text-decoration: none;
-	list-style: none;
-	
-}
 
-span{
+.span_calculator{
 	font-weight: bold;
 	font-size: 22px;
 }
@@ -111,9 +100,8 @@ span{
 	padding-right: 5px;
 	padding-top: 5px;
 }
-button{
+.button_calculator{
 	font-family: montserrat;
-	
 	font-size: 20px;
 	color: white;
 	background-color: #51B655;
@@ -124,7 +112,7 @@ button{
 	padding-right: 40px;
 }
 
-button:hover{
+.button_calculator:hover{
 	background: #f1c40f;
 	font-weight: medium;
 	cursor: pointer;
