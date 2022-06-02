@@ -227,7 +227,15 @@
             <br>
             <div align="center">
                 <h1 class="text-5xl">{{__('Start saving today!')}}</h1>
-                <button>{{__('Find out if you apply')}}</button>
+                @if(App::isLocale('en'))
+                    <button>
+                        <a href="https://ctcflashpass.com/0-interest">{{__('Find out if you apply')}}</a>
+                    </button>
+                @else
+                    <button>
+                        <a href="https://ctcflashpass.com/0-interes">{{__('Descubre si aplicas')}}</a>
+                    </button>
+                @endif
             </div>
         @endif
 
