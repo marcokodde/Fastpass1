@@ -127,31 +127,17 @@
                     </span>
                     <h5>
                         @if($cost) {{ number_format($cost, 0, '.', ',')}} @endif
-
                     </h5>
                 </div>
                 <hr class="border border-collapse border-white">
                 <div class="greendata">{{-- Enganche --}}
+
+
                     <span class="whitesub">{{__("Downpayment")}}:
-                        <svg xmlns="http://www.w3.org/2000/svg" title="{{__('Add Downpayment')}}" class="h-5 w-5 inline" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                            <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
-                        </svg>
                     </span>
-                        <input type="number"
-                        wire:model="editing_downpayment"
-                        wire:change="calculate"
-                        min="{{$ctc_downpayment-$downpayment}}"
-                        max="{{$cost}}"
-                        onkeydown="return filterFloat(event,this)"
-                        title="{{__('Add Downpayment')}}"
-                        @if ($ctc_downpayment || $editing_downpayment > $ctc_downpayment)
-                            placeholder="{{ number_format($ctc_downpayment,0, '.', ',')}}"
-                        @else
-                            placeholder="{{ number_format($editing_downpayment,0, '.', ',')}}"
-                        @endif
-                        class="form-control">
-                        @error('editing_downpayment') <span class="text-red-500">{{ $message }}</span>@enderror
+                    <h5>
+                        @if($ctc_downpayment) {{ number_format($ctc_downpayment, 0, '.', ',')}} @endif
+                    </h5>
                 </div>
                 <hr class="border border-collapse border-white">
                 <div class="greendata">{{-- Importe a financiar --}}
@@ -247,4 +233,4 @@
 
         <br>
 </div>
-
+<script src="{{asset('js/validations.js')}}"></script>
