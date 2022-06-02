@@ -24,7 +24,6 @@ class Calculator extends Component
     public $ctc_amount              = 0;
     public $errors                  = array();
     public $diference_plazo         = 0;
-    public $show_benefits           = false;
 
     public function mount(){
         $this->calculate();
@@ -43,21 +42,20 @@ class Calculator extends Component
         $this->validate_data();
         if (count($this->errors)) {
             $this->reset_values();
-            $this->show_benefits   = false;
             return;
         }
+
 
         $this->reset_values();
 
         $this->amount                   = round($this->cost - $this->downpayment, 2);
+        $this->ctc_downpayment          = round($this->cost * 0.2, 2);
         $this->ctc_amount               = round($this->cost - $this->ctc_downpayment, 2);
-        $this->ctc_downpayment          = round($this->cost * 0.2, 0, PHP_ROUND_HALF_UP);
         $this->others_amount_by_month   = $this->pmt($this->rate, $this->plazo, $this->amount);
         $this->others_amount_total      = $this->others_amount_by_month * $this->plazo;
         $this->ctc_amount_by_month      = $this->pmt(0, 36, $this->ctc_amount);
         $this->ctc_amount_total         = $this->ctc_amount_by_month * $this->ctc_plazo;
         $this->diference_plazo          = $this->plazo > $this->ctc_plazo ? $this->plazo - $this->ctc_plazo : 0;
-        $this->show_benefits            = true;
 
     }
 
@@ -86,12 +84,12 @@ class Calculator extends Component
     // Valida que los datos base sean válidos
     private function validate_data()
     {
-
         $this->validate_field($this->cost,'Cost');
         $this->validate_field($this->downpayment,'downpayment');
         $this->validate_field($this->rate,'Rate');
         $this->validate_field($this->plazo,'Months',1);
         $this->validate_field($this->ctc_downpayment,'ctc_downpayment');
+
 
     }
 
@@ -124,6 +122,9 @@ class Calculator extends Component
                 array_push($this->errors, __($message) . ' ' .  __('must be greater than 1'));
             }
         }
+
+
+        if($field && $field < 1) array_push($this->errors, __($message) . ' ' . __('Field must be greater than zero'));
 
     }
 
