@@ -11,7 +11,6 @@
         <label class="text-2xl font-pop">{{__('Enter the data to start')}}</label>
     </div>
     <br>
-
         <div class="grid lg:grid-cols-3 gap-1 sm:grid-cols-1">
             <div class="border-2 shadow border-collapse border-gray-600 m-8 py-4">
                 {{-- Costo Vehículo --}}
@@ -139,18 +138,20 @@
                             <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                         </svg>
                     </span>
-                        <input type="text"
-                        wire:model="editing"
+                        <input type="number"
+                        wire:model="editing_downpayment"
                         wire:change="calculate"
-                        maxlength="15"
+                        min="{{$ctc_downpayment-$downpayment}}"
+                        max="{{$cost}}"
                         onkeydown="return filterFloat(event,this)"
                         title="{{__('Add Downpayment')}}"
-                        @if ($ctc_downpayment || $editing > $ctc_downpayment)
+                        @if ($ctc_downpayment || $editing_downpayment > $ctc_downpayment)
                             placeholder="{{ number_format($ctc_downpayment,0, '.', ',')}}"
                         @else
-                            placeholder="{{ number_format($editing,0, '.', ',')}}"
+                            placeholder="{{ number_format($editing_downpayment,0, '.', ',')}}"
                         @endif
                         class="form-control">
+                        @error('editing_downpayment') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
                 <hr class="border border-collapse border-white">
                 <div class="greendata">{{-- Importe a financiar --}}
