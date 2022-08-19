@@ -231,7 +231,9 @@ class NewShowVehiclesController extends Component
         $this->read_additionals();
     }
 
-    public function store_appointment() {
+    /** Guarda la cita */
+    public function store_appointment()
+    {
         $this->validate([
             'date_at'   => 'required',
             'hour'      => 'required'
@@ -256,9 +258,10 @@ class NewShowVehiclesController extends Component
         $this->closeModal();
     }
 
+    /** Crea lista de fechas y horas */
 
-
-    private function create_list_dates_and_hours_to_appointment(){
+    private function create_list_dates_and_hours_to_appointment()
+    {
         $this->min_date_to_appointment = Carbon::now()->format('Y-m-d');
         $this->max_date_to_appointment = Carbon::now()->addDays(env('APP_MAX_DAYS_TO_DATE',2))->format('Y-m-d');
         $first_suggested = SuggestedVehicle::ClientId($this->client->id)->first();

@@ -16,11 +16,21 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
+
+                {{-- Restaurar Clientes --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('reset_clients') }}" :active="request()->routeIs('reset_clients')">
                         {{ __('Reset Data Client') }}
                     </x-jet-nav-link>
                 </div>
+
+                {{-- Total de Clientes --}}
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('total_clients') }}" :active="request()->routeIs('total_clients')">
+                        {{ __('Total de Clientes') }}
+                    </x-jet-nav-link>
+                </div>
+
 
             </div>
 
